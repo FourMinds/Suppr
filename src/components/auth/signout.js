@@ -8,3 +8,4 @@ class Signout extends Component {
   }
 }
 
+export default Signout;

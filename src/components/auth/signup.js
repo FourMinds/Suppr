@@ -7,3 +7,5 @@ class Signup extends Component {
     return <div>Signup</div>
   }
 }
+
+export default Signup;
