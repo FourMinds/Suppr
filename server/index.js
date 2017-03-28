@@ -7,7 +7,6 @@ const app = express();
 var db = require('./db/db');
 const router = require('./router');
 
-//DB-Setup
 
 app.use(morgan('combined'));
 app.use(cors());
