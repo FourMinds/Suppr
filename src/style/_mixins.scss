@@ -1,0 +1,9 @@
+@mixin rounded($radius: 5px) {
+  border-radius: $radius;
+}
+
+@mixin box-shadow($shadows...) { //var args for multiple arguments
+  box-shadow: $shadows;
+  -moz-box-shadow: $shadows;
+  -webkit-box-shadow: $shadows;
+}
