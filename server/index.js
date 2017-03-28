@@ -7,6 +7,7 @@ const app = express();
 var db = require('./db/db');
 const router = require('./router');
 
+db.connect(err => console.log('Connected to MySQL Database'));
 
 app.use(morgan('combined'));
 app.use(cors());

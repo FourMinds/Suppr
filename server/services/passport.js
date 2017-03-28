@@ -1,5 +1,4 @@
 const passport = require('passport');
-const User = require('../models/user');
 const config = require('../config');
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
@@ -8,13 +7,13 @@ const LocalStrategy = require('passport-local');
 const Promise = require('bluebird');
 const db = require('../db/db');
 
-db.connect(err => console.log('DB Connected'));
-const query = Promise.promisify(db.query.bind(db))
+const query = Promise.promisify(db.query.bind(db));
 
 const jwtOptions = {
   jwtFromRequest: ExtractJwt.fromHeader('authorization'),
   secretOrKey: config.secret,
 };
+
 const jwtLogin = new JwtStrategy(jwtOptions, function (payload, done) {
   const userQuery = `SELECT * from users WHERE id = "${payload.sub}";`
   query(userQuery).then((user) => {
