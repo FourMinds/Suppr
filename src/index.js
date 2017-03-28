@@ -9,12 +9,20 @@ import '../public/style.css';
 import reducers from './reducers';
 
 import App from './components/App';
+import Signin from './components/auth/signin';
+import Signout from './components/auth/signout';
+import Signup from './components/auth/signup';
+import RequireAuth from './components/auth/require_auth';
 
 const store = applyMiddleware(Thunk)(createStore)(reducers)
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <Router history={browserHistory}>
+      <Route path='/' component={App}>
+
+      </Route>
+    </Router>
   </Provider>,
   document.getElementById('root')
 );
