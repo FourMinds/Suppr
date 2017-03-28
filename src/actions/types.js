@@ -1,0 +1,1 @@
+export const INSERT_TYPE_HERE = 'INSERT_TYPE_HERE'
