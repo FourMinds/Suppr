@@ -6,6 +6,7 @@
     "axios": "^0.15.3",
     "bcrypt-nodejs": "0.0.3",
     "bluebird": "^3.5.0",
+    "body-parser": "^1.17.1",
     "cors": "^2.8.1",
     "express": "^4.15.2",
     "jquery": "^3.2.1",
@@ -26,6 +27,7 @@
   },
   "devDependencies": {
     "node-sass": "^4.5.1",
+    "nodemon": "^1.11.0",
     "react-scripts": "0.9.5"
   },
   "scripts": {
