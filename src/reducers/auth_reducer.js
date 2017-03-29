@@ -7,9 +7,9 @@ import {
 export default function(state = {}, action) {
   switch(action.type) {
     case AUTH_USER:
-      return { ...state, error: '', authenticated: true };
+      return { ...state, error: '', authenticated: true, username: action.payload };
     case UNAUTH_USER:
-      return { ...state, authenticated: false };
+      return { ...state, authenticated: false, username: null };
     case AUTH_ERROR:
       return { ...state, error: action.payload };
   }
