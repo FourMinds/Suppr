@@ -8,10 +8,13 @@ exports.createRecipe = function(req, res, next) {
   const { username, recipeName, imageUrl, difficulty, cookTime, prepTime, servings, instructions, ingredients:{ quantity, items } } = req.body; 
   const usernameSubQuery = `SELECT id from users WHERE username = "${username}"`;
   query(usernameSubQuery).then(([username]) => {
-    if (!username) res.status(422).send({ error: 'Username doesnt exist' })
+    if (!username) return res.status(422).send({ error: 'Username does not exist' })
   })
-  const saveRecipeQuery = `INSERT INTO recipes(name, image, difficulty, cook_time, prep_time, servings, instructions, user_id) VALUES("${recipeName}", "${imageUrl}", "${difficulty}", "${cookTime}", "${prepTime}", "${servings}", "${instructions}", (${usernameSubQuery}));`
+  if (!username || !recipeName || !imageUrl || !difficulty || !cookTime || !prepTime || !servings || !instructions || !quantity || !items) {
+    return res.status(422).send({ error: 'All fields are required' })
+  }
 
+  const saveRecipeQuery = `INSERT INTO recipes(name, image, difficulty, cook_time, prep_time, servings, instructions, user_id) VALUES("${recipeName}", "${imageUrl}", "${difficulty}", "${cookTime}", "${prepTime}", "${servings}", "${instructions}", (${usernameSubQuery}));`
   query(saveRecipeQuery)
     .then(result => {
     const saveIngredientsQuery = quantity.reduce((str, value, i) => {
@@ -20,25 +23,25 @@ exports.createRecipe = function(req, res, next) {
     return query(saveIngredientsQuery)
   })
     .then(result => {
-      res.status(200).send({ message: 'The recipe was saved successfully!'})
+      return res.status(200).send({ message: 'The recipe was saved successfully!'})
     })
 
 };
 
 exports.getRecipe = function(req, res, next) {
   const { id } = req.query;
-  if (!id) res.status(422).send({ error: 'No recipe was specified' });
+  if (!id) return res.status(422).send({ error: 'No recipe was specified' });
   const ingredientsQuery = `SELECT * from ingredients WHERE recipe_id = ${id};`;
   const recipeQuery = `SELECT * from recipes WHERE id = ${id}`
   const userQuery = `SELECT username FROM users WHERE id = (SELECT user_id FROM recipes WHERE id = ${id})`
 
   query(recipeQuery).then(([recipe]) => {
-    if(!recipe) res.status(422).send({ error: 'Recipe does not exist' });
+    if(!recipe) return res.status(422).send({ error: 'Recipe does not exist' });
   })
 
   Promise.all([query(ingredientsQuery), query(recipeQuery), query(userQuery)])
     .then(([ ingredients, [ recipe ], [ user ] ]) => {
-    const [ quantity, items ] = ingredients.reduce((acc, {quantity, ingredient}) => {
+    const [ quantity, items ] = ingredients.reduce((acc, { quantity, ingredient }) => {
       return [ [...acc[0], quantity], [...acc[1], ingredient] ];
     }, [[], []])
     const { name, image, difficulty, cook_time, prep_time, servings, instructions, user_id } = recipe;
