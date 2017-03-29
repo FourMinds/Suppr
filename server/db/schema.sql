@@ -35,8 +35,8 @@ CREATE TABLE `recipes` (
   `name` VARCHAR(255) NOT NULL,
   `image` MEDIUMTEXT NOT NULL,
   `difficulty` CHAR(10) NOT NULL,
-  `cooktime` INT NOT NULL,
-  `preptime` INT NOT NULL,
+  `cook_time` INT NOT NULL,
+  `prep_time` INT NOT NULL,
   `servings` INTEGER NOT NULL,
   `instructions` MEDIUMTEXT NOT NULL,
   `user_id` INTEGER NOT NULL,
@@ -53,7 +53,7 @@ DROP TABLE IF EXISTS `ingredients`;
 CREATE TABLE `ingredients` (
   `id` INTEGER NOT NULL AUTO_INCREMENT,
   `ingredient` MEDIUMTEXT NOT NULL,
-  `quantity` INTEGER NOT NULL,
+  `quantity` MEDIUMTEXT NOT NULL,
   `recipe_id` INTEGER NOT NULL,
   PRIMARY KEY (`id`)
 );
@@ -77,9 +77,8 @@ CREATE TABLE `reviews` (
 -- ---
 
 ALTER TABLE `recipes` ADD FOREIGN KEY (user_id) REFERENCES `users` (`id`);
-
--- ALTER TABLE `ingredients` ADD FOREIGN KEY (recipe_id) REFERENCES `recipes` (`id`);
--- ALTER TABLE `reviews` ADD FOREIGN KEY (recipe_id) REFERENCES `recipes` (`id`);
+ALTER TABLE `ingredients` ADD FOREIGN KEY (recipe_id) REFERENCES `recipes` (`id`);
+ALTER TABLE `reviews` ADD FOREIGN KEY (recipe_id) REFERENCES `recipes` (`id`);
 
 -- ---
 -- Table Properties
