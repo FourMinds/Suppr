@@ -8,6 +8,7 @@ import Thunk from 'redux-thunk';
 import '../public/bootstrap/css/bootstrap.css';
 import '../public/style.css';
 import reducers from './reducers';
+import { AUTH_USER } from './actions/types';
 
 import App from './components/App';
 import Signin from './components/auth/Signin';
@@ -18,6 +19,13 @@ import Home from './components/Home';
 import RequireAuth from './components/auth/require_auth';
 
 const store = applyMiddleware(Thunk)(createStore)(reducers)
+
+const token = localStorage.getItem('token');
+const username = localStorage.getItem('username');
+if (token && username) {
+  // we need to update application state
+  store.dispatch({ type: AUTH_USER, payload: username });
+}
 
 ReactDOM.render(
   <Provider store={store}>
