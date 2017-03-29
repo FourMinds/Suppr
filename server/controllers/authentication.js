@@ -22,11 +22,11 @@ exports.signup = function (req, res, next) {
   const emailQuery = `SELECT * from users WHERE email = "${email}";`;
   const query = Promise.promisify(db.query.bind(db));
 
-  Promise.all([query(emailQuery), query(usernameQuery)]).then((results) => {
-    if (results[0].length) {
+  Promise.all([query(emailQuery), query(usernameQuery)]).then(([emailFound, usernameFound]) => {
+    if (emailFound[0]) {
       return res.status(422).send({ error: 'Email is in use' });
     }
-    if (results[1].length) {
+    if (usernameFound[0]) {
       return res.status(422).send({ error: 'Username is in use' });
     }
     bcrypt.genSalt(10, (err, salt) => {
