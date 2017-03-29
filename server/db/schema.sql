@@ -78,8 +78,8 @@ CREATE TABLE `reviews` (
 
 ALTER TABLE `recipes` ADD FOREIGN KEY (user_id) REFERENCES `users` (`id`);
 
- ALTER TABLE `ingredients` ADD FOREIGN KEY (recipe_id) REFERENCES `recipes` (`id`);
- ALTER TABLE `reviews` ADD FOREIGN KEY (recipe_id) REFERENCES `recipes` (`id`);
+-- ALTER TABLE `ingredients` ADD FOREIGN KEY (recipe_id) REFERENCES `recipes` (`id`);
+-- ALTER TABLE `reviews` ADD FOREIGN KEY (recipe_id) REFERENCES `recipes` (`id`);
 
 -- ---
 -- Table Properties
