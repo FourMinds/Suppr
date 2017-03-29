@@ -38,7 +38,6 @@ const localLogin = new LocalStrategy(localOptions, function (username, password,
   const localQuery = `SELECT * FROM users WHERE username = "${username}";`
   query(localQuery).then((user) => {
     if (!user.length) return done(null, false);
-    console.log(user[0].password)
     comparePassword(password, user[0].password, (err, match) => {
       if (err) return done(err);
       if (!match) return done(null, false);
