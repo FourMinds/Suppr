@@ -18,8 +18,8 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` INTEGER NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(20) NOT NULL UNIQUE,
-  `password` VARCHAR(60) NOT NULL UNIQUE,
-  `email` MEDIUMTEXT NOT NULL,
+  `password` VARCHAR(60) NOT NULL,
+  `email` VARCHAR(30) NOT NULL UNIQUE,
   PRIMARY KEY (`id`)
 );
 
@@ -78,8 +78,8 @@ CREATE TABLE `reviews` (
 
 ALTER TABLE `recipes` ADD FOREIGN KEY (user_id) REFERENCES `users` (`id`);
 
--- ALTER TABLE `ingredients` ADD FOREIGN KEY (recipe_id) REFERENCES `recipes` (`id`);
--- ALTER TABLE `reviews` ADD FOREIGN KEY (recipe_id) REFERENCES `recipes` (`id`);
+ ALTER TABLE `ingredients` ADD FOREIGN KEY (recipe_id) REFERENCES `recipes` (`id`);
+ ALTER TABLE `reviews` ADD FOREIGN KEY (recipe_id) REFERENCES `recipes` (`id`);
 
 -- ---
 -- Table Properties
