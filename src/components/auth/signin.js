@@ -24,12 +24,14 @@ class Signin extends Component {
   render() {
     const { handleSubmit } = this.props;
     return (
-      <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+      <div className="flex-body">
+      <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))} className="auth-flex-element">
         <Field name="username" component={usernameField} />
         <Field name="password" component={passwordField} />
         {this.renderAlert()}
         <button action="submit" className="btn btn-primary">Sign in</button>
       </form>
+      </div>
     );
   }
 }

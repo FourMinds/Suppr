@@ -30,7 +30,8 @@ class Signup extends Component {
     const { error, pristine, reset, submitting } = this.props
     const { handleSubmit } = this.props;
     return (
-      <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+      <div className="flex-body">
+      <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))} className="auth-flex-element">
         <Field name="email" type="email" component={emailField} />
         <Field name="username" component={usernameField} />
         <Field name="password" type="password" component={passwordField} />
@@ -38,6 +39,7 @@ class Signup extends Component {
         {this.renderAlert()}
         <button action="submit" className="btn btn-primary" disabled={submitting}>Sign up</button>
       </form>
+      </div>
     );
   }
 }
