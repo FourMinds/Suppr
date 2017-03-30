@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { server } from '../config.js'
 import { browserHistory } from 'react-router';
 import {
   AUTH_USER,
@@ -6,15 +7,12 @@ import {
   AUTH_ERROR,
 } from './types';
 
-const ROOT_URL = 'http://localhost:3090';
-
 export function signinUser({ username, password }) {
   return function(dispatch) {
-    axios.post(`${ROOT_URL}/signin`, { username, password })
+    axios.post(`${server}/signin`, { username, password })
       .then(response => {
         dispatch({ type: AUTH_USER, payload: username });
         localStorage.setItem('token', response.data.token);
-        localStorage.setItem('username', username);
         browserHistory.push('/home');
       })
       .catch(() => {
@@ -25,14 +23,27 @@ export function signinUser({ username, password }) {
 
 export function signupUser({ email, username, password }) {
   return function(dispatch) {
-    axios.post(`${ROOT_URL}/signup`, { email, username, password })
+    axios.post(`${server}/signup`, { email, username, password })
       .then(response => {
         dispatch({ type: AUTH_USER, payload: username });
         localStorage.setItem('token', response.data.token);
-        localStorage.setItem('username', username);
         browserHistory.push('/home');
       })
       .catch(response => dispatch(authError(response.data.error)));
+  }
+}
+
+export function getUsername(token) {
+  return function(dispatch) {
+    dispatch({ type: AUTH_USER })
+    axios.get(`${server}/username`, {
+      headers: {
+        authorization: token
+      }
+    }).then(res => {
+      const { username } = res.data
+      dispatch({ type: AUTH_USER, payload: username });
+    }).catch(response => dispatch({ type: UNAUTH_USER }))
   }
 }
 
@@ -45,7 +56,6 @@ export function authError(error) {
 
 export function signoutUser() {
   localStorage.removeItem('token');
-  localStorage.removeItem('username');
 
   return { type: UNAUTH_USER };
 }
