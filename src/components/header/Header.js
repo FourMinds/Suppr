@@ -3,57 +3,29 @@ import React, { Component } from 'react';
 class Header extends Component {
   render() {
     return (
-      <nav className="navbar navbar-default">
-  <div className="container-fluid">
-    <div className="navbar-header">
-      <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span className="sr-only">Toggle navigation</span>
-        <span className="icon-bar"></span>
-        <span className="icon-bar"></span>
-        <span className="icon-bar"></span>
+      <nav className="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+      <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span className="navbar-toggler-icon"></span>
       </button>
-      <a className="navbar-brand" href="#">Brand</a>
-    </div>
-
-    <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul className="nav navbar-nav">
-        <li className="active"><a href="#">Link <span className="sr-only">(current)</span></a></li>
-        <li><a href="#">Link</a></li>
-        <li className="dropdown">
-          <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span className="caret"></span></a>
-          <ul className="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" className="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li role="separator" className="divider"></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li>
-      </ul>
-      <form className="navbar-form navbar-left">
-        <div className="form-group">
-          <input type="text" className="form-control" placeholder="Search" />
-        </div>
-        <button type="submit" className="btn btn-default">Submit</button>
-      </form>
-      <ul className="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
-        <li className="dropdown">
-          <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span className="caret"></span></a>
-          <ul className="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" className="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+      <a className="navbar-brand" href="#">Fixed navbar</a>
+      <div className="collapse navbar-collapse" id="navbarCollapse">
+        <ul className="navbar-nav mr-auto">
+          <li className="nav-item active">
+            <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="#">Link</a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link disabled" href="#">Disabled</a>
+          </li>
+        </ul>
+        <form className="form-inline mt-2 mt-md-0">
+          <input className="form-control mr-sm-2" placeholder="Search" type="text" />
+          <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
     )
   }
 }
