@@ -15,7 +15,8 @@ export function signinUser({ username, password }) {
         localStorage.setItem('token', response.data.token);
         browserHistory.push('/home');
       })
-      .catch(() => {
+      .catch((res) => {
+        if (!res.response) return dispatch(authError('Could not connect to server'))
         dispatch(authError('Bad Login Info'));
       });
   }

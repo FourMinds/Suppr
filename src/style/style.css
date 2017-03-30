@@ -1,12 +1,6 @@
-@import "variables";
-@import "mixins";
-
-// @include google-font('roboto')
-
 /****************
 Reset
 ****************/
-
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -16,8 +10,8 @@ b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
   margin: 0;
@@ -25,83 +19,66 @@ time, mark, audio, video {
   border: 0;
   font-size: 100%;
   font: inherit;
-  vertical-align: baseline;
-}
+  vertical-align: baseline; }
+
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
+article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
-  display: block;
-}
+  display: block; }
+
 body {
   line-height: 1.4;
-  font-family: $body-font;
-  padding-top: 75px;
-}
+  font-family: Arial, Helvetica, sans-serif;
+  padding-top: 75px; }
+
 ol, ul {
-  list-style: none;
-}
+  list-style: none; }
+
 blockquote, q {
-  quotes: none;
-}
+  quotes: none; }
+
 blockquote:before, blockquote:after,
 q:before, q:after {
   content: '';
-  content: none;
-}
+  content: none; }
+
 table {
   border-collapse: collapse;
-  border-spacing: 0;
-}
+  border-spacing: 0; }
+
 :focus {
-  outline: none;
-}
+  outline: none; }
+
 strong {
-  font-weight: bold; 
-}
+  font-weight: bold; }
+
 /* micro clear fix */
 .grouping:before,
 .grouping:after {
   content: " ";
-  display: table; 
-}
+  display: table; }
+
 .grouping:after {
-  clear: both; 
-}
+  clear: both; }
+
 img, iframe, video, object {
-  max-width: 100%; 
-}
+  max-width: 100%; }
+
 /****************-------Main-------****************/
-
-.flex-body {
+.main-body {
   display: flex;
-  justify-content: center;
-  flex-flow: row wrap;
-}
+  justify-content: center; }
 
-.auth-flex-element {
-  width: $auth-form-width;
-  padding: 0 10px;
-}
-
-.top-element {
-  padding-bottom: 20px;
-}
+.flex-element {
+  width: 600px; }
 
 .test {
-  @include rounded(10px);
-}
+  border-radius: 10px; }
 
 .error {
-      color: red;
-      font-style: italic;
-    }
+  color: red;
+  font-style: italic; }
 
 /****************
 navbar
 ****************/
-
-
-
-
-
-
