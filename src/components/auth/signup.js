@@ -22,6 +22,10 @@ class Signup extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps){
+    console.log(nextProps)
+  }
+
   render() {
     const { error, pristine, reset, submitting } = this.props
     const { handleSubmit } = this.props;

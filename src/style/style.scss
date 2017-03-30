@@ -71,6 +71,15 @@ img, iframe, video, object {
   @include rounded(10px);
 }
 
+.error {
+      // padding: 0 30px 0 50px;
+      // color: #999;
+      // max-height: 0;
+      // transition: 0.28s;
+      // overflow: hidden;
+      color: red;
+      font-style: italic;
+    }
 
 
 
