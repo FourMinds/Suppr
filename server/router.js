@@ -11,4 +11,5 @@ module.exports = function(app) {
   app.post('/signin', requireSignin, Authentication.signin);
   app.post('/recipe', recipeHandler.createRecipe);
   app.get('/recipe', recipeHandler.getRecipe);
+  app.get('/username', requireAuth, Authentication.getUsername);
 }

@@ -6,11 +6,16 @@ const Promise = require('bluebird');
 
 function generateToken(user) {
   const timeStamp = new Date().getTime();
-  return jwt.encode({ sub: user.id, iat: timeStamp }, config.secret);
+  return jwt.encode({ sub: user[0].id, iat: timeStamp }, config.secret);
 }
 
 exports.signin = function (req, res, next) {
   res.send({ token: generateToken(req.user) });
+};
+
+exports.getUsername = function (req, res, next) {
+  const { username } = req.user[0]
+  res.send({ username });
 };
 
 exports.signup = function (req, res, next) {
