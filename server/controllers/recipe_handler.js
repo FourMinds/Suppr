@@ -31,7 +31,7 @@ exports.createRecipe = function(req, res, next) {
 exports.getRecipe = function(req, res, next) {
   const { id } = req.query;
   if (!id) {
-    const allRecipesQuery = 'SELECT * from recipes;'
+    const allRecipesQuery = 'SELECT recipes.*, users.username from recipes JOIN users ON recipes.user_id=users.id;'
     return query(allRecipesQuery).then(recipes => res.status(200).send(recipes));
   }
   const ingredientsQuery = `SELECT * from ingredients WHERE recipe_id = ${id};`;

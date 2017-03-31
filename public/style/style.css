@@ -100,15 +100,23 @@ create
   padding: 5px; }
 
 .create-flex-element-right {
-  flex: 1 1 600px;
+  flex: 2 1 600px;
   padding: 5px; }
 
+.create-flex-element-left {
+  flex: 1 1 400px;
+  padding: 5px; }
+
+.image-preview {
+  border: 1px dashed black;
+  height: 100px;
+  width: 100px; }
+
 /****************
-create
+home view
 ****************/
 .flex-card-container {
   display: flex;
   flex-flow: row wrap;
   padding: 5px;
-  justify-content: space-around;
-  align-content: space-around; }
+  justify-content: space-around; }
