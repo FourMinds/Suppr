@@ -10,7 +10,7 @@ class HomeNoAuth extends Component {
   }
 
   renderCards() {
-    return this.props.data ? this.props.data.map(recipe => <RecipeCard recipe={recipe} />) : ''
+    return this.props.data ? this.props.data.map((recipe, i) => <RecipeCard recipe={recipe} key={i}/>) : ''
   }
 
   render() {

@@ -1,4 +1,22 @@
 /****************
+Font
+****************/
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Raleway"), local("Raleway-Regular"), url(https://fonts.gstatic.com/s/raleway/v11/YZaO6llzOP57DpTBv2GnyFKPGs1ZzpMvnHX-7fPOuAc.woff2) format("woff2");
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF; }
+
+/* latin */
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Raleway"), local("Raleway-Regular"), url(https://fonts.gstatic.com/s/raleway/v11/QAUlVt1jXOgQavlW5wEfxQLUuEpTyoUstqEm5AMlJo4.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215; }
+
+/****************
 Reset
 ****************/
 html, body, div, span, applet, object, iframe,
@@ -28,7 +46,7 @@ footer, header, hgroup, menu, nav, section {
 
 body {
   line-height: 1.4;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Raleway", Arial, Helvetica, sans-serif;
   padding-top: 75px; }
 
 ol, ul {
@@ -93,22 +111,50 @@ create
 ****************/
 .inner-flex-body {
   display: flex;
-  flex-flow: row wrap; }
+  flex-flow: row nowrap; }
+
+.spaced {
+  justify-content: space-around; }
 
 .inner-flex-element {
   flex: 1 1 200px;
   padding: 5px; }
 
 .create-flex-element-right {
-  flex: 1 1 600px;
-  padding: 5px; }
+  padding: 0 10px 5px 10px; }
+
+.create-flex-element-left {
+  width: 600px;
+  padding: 0 10px 5px 10px; }
+
+.image-preview {
+  border: 1px dashed black;
+  height: 250px;
+  width: 300px;
+  background-image: url("https://img.clipartfest.com/d705f9ff3f73afc0c2960d6087f5a757_camera-clipart-no-background-october-clipart-black-and-white-with-no-background_1185-908.jpeg");
+  background-size: 100% 100%;
+  margin: auto;
+  margin-bottom: 10px; }
+
+.image-preview-load {
+  height: 250px;
+  width: 300px;
+  margin: auto;
+  margin-bottom: 10px; }
+
+.hide-label {
+  display: none; }
 
 /****************
-create
+home view
 ****************/
 .flex-card-container {
   display: flex;
   flex-flow: row wrap;
   padding: 5px;
-  justify-content: space-around;
-  align-content: center; }
+  justify-content: space-around; }
+
+.card {
+  box-shadow: 1px 1px 3px 4px #ccc;
+  -moz-box-shadow: 1px 1px 3px 4px #ccc;
+  -webkit-box-shadow: 1px 1px 3px 4px #ccc; }

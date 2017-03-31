@@ -17,6 +17,7 @@ import Signup from './components/auth/Signup';
 import HomeNoAuth from './components/landing/HomeNoAuth';
 import Home from './components/home/Home';
 import Create from './components/create-recipe/Create';
+import RecipeView from './components/view-recipe/RecipeView';
 import RequireAuth from './components/auth/require_auth';
 
 const store = applyMiddleware(Thunk)(createStore)(reducers)
@@ -36,6 +37,7 @@ ReactDOM.render(
         <Route path='auth/signout' component={Signout} />
         <Route path='home' component={RequireAuth(Home)} />
         <Route path='create' component={RequireAuth(Create)} />
+        <Route path='recipe/:id' component={RequireAuth(RecipeView)} />
       </Route>
     </Router>
   </Provider>,

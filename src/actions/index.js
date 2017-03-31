@@ -6,7 +6,8 @@ import {
   UNAUTH_USER,
   AUTH_ERROR,
   POST_RECIPE,
-  GET_RECIPE
+  GET_RECIPE,
+  GET_RECIPE_ID
 } from './types';
 
 export function signinUser({ username, password }) {
@@ -85,3 +86,14 @@ export function getRecipes() {
   }
 }
 
+export function getRecipeById(id) {
+  return function(dispatch) {
+    axios.get(`${server}/recipe`, {
+      headers: {authorization: localStorage.getItem('token')},
+      params: { id }
+    })
+      .then(res => {
+        dispatch({ type: GET_RECIPE_ID, payload: res.data })
+      })
+  }
+}

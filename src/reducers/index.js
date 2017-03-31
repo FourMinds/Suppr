@@ -6,6 +6,6 @@ import recipeReducer from './recipe_reducer'
 const rootReducer = combineReducers({
   form,
   auth: authReducer,
-  recipes: recipeReducer
+  recipes: recipeReducer,
 });
 export default rootReducer;
