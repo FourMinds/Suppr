@@ -65,12 +65,21 @@ img, iframe, video, object {
   max-width: 100%; }
 
 /****************-------Main-------****************/
-.main-body {
+/****************
+Auth
+****************/
+.flex-body {
   display: flex;
-  justify-content: center; }
+  justify-content: center;
+  flex-flow: row wrap;
+  padding: 5px; }
 
-.flex-element {
-  width: 600px; }
+.auth-flex-element {
+  width: 500px;
+  padding: 5px; }
+
+.top-element {
+  padding-bottom: 20px; }
 
 .test {
   border-radius: 10px; }
@@ -80,5 +89,16 @@ img, iframe, video, object {
   font-style: italic; }
 
 /****************
-navbar
+create
 ****************/
+.inner-flex-body {
+  display: flex;
+  flex-flow: row wrap; }
+
+.inner-flex-element {
+  flex: 1 1 200px;
+  padding: 5px; }
+
+.create-flex-element-right {
+  flex: 1 1 600px;
+  padding: 5px; }

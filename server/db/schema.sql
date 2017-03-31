@@ -33,6 +33,7 @@ DROP TABLE IF EXISTS `recipes`;
 CREATE TABLE `recipes` (
   `id` INTEGER NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL,
+  `description` MEDIUMTEXT NOT NULL,
   `image` MEDIUMTEXT NOT NULL,
   `difficulty` CHAR(10) NOT NULL,
   `cook_time` INT NOT NULL,

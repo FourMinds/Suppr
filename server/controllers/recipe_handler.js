@@ -5,7 +5,7 @@ const _ = require('lodash');
 const query = Promise.promisify(db.query.bind(db));
 
 exports.createRecipe = function(req, res, next) {
-  const { username, recipeName, imageUrl, difficulty, cookTime, prepTime, servings, instructions, ingredients:{ quantity, items } } = req.body; 
+  const { username, recipeName, imageUrl, difficulty, cookTime, prepTime, servings, instructions, description, ingredients:{ quantity, items } } = req.body; 
   const usernameSubQuery = `SELECT id from users WHERE username = "${username}"`;
   query(usernameSubQuery).then(([username]) => {
     if (!username) return res.status(422).send({ error: 'Username does not exist' })
@@ -44,13 +44,14 @@ exports.getRecipe = function(req, res, next) {
     const [ quantity, items ] = ingredients.reduce((acc, { quantity, ingredient }) => {
       return [ [...acc[0], quantity], [...acc[1], ingredient] ];
     }, [[], []])
-    const { name, image, difficulty, cook_time, prep_time, servings, instructions, user_id } = recipe;
+    const { name, image, difficulty, cook_time, prep_time, servings, instructions, user_id, description } = recipe;
     const { username } = user;
     res.status(200).send({
       username, 
       recipeName: name, 
       imageUrl: image, 
       difficulty, 
+      description,
       cookTime: cook_time, 
       prepTime: prep_time, 
       servings, 

@@ -65,14 +65,18 @@ img, iframe, video, object {
   max-width: 100%; }
 
 /****************-------Main-------****************/
+/****************
+Auth
+****************/
 .flex-body {
   display: flex;
   justify-content: center;
-  flex-flow: row wrap; }
+  flex-flow: row wrap;
+  padding: 5px; }
 
 .auth-flex-element {
   width: 500px;
-  padding: 0 10px; }
+  padding: 5px; }
 
 .top-element {
   padding-bottom: 20px; }
@@ -85,5 +89,24 @@ img, iframe, video, object {
   font-style: italic; }
 
 /****************
-navbar
+create
 ****************/
+.inner-flex-body {
+  display: flex;
+  flex-flow: row wrap; }
+
+.inner-flex-element {
+  flex: 1 1 200px;
+  padding: 5px; }
+
+.create-flex-element-left {
+  flex: 1 1 400px;
+  padding: 5px; }
+
+.create-flex-element-left-inner {
+  flex: 1 1 200px;
+  padding: 5px; }
+
+.create-flex-element-right {
+  flex: 1 1 600px;
+  padding: 5px; }
