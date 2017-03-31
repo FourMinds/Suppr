@@ -14,8 +14,8 @@ import App from './components/App';
 import Signin from './components/auth/Signin';
 import Signout from './components/auth/Signout';
 import Signup from './components/auth/Signup';
-import HomeNoAuth from './components/HomeNoAuth';
-import Home from './components/Home';
+import HomeNoAuth from './components/landing/HomeNoAuth';
+import Home from './components/home/Home';
 import Create from './components/create-recipe/Create';
 import RequireAuth from './components/auth/require_auth';
 

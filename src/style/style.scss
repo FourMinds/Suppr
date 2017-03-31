@@ -121,6 +121,18 @@ create
   // width: $create-form-width-right;
 }
 
+/****************
+create
+****************/
+
+.flex-card-container {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 5px;
+  justify-content: space-around;
+  align-content: space-around;
+}
+
 
 
 

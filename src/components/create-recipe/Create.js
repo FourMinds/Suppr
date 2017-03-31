@@ -9,7 +9,17 @@ const {imageUrlField, recipeNameField, prepTimeField, cookTimeField, servingsFie
 
 class Create extends Component {
   handleFormSubmit(formProps) {
-    console.log(formProps)
+    const { username } = this.props
+    const { recipeName, imageUrl, difficulty, cookTime, prepTime, servings, instructions, description } = formProps
+    const ingredients = Object.keys(formProps).reduce((list, val, i) => {
+      let [quantity, items] = [`quantity${i}`, `items${i}`]
+      formProps[quantity] ? list.quantity.push(formProps[quantity]) : null;
+      formProps[items] ? list.items.push(formProps[items]) : null;
+      return list
+    }, {quantity: [], items: []})
+    this.props.postRecipe({
+      recipeName, imageUrl, difficulty, cookTime, prepTime, servings, instructions, description, ingredients, username
+    })
   }
 
   render() {
@@ -29,6 +39,7 @@ class Create extends Component {
       <div className="create-flex-element-right">
         <Field name="recipeName" component={recipeNameField} />
         <Field name="description" component={descriptionField} />
+        Ingredients:
         <Ingredients />
         <Field name="instructions" component={instructionsField} />
         <button action="submit" className="btn btn-primary">Submit</button>     
@@ -40,7 +51,7 @@ class Create extends Component {
 }
 
 function mapStateToProps(state) {
-  return { errorMessage: state.auth.error };
+  return { username: state.auth.username };
 }
 
 export default connect(mapStateToProps, actions)(reduxForm({

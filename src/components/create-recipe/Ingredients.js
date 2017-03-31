@@ -19,13 +19,12 @@ class Ingredients extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      total: 0
+      total: 1
     }
     this.renderForm = this.renderForm.bind(this)
   }
 
   handleClick() {
-    console.log(this.state.total)
     let { total } = this.state
     total += 1
     this.setState({ total })
