@@ -30,7 +30,10 @@ exports.createRecipe = function(req, res, next) {
 
 exports.getRecipe = function(req, res, next) {
   const { id } = req.query;
-  if (!id) return res.status(422).send({ error: 'No recipe was specified' });
+  if (!id) {
+    const allRecipesQuery = 'SELECT * from recipes;'
+    return query(allRecipesQuery).then(recipes => res.status(200).send(recipes));
+  }
   const ingredientsQuery = `SELECT * from ingredients WHERE recipe_id = ${id};`;
   const recipeQuery = `SELECT * from recipes WHERE id = ${id}`
   const userQuery = `SELECT username FROM users WHERE id = (SELECT user_id FROM recipes WHERE id = ${id})`

@@ -5,6 +5,8 @@ import {
   AUTH_USER,
   UNAUTH_USER,
   AUTH_ERROR,
+  POST_RECIPE,
+  GET_RECIPE
 } from './types';
 
 export function signinUser({ username, password }) {
@@ -60,3 +62,26 @@ export function signoutUser() {
 
   return { type: UNAUTH_USER };
 }
+
+export function postRecipe(recipe) {
+  return function(dispatch) {
+    axios.post(`${server}/recipe`, recipe, {
+      headers: {authorization: localStorage.getItem('token')}
+    })
+      .then(res => {
+        dispatch(getRecipes())
+      })
+  }
+}
+
+export function getRecipes() {
+  return function(dispatch) {
+    axios.get(`${server}/recipe`, {
+      headers: {authorization: localStorage.getItem('token')}
+    })
+      .then(res => {
+        dispatch({ type: GET_RECIPE, payload: res.data })
+      })
+  }
+}
+

@@ -99,14 +99,16 @@ create
   flex: 1 1 200px;
   padding: 5px; }
 
-.create-flex-element-left {
-  flex: 1 1 400px;
-  padding: 5px; }
-
-.create-flex-element-left-inner {
-  flex: 1 1 200px;
-  padding: 5px; }
-
 .create-flex-element-right {
   flex: 1 1 600px;
   padding: 5px; }
+
+/****************
+create
+****************/
+.flex-card-container {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 5px;
+  justify-content: space-around;
+  align-content: center; }
