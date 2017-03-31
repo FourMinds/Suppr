@@ -4,8 +4,6 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import Thunk from 'redux-thunk';
-import axios from 'axios';
-
 
 import { getUsername } from './actions';
 import '../public/bootstrap/css/bootstrap.css';
@@ -18,6 +16,7 @@ import Signout from './components/auth/Signout';
 import Signup from './components/auth/Signup';
 import HomeNoAuth from './components/HomeNoAuth';
 import Home from './components/Home';
+import Create from './components/create-recipe/Create';
 import RequireAuth from './components/auth/require_auth';
 
 const store = applyMiddleware(Thunk)(createStore)(reducers)
@@ -36,6 +35,7 @@ ReactDOM.render(
         <Route path='auth/signup' component={Signup} />
         <Route path='auth/signout' component={Signout} />
         <Route path='home' component={RequireAuth(Home)} />
+        <Route path='create' component={RequireAuth(Create)} />
       </Route>
     </Router>
   </Provider>,

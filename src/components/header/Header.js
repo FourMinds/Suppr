@@ -2,6 +2,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router';
 
+const Dropdown = (props) => (
+  <li className="nav-item dropdown">
+    <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+      {props.username}
+    </a>
+    <div className="dropdown-menu dropdown-menu-right" aria-labelledby="Preview">
+      <a className="dropdown-item" href="#">Link</a>
+      <a className="dropdown-item" href="#">Dropdown Link 2</a>
+      <a className="dropdown-item" href="#">Dropdown Link 3</a>
+    </div>
+  </li>
+)
+
 class Header extends Component {
   renderLinks() {
     if (!this.props.authenticated) {
@@ -33,12 +46,16 @@ class Header extends Component {
           <li className="nav-item active">
             <Link className="nav-link" to="/home">Home <span className="sr-only">(current)</span></Link>
           </li>
+          
           {this.renderLinks()}
         </ul>
         <form className="form-inline mt-2 mt-md-0">
-          <input className="form-control mr-sm-2" placeholder="Search" type="text" />
+          <input className="form-control mr-sm-2" placeholder="Search" type="text" style={{width: '600px'}}/>
           <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
+        <ul className="navbar-nav">
+          {this.props.authenticated && <Dropdown username={this.props.username}/>}
+        </ul>
       </div>
     </nav>
     )
@@ -46,7 +63,7 @@ class Header extends Component {
 }
 
 function mapStateToProps(state) {
-  return { authenticated: state.auth.authenticated };
+  return { authenticated: state.auth.authenticated, username: state.auth.username };
 }
 
 export default connect(mapStateToProps)(Header);
