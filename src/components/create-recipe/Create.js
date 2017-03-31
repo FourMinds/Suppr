@@ -51,7 +51,7 @@ class Create extends Component {
           Ingredients:
           <Ingredients />
           <Field name="instructions" component={instructionsField} />
-          <button action="submit" className="btn btn-primary form-control">Submit</button>     
+              
         </div>
         <div className="create-flex-element-right">
           <Field name="imageUrl" component={imageUrlField} />
@@ -66,6 +66,7 @@ class Create extends Component {
           <Field name="servings" component={servingsField} />
           <Field name="difficulty" component={difficultyField} />
         </div>
+        <button action="submit" className="btn btn-primary form-control submit-button" >Submit</button> 
       </div>
       </form>
     )

@@ -145,6 +145,11 @@ create
 .hide-label {
   display: none; }
 
+.submit-button {
+  align-self: flex-end;
+  width: 30%;
+  margin: 0 30%; }
+
 /****************
 home view
 ****************/
