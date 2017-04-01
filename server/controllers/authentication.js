@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt-nodejs');
 const Promise = require('bluebird');
 
 function generateToken(user) {
+  console.log(user)
   const timeStamp = new Date().getTime();
   return jwt.encode({ sub: user[0].id, iat: timeStamp }, config.secret);
 }
@@ -39,7 +40,7 @@ exports.signup = function (req, res, next) {
       bcrypt.hash(password, salt, null, (err, hash) => {
         const saveUserQuery = `INSERT INTO users(email, username, password) VALUES("${email}", "${username}", "${hash}");`
         query(saveUserQuery).then(result => {
-          res.status(200).json({ token: generateToken([result])});
+          res.status(200).json({ token: generateToken([{ id:result.insertId }])});
         })
       });
     });
