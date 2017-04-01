@@ -7,11 +7,11 @@ const query = Promise.promisify(db.query.bind(db));
 exports.createRecipe = function(req, res, next) {
   const { username, recipeName, imageUrl, difficulty, cookTime, prepTime, servings, instructions, description, ingredients:{ quantity, items } } = req.body; 
   const usernameSubQuery = `SELECT id from users WHERE username = "${username}"`;
-  if (!username || !recipeName || !imageUrl || !difficulty || !cookTime || !prepTime || !servings || !instructions || !quantity || !items) {
+  if (!username || !recipeName || !imageUrl || !difficulty || !cookTime || !prepTime || !servings || !instructions || !description || !quantity || !items) {
     return res.status(422).send({ error: 'All fields are required' })
   }
 
-  const saveRecipeQuery = `INSERT INTO recipes(name, image, difficulty, cook_time, prep_time, servings, instructions, user_id) VALUES("${recipeName}", "${imageUrl}", "${difficulty}", "${cookTime}", "${prepTime}", "${servings}", "${instructions}", (${usernameSubQuery}));`
+  const saveRecipeQuery = `INSERT INTO recipes(name, image, difficulty, cook_time, prep_time, servings, instructions, description, user_id) VALUES("${recipeName}", "${imageUrl}", "${difficulty}", "${cookTime}", "${prepTime}", "${servings}", "${instructions}", "${description}", (${usernameSubQuery}));`
   query(saveRecipeQuery)
     .then(result => {
     const saveIngredientsQuery = quantity.reduce((str, value, i) => {
@@ -44,9 +44,10 @@ exports.getRecipe = function(req, res, next) {
     const [ quantity, items ] = ingredients.reduce((acc, { quantity, ingredient }) => {
       return [ [...acc[0], quantity], [...acc[1], ingredient] ];
     }, [[], []])
-    const { name, image, difficulty, cook_time, prep_time, servings, instructions, user_id, description } = recipe;
+    const { id, name, image, difficulty, cook_time, prep_time, servings, instructions, user_id, description } = recipe;
     const { username } = user;
     res.status(200).send({
+      id,
       username, 
       recipeName: name, 
       imageUrl: image, 
