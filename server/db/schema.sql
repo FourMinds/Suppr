@@ -65,11 +65,27 @@ CREATE TABLE `ingredients` (
 -- ---
 
 DROP TABLE IF EXISTS `reviews`;
-
+    
 CREATE TABLE `reviews` (
-  `id` INTEGER NOT NULL AUTO_INCREMENT,
-  `review` MEDIUMTEXT,
+  `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  `review` MEDIUMTEXT NOT NULL,
   `recipe_id` INTEGER NOT NULL,
+  `rating` INTEGER NOT NULL,
+  `user_id` INTEGER NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+-- ---
+-- Table 'favorites'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `favorites`;
+    
+CREATE TABLE `favorites` (
+  `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  `recipe_id` INTEGER NOT NULL,
+  `user_id` INTEGER NOT NULL,
   PRIMARY KEY (`id`)
 );
 
@@ -80,7 +96,9 @@ CREATE TABLE `reviews` (
 ALTER TABLE `recipes` ADD FOREIGN KEY (user_id) REFERENCES `users` (`id`);
 ALTER TABLE `ingredients` ADD FOREIGN KEY (recipe_id) REFERENCES `recipes` (`id`);
 ALTER TABLE `reviews` ADD FOREIGN KEY (recipe_id) REFERENCES `recipes` (`id`);
-
+ALTER TABLE `reviews` ADD FOREIGN KEY (user_id) REFERENCES `users` (`id`);
+ALTER TABLE `favorites` ADD FOREIGN KEY (recipe_id) REFERENCES `recipes` (`id`);
+ALTER TABLE `favorites` ADD FOREIGN KEY (user_id) REFERENCES `users` (`id`);
 -- ---
 -- Table Properties
 -- ---

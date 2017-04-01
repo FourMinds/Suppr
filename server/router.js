@@ -1,5 +1,7 @@
 const Authentication = require('./controllers/authentication');
 const recipeHandler = require('./controllers/recipe_handler');
+const favoriteHandler = require('./controllers/favorite_handler');
+const reviewHandler = require('./controllers/review_handler');
 const passportService = require('./services/passport');
 const passport = require('passport');
 
@@ -12,4 +14,8 @@ module.exports = function(app) {
   app.post('/recipe', recipeHandler.createRecipe);
   app.get('/recipe', recipeHandler.getRecipe);
   app.get('/username', requireAuth, Authentication.getUsername);
+  app.post('/review', reviewHandler.postReview)
+  app.get('/review', reviewHandler.getReview)
+  app.post('/favorite', favoriteHandler.postFavorite)
+  app.get('/favorite', favoriteHandler.getFavorites)
 }
