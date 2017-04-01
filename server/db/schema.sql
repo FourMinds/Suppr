@@ -67,7 +67,7 @@ CREATE TABLE `ingredients` (
 DROP TABLE IF EXISTS `reviews`;
     
 CREATE TABLE `reviews` (
-  `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  `id` INTEGER NOT NULL AUTO_INCREMENT,
   `review` MEDIUMTEXT NOT NULL,
   `recipe_id` INTEGER NOT NULL,
   `rating` INTEGER NOT NULL,
@@ -83,11 +83,12 @@ CREATE TABLE `reviews` (
 DROP TABLE IF EXISTS `favorites`;
     
 CREATE TABLE `favorites` (
-  `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  `id` INTEGER NOT NULL AUTO_INCREMENT,
   `recipe_id` INTEGER NOT NULL,
   `user_id` INTEGER NOT NULL,
   PRIMARY KEY (`id`)
 );
+
 
 -- ---
 -- Foreign Keys
