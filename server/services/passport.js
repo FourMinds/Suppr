@@ -33,6 +33,7 @@ const comparePassword = function (password, userPassword, callback) {
   });
 };
 
+
 const localOptions = { usernameField: 'username' };
 const localLogin = new LocalStrategy(localOptions, function (username, password, done) {
   const localQuery = `SELECT * FROM users WHERE username = "${username}";`
