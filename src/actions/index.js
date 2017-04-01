@@ -6,8 +6,10 @@ import {
   UNAUTH_USER,
   AUTH_ERROR,
   POST_RECIPE,
+  POST_REVIEW,
   GET_RECIPE,
-  GET_RECIPE_ID
+  GET_RECIPE_ID,
+  GET_REVIEW
 } from './types';
 
 export function signinUser({ username, password }) {
@@ -93,7 +95,31 @@ export function getRecipeById(id) {
       params: { id }
     })
       .then(res => {
-        dispatch({ type: GET_RECIPE_ID, payload: res.data })
+        dispatch({ type: GET_RECIPE_ID, payload: res.data });
+        dispatch(getReview(id));
+      })
+  }
+}
+
+export function postReview(review) {
+  return function(dispatch) {
+    axios.post(`${server}/review`, review, {
+      headers: {authorization: localStorage.getItem('token')}
+      })
+      .then(res => {
+        dispatch(getReview(review.recipeId))
+      })
+  }
+}
+
+export function getReview(id) {
+  return function(dispatch) {
+    axios.get(`${server}/review`, {
+      headers: {authorization: localStorage.getItem('token')},
+      params: { id }
+    })
+      .then(res => {
+        dispatch({ type: GET_REVIEW, payload: res.data })
       })
   }
 }
