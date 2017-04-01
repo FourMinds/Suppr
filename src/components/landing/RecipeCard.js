@@ -7,7 +7,7 @@ class RecipeCard extends Component {
     const recipeLink = `/recipe/${id}`
     return (
       <div className="card" style={{width: '20rem', flex: '1 1 250px', margin: '5px 10px', maxWidth: '300px'}} >
-        <img className="card-img-top" src="http://www.employmentandlaborinsider.com/wp-content/uploads/sites/328/2017/01/San-Francisco.flickrCC.NicolasRaymond-300x200.jpg" alt="Card image cap" />
+        <img className="card-img-top" src={image} alt="Card image cap" />
         <div className="card-block">
           <h4 className="card-title">{name}</h4>
           <p className="card-text">{description}</p>
