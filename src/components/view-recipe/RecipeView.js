@@ -11,7 +11,7 @@ class RecipeView extends Component {
     const { id, recipeName, imageUrl, difficulty, cookTime, prepTime, servings, instructions, description } = this.props.recipe?this.props.recipe:''
     console.log(this.props.recipe)
     return (
-      <div>
+      <div className="flex-card-container card">
         {recipeName}
         <Reviews />
       </div>

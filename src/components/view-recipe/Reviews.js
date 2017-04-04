@@ -34,11 +34,18 @@ class Reviews extends Component {
   render() {
     const { handleSubmit } = this.props;
     return (
-      <div>
-        {this.props.reviews ?
-          this.props.reviews.map(review => <p>{review.review}</p>) :
-          null}
-        <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+      <div className="card-block">
+        {this.props.reviews
+          ? this.props.reviews.map(review => {
+            return (
+              <div className="list-group list-group flush">
+                <p className="list-group-item">Rating: {review.rating}</p>
+                <p className="list-group-item">{review.review}</p>
+              </div>
+            )
+          })
+          : null}
+        <form className="card-block" onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
           <Field name="rating" component={ratingField}></Field>
           <Field name="review" component={reviewField}></Field>
           <button className="btn btn-primary">Submit</button>
