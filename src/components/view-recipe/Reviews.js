@@ -7,7 +7,7 @@ const ratingField = rating => (
   <fieldset className="form-group">
     <label className="mr-sm-2">Rating </label><br/>
     <select {...rating.input} className="rounded-0 custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
-      <option selected disabled>Choose...</option>
+      <option disabled value="Choose...">Choose...</option>
       <option value="1">1</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -32,7 +32,7 @@ class Reviews extends Component {
   }
 
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, pristine, submitting } = this.props;
     return (
       <div className="card-block">
         {this.props.reviews
@@ -45,10 +45,12 @@ class Reviews extends Component {
             )
           })
           : null}
-        <form className="card-block" onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+        <form
+          className="card-block"
+          onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
           <Field name="rating" component={ratingField}></Field>
           <Field name="review" component={reviewField}></Field>
-          <button className="btn btn-primary">Submit</button>
+          <button className="btn btn-primary" disabled={pristine || submitting}>Submit</button>
         </form>
       </div>
     )
@@ -64,5 +66,6 @@ function mapStatetoProps(state) {
 }
 
 export default connect(mapStatetoProps, actions)(reduxForm({
-  form: 'reviews'
+  form: 'reviews',
+  initialValues: {rating: 'Choose...'}
 })(Reviews))
