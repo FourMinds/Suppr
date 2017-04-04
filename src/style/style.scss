@@ -34,8 +34,8 @@ b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
   margin: 0;
@@ -46,7 +46,7 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
+article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
   display: block;
 }
@@ -74,19 +74,19 @@ table {
   outline: none;
 }
 strong {
-  font-weight: bold; 
+  font-weight: bold;
 }
 /* micro clear fix */
 .grouping:before,
 .grouping:after {
   content: " ";
-  display: table; 
+  display: table;
 }
 .grouping:after {
-  clear: both; 
+  clear: both;
 }
 img, iframe, video, object {
-  max-width: 100%; 
+  max-width: 100%;
 }
 /****************-------Main-------****************/
 
@@ -189,6 +189,3 @@ home view
 .card {
   @include box-shadow(1px 1px 3px 4px #ccc)
 }
-
-
-
