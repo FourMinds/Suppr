@@ -9,7 +9,8 @@ import {
   POST_REVIEW,
   GET_RECIPE,
   GET_RECIPE_ID,
-  GET_REVIEW
+  GET_REVIEW,
+  GET_RECIPE_USERNAME
 } from './types';
 
 export function signinUser({ username, password }) {
@@ -97,6 +98,18 @@ export function getRecipeById(id) {
       .then(res => {
         dispatch({ type: GET_RECIPE_ID, payload: res.data });
         dispatch(getReview(id));
+      })
+  }
+}
+
+export function getRecipesByUsername(username) {
+  return function(dispatch) {
+    axios.get(`${server}/recipe`, {
+      headers: {authorization: localStorage.getItem('token')},
+      params: { username }
+    })
+      .then(res => {
+        dispatch({ type: GET_RECIPE_USERNAME, payload: res.data });
       })
   }
 }

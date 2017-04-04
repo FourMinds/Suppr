@@ -1,24 +1,21 @@
 import React, { Component } from 'react';
+import ProfileOwn from './ProfileOwn';
+import ProfileView from './ProfileView';
 import { connect } from 'react-redux';
-import * as actions from '../../actions';
 
 class Profile extends Component {
-  componentDidMount() {
-
-  }
-
   render() {
-    console.log(this.props.data)
-    return <div>{this.props.params.username}{' is not '}{this.props.username}
-
-
-
-    </div>
+    return (
+      <div>
+        {this.props.params.username === this.props.username && <ProfileOwn />}
+        {this.props.params.username !== this.props.username && <ProfileView />}
+      </div>
+    )
   }
 }
 
 function mapStateToProps(state) {
-  return { username: state.auth.username, data: state.recipes.data }
+  return { username: state.auth.username }
 }
 
-export default connect(mapStateToProps, actions)(Profile);
+export default connect(mapStateToProps)(Profile);
