@@ -2,18 +2,21 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router';
 
-const Dropdown = (props) => (
-  <li className="nav-item dropdown">
-    <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-      {props.username}
-    </a>
-    <div className="dropdown-menu dropdown-menu-right" aria-labelledby="Preview">
-      <a className="dropdown-item" href="#">Link</a>
-      <a className="dropdown-item" href="#">Dropdown Link 2</a>
-      <a className="dropdown-item" href="#">Dropdown Link 3</a>
-    </div>
-  </li>
-)
+const Dropdown = (props) => {
+  const profileLink = `/profile/${props.username}`
+  return (
+    <li className="nav-item dropdown">
+      <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+        {props.username}
+      </a>
+      <div className="dropdown-menu dropdown-menu-right" aria-labelledby="Preview">
+        <Link className="dropdown-item" to={profileLink}>My Profile</Link>
+        <a className="dropdown-item" href="#">Dropdown Link 2</a>
+        <a className="dropdown-item" href="#">Dropdown Link 3</a>
+      </div>
+    </li>
+  )
+}
 
 class Header extends Component {
   renderLinks() {
