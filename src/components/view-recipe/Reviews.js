@@ -15,7 +15,7 @@ const ratingField = rating => (
         rating.validateRating(event);
         rating.input.onChange(event);
       }}>
-      <option select disabled value="Choose...">Choose...</option>
+      <option disabled value="Choose...">Choose...</option>
       <option value="1">1</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -28,7 +28,10 @@ const ratingField = rating => (
 const reviewField = review => (
   <fieldset className="form-group">
     <label>Review</label>
-    <textarea {...review.input} className="form-control rounded-0" />
+    <textarea
+      {...review.input}
+      className="form-control rounded-0"
+      style={{height: "8em"}} />
   </fieldset>
 );
 
@@ -64,7 +67,7 @@ class Reviews extends Component {
   }
 
   render() {
-    const { handleSubmit, isRequired, pristine, submitting } = this.props;
+    const { handleSubmit, pristine, submitting } = this.props;
     // when pristine, button is disabled
     // user can only press submit button when a rating is chosen
     // this happens through validateRating, which changes the disableRating state; then whether or not the button is disabled depends on disableSubmit
@@ -73,7 +76,7 @@ class Reviews extends Component {
         {this.props.reviews
           ? this.props.reviews.map(review => {
             return (
-              <div className="list-group list-group flush">
+              <div className="list-group list-group flush" key={review.id}>
                 <p className="list-group-item">Rating: {review.rating}</p>
                 <p className="list-group-item">{review.review}</p>
               </div>
@@ -82,15 +85,11 @@ class Reviews extends Component {
           : null}
         <form
           className="card-block"
-          onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}
-          validators={{
-            rating: isRequired,
-          }}>
+          onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
           <Field name="rating" component={ratingField} validateRating={this.validateRating}></Field>
           <Field name="review" component={reviewField}></Field>
           <button className="btn btn-primary" disabled={pristine || this.disableSubmit() || submitting}>Submit</button>
         </form>
-        <p>{ratingField}</p>
       </div>
     )
   }
