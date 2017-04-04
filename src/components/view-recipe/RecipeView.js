@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
+import RecipeTile from './RecipeTile';
 import Reviews from './Reviews';
 import RecipeInfo from './RecipeInfo';
 
@@ -14,10 +15,11 @@ class RecipeView extends Component {
     return (
       <div>
         <RecipeInfo />
-        <div className="flex-card-container card">
-          {recipeName}
-          <Reviews />
-        </div>
+      <div className="flex-card-container card">
+        {recipeName}
+        <RecipeTile />
+        <Reviews />
+      </div>
       </div>
     )
   }
