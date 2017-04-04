@@ -1,6 +1,7 @@
 import {
   GET_RECIPE,
-  GET_RECIPE_ID
+  GET_RECIPE_ID,
+  GET_RECIPE_USERNAME
 } from '../actions/types';
 
 export default function(state = {}, action) {
@@ -9,6 +10,8 @@ export default function(state = {}, action) {
       return { ...state, data: action.payload };
     case GET_RECIPE_ID:
       return { ...state, selectedRecipe: action.payload };
+    case GET_RECIPE_USERNAME:
+      return { ...state, userRecipes: action.payload };
   }
 
   return state;

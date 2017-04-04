@@ -26,10 +26,15 @@ exports.createRecipe = function(req, res, next) {
 };
 
 exports.getRecipe = function(req, res, next) {
-  const { id } = req.query;
-  if (!id) {
-    const allRecipesQuery = 'SELECT recipes.*, users.username from recipes JOIN users ON recipes.user_id=users.id;'
+  const { id, username } = req.query;
+  if (!id && !username) {
+    const allRecipesQuery = 'SELECT recipes.*, users.username FROM recipes JOIN users ON recipes.user_id=users.id;'
     return query(allRecipesQuery).then(recipes => res.status(200).send(recipes));
+  }
+  if (username) {
+    const usernameSubQuery = `SELECT id from users WHERE username = "${username}"`;
+    const userRecipesQuery = `SELECT * FROM recipes WHERE recipes.user_id=(${usernameSubQuery});`
+    return query(userRecipesQuery).then(recipes => res.status(200).send(recipes));
   }
   const ingredientsQuery = `SELECT * from ingredients WHERE recipe_id = ${id};`;
   const recipeQuery = `SELECT * from recipes WHERE id = ${id}`
