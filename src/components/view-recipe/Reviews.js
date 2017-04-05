@@ -83,13 +83,34 @@ class Reviews extends Component {
             )
           })
           : null}
-        <form
-          className="card-block"
-          onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-          <Field name="rating" component={ratingField} validateRating={this.validateRating}></Field>
-          <Field name="review" component={reviewField}></Field>
-          <button className="btn btn-primary" disabled={pristine || this.disableSubmit() || submitting}>Submit</button>
-        </form>
+        <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#reviewModal" data-whatever="@mdo">Write a Review</button>
+        <div className="modal fade" id="reviewModal" tabIndex="-1" role="dialog" aria-labelledby="reviewModalLabel" aria-hidden="true">
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="reviewModalLabel">Write a review</h5>
+                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <form
+                  className="card-block"
+                  onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+              <div className="modal-body">
+                
+                  <Field name="rating" component={ratingField} validateRating={this.validateRating}></Field>
+                  <Field name="review" component={reviewField}></Field>
+                  
+               
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button className="btn btn-primary" disabled={pristine || this.disableSubmit() || submitting}>Submit</button>
+              </div>
+               </form>
+            </div>
+          </div>
+        </div>
       </div>
     )
   }
