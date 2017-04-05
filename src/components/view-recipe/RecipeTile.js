@@ -6,8 +6,8 @@ import * as actions from '../../actions';
 
 class RecipeTile extends Component {
   render() {
-    const { id, recipeName, imageUrl, difficulty, cookTime, prepTime, servings } = this.props.recipe;
-    const { username } = this.props.username;
+    const { id, recipeName, imageUrl, difficulty, cookTime, prepTime, servings } = this.props.recipe?this.props.recipe:'';
+    const { username } = this.props.username?this.props.username:'';
     return (
       <div>
         <div>
@@ -16,7 +16,7 @@ class RecipeTile extends Component {
         <div>
           <div>
             <h2>{name}</h2>
-            <img src={"assets/stars3.png"} alt="rating" />
+            <img src="/assets/stars3.png" alt="rating" />
           </div>
           <div>
             <img src="http://i.imgur.com/6jr3M0j.png" alt="profile image" />
