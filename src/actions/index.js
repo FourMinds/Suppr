@@ -5,8 +5,6 @@ import {
   AUTH_USER,
   UNAUTH_USER,
   AUTH_ERROR,
-  POST_RECIPE,
-  POST_REVIEW,
   GET_RECIPE,
   GET_RECIPE_ID,
   GET_REVIEW,
@@ -50,7 +48,7 @@ export function getUsername(token) {
     }).then(res => {
       const { username } = res.data
       dispatch({ type: AUTH_USER, payload: username });
-    }).catch(response => dispatch({ type: UNAUTH_USER }))
+    })
   }
 }
 

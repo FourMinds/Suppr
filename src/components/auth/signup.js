@@ -23,8 +23,7 @@ class Signup extends Component {
   }
   
   render() {
-    const { error, pristine, reset, submitting } = this.props
-    const { handleSubmit } = this.props;
+    const { handleSubmit, submitting } = this.props;
     return (
       <div className="flex-body">
       <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))} className="auth-flex-element">
