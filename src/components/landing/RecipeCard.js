@@ -5,13 +5,14 @@ class RecipeCard extends Component {
   render() {
     const {username, id, name, difficulty, cook_time, prep_time, servings, image, description} = this.props.recipe
     const recipeLink = `/recipe/${id}`
+    const profileLink = `/profile/${username}`
     return (
       <div className="card" style={{width: '20rem', flex: '1 1 250px', margin: '5px 10px', maxWidth: '300px'}} >
         <img className="card-img-top" src={image} alt="Card image cap" />
         <div className="card-block">
           <h4 className="card-title">{name}</h4>
           <p className="card-text">{description}</p>
-          <p className="card-text">Created by: {username}</p>
+          <p className="card-text">Created by: <Link to={profileLink}>{username}</Link></p>
         </div>
         <ul className="list-group list-group-flush">
           <li className="list-group-item">Cras justo odio</li>

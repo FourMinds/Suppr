@@ -4,7 +4,13 @@ import {
   GET_RECIPE_USERNAME
 } from '../actions/types';
 
-export default function(state = {}, action) {
+const initialState = {
+  data: [],
+  selectedRecipe: [],
+  userRecipes: []
+}
+
+export default function(state = initialState, action) {
   switch(action.type) {
     case GET_RECIPE:
       return { ...state, data: action.payload };
@@ -12,7 +18,8 @@ export default function(state = {}, action) {
       return { ...state, selectedRecipe: action.payload };
     case GET_RECIPE_USERNAME:
       return { ...state, userRecipes: action.payload };
-  }
+    default:
+      return state;
+  } 
 
-  return state;
 }

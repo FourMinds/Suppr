@@ -4,12 +4,13 @@ import * as actions from '../../actions';
 
 class ProfileView extends Component {
   componentDidMount() {
-
+    console.log(this.props.username)
+    this.props.getRecipesByUsername(this.props.username)
   }
 
   render() {
     return <div>This is not my profile
-      
+      {this.props.data.map(recipe => <div key={recipe.id}>{recipe.name}</div>)}
 
 
     </div>
@@ -17,7 +18,7 @@ class ProfileView extends Component {
 }
 
 function mapStateToProps(state) {
-  return { username: state.auth.username, data: state.recipes.data }
+  return { data: state.recipes.userRecipes }
 }
 
 export default connect(mapStateToProps, actions)(ProfileView);

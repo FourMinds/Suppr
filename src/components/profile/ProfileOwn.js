@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions';
 
 class ProfileOwn extends Component {
-  componentDidMount() {
+  componentWillMount() {
     this.props.getRecipesByUsername(this.props.username)
   }
 
   render() {
-    console.log(this.props.data)
     return <div>this is my profile
-
+    RECIPES!!
+    {this.props.data.map(recipe => <div key={recipe.id}>{recipe.name}</div>)}
     </div>
   }
 }

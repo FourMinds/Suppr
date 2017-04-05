@@ -6,7 +6,7 @@ import * as fields from './form-fields';
 import Ingredients from './Ingredients';
 import $ from 'jquery';
 
-const {imageUrlField, recipeNameField, prepTimeField, cookTimeField, servingsField, difficultyField, descriptionField, quantityField, itemsField, instructionsField} = fields
+const {imageUrlField, recipeNameField, prepTimeField, cookTimeField, servingsField, difficultyField, descriptionField, instructionsField} = fields
 
 class Create extends Component {
   componentDidMount() {
