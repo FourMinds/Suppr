@@ -49,6 +49,7 @@ export function getUsername(token) {
     }).then(res => {
       const { username } = res.data
       dispatch({ type: AUTH_USER, payload: username });
+      dispatch(getFavorites(username))
     })
   }
 }

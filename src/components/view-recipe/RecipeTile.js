@@ -10,7 +10,7 @@ class RecipeTile extends Component {
   }
 
   componentWillMount() {
-    this.props.getFavorites(this.props.username);
+    this.props.username ? this.props.getFavorites(this.props.username) : null;
   }
 
   handleFavoriteSubmit() {
@@ -22,12 +22,9 @@ class RecipeTile extends Component {
     const { id, recipeName, imageUrl, difficulty, cookTime, prepTime, servings } = this.props.recipe?this.props.recipe:'';
     const { username } = this.props.username?this.props.username:'';
 
-    let favorited = this.props.favorites.data ? this.props.favorites.data.reduce((result, favorite) => {
-      if (favorite.recipe_id === this.props.recipe.id) {
-        result = true;
-      }
-      return result;
-    }, false) : false;
+    let favorited = this.props.favorites.data.some(favorite => {
+      return favorite.recipe_id === this.props.recipe.id
+    })
 
     return (
       <div className="flex-body">
