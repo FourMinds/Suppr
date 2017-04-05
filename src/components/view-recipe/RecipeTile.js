@@ -19,6 +19,7 @@ class RecipeTile extends Component {
   }
 
   render() {
+    console.log('THESE ARE THE FAVORITES: ', this.props.favorites.data);
     let favorited = this.props.favorites.data ? this.props.favorites.data.reduce((result, favorite) => {
       if (favorite.recipe_id === this.props.recipe.id) {
         result = true;
@@ -29,11 +30,12 @@ class RecipeTile extends Component {
       <div className="card-block">
       <p>Recipe Tile Matt's Work</p>
         <button
+          className={favorited ? "btn btn-warning btn-sm" : "btn btn-success"}
           onClick={this.handleFavoriteSubmit}>
           {favorited ? "Unfavorite" : "Favorite"}
           </button>
         {favorited
-        ? <p>Favorited!</p>
+        ? <p id="fadeout-text">Favorited!</p>
         : null}
       </div>
     )
