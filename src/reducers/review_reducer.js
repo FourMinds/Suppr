@@ -2,7 +2,9 @@ import {
   GET_REVIEW
 } from '../actions/types';
 
-export default function(state = {}, action) {
+const initialState = { data: [] }
+
+export default function(state = initialState, action) {
   switch(action.type) {
     case GET_REVIEW:
       return { ...state, data: action.payload };

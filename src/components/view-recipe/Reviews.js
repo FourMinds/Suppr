@@ -75,6 +75,7 @@ class Reviews extends Component {
     // this happens through validateRating, which changes the disableRating state; then whether or not the button is disabled depends on disableSubmit
     return (
       <div className="card-block">
+      <button style={{marginBottom: '10px'}} type="button" className="btn btn-primary" data-toggle="modal" data-target="#reviewModal" data-whatever="@mdo">Write a Review</button>
         {this.props.reviews
           ? this.props.reviews.map(review => {
             return (
@@ -85,7 +86,7 @@ class Reviews extends Component {
             )
           })
           : null}
-        <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#reviewModal" data-whatever="@mdo">Write a Review</button>
+
         <div className="modal fade" id="reviewModal" tabIndex="-1" role="dialog" aria-labelledby="reviewModalLabel" aria-hidden="true">
           <div className="modal-dialog" role="document">
             <div className="modal-content">
@@ -102,7 +103,7 @@ class Reviews extends Component {
                 
                   <Field name="rating" component={ratingField} validateRating={this.validateRating}></Field>
                   <Field name="review" component={reviewField}></Field>
-                  
+
                
               </div>
               <div className="modal-footer">
@@ -113,6 +114,7 @@ class Reviews extends Component {
             </div>
           </div>
         </div>
+
       </div>
     )
   }

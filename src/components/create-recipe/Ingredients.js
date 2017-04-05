@@ -26,14 +26,14 @@ class Ingredients extends Component {
     this.renderForm = this.renderForm.bind(this)
   }
 
-  handleClick(e) {
-    if (e.target.name === 'remove') {
-      let { total } = this.state
-      total = total > 1 ? total - 1 : total
-      return this.setState({ total })
-    }
+  handleAdd(e) {
     let { total } = this.state
     total += 1
+    this.setState({ total })
+  }
+  handleRemove(e) {
+    let { total } = this.state
+    total = total > 1 ? total - 1 : total
     this.setState({ total })
   }
 
@@ -44,6 +44,7 @@ class Ingredients extends Component {
     })
 
   }
+                  
   render() {
     return (
       <div>
@@ -51,8 +52,8 @@ class Ingredients extends Component {
        {this.renderForm()} 
        </section>
        <div style={{display: 'flex', justifyContent: "flex-end"}}>
-      <a name = "add" className="btn btn-primary" style={{color: '#fff'}} onClick={this.handleClick.bind(this)}>+ Add New Ingredient</a>
-      <a name = "remove" className="btn btn-primary" style={{color: '#fff'}} onClick={this.handleClick.bind(this)}>- Remove Ingredient</a>
+      <a className="btn btn-primary" style={{color: '#fff'}} onClick={this.handleAdd.bind(this)}><span className="fa fa-plus" aria-hidden="true"></span></a>
+      <a className="btn btn-primary" style={{color: '#fff'}} onClick={this.handleRemove.bind(this)}><span className="fa fa-minus" onClick={this.handleRemove.bind(this)} aria-hidden="true"></span></a>
       </div>
       </div>
     )

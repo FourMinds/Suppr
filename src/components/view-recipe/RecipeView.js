@@ -17,7 +17,6 @@ class RecipeView extends Component {
         <RecipeTile />
         <RecipeInfo />
       <div className="flex-card-container card">
-        {recipeName}
         <Reviews />
       </div>
       </div>
