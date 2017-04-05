@@ -10,7 +10,8 @@ import {
   GET_RECIPE,
   GET_RECIPE_ID,
   GET_REVIEW,
-  GET_RECIPE_USERNAME
+  GET_RECIPE_USERNAME,
+  GET_FAVORITE,
 } from './types';
 
 export function signinUser({ username, password }) {
@@ -133,6 +134,29 @@ export function getReview(id) {
     })
       .then(res => {
         dispatch({ type: GET_REVIEW, payload: res.data })
+      })
+  }
+}
+
+export function postFavorite(favorite) {
+  return function(dispatch) {
+    axios.post(`${server}/favorite`, favorite, {
+      headers: {authorization: localStorage.getItem('token')},
+    })
+      .then(res => {
+        dispatch(getFavorites(favorite.username));
+      })
+  }
+}
+
+export function getFavorites(username) {
+  return function(dispatch) {
+    axios.get(`${server}/favorite`, {
+      headers: {authorization: localStorage.getItem(('token'))},
+      params: { username }
+    })
+      .then(res => {
+        dispatch({ type: GET_FAVORITE, payload: res.data })
       })
   }
 }
