@@ -151,17 +151,25 @@ create
 .image-preview {
   border: 1px dashed black;
   height: 250px;
-  width: 300px;
-  background-image: url("https://img.clipartfest.com/d705f9ff3f73afc0c2960d6087f5a757_camera-clipart-no-background-october-clipart-black-and-white-with-no-background_1185-908.jpeg");
+  width: 350px;
+  background-image: url("https://static.vecteezy.com/system/resources/previews/000/088/229/original/free-paper-tableware-vector-icons.jpg");
   background-size: 100% 100%;
   margin: auto;
   margin-bottom: 10px;
+}
+
+#preview-image {
+  max-width: 350px;
+  max-height: 250px;
+  margin: auto;
 }
 
 .image-preview-load {
   height: 250px;
   width: 300px;
   margin: auto;
+  display: flex;
+  justify-content: center;
   margin-bottom: 10px;
 }
 

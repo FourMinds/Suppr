@@ -8,7 +8,6 @@ import RecipeInfo from './RecipeInfo';
 class RecipeView extends Component {
   componentWillMount() {
     this.props.getRecipeById(this.props.params.id);
-    this.props.getFavorites(this.props.username);
   }
   render() {
     const { id, recipeName, imageUrl, difficulty, cookTime, prepTime, servings, instructions, description, ingredients} = this.props.recipe?this.props.recipe:''

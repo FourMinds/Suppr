@@ -26,7 +26,7 @@ class RecipeInfo extends Component {
      var items = ingredients.items;
      var lines = []
      for(var i = 0; i < quantities.length; i++){
-       lines.push(<li>{quantities[i]} {items[i]}</li>)
+       lines.push(<li key={i}>{quantities[i]} {items[i]}</li>)
      }
      return lines.map((line) => line)
    }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import { reduxForm, Field } from 'redux-form';
+import $ from 'jquery';
 
 const ratingField = rating => (
   <fieldset className="form-group">
@@ -55,6 +56,7 @@ class Reviews extends Component {
     const { id } = this.props.recipe ? this.props.recipe : '';
     const { username } = this.props;
     this.props.postReview({...formProps, recipeId: id, username});
+    $("#reviewModal .closer").click()
   }
 
   // rating enabled if form value isn't Choose
@@ -65,7 +67,7 @@ class Reviews extends Component {
       });
     }
   }
-
+  
   render() {
     const { handleSubmit, pristine, submitting } = this.props;
     // when pristine, button is disabled
@@ -104,7 +106,7 @@ class Reviews extends Component {
                
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" className="btn btn-secondary closer" data-dismiss="modal">Close</button>
                 <button className="btn btn-primary" disabled={pristine || this.disableSubmit() || submitting}>Submit</button>
               </div>
                </form>

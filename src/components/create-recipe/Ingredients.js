@@ -26,7 +26,12 @@ class Ingredients extends Component {
     this.renderForm = this.renderForm.bind(this)
   }
 
-  handleClick() {
+  handleClick(e) {
+    if (e.target.name === 'remove') {
+      let { total } = this.state
+      total = total > 1 ? total - 1 : total
+      return this.setState({ total })
+    }
     let { total } = this.state
     total += 1
     this.setState({ total })
@@ -46,7 +51,8 @@ class Ingredients extends Component {
        {this.renderForm()} 
        </section>
        <div style={{display: 'flex', justifyContent: "flex-end"}}>
-      <a className="btn btn-primary" style={{color: '#fff'}} onClick={this.handleClick.bind(this)}>+ Add New Ingredient</a>
+      <a name = "add" className="btn btn-primary" style={{color: '#fff'}} onClick={this.handleClick.bind(this)}>+ Add New Ingredient</a>
+      <a name = "remove" className="btn btn-primary" style={{color: '#fff'}} onClick={this.handleClick.bind(this)}>- Remove Ingredient</a>
       </div>
       </div>
     )
