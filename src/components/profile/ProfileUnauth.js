@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../../../actions';
-import RecipeCard from '../../landing/RecipeCard'
+import * as actions from '../../actions';
+import RecipeCard from '../landing/RecipeCard'
 import $ from 'jquery';
 
-class ProfileOwn extends Component {
+class ProfileView extends Component {
   constructor(props) {
     super(props)
 
@@ -13,9 +13,11 @@ class ProfileOwn extends Component {
     }
     this.handleClick = this.handleClick.bind(this)
   }
-  componentWillMount() {
-    this.props.getFollows(this.props.username)
-    this.props.getRecipesByUsername(this.props.username)
+
+  componentDidMount() {
+    this.props.getFavorites(this.props.viewUsername, false)
+    this.props.getFollows(this.props.viewUsername, false)
+    this.props.getRecipesByUsername(this.props.viewUsername)
     $('body').on('click','.tab', function() {
       $('.active').removeClass('active')
       $(this).find('a').addClass('active')
@@ -38,7 +40,6 @@ class ProfileOwn extends Component {
       )
     }
     if (this.state.page === 2) {
-      console.log(this.props.favorites)
       return (
         <div className="card-columns" style={{margin: '5px 20px 10px 20px'}}>
         {this.props.favorites.map(recipe => <RecipeCard key={recipe.id} recipe={recipe} />)}
@@ -46,29 +47,30 @@ class ProfileOwn extends Component {
       )
     }
     if (this.state.page === 3) {
-      let { follows } = this.props.followList
+      let { follows } = this.props.viewFollows
       return (
         follows.map(user => <div key={Math.random()}>{user}</div>)
       )
     }
     if (this.state.page === 4) {
-      let { followers } = this.props.followList
+      let { followers } = this.props.viewFollows
       return (
         followers.map(user => <div key={Math.random()}>{user}</div>)
       )
     }
   }
 
+
   render() {
     return (
       <div>
-      <span style={{fontSize: '30px'}}>{this.props.username}</span>
+      <span style={{fontSize: '30px'}}>{this.props.viewUsername}</span>
       <ul className="nav nav-tabs">
         <li className="nav-item tab">
           <a className="nav-link active" href="#" name="0" onClick={this.handleClick}>Profile</a>
         </li>
         <li className="nav-item tab" >
-          <a className="nav-link" href="#" name="1" onClick={this.handleClick}>My Recipes</a>
+          <a className="nav-link" href="#" name="1" onClick={this.handleClick}>Recipes</a>
         </li>
         <li className="nav-item tab">
           <a className="nav-link" href="#" name="2" onClick={this.handleClick}>Favorites</a>
@@ -81,20 +83,19 @@ class ProfileOwn extends Component {
         </li>
       </ul>
       <div>
-      {this.renderPage()}
-    </div>
+        {this.renderPage()}
+      </div>
     </div>
     )
   }
 }
 
 function mapStateToProps(state) {
-  return { username: state.auth.username, 
-    userData: state.recipes.userRecipes, 
-    favorites: state.favorites.data, 
-    data: state.recipes.data ,
-    followList: state.follows.data
+  return { 
+    userData: state.recipes.userRecipes,
+    viewFollows: state.follows.dataForUser,
+    favorites: state.favorites.dataForUser
   }
 }
 
-export default connect(mapStateToProps, actions)(ProfileOwn);
+export default connect(mapStateToProps, actions)(ProfileView);

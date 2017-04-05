@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import ProfileOwn from './profile-own/ProfileOwn';
+import ProfileOwn from './ProfileOwn';
 import ProfileView from './ProfileView';
+import ProfileUnauth from './ProfileUnauth';
 import { connect } from 'react-redux';
 
 class Profile extends Component {
 
   renderComponent() {
     if(!this.props.username) {
-      return <div></div>
+      return <ProfileUnauth viewUsername={this.props.params.username}/>
     } else if(this.props.params.username === this.props.username) {
       return <ProfileOwn /> 
     } else {
