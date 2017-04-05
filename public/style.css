@@ -163,3 +163,31 @@ home view
   box-shadow: 1px 1px 3px 4px #ccc;
   -moz-box-shadow: 1px 1px 3px 4px #ccc;
   -webkit-box-shadow: 1px 1px 3px 4px #ccc; }
+
+/****************
+recipe view
+****************/
+.food-img-container {
+  margin: 20px;
+  width: 38%;
+  height: 250px;
+  overflow: hidden; }
+
+.food-img {
+  max-width: none;
+  max-height: 100%; }
+
+.recipe-header-container {
+  margin: 20px;
+  width: 46%; }
+
+.recipe-title-box {
+  height: 50px;
+  display: flex;
+  justify-content: space-around; }
+
+h6 {
+  font-size: 40px; }
+
+.rating {
+  width: 50px; }
