@@ -224,6 +224,19 @@ home view
     -moz-column-count: 5;
     column-count: 5; } }
 
+.row {
+  -moz-column-width: 20em;
+  -webkit-column-width: 20em;
+  -moz-column-gap: 10px;
+  -webkit-column-gap: 10px; }
+
+.row > .col-lg-3 {
+  display: inline-block;
+  padding: 0;
+  margin: 10px;
+  width: 100%;
+  float: none; }
+
 /****************
 recipe view
 ****************/

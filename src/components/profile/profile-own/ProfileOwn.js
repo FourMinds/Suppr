@@ -32,7 +32,7 @@ class ProfileOwn extends Component {
     if (this.state.page === 1) {
       return (
         <div className="card-columns" style={{margin: '5px 20px 10px 20px'}}>
-        {this.props.userData.slice(0,2).map(recipe => <RecipeCard key={recipe.id} recipe={recipe} />)}
+        {this.props.userData.map(recipe => <RecipeCard key={recipe.id} recipe={recipe} />)}
         </div>
       )
     }
