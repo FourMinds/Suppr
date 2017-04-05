@@ -15,7 +15,7 @@ class HomeNoAuth extends Component {
 
   render() {
     const cards = this.renderCards.call(this);
-    return <div className="flex-card-container">
+    return <div className="card-columns" style={{margin: '0px 20px 10px 20px'}}>
       {cards}
     </div>
   }

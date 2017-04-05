@@ -10,7 +10,6 @@ class ProfileOwn extends Component {
 
     this.state = {
       page: 0,
-      userFavorites: []
     }
     this.handleClick = this.handleClick.bind(this)
   }
@@ -24,6 +23,30 @@ class ProfileOwn extends Component {
 
   handleClick(e) {
     this.setState({ page: Number(e.target.name) })
+  }
+
+  renderPage() {
+    if (this.state.page === 0) {
+      return <div>Under Construction... </div>
+    }
+    if (this.state.page === 1) {
+      return (
+        <div className="card-columns" style={{margin: '5px 20px 10px 20px'}}>
+        {this.props.userData.map(recipe => <RecipeCard key={recipe.id} recipe={recipe} />)}
+        </div>
+      )
+    }
+    if (this.state.page === 2) {
+      console.log(this.props.favorites)
+      return (
+        <div className="card-columns" style={{margin: '5px 20px 10px 20px'}}>
+        {this.props.favorites.map(recipe => <RecipeCard key={recipe.id} recipe={recipe} />)}
+        </div>
+      )
+    }
+    if (this.state.page === 3) {
+      return <div>Under Construction... </div>
+    }
   }
 
   render() {
@@ -45,10 +68,8 @@ class ProfileOwn extends Component {
           <a className="nav-link" href="#" name="3" onClick={this.handleClick}>Friends</a>
         </li>
       </ul>
-      <div>this is my profile
-    RECIPES!!
-    {this.state.page === 1 && this.props.userData.map(recipe => <RecipeCard key={recipe.id} recipe={recipe} />)}
-    {this.state.page === 2 && this.props.favorites.map(recipe => <RecipeCard key={recipe.id} recipe={recipe} />)}
+      <div>
+      {this.renderPage()}
     </div>
     </div>
     )

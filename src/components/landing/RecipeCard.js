@@ -7,7 +7,7 @@ class RecipeCard extends Component {
     const recipeLink = `/recipe/${id}`
     const profileLink = `/profile/${username}`
     return (
-      <div className="card" style={{width: '20rem', flex: '1 1 250px', margin: '5px 10px', maxWidth: '300px'}} >
+      <div className="card">
         <img className="card-img-top" src={image} alt="Card image cap" />
         <div className="card-block">
           <h4 className="card-title">{name}</h4>
