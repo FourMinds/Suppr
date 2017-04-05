@@ -16,12 +16,10 @@ class Create extends Component {
         $(this).parent().addClass('image-preview-load');
       })
       $("#preview-image").on("error", function(){
-          $(this).attr('src', '');
-          
+          $(this).attr('src', '');         
       });
       $("#image-input").on("input", function(){
-        $(this).val() === '' ? $('#image-container').addClass('image-preview'): null
-          
+        $(this).val() === '' ? $('#image-container').addClass('image-preview'): null         
       });
     });
   }
@@ -50,8 +48,7 @@ class Create extends Component {
           <Field name="description" component={descriptionField} />
           Ingredients:
           <Ingredients />
-          <Field name="instructions" component={instructionsField} />
-              
+          <Field name="instructions" component={instructionsField} />              
         </div>
         <div className="create-flex-element-right">
           <Field name="imageUrl" component={imageUrlField} />

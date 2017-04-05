@@ -20,8 +20,15 @@ exports.createRecipe = function(req, res, next) {
     return query(saveIngredientsQuery)
   })
     .then(result => {
-      return res.status(200).send({ message: 'The recipe was saved successfully!'})
+      console.log(result)
+      const usernameSubQuery = `SELECT id from users WHERE username = "${username}"`;
+      const userRecipesQuery = `SELECT * FROM recipes WHERE recipes.user_id=(${usernameSubQuery});`
+      return query(userRecipesQuery)
     })
+    .then(result => res.status(200).send({ 
+      message: 'The recipe was saved successfully!', 
+      id: result[result.length-1].id
+    }));
 
 };
 
