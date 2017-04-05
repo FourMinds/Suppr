@@ -11,7 +11,7 @@ class Profile extends Component {
     } else if(this.props.params.username === this.props.username) {
       return <ProfileOwn /> 
     } else {
-      return <ProfileView username={this.props.params.username}/>
+      return <ProfileView viewUsername={this.props.params.username}/>
     }
   }
 

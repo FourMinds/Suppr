@@ -3,6 +3,7 @@ import { reducer as form } from 'redux-form';
 import authReducer from './auth_reducer';
 import recipeReducer from './recipe_reducer';
 import reviewReducer from './review_reducer';
+import followReducer from './follow_reducer';
 import favoriteReducer from './favorite_reducer';
 
 const rootReducer = combineReducers({
@@ -11,5 +12,6 @@ const rootReducer = combineReducers({
   recipes: recipeReducer,
   reviews: reviewReducer,
   favorites: favoriteReducer,
+  follows: followReducer,
 });
 export default rootReducer;
