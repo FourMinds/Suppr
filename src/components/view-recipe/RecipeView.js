@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import Reviews from './Reviews';
 import RecipeInfo from './RecipeInfo';
+import RecipeTile from './RecipeTile';
 
 class RecipeView extends Component {
   componentWillMount() {
@@ -13,6 +14,7 @@ class RecipeView extends Component {
 
     return (
       <div>
+        <RecipeTile />
         <RecipeInfo />
         <div className="flex-card-container card">
           {recipeName}
