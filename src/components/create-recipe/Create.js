@@ -78,10 +78,8 @@ class Create extends Component {
           <Field name="servings" component={servingsField} />
           <Field name="difficulty" component={difficultyField} />
         </div>
-        <div className="submit-button">
         
-        <button action="submit" className="btn btn-primary submit-button" >Submit</button> 
-        </div>
+        <button action="submit" className="btn btn-primary form-control submit-button" >Submit</button> 
       </div>
       </form>
     )

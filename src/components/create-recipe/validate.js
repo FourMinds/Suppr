@@ -6,6 +6,15 @@ export default function validate(formProps) {
   if (!formProps.imageUrl) {
     errors.imageUrl = 'Please enter an image url';
   }
+  if (isNaN(formProps.prepTime)) {
+    errors.prepTime = 'Please enter number';
+  }
+  if (isNaN(formProps.cookTime)) {
+    errors.cookTime = 'Please enter number';
+  }
+  if (isNaN(formProps.servings)) {
+    errors.servings = 'Please enter number';
+  }
   if (!formProps.prepTime) {
     errors.prepTime = 'Please enter a prep time';
   }
@@ -30,14 +39,8 @@ export default function validate(formProps) {
   if (!formProps.instructions) {
     errors.instructions = 'Please enter the instructions';
   }
-  if (isNaN(formProps.prepTime)) {
-    errors.prepTime = 'Please enter number';
-  }
-  if (isNaN(formProps.cookTime)) {
-    errors.cookTime = 'Please enter number';
-  }
-  if (isNaN(formProps.servings)) {
-    errors.servings = 'Please enter number';
+  if (formProps.recipeName && formProps.recipeName.length < 6) {
+    errors.recipeName = 'The recipe name must be atleast 6 characters';
   }
 
 
