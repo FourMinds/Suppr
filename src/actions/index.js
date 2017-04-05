@@ -11,7 +11,8 @@ import {
   GET_RECIPE_USERNAME,
   GET_FAVORITE,
   GET_FOLLOWS,
-  GET_FOLLOWS_USER
+  GET_FOLLOWS_USER,
+  GET_FAVORITE_USER
 } from './types';
 
 /*****************
@@ -168,13 +169,16 @@ export function postFavorite(favorite) {
   }
 }
 
-export function getFavorites(username) {
+export function getFavorites(username, isSignedinUser = true) {
   return function(dispatch) {
     axios.get(`${server}/favorite`, {
       headers: {authorization: localStorage.getItem(('token'))},
       params: { username }
     })
       .then(res => {
+        if (!isSignedinUser) {
+          return dispatch({ type: GET_FAVORITE_USER, payload: res.data })
+        }
         dispatch({ type: GET_FAVORITE, payload: res.data })
       })
   }
