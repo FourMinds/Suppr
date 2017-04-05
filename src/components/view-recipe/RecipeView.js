@@ -14,10 +14,10 @@ class RecipeView extends Component {
 
     return (
       <div>
+        <RecipeTile />
         <RecipeInfo />
       <div className="flex-card-container card">
         {recipeName}
-        <RecipeTile />
         <Reviews />
       </div>
       </div>

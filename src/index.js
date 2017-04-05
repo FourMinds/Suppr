@@ -36,9 +36,9 @@ ReactDOM.render(
         <Route path='auth/signin' component={Signin} />
         <Route path='auth/signup' component={Signup} />
         <Route path='auth/signout' component={Signout} />
+        <Route path='recipe/:id' component={RecipeView} />
         <Route path='home' component={RequireAuth(Home)} />
         <Route path='create' component={RequireAuth(Create)} />
-        <Route path='recipe/:id' component={RequireAuth(RecipeView)} />
         <Route path='profile/:username' component={RequireAuth(Profile)} />
       </Route>
     </Router>

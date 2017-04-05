@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { reduxForm, Field } from 'redux-form';
+import { Field } from 'redux-form';
 import {quantityField, itemsField} from './form-fields'
 
 const Group = (props) => {

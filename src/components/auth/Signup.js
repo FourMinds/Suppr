@@ -21,21 +21,16 @@ class Signup extends Component {
       );
     }
   }
-
-  componentWillReceiveProps(nextProps){
-    console.log(nextProps)
-  }
-
+  
   render() {
-    const { error, pristine, reset, submitting } = this.props
-    const { handleSubmit } = this.props;
+    const { handleSubmit, submitting } = this.props;
     return (
       <div className="flex-body">
       <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))} className="auth-flex-element">
         <Field name="email" type="email" component={emailField} />
         <Field name="username" component={usernameField} />
-        <Field name="password" type="password" component={passwordField} />
-        <Field name="passwordConfirm" type="password" component={passwordConfirmField} />
+        <Field name="password" component={passwordField} />
+        <Field name="passwordConfirm" component={passwordConfirmField} />
         {this.renderAlert()}
         <button action="submit" className="btn btn-primary" disabled={submitting}>Sign up</button>
       </form>

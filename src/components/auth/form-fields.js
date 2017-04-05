@@ -38,7 +38,7 @@ export const signupFields = {
   passwordField: password => (
     <fieldset className="form-group">
       <label>Password:</label>
-      <input className="form-control" {...password.input} />
+      <input className="form-control" type="password" {...password.input} />
       {password.meta.touched && password.meta.error && <div className="error">{password.meta.error}</div>}
     </fieldset>
   ), 
@@ -46,7 +46,7 @@ export const signupFields = {
   passwordConfirmField: passwordConfirm => (
     <fieldset className="form-group">
       <label>Confirm Password:</label>
-      <input className="form-control" {...passwordConfirm.input} />
+      <input className="form-control" type="password" {...passwordConfirm.input} />
       {passwordConfirm.meta.touched && passwordConfirm.meta.error && <div className="error">{passwordConfirm.meta.error}</div>}
     </fieldset>
   )
