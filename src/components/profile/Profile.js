@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ProfileOwn from './ProfileOwn';
+import ProfileOwn from './profile-own/ProfileOwn';
 import ProfileView from './ProfileView';
 import { connect } from 'react-redux';
 
