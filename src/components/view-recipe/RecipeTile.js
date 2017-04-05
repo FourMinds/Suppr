@@ -30,14 +30,18 @@ class RecipeTile extends Component {
     }, false) : false;
 
     return (
-      <div className="card-block">
-        <div>
-          <img src={imageUrl} alt="recipe image" />
+      <div className="flex-body">
+        <div className="food-img-container">
+          <img className="food-img" src={imageUrl} alt="recipe image" />
         </div>
-        <div>
-          <div>
-            <h2>{name}</h2>
-            <img src="/assets/stars3.png" alt="rating" />
+        <div className="recipe-header-container">
+          <div className="recipe-title-box">
+            <div>
+              <h6>{recipeName}</h6>
+            </div>
+            <div>
+              <img className="rating" src="/assets/stars3.png" alt="rating" />
+            </div>
           </div>
           <div>
             <img src="http://i.imgur.com/6jr3M0j.png" alt="profile image" />

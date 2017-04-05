@@ -193,6 +193,7 @@ home view
 /****************
 recipe view
 ****************/
+
 #fadeout-text {
   -moz-animation: cssAnimation 0s ease-in 5s forwards;
   -webkit-animation: cssAnimation 0s ease-in 5s forwards;
@@ -215,4 +216,35 @@ recipe view
     height: 0;
     visibility: hidden;
   }
+}
+
+.food-img-container {
+  margin: 20px;
+  width: 38%;
+  height: 250px;
+  overflow: hidden;
+}
+
+.food-img {
+  max-width: none;
+  max-height: 100%;
+}
+
+.recipe-header-container {
+  margin: 20px;
+  width: 46%;
+}
+
+.recipe-title-box {
+  height: 50px;
+  display: flex;
+  justify-content: space-around;
+}
+
+h6 {
+  font-size: 40px;
+}
+
+.rating {
+  width: 50px;
 }
