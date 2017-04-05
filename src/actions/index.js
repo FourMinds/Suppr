@@ -73,7 +73,10 @@ export function postRecipe(recipe) {
       headers: {authorization: localStorage.getItem('token')}
     })
       .then(res => {
+        console.log(res)
+        const recipePath = `/recipe/${res.data.id}`
         dispatch(getRecipes())
+        browserHistory.push(recipePath)
       })
   }
 }
