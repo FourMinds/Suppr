@@ -10,8 +10,13 @@ import {
   GET_REVIEW,
   GET_RECIPE_USERNAME,
   GET_FAVORITE,
+  GET_FOLLOWS,
+  GET_FOLLOWS_USER
 } from './types';
 
+/*****************
+* * * AUTH * * *
+*****************/
 export function signinUser({ username, password }) {
   return function(dispatch) {
     axios.post(`${server}/signin`, { username, password })
@@ -67,6 +72,10 @@ export function signoutUser() {
   return { type: UNAUTH_USER };
 }
 
+/*****************
+* * * Recipe * * *
+*****************/
+
 export function postRecipe(recipe) {
   return function(dispatch) {
     axios.post(`${server}/recipe`, recipe, {
@@ -117,6 +126,10 @@ export function getRecipesByUsername(username) {
   }
 }
 
+/*****************
+* * * Review * * *
+*****************/
+
 export function postReview(review) {
   return function(dispatch) {
     axios.post(`${server}/review`, review, {
@@ -140,6 +153,10 @@ export function getReview(id) {
   }
 }
 
+/*****************
+* * Favorite * * 
+*****************/
+
 export function postFavorite(favorite) {
   return function(dispatch) {
     axios.post(`${server}/favorite`, favorite, {
@@ -162,3 +179,35 @@ export function getFavorites(username) {
       })
   }
 }
+
+/*****************
+* * Follows * * 
+*****************/
+
+export function postFollow(follow) {
+  return function(dispatch) {
+    axios.post(`${server}/follow`, follow, {
+      headers: {authorization: localStorage.getItem(('token'))}
+    })
+      .then(res => {
+        dispatch(getFollows(follow.username))
+        dispatch(getFollows(follow.followName, false))
+      })
+  }
+}
+
+export function getFollows(username, isSignedinUser = true) {
+  return function(dispatch) {
+    axios.get(`${server}/follow`, {
+      headers: {authorization: localStorage.getItem(('token'))},
+      params: { username }
+    })
+      .then(res => {
+        if (!isSignedinUser) {
+          return dispatch({ type: GET_FOLLOWS_USER, payload: res.data })
+        }
+        dispatch({ type: GET_FOLLOWS, payload: res.data })
+      })
+  }
+}
+

@@ -14,6 +14,7 @@ class ProfileOwn extends Component {
     this.handleClick = this.handleClick.bind(this)
   }
   componentWillMount() {
+    this.props.getFollows(this.props.username)
     this.props.getRecipesByUsername(this.props.username)
     $('body').on('click','.tab', function() {
       $('.active').removeClass('active')
@@ -45,12 +46,20 @@ class ProfileOwn extends Component {
       )
     }
     if (this.state.page === 3) {
-      return <div>Under Construction... </div>
+      let { follows } = this.props.followList
+      return (
+        follows.map(user => <div key={Math.random()}>{user}</div>)
+      )
+    }
+    if (this.state.page === 4) {
+      let { followers } = this.props.followList
+      return (
+        followers.map(user => <div key={Math.random()}>{user}</div>)
+      )
     }
   }
 
   render() {
-    console.log(this.props.favorites)
     return (
       <div>
       <span style={{fontSize: '30px'}}>{this.props.username}</span>
@@ -65,7 +74,10 @@ class ProfileOwn extends Component {
           <a className="nav-link" href="#" name="2" onClick={this.handleClick}>Favorites</a>
         </li>
         <li className="nav-item tab" >
-          <a className="nav-link" href="#" name="3" onClick={this.handleClick}>Friends</a>
+          <a className="nav-link" href="#" name="3" onClick={this.handleClick}>Following</a>
+        </li>
+        <li className="nav-item tab" >
+          <a className="nav-link" href="#" name="4" onClick={this.handleClick}>Followers</a>
         </li>
       </ul>
       <div>
@@ -77,7 +89,12 @@ class ProfileOwn extends Component {
 }
 
 function mapStateToProps(state) {
-  return { username: state.auth.username, userData: state.recipes.userRecipes, favorites: state.favorites.data, data: state.recipes.data  }
+  return { username: state.auth.username, 
+    userData: state.recipes.userRecipes, 
+    favorites: state.favorites.data, 
+    data: state.recipes.data ,
+    followList: state.follows.data
+  }
 }
 
 export default connect(mapStateToProps, actions)(ProfileOwn);
