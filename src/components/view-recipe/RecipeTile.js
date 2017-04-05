@@ -1,15 +1,36 @@
 import React, { Component } from 'react';
-
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 
-
 class RecipeTile extends Component {
+  constructor(props) {
+    super(props);
+
+    this.handleFavoriteSubmit = this.handleFavoriteSubmit.bind(this);
+  }
+
+  componentWillMount() {
+    this.props.getFavorites(this.props.username);
+  }
+
+  handleFavoriteSubmit() {
+    let favorite = {username: this.props.username, recipeId: this.props.recipe.id};
+    this.props.postFavorite(favorite);
+  }
+
   render() {
     const { id, recipeName, imageUrl, difficulty, cookTime, prepTime, servings } = this.props.recipe?this.props.recipe:'';
     const { username } = this.props.username?this.props.username:'';
+
+    let favorited = this.props.favorites.data ? this.props.favorites.data.reduce((result, favorite) => {
+      if (favorite.recipe_id === this.props.recipe.id) {
+        result = true;
+      }
+      return result;
+    }, false) : false;
+
     return (
-      <div>
+      <div className="card-block">
         <div>
           <img src={imageUrl} alt="recipe image" />
         </div>
@@ -22,7 +43,7 @@ class RecipeTile extends Component {
             <img src="http://i.imgur.com/6jr3M0j.png" alt="profile image" />
             <div>
               <p>{username}</p>
-              <p># of recipies, # of followers</p>
+              <p># of recipes, # of followers</p>
             </div>
           </div>
           <div>
@@ -31,6 +52,14 @@ class RecipeTile extends Component {
 
             <p>{servings}</p>
             <p>{difficulty}</p>
+            <button
+            className={favorited ? "btn btn-warning btn-sm" : "btn btn-success"}
+            onClick={this.handleFavoriteSubmit}>
+            {favorited ? "Unfavorite" : "Favorite"}
+            </button>
+            {favorited
+              ? <p id="fadeout-text">Favorited!</p>
+              : null}
           </div>
         </div>
       </div>
@@ -38,12 +67,13 @@ class RecipeTile extends Component {
   }
 }
 
-
 function mapStatetoProps(state) {
   return {
     recipe: state.recipes.selectedRecipe,
-    username: state.auth.username
+    username: state.auth.username,
+    favorites: state.favorites
   }
 }
 
 export default connect(mapStatetoProps, actions)(RecipeTile)
+  

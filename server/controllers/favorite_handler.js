@@ -25,9 +25,9 @@ exports.postFavorite = function(req, res, next) {
 }
 
 exports.getFavorites = function(req, res, next) {
-  const { id } = req.query
-  if (!id) return res.status(422).send({ error: 'No user ID was given' });
-  const findFavoritesQuery = `SELECT favorites.*, users.username from favorites JOIN users ON favorites.user_id = users.id WHERE user_id=${id};`
+  const { username } = req.query
+  if (!username) return res.status(422).send({ error: 'No user ID was given' });
+  const findFavoritesQuery = `SELECT favorites.*, users.username from favorites JOIN users ON favorites.user_id = users.id WHERE username="${username}";`
   query(findFavoritesQuery).then(reviews => {
     return res.status(200).send(reviews)
   })
