@@ -263,6 +263,8 @@ recipe view
 .favorite-button {
   display: inline-block;
   position: absolute;
+  left: 2.5%;
+  top: 2.5%;
   z-index: 1; }
 
 .favorite-image {
