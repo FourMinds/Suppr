@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import ProfileOwn from './ProfileOwn';
-import ProfileView from './ProfileView';
+import ProfileOwn from './profile-own/ProfileOwn';
+import ProfileView from './profile-view/ProfileView';
 import ProfileUnauth from './ProfileUnauth';
 import { connect } from 'react-redux';
 
