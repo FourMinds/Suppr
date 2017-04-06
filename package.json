@@ -27,16 +27,21 @@
     "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
+    "expect": "^1.20.2",
+    "mocha": "^3.2.0",
     "node-sass": "^4.5.1",
     "nodemon": "^1.11.0",
-    "react-scripts": "0.9.5"
+    "react-scripts": "0.9.5",
+    "supertest": "^3.0.0"
   },
   "scripts": {
     "build-css": "node-sass src/style/ -o public/",
-    "watch-css": "npm run build-css && node-sass src/ -o public/ --watch --recursive",
+    "watch-css": "npm run build-css && node-sass src/style -o public/ --watch --recursive",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "test-server": "mocha **/index.servertest.js",
     "eject": "react-scripts eject"
   }
 }
