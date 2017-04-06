@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
+import AuthorTile from './AuthorTile';
 
 class RecipeTile extends Component {
   constructor(props) {
@@ -45,13 +46,7 @@ class RecipeTile extends Component {
             </div>
           </div>
 
-          <div className="recipe-author-box">
-            <img className="profile-img" src="http://orig01.deviantart.net/aa15/f/2014/203/d/1/profile_picture_by_dogeshibee-d7rthy6.jpg" alt="profile image" />
-            <div className="profile-stats-box">
-              <h5>{username}</h5>
-              <p># of recipes, # of followers</p>
-            </div>
-          </div>
+          <AuthorTile username={username} />
           
           <div className="recipe-stats-box">
             <div className="recipe-stats-box-row">
@@ -72,7 +67,7 @@ class RecipeTile extends Component {
 function mapStatetoProps(state) {
   return {
     recipe: state.recipes.selectedRecipe,
-    username: state.auth.username,
+    // username: state.auth.username,
     favorites: state.favorites
   }
 }
