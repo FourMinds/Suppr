@@ -122,6 +122,7 @@ export function getRecipesByUsername(username) {
       params: { username }
     })
       .then(res => {
+        res.data.map(recipe => recipe.username = username);
         dispatch({ type: GET_RECIPE_USERNAME, payload: res.data });
       })
   }
