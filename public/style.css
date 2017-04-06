@@ -260,6 +260,13 @@ recipe view
     height: 0;
     visibility: hidden; } }
 
+.favorite-button {
+  background-color: rgba(192, 192, 192, 0.5); }
+
+.favorite-image {
+  display: block;
+  width: auto; }
+
 /********
 recipe tile (top)
 ********/

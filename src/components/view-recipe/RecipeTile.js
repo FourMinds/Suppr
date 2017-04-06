@@ -56,14 +56,13 @@ class RecipeTile extends Component {
               <div><img className="recipe-stats-icon" src="/assets/chef.png"/> {difficulty} difficulty</div>
             </div>
           </div>
-          <button
-          className={favorited ? "btn btn-warning btn-sm" : "btn btn-success"}
-          onClick={this.handleFavoriteSubmit}>
-          {favorited ? "Unfavorite" : "Favorite"}
-          </button>
           {favorited
-            ? <p id="fadeout-text">Favorited!</p>
-            : null}
+          ? (<div className="favorite-button" onClick={this.handleFavoriteSubmit}>
+            <img className="favorite-image" src="/assets/favorited.png"/>
+          </div>)
+          : (<div className="favorite-button" onClick={this.handleFavoriteSubmit}>
+              <img className="favorite-image" src="/assets/unfavorited.png"/>
+            </div>)}
         </div>
       </div>
     )
