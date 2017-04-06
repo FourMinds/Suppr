@@ -94,5 +94,6 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, actions)(reduxForm({
   form: 'create',
+  initialValues: {difficulty: "Choose..."},
   validate
 })(Create));

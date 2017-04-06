@@ -24,7 +24,7 @@ export default function validate(formProps) {
   if (!formProps.servings) {
     errors.servings = 'Please enter the number of servings';
   }
-  if (!formProps.difficulty) {
+  if (formProps.difficulty === "Choose...") {
     errors.difficulty = 'Please select a difficulty';
   }
   if (!formProps.description) {
