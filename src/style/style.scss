@@ -302,12 +302,14 @@ recipe view
 }
 
 .favorite-button {
-  background-color: rgba(192, 192, 192, 0.5);
+  display: inline-block;
+  position: absolute;
+  z-index: 1;
 }
 
 .favorite-image {
   display: block;
-  width: auto;
+  width: 50%;
 }
 
 /********
@@ -315,13 +317,17 @@ recipe tile (top)
 ********/
 
 .food-img-container {
+  display: inline-block;
   margin: 5px 20px 5px 20px;
   width: 300px;
   height: 250px;
+  position: relative;
   overflow: hidden;
+  z-index: 1
 }
 
 .food-img {
+  display: block;
   max-width: none;
   max-height: 100%;
 }

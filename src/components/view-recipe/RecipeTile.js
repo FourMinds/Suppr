@@ -28,6 +28,13 @@ class RecipeTile extends Component {
     return (
       <div className="flex-body">
         <div className="food-img-container">
+          {favorited
+            ? (<div className="favorite-button" onClick={this.handleFavoriteSubmit}>
+              <img className="favorite-image" src="/assets/favorited.png"/>
+            </div>)
+            : (<div className="favorite-button" onClick={this.handleFavoriteSubmit}>
+              <img className="favorite-image" src="/assets/unfavorited.png"/>
+            </div>)}
           <img className="food-img" src={imageUrl} alt="recipe image" />
         </div>
         <div className="recipe-header-container">
@@ -56,13 +63,6 @@ class RecipeTile extends Component {
               <div><img className="recipe-stats-icon" src="/assets/chef.png"/> {difficulty} difficulty</div>
             </div>
           </div>
-          {favorited
-          ? (<div className="favorite-button" onClick={this.handleFavoriteSubmit}>
-            <img className="favorite-image" src="/assets/favorited.png"/>
-          </div>)
-          : (<div className="favorite-button" onClick={this.handleFavoriteSubmit}>
-              <img className="favorite-image" src="/assets/unfavorited.png"/>
-            </div>)}
         </div>
       </div>
     )
