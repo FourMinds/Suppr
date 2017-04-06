@@ -260,9 +260,12 @@ recipe view
     height: 0;
     visibility: hidden; } }
 
+/********
+recipe tile (top)
+********/
 .food-img-container {
-  margin: 20px;
-  width: 38%;
+  margin: 5px 20px 5px 20px;
+  width: 300px;
   height: 250px;
   overflow: hidden; }
 
@@ -271,16 +274,51 @@ recipe view
   max-height: 100%; }
 
 .recipe-header-container {
-  margin: 20px;
-  width: 46%; }
+  margin: 5px;
+  width: 300px; }
 
 .recipe-title-box {
   height: 50px;
   display: flex;
-  justify-content: space-around; }
+  justify-content: flex-start; }
 
 h6 {
-  font-size: 40px; }
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  font-size: 32px;
+  width: 100%; }
 
-.rating {
-  width: 50px; }
+.rating-box {
+  display: flex;
+  justify-content: flex-end; }
+
+.rating-img {
+  max-width: none;
+  height: 50px; }
+
+.recipe-author-box {
+  height: 100px;
+  display: flex; }
+
+.profile-img {
+  width: 100px; }
+
+.profile-stats-box {
+  display: flex;
+  justify-content: center;
+  height: 100px;
+  flex-flow: column nowrap; }
+
+h5 {
+  font-size: 24px; }
+
+.recipe-stats-box {
+  display: flex;
+  justify-content: flex-start; }
+
+.recipe-stats-box-row {
+  width: 40%; }
+
+.recipe-stats-icon {
+  height: 20px; }
