@@ -24,7 +24,7 @@ export function signinUser({ username, password }) {
       .then(response => {
         dispatch({ type: AUTH_USER, payload: username });
         localStorage.setItem('token', response.data.token);
-        browserHistory.push('/home');
+        browserHistory.push('/');
       })
       .catch((res) => {
         if (!res.response) return dispatch(authError('Could not connect to server'))
@@ -39,7 +39,7 @@ export function signupUser({ email, username, password }) {
       .then(response => {
         dispatch({ type: AUTH_USER, payload: username });
         localStorage.setItem('token', response.data.token);
-        browserHistory.push('/home');
+        browserHistory.push('/');
       })
       .catch(response => dispatch(authError(response.data.error)));
   }
