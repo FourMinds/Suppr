@@ -38,6 +38,7 @@ class Create extends Component {
   }
 
   handleFormSubmit(formProps) {
+    console.log('DIFFICULTY: ', formProps.difficulty);
     const { username } = this.props
     const { recipeName, imageUrl, difficulty, cookTime, prepTime, servings, instructions, description } = formProps
     const ingredients = Object.keys(formProps).reduce((list, val, i) => {
@@ -94,5 +95,6 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, actions)(reduxForm({
   form: 'create',
+  initialValues: {difficulty: "Choose..."},
   validate
 })(Create));

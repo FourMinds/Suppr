@@ -122,6 +122,7 @@ export function getRecipesByUsername(username) {
       params: { username }
     })
       .then(res => {
+        // this is necessary to give a username for the recipe (which is not given by the request)
         res.data.map(recipe => recipe.username = username);
         dispatch({ type: GET_RECIPE_USERNAME, payload: res.data });
       })
