@@ -19,8 +19,7 @@ class RecipeTile extends Component {
   }
 
   render() {
-    const { id, recipeName, imageUrl, difficulty, cookTime, prepTime, servings } = this.props.recipe;
-    const { username } = this.props;
+    const { id, recipeName, imageUrl, difficulty, cookTime, prepTime, servings, username } = this.props.recipe;
 
     let favorited = this.props.favorites.data.some(favorite => {
       return favorite.recipe_id === this.props.recipe.id
