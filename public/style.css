@@ -433,7 +433,7 @@ reviews
 Recipe-Info-Boxes
 ********/
 .ingredient-styles {
-  width: 400px;
+  width: 500px;
   height: 500px;
   padding: 10px;
   margin: 30px 15px 20px 0px;
@@ -442,7 +442,7 @@ Recipe-Info-Boxes
   -webkit-box-shadow: 1px 1px 3px 4px #ccc; }
 
 .instructions-styles {
-  width: 700px;
+  width: 600px;
   height: 500px;
   overflow: auto;
   padding: 10px;
@@ -461,6 +461,10 @@ Recipe-Info-Boxes
   width: 25px;
   height: 25px; }
 
+.quantity-style {
+  font-weight: bold;
+  margin-right: 15px; }
+
 .ingredient-item {
   display: flex;
   font-size: 20px;
@@ -473,6 +477,7 @@ Recipe-Info-Boxes
 .instruction-item {
   margin-top: 5px;
   margin-left: 20px;
+  font-size: 20px;
   display: flex; }
 
 .counter-style {
