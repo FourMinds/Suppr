@@ -4,13 +4,37 @@ import * as actions from '../../actions';
 
 class RecipeInfo extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {};
+    this.doneClick = this.doneClick.bind(this);
+  }
+
+  doneClick(event) {
+    let index = event.target.name;
+    let state = {};
+    console.log(this.state)
+    state[index] = !this.state[index];
+    this.setState(state)
+    console.log(this.state[index]);
+  }
+
   renderIngredients(ingredients) {
    if(ingredients){
      var quantities = ingredients.quantity;
      var items = ingredients.items;
      var lines = []
      for(var i = 0; i < quantities.length; i++){
-       lines.push(<div className='flex-body-ingredients' key={i}><div><img className='empty-check' src="/assets/oval.png"/></div><div className='ingredient-item' > {quantities[i]}  | {items[i]}</div><br/></div>)
+       lines.push(<div className='flex-body-ingredients' key={i}>
+             <div onClick={this.doneClick} id={i} >
+              {this.state[i] ? (<img  className='empty-check' src="/assets/success.png" name={i} />) :
+                        (<img  className='empty-check' src="/assets/oval.png" name={i} />)}
+             </div>
+             <div className='ingredient-item' >
+              {quantities[i]}  | {items[i]}
+             </div>
+             <br/>
+            </div>)
      }
      return lines.map((line) => line)
    }

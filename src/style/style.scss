@@ -540,7 +540,7 @@ Recipe-Info-Boxes
 }
 
 .empty-check{
-  display: flex;
+
   width: 25px;
   height: 25px;
 
@@ -558,6 +558,7 @@ Recipe-Info-Boxes
 }
 
 .instruction-item {
+  margin-top: 5px;
   margin-left: 20px;
   display: flex;
 }
