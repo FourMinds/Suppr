@@ -10,7 +10,7 @@ class RecipeInfo extends Component {
      var items = ingredients.items;
      var lines = []
      for(var i = 0; i < quantities.length; i++){
-       lines.push(<div className='flex-body' ><div><img className='emptyCheck' src="/assets/oval.png"/></div><div className='ingredientItem' key={i}> {quantities[i]}  | {items[i]}</div><br/></div>)
+       lines.push(<div className='flex-body-ingredients' key={i}><div><img className='empty-check' src="/assets/oval.png"/></div><div className='ingredient-item' > {quantities[i]}  | {items[i]}</div><br/></div>)
      }
      return lines.map((line) => line)
    }
@@ -19,22 +19,27 @@ class RecipeInfo extends Component {
   renderInstructions(instructions) {
     if(instructions){
       var instructionsArr = instructions.split('\n');
-      console.log(instructionsArr);
-
-      return instructionsArr.map((instruct) => { return <div><p>{instruct}</p><br/></div> });
+      var counter = 0;
+      return instructionsArr.map((instruct, i) => {
+        if(instruct !== ""){
+          counter++;
+          return <div className="flex-body-instruction" key={i} ><div className="counter-style">{counter}.</div>
+            <div className="instruction-item" >{instruct.trim()}</div><br/></div>
+        }
+      });
     }
   }
   render() {
     const {instructions, ingredients, prepTime, cookTime} = this.props.recipe ? this.props.recipe:''
     return (
       <div className='flex-body'>
-       <div className='ingredientStyles'>
-        <div className='ingredientTitle' >Ingredients:<br/></div>
+       <div className='ingredient-styles'>
+        <div className='ingredient-title' >Ingredients:<br/></div>
         <hr/>
         {this.renderIngredients(ingredients)}
        </div>
-       <div className='instructionsStyles'>
-       <div className='instructionsTitle' >Instructions:<br/></div>
+       <div className='instructions-styles'>
+       <div className='instructions-title' >Instructions:<br/></div>
        <hr/>
        {this.renderInstructions(instructions)}
        </div>
