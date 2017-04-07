@@ -268,13 +268,13 @@ a, a:hover {
  -moz-column-width: 20em;
  -webkit-column-width: 20em;
  -moz-column-gap: 10px;
- -webkit-column-gap:10px; 
+ -webkit-column-gap:10px;
 }
 .row > .col-lg-3 {
  display: inline-block;
  padding: 0;
  margin: 10px;
- width:  100%; 
+ width:  100%;
  float:none;
 }
 
@@ -399,7 +399,7 @@ h5 {
 }
 
 .recipe-stat-text {
-  
+
 }
 
 
@@ -438,12 +438,12 @@ reviews
 .tags {
   list-style: none;
   margin: 0;
-  overflow: hidden; 
+  overflow: hidden;
   padding: 0;
 }
 
 .tags li {
-  float: left; 
+  float: left;
 }
 
 .tag {
@@ -477,3 +477,52 @@ reviews
   color: white;
 }
 
+=======
+
+}
+
+/********
+Recipe-Info-Boxes
+********/
+
+.ingredientStyles {
+  width: 400px;
+  height: 500px;
+  padding: 10px;
+  margin: 30px 15px 20px 0px;
+  @include box-shadow(1px 1px 3px 4px #ccc)
+}
+
+.instructionsStyles {
+  width: 700px;
+  height: 500px;
+  overflow: auto;
+  padding: 10px;
+  margin: 30px 0px 20px 15px;
+  @include box-shadow(1px 1px 3px 4px #ccc)
+}
+
+.ingredientTitle {
+ font-size: 32px;
+}
+
+.instructionsTitle {
+  font-size: 32px;
+}
+
+.emptyCheck{
+  display: flex;
+  width: 25px;
+  height: 25px;
+  justify-content: flex-start;
+}
+
+.ingredientItem {
+  display: flex;
+  font-size: 20px;
+}
+
+.flex-body-ingredients {
+  justify-content: flex-start;
+  display: flex;
+}
