@@ -1,4 +1,5 @@
 export default function validate(formProps) {
+  console.log(formProps)
   const errors = {};
   if (!formProps.recipeName) {
     errors.recipeName = 'Please enter an recipe name';
@@ -38,9 +39,6 @@ export default function validate(formProps) {
   }
   if (!formProps.instructions) {
     errors.instructions = 'Please enter the instructions';
-  }
-  if (formProps.recipeName && formProps.recipeName.length < 6) {
-    errors.recipeName = 'The recipe name must be atleast 6 characters';
   }
 
 

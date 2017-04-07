@@ -7,9 +7,30 @@ import Ingredients from './Ingredients';
 import validate from './validate'
 import $ from 'jquery';
 
+
+import TagsInput from 'react-tagsinput'
+
+import 'react-tagsinput/react-tagsinput.css' // If using WebPack and style-loader.
+
 const {imageUrlField, recipeNameField, prepTimeField, cookTimeField, servingsField, difficultyField, descriptionField, instructionsField} = fields
 
 class Create extends Component {
+  constructor() {
+    super()
+    this.state = {
+      tags: [], 
+      tag: ''
+    }
+  }
+
+  handleChange(tags) {
+    this.setState({tags})
+  }
+
+  handleChangeInput(tag) {
+    this.setState({tag})
+  }
+
   componentDidMount() {
     $(document).ready(function() {
       $("#preview-image").on("load", function(){
@@ -40,6 +61,7 @@ class Create extends Component {
   handleFormSubmit(formProps) {
     const { username } = this.props
     const { recipeName, imageUrl, difficulty, cookTime, prepTime, servings, instructions, description } = formProps
+    const { tags } = this.state
     const ingredients = Object.keys(formProps).reduce((list, val, i) => {
       let [quantity, items] = [`quantity${i}`, `items${i}`]
       formProps[quantity] ? list.quantity.push(formProps[quantity]) : null;
@@ -47,12 +69,22 @@ class Create extends Component {
       return list
     }, {quantity: [], items: []})
     this.props.postRecipe({
-      recipeName, imageUrl, difficulty, cookTime, prepTime, servings, instructions, description, ingredients, username
+      recipeName, 
+      imageUrl, 
+      difficulty, 
+      cookTime, 
+      prepTime, 
+      servings, 
+      instructions, 
+      description, 
+      ingredients, 
+      username,
+      tags
     })
   }
 
   render() {
-    console.log(this.props)
+    console.log(this.state)
     const { handleSubmit } = this.props;
     return (
       <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
@@ -63,7 +95,13 @@ class Create extends Component {
           <Field name="description" component={descriptionField} />
           Ingredients:
           <Ingredients />
-          <Field name="instructions" component={instructionsField} />              
+          <Field name="instructions" component={instructionsField} />   
+          <TagsInput 
+            value={this.state.tags} 
+            onChange={this.handleChange.bind(this)}
+            inputValue={this.state.tag}
+            onChangeInput={this.handleChangeInput.bind(this)}
+            />            
         </div>
         <div className="create-flex-element-right">
           <Field name="imageUrl" component={imageUrlField} />
