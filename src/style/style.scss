@@ -407,24 +407,26 @@ h5 {
 reviews
 ********/
 
-.review-button-div {
-  overflow: hidden;
+.review-title {
+  display: flex;
+  justify-content: space-between;
 }
 
 .review-button {
-  display: inline-block;
-  float: right;
   margin: 2%;
 }
 
 .review {
-  margin: 2%;
+  margin: 0 2% 4% 2%;
 }
 
 .review-author {
   display: flex;
-  justify-content: flex-start;
-  width: 100%;
+  justify-content: space-between;
+}
+
+.review-star {
+  justify-content: flex-end;
 }
 
 .star {
