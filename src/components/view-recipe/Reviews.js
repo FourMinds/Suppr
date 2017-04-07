@@ -73,14 +73,13 @@ class Reviews extends Component {
     const { handleSubmit, pristine, submitting } = this.props;
     let reviews = this.props.reviews
       ? this.props.reviews.map(review => {
-        console.log(review);
         return (
           <div className="list-group list-group flush review" key={review.id}>
-            <div className="list-group-item">
-              <div className="review-author">
+            <div className="list-group-item review-author">
               <AuthorTile username={review.username}/>
-              </div>
+              <div className="review-star">
               {new Array(review.rating).fill('').map(_ => <img className="star" src="/assets/star.png"></img>)}
+              </div>
             </div>
             <p className="list-group-item">{review.review}</p>
           </div>
@@ -92,9 +91,11 @@ class Reviews extends Component {
     // user can only press submit button when a rating is chosen
     // this happens through validateRating, which changes the disableRating state; then whether or not the button is disabled depends on disableSubmit
     return (
-      <div className="card-block review-block">
-      <button type="button" className="btn btn-primary review-button" data-toggle="modal" data-target="#reviewModal" data-whatever="@mdo">Write a Review</button>
-      <h6>Reviews</h6>
+      <div className="card-block">
+      <div className="review-title">
+        <h6>Reviews</h6>
+        <button type="button" className="btn btn-primary review-button" data-toggle="modal" data-target="#reviewModal" data-whatever="@mdo">Write a Review</button>
+      </div>
 
         {reviews}
 
