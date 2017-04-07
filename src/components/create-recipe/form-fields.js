@@ -71,7 +71,7 @@ export const itemsField = items => (
 export const instructionsField = instructions => (
   <fieldset className="form-group">
     <label>Instructions</label>
-    <textarea {...instructions.input} className="form-control rounded-0" />
+    <textarea {...instructions.input} className="form-control rounded-0" placeholder="Write each step on a new line" style={{height: "8em"}}/>
     {instructions.meta.touched && instructions.meta.error && <div className="error">{instructions.meta.error}</div>}
   </fieldset>
 )

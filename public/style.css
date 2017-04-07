@@ -162,8 +162,8 @@ create
   display: none; }
 
 .submit-button {
-  width: 20%;
-  margin: 2% 20%;
+  width: 30%;
+  margin: 2% 30%;
   display: inline-block;
   text-align: center;
   vertical-align: middle;
@@ -178,6 +178,25 @@ create
   font: normal normal bold 20px arial;
   color: #ffffff;
   text-decoration: none; }
+
+@media (min-width: 62em) {
+  .submit-button {
+    width: 20%;
+    margin: 2% 30%;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    padding: 12px 24px;
+    border: 1px solid #1c5cca;
+    border-radius: 8px;
+    background: #5fadfa;
+    background: -webkit-gradient(linear, left top, left bottom, from(#5fadfa), to(#1c5cca));
+    background: -moz-linear-gradient(top, #5fadfa, #1c5cca);
+    background: linear-gradient(to bottom, #5fadfa, #1c5cca);
+    text-shadow: #123a7e 1px 1px 1px;
+    font: normal normal bold 20px arial;
+    color: #ffffff;
+    text-decoration: none; } }
 
 .submit-button:hover,
 .submit-button:focus {
@@ -350,7 +369,6 @@ h5 {
   height: 20px; }
 
 /********
-<<<<<<< HEAD
 reviews
 ********/
 .review-title {
@@ -411,7 +429,8 @@ reviews
 .tag:hover {
   background-color: #337ab7;
   color: white; }
-=======
+
+/********
 Recipe-Info-Boxes
 ********/
 .ingredientStyles {
@@ -452,4 +471,3 @@ Recipe-Info-Boxes
 .flex-body-ingredients {
   justify-content: flex-start;
   display: flex; }
->>>>>>> styling the recipe info card
