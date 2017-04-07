@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
+import AuthorTile from './AuthorTile';
 
 class RecipeTile extends Component {
   constructor(props) {
@@ -28,6 +29,7 @@ class RecipeTile extends Component {
     return (
       <div className="flex-body">
         <div className="food-img-container">
+
           {favorited
             ? (<div className="favorite-button" onClick={this.handleFavoriteSubmit}>
               <img className="favorite-image" src="/assets/favorited.png"/>
@@ -35,23 +37,16 @@ class RecipeTile extends Component {
             : (<div className="favorite-button" onClick={this.handleFavoriteSubmit}>
               <img className="favorite-image" src="/assets/unfavorited.png"/>
             </div>)}
+            
           <img className="food-img" src={imageUrl} alt="recipe image" />
         </div>
         <div className="recipe-header-container">
           <div className="recipe-title-box">
             <h6>{recipeName}</h6>
-            <div className="rating-box">
-              <img className="rating-img" src="/assets/stars3.png" alt="rating" />
-            </div>
+            <img className="rating-img" src="/assets/stars3.png" alt="rating" />
           </div>
 
-          <div className="recipe-author-box">
-            <img className="profile-img" src="http://orig01.deviantart.net/aa15/f/2014/203/d/1/profile_picture_by_dogeshibee-d7rthy6.jpg" alt="profile image" />
-            <div className="profile-stats-box">
-              <h5>{username}</h5>
-              <p># of recipes, # of followers</p>
-            </div>
-          </div>
+          <AuthorTile username={username} />
           
           <div className="recipe-stats-box">
             <div className="recipe-stats-box-row">
