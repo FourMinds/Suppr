@@ -9,3 +9,4 @@ export const GET_FAVORITE = 'get_favorite';
 export const GET_FAVORITE_USER = 'get_favorite_user';
 export const GET_FOLLOWS = 'get_follows';
 export const GET_FOLLOWS_USER = 'get_follows_user';
+export const GET_USER_INFO = 'get_user_info';

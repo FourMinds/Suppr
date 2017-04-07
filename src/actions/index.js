@@ -12,7 +12,8 @@ import {
   GET_FAVORITE,
   GET_FOLLOWS,
   GET_FOLLOWS_USER,
-  GET_FAVORITE_USER
+  GET_FAVORITE_USER,
+  GET_USER_INFO
 } from './types';
 
 /*****************
@@ -217,3 +218,23 @@ export function getFollows(username, isSignedinUser = true) {
   }
 }
 
+/*****************
+* * Userinfo * * 
+*****************/
+
+export function getUserInfo(username) {
+  return function(dispatch) {
+    axios.get(`${server}/info`, {
+      headers: {authorization: localStorage.getItem(('token'))},
+      params: { username }
+    })
+      .then(res => {
+        console.log(res.data)
+        dispatch({ type: GET_USER_INFO, payload: {
+          username, 
+          data:res.data 
+        }
+      })
+    })
+  }
+}
