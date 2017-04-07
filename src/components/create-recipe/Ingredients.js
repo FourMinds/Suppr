@@ -51,9 +51,9 @@ class Ingredients extends Component {
       <section>
        {this.renderForm()} 
        </section>
-       <div style={{display: 'flex', justifyContent: "flex-end"}}>
-      <a className="btn btn-primary" style={{color: '#fff'}} onClick={this.handleAdd.bind(this)}><span className="fa fa-plus" aria-hidden="true"></span></a>
-      <a className="btn btn-primary" style={{color: '#fff'}} onClick={this.handleRemove.bind(this)}><span className="fa fa-minus" onClick={this.handleRemove.bind(this)} aria-hidden="true"></span></a>
+       <div className="ingredient-button-div">
+      <a className="btn btn-primary ingredient-button" style={{color: '#fff'}} onClick={this.handleAdd.bind(this)}><span className="fa fa-plus" aria-hidden="true"></span></a>
+      <a className="btn btn-primary ingredient-button" style={{color: '#fff'}} onClick={this.handleRemove.bind(this)}><span className="fa fa-minus" onClick={this.handleRemove.bind(this)} aria-hidden="true"></span></a>
       </div>
       </div>
     )
