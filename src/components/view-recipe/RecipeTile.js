@@ -50,7 +50,7 @@ class RecipeTile extends Component {
           
           <div className="recipe-stats-box">
             <div className="recipe-stats-box-row">
-              <div><img className="recipe-stats-icon" src="/assets/bowl.png"/> {prepTime} min</div>
+              <div><img className="recipe-stats-icon" src="/assets/prep.png"/> {prepTime} min</div>
               <div><img className="recipe-stats-icon" src="/assets/pot.png"/> {cookTime} min</div>
             </div>
             <div className="recipe-stats-box-row">
