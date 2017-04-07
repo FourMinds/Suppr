@@ -15,6 +15,7 @@ class ProfileView extends Component {
   }
 
   componentDidMount() {
+    this.props.getRecipes();
     this.props.getFavorites(this.props.viewUsername, false)
     this.props.getFollows(this.props.viewUsername, false)
     this.props.getRecipesByUsername(this.props.viewUsername)
@@ -40,9 +41,15 @@ class ProfileView extends Component {
       )
     }
     if (this.state.page === 2) {
+      const {data, favorites} = this.props
+      console.log(data, favorites)
+      const tiles = favorites.map(recipe => {  
+        const recipeProp = data.filter(item => item.id === recipe.recipe_id)[0] 
+        return <RecipeCard key={recipeProp.id} recipe={recipeProp} />
+      })
       return (
         <div className="card-columns" style={{margin: '5px 20px 10px 20px'}}>
-        {this.props.favorites.map(recipe => <RecipeCard key={recipe.id} recipe={recipe} />)}
+        {tiles}
         </div>
       )
     }
@@ -94,7 +101,8 @@ function mapStateToProps(state) {
   return { 
     userData: state.recipes.userRecipes,
     viewFollows: state.follows.dataForUser,
-    favorites: state.favorites.dataForUser
+    favorites: state.favorites.dataForUser,
+    data: state.recipes.data
   }
 }
 
