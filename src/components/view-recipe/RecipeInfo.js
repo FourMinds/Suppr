@@ -2,22 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 
-var ingredientStyles = {
-  width: '200px',
-  padding: '10px',
-  border: '2px solid black',
-  margin: '30px'
-}
-
-var instructionsStyles = {
-  width: '500px',
-  height: '500px',
-  overflow: 'scroll',
-  padding: '10px',
-  border: '2px solid black',
-  margin: '30px'
-}
-
 class RecipeInfo extends Component {
 
   renderIngredients(ingredients) {
@@ -26,22 +10,33 @@ class RecipeInfo extends Component {
      var items = ingredients.items;
      var lines = []
      for(var i = 0; i < quantities.length; i++){
-       lines.push(<li key={i}>{quantities[i]} {items[i]}</li>)
+       lines.push(<div className='flex-body' ><div><img className='emptyCheck' src="/assets/oval.png"/></div><div className='ingredientItem' key={i}> {quantities[i]}  | {items[i]}</div><br/></div>)
      }
      return lines.map((line) => line)
    }
   }
+
+  renderInstructions(instructions) {
+    if(instructions){
+      var instructionsArr = instructions.split('\n');
+      console.log(instructionsArr);
+
+      return instructionsArr.map((instruct) => { return <div><p>{instruct}</p><br/></div> });
+    }
+  }
   render() {
-    const {instructions, ingredients} = this.props.recipe ? this.props.recipe:''
+    const {instructions, ingredients, prepTime, cookTime} = this.props.recipe ? this.props.recipe:''
     return (
       <div className='flex-body'>
-       <div style={ingredientStyles}>
-        Ingredients:<br/>
+       <div className='ingredientStyles'>
+        <div className='ingredientTitle' >Ingredients:<br/></div>
+        <hr/>
         {this.renderIngredients(ingredients)}
        </div>
-       <div style={instructionsStyles}>
-       Instructions:<br/>
-       {instructions}
+       <div className='instructionsStyles'>
+       <div className='instructionsTitle' >Instructions:<br/></div>
+       <hr/>
+       {this.renderInstructions(instructions)}
        </div>
       </div>
     )
