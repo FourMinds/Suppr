@@ -101,7 +101,7 @@ class Create extends Component {
             onChange={this.handleChange.bind(this)}
             inputValue={this.state.tag}
             onChangeInput={this.handleChangeInput.bind(this)}
-            tagProps={{className: 'tag', classNameRemove: 'react-tagsinput-remove'}}
+            tagProps={{className: 'react-tagsinput-tag', classNameRemove: 'react-tagsinput-remove'}}
             />            
         </div>
         <div className="create-flex-element-right">
