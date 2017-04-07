@@ -10,7 +10,15 @@ class RecipeInfo extends Component {
      var items = ingredients.items;
      var lines = []
      for(var i = 0; i < quantities.length; i++){
-       lines.push(<div className='flex-body-ingredients' key={i}><div><img className='empty-check' src="/assets/oval.png"/></div><div className='ingredient-item' > {quantities[i]}  | {items[i]}</div><br/></div>)
+       lines.push(<div className='flex-body-ingredients' key={i}>
+             <div>
+              <img className='empty-check' src="/assets/oval.png"/>
+             </div>
+             <div className='ingredient-item' >
+              {quantities[i]}  | {items[i]}
+             </div>
+             <br/>
+            </div>)
      }
      return lines.map((line) => line)
    }
