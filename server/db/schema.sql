@@ -104,6 +104,21 @@ CREATE TABLE `followers` (
 );
 
 -- ---
+-- Table 'tags'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `tags`;
+    
+CREATE TABLE `tags` (
+  `id` INTEGER NOT NULL AUTO_INCREMENT,
+  `tag_name` MEDIUMTEXT NOT NULL,
+  `recipe_id` INTEGER NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+
+-- ---
 -- Foreign Keys
 -- ---
 
@@ -115,6 +130,7 @@ ALTER TABLE `favorites` ADD FOREIGN KEY (recipe_id) REFERENCES `recipes` (`id`);
 ALTER TABLE `favorites` ADD FOREIGN KEY (user_id) REFERENCES `users` (`id`);
 ALTER TABLE `followers` ADD FOREIGN KEY (user_id) REFERENCES `users` (`id`);
 ALTER TABLE `followers` ADD FOREIGN KEY (follow_id) REFERENCES `users` (`id`);
+ALTER TABLE `tags` ADD FOREIGN KEY (recipe_id) REFERENCES `recipes` (`id`);
 -- ---
 -- Table Properties
 -- ---
