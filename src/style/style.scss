@@ -217,6 +217,11 @@ create
 home view
 ****************/
 
+a, a:hover {
+  color: black;
+  text-decoration: none;
+}
+
 .flex-card-container {
   display: flex;
   flex-flow: row wrap;
@@ -353,12 +358,9 @@ h6 {
   width: 100%;
 }
 
-.rating-box {
+.rating-img {
   display: flex;
   justify-content: flex-end;
-}
-
-.rating-img {
   max-width: none;
   height: 50px;
 }

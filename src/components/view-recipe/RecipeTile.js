@@ -29,6 +29,7 @@ class RecipeTile extends Component {
     return (
       <div className="flex-body">
         <div className="food-img-container">
+
           {favorited
             ? (<div className="favorite-button" onClick={this.handleFavoriteSubmit}>
               <img className="favorite-image" src="/assets/favorited.png"/>
@@ -36,14 +37,13 @@ class RecipeTile extends Component {
             : (<div className="favorite-button" onClick={this.handleFavoriteSubmit}>
               <img className="favorite-image" src="/assets/unfavorited.png"/>
             </div>)}
+            
           <img className="food-img" src={imageUrl} alt="recipe image" />
         </div>
         <div className="recipe-header-container">
           <div className="recipe-title-box">
             <h6>{recipeName}</h6>
-            <div className="rating-box">
-              <img className="rating-img" src="/assets/stars3.png" alt="rating" />
-            </div>
+            <img className="rating-img" src="/assets/stars3.png" alt="rating" />
           </div>
 
           <AuthorTile username={username} />
@@ -67,7 +67,7 @@ class RecipeTile extends Component {
 function mapStatetoProps(state) {
   return {
     recipe: state.recipes.selectedRecipe,
-    // username: state.auth.username,
+    username: state.auth.username,
     favorites: state.favorites
   }
 }
