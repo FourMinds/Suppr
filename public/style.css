@@ -309,7 +309,8 @@ recipe tile (top)
 .recipe-title-box {
   height: 50px;
   display: flex;
-  justify-content: space-between; }
+  justify-content: space-between;
+  margin-bottom: 15px; }
 
 h6 {
   display: flex;
@@ -320,34 +321,34 @@ h6 {
 .rating-img {
   height: 50px; }
 
-.recipe-author-box {
-  height: 100px;
-  display: flex; }
-
-.profile-img {
-  width: 100px; }
-
-.profile-stats-box {
-  display: flex;
-  justify-content: center;
-  height: 100px;
-  flex-flow: column nowrap; }
-
-h5 {
-  font-size: 24px; }
-
 .recipe-stats-box {
   display: flex;
-  justify-content: flex-start; }
+  justify-content: flex-start;
+  margin-top: 15px; }
 
 .recipe-stats-box-row {
-  width: 40%; }
+  margin-right: 25px; }
 
 .recipe-stats-icon {
   height: 20px; }
 
 /********
-<<<<<<< HEAD
+Author Tile
+********/
+.author-box {
+  height: 75px;
+  display: flex; }
+
+.profile-img {
+  width: 75px;
+  height: 75px; }
+
+.profile-stats-box {
+  display: flex;
+  justify-content: center;
+  flex-flow: column nowrap; }
+
+/********
 reviews
 ********/
 .review-title {
@@ -408,7 +409,8 @@ reviews
 .tag:hover {
   background-color: #337ab7;
   color: white; }
-=======
+
+/********
 Recipe-Info-Boxes
 ********/
 .ingredientStyles {
@@ -449,4 +451,6 @@ Recipe-Info-Boxes
 .flex-body-ingredients {
   justify-content: flex-start;
   display: flex; }
->>>>>>> styling the recipe info card
+
+h5 {
+  font-size: 24px; }
