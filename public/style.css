@@ -111,14 +111,23 @@ create
 ****************/
 .inner-flex-body {
   display: flex;
-  flex-flow: row nowrap; }
+  flex-flow: row nowrap;
+  margin: 0 0 -0.5em 0; }
 
 .spaced {
-  justify-content: space-around; }
+  justify-content: space-around;
+  margin-top: 1%; }
 
 .inner-flex-element {
   flex: 1 1 200px;
   padding: 5px; }
+
+.ingredient-button-div {
+  display: flex;
+  justify-content: flex-end; }
+
+.ingredient-button {
+  margin: 0 0.2em; }
 
 .create-flex-element-right {
   padding: 0 10px 5px 10px; }
@@ -153,8 +162,8 @@ create
   display: none; }
 
 .submit-button {
-  width: 30%;
-  margin: 0 20%;
+  width: 20%;
+  margin: 2% 20%;
   display: inline-block;
   text-align: center;
   vertical-align: middle;
