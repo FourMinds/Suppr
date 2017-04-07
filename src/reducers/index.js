@@ -4,6 +4,7 @@ import authReducer from './auth_reducer';
 import recipeReducer from './recipe_reducer';
 import reviewReducer from './review_reducer';
 import followReducer from './follow_reducer';
+import userInfoReducer from './userinfo_reducer';
 import favoriteReducer from './favorite_reducer';
 
 const rootReducer = combineReducers({
@@ -13,5 +14,6 @@ const rootReducer = combineReducers({
   reviews: reviewReducer,
   favorites: favoriteReducer,
   follows: followReducer,
+  userInfo: userInfoReducer
 });
 export default rootReducer;

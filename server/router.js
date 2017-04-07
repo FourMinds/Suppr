@@ -3,6 +3,7 @@ const recipeHandler = require('./controllers/recipe_handler');
 const favoriteHandler = require('./controllers/favorite_handler');
 const followHandler = require('./controllers/follow_handler');
 const reviewHandler = require('./controllers/review_handler');
+const userInfoHandler = require('./controllers/userinfo_handler');
 const passportService = require('./services/passport');
 const passport = require('passport');
 
@@ -22,4 +23,5 @@ module.exports = function(app) {
   app.get('/favorite', favoriteHandler.getFavorites);
   app.post('/follow', followHandler.addFollow);
   app.get('/follow', followHandler.getFollows);
+  app.get('/info', userInfoHandler.getUserInfo);
 }
