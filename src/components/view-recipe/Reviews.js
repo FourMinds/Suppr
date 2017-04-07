@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import { reduxForm, Field } from 'redux-form';
 import $ from 'jquery';
+import AuthorTile from './AuthorTile';
 
 const ratingField = rating => (
   <fieldset className="form-group">
@@ -76,12 +77,8 @@ class Reviews extends Component {
         return (
           <div className="list-group list-group flush review" key={review.id}>
             <div className="list-group-item">
-              <div className="recipe-author-box review-author">
-                <img className="profile-img" src="http://orig01.deviantart.net/aa15/f/2014/203/d/1/profile_picture_by_dogeshibee-d7rthy6.jpg" alt="profile image" />
-                <div className="profile-stats-box">
-                  <h5>{review.username}</h5>
-                  <p># of recipes, # of followers</p>
-                </div>
+              <div className="review-author">
+              <AuthorTile username={review.username}/>
               </div>
               {new Array(review.rating).fill('').map(_ => <img className="star" src="/assets/star.png"></img>)}
             </div>
