@@ -10,11 +10,17 @@ class RecipeView extends Component {
     this.props.getRecipeById(this.props.params.id);
   }
   render() {
-    const { id, recipeName, imageUrl, difficulty, cookTime, prepTime, servings, instructions, description, ingredients} = this.props.recipe?this.props.recipe:''
-
+    const { id, recipeName, imageUrl, difficulty, cookTime, prepTime, servings, instructions, description, ingredients, tags} = this.props.recipe?this.props.recipe:''
+    console.log(tags)
     return (
       <div>
+        
         <RecipeTile />
+        <div className="tags" style={{display: 'flex',flexFlow: 'row nowrap', justifyContent: 'center'}}>
+          <ul>
+          {tags?tags.map(tag => <li><a className='tag'>{tag}</a></li>):''}
+          </ul>
+        </div>
         <RecipeInfo />
         <Reviews />
       </div>
