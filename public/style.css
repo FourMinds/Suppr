@@ -339,3 +339,27 @@ h5 {
 
 .recipe-stats-icon {
   height: 20px; }
+
+/********
+reviews
+********/
+.review-button-div {
+  overflow: hidden; }
+
+.review-button {
+  display: inline-block;
+  float: right;
+  margin: 2%; }
+
+.review {
+  margin: 2%; }
+
+.review-author {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%; }
+
+.star {
+  margin: 0.5em 0;
+  padding-right: 0.1em;
+  width: 1.8em; }

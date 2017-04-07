@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import { reduxForm, Field } from 'redux-form';
 import $ from 'jquery';
+import AuthorTile from './AuthorTile';
 
 const ratingField = rating => (
   <fieldset className="form-group">
@@ -70,22 +71,32 @@ class Reviews extends Component {
   
   render() {
     const { handleSubmit, pristine, submitting } = this.props;
+    let reviews = this.props.reviews
+      ? this.props.reviews.map(review => {
+        console.log(review);
+        return (
+          <div className="list-group list-group flush review" key={review.id}>
+            <div className="list-group-item">
+              <div className="review-author">
+              <AuthorTile username={review.username}/>
+              </div>
+              {new Array(review.rating).fill('').map(_ => <img className="star" src="/assets/star.png"></img>)}
+            </div>
+            <p className="list-group-item">{review.review}</p>
+          </div>
+        )
+      })
+      : null;
+
     // when pristine, button is disabled
     // user can only press submit button when a rating is chosen
     // this happens through validateRating, which changes the disableRating state; then whether or not the button is disabled depends on disableSubmit
     return (
-      <div className="card-block">
-      <button style={{marginBottom: '10px'}} type="button" className="btn btn-primary" data-toggle="modal" data-target="#reviewModal" data-whatever="@mdo">Write a Review</button>
-        {this.props.reviews
-          ? this.props.reviews.map(review => {
-            return (
-              <div className="list-group list-group flush" key={review.id}>
-                <p className="list-group-item">Rating: {review.rating}</p>
-                <p className="list-group-item">{review.review}</p>
-              </div>
-            )
-          })
-          : null}
+      <div className="card-block review-block">
+      <button type="button" className="btn btn-primary review-button" data-toggle="modal" data-target="#reviewModal" data-whatever="@mdo">Write a Review</button>
+      <h6>Reviews</h6>
+
+        {reviews}
 
         <div className="modal fade" id="reviewModal" tabIndex="-1" role="dialog" aria-labelledby="reviewModalLabel" aria-hidden="true">
           <div className="modal-dialog" role="document">
