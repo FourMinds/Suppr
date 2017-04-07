@@ -359,7 +359,8 @@ recipe tile (top)
 .food-img-container {
   display: inline-block;
   margin: 5px 20px 5px 20px;
-  width: 300px;
+  min-width: 300px;
+  width: 46%;
   height: 250px;
   position: relative;
   overflow: hidden;
@@ -367,15 +368,16 @@ recipe tile (top)
 }
 
 .food-img {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  -webkit-transform: translateY(-50%) translateX(-50%);
+  // position: absolute;
+  // left: 50%;
+  // top: 50%;
+  // -webkit-transform: translateY(-50%) translateX(-50%);
 }
 
 .recipe-header-container {
   margin: 5px;
-  width: 300px;
+  min-width: 300px;
+  width: 46%;
 }
 
 .recipe-title-box {
