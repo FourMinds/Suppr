@@ -1,5 +1,4 @@
 export default function validate(formProps) {
-  console.log(formProps)
   const errors = {};
   if (!formProps.recipeName) {
     errors.recipeName = 'Sorry! We can\'t submit your recipe without knowing the name';
