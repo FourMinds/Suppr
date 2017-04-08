@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../../actions';
 import RecipeCard from '../../landing/RecipeCard';
 import FollowTile from './FollowTile';
+import { CSSGrid, layout, makeResponsive, measureItems } from 'react-stonecutter';
 import $ from 'jquery';
 
 class ProfileOwn extends Component {
@@ -29,14 +30,30 @@ class ProfileOwn extends Component {
   }
 
   renderPage() {
+    const Grid = makeResponsive(measureItems(CSSGrid, { measureImages: true }), {
+      maxWidth: 1920,
+      minPadding: 100
+    });
     if (this.state.page === 0) {
       return <div>Under Construction... </div>
     }
     if (this.state.page === 1) {
+      const cards = this.props.userData.map(recipe => <li ><RecipeCard key={recipe.id} recipe={recipe} /></li>)
       return (
-        <div className="card-columns" style={{margin: '5px 20px 10px 20px'}}>
-        {this.props.userData.map(recipe => <RecipeCard key={recipe.id} recipe={recipe} />)}
-        </div>
+        <div className="card-display" style={{paddingTop: '10px', paddingLeft:'5px'}}>
+        <Grid
+          component="ul"
+          columns={5}
+          columnWidth={330}
+          gutterWidth={5}
+          gutterHeight={15}
+          layout={layout.pinterest}
+          duration={200}
+          easing="ease-out"
+        >
+        {cards}
+      </Grid>
+      </div>
       )
     }
     if (this.state.page === 2) {
@@ -44,12 +61,23 @@ class ProfileOwn extends Component {
       console.log(favorites)
       const tiles = favorites.map(recipe => {
         const recipeProp = data.filter(item => item.id === recipe.recipe_id)[0];
-        return <RecipeCard key={recipeProp.id} recipe={recipeProp}/>
+        return <li><RecipeCard key={recipeProp.id} recipe={recipeProp}/></li>
       });
       return (
-        <div className="card-columns" style={{margin: '5px 20px 10px 20px'}}>
+        <div className="card-display" style={{paddingTop: '10px', paddingLeft:'5px'}}>
+        <Grid
+          component="ul"
+          columns={5}
+          columnWidth={330}
+          gutterWidth={5}
+          gutterHeight={15}
+          layout={layout.pinterest}
+          duration={200}
+          easing="ease-out"
+        >
         {tiles}
-        </div>
+      </Grid>
+      </div>
       )
     }
     if (this.state.page === 3) {
