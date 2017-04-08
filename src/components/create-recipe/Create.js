@@ -12,15 +12,17 @@ import TagsInput from 'react-tagsinput'
 
 import 'react-tagsinput/react-tagsinput.css' // If using WebPack and style-loader.
 
-const {imageUrlField, recipeNameField, prepTimeField, cookTimeField, servingsField, difficultyField, descriptionField, instructionsField} = fields
+const {imageUrlField, recipeNameField, prepTimeField, cookTimeField, servingsField, difficultyField, descriptionField, instructionsField} = fields;
 
 class Create extends Component {
   constructor() {
-    super()
+    super();
     this.state = {
-      tags: [], 
+      tags: [],
       tag: ''
-    }
+    };
+
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
   handleChange(tags) {
@@ -45,6 +47,7 @@ class Create extends Component {
       });
     });
   }
+
   renderAlert() {
     if (this.props.submitFailed) {
       return (
@@ -59,15 +62,18 @@ class Create extends Component {
   }
 
   handleFormSubmit(formProps) {
-    const { username } = this.props
-    const { recipeName, imageUrl, difficulty, cookTime, prepTime, servings, instructions, description } = formProps
-    const { tags } = this.state
+    // this enables validation of tags
+    formProps.tags = this.state.tags;
+
+    const { username } = this.props;
+    const { recipeName, imageUrl, difficulty, cookTime, prepTime, servings, instructions, description } = formProps;
+    const { tags } = this.state;
     const ingredients = Object.keys(formProps).reduce((list, val, i) => {
-      let [quantity, items] = [`quantity${i}`, `items${i}`]
+      let [quantity, items] = [`quantity${i}`, `items${i}`];
       formProps[quantity] ? list.quantity.push(formProps[quantity]) : null;
       formProps[items] ? list.items.push(formProps[items]) : null;
       return list
-    }, {quantity: [], items: []})
+    }, {quantity: [], items: []});
     this.props.postRecipe({
       recipeName, 
       imageUrl, 
@@ -84,10 +90,9 @@ class Create extends Component {
   }
 
   render() {
-    console.log(this.state)
     const { handleSubmit } = this.props;
     return (
-      <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+      <form onSubmit={handleSubmit(this.handleFormSubmit)}>
       {this.renderAlert()}
       <div className="flex-body spaced">
         <div className="create-flex-element-left">
@@ -95,14 +100,21 @@ class Create extends Component {
           <Field name="description" component={descriptionField} />
           Ingredients:
           <Ingredients />
-          <Field name="instructions" component={instructionsField} />   
-          <TagsInput 
-            value={this.state.tags} 
+          <Field name="instructions" component={instructionsField} />
+          <TagsInput
+            value={this.state.tags}
             onChange={this.handleChange.bind(this)}
             inputValue={this.state.tag}
             onChangeInput={this.handleChangeInput.bind(this)}
             tagProps={{className: 'react-tagsinput-tag', classNameRemove: 'react-tagsinput-remove'}}
-            />            
+            />
+          {this.state.tags.length < 2
+          ? <Field name="tags" component={tags =>
+              <fieldset className="form-group">
+                {tags.meta.touched && tags.meta.error && <div className="error">{tags.meta.error}</div>}
+              </fieldset>
+            } />
+          : null }
         </div>
         <div className="create-flex-element-right">
           <Field name="imageUrl" component={imageUrlField} />
