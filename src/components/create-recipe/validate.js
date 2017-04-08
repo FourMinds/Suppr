@@ -1,43 +1,43 @@
 export default function validate(formProps) {
   const errors = {};
   if (!formProps.recipeName) {
-    errors.recipeName = 'Sorry! We can\'t submit your recipe without knowing the name';
+    errors.recipeName = 'Please enter a recipe name';
   }
   if (!formProps.imageUrl) {
-    errors.imageUrl = 'Sorry! We can\'t submit your recipe without a picture.';
+    errors.imageUrl = 'Please enter an image URL';
   }
   if (isNaN(formProps.prepTime)) {
-    errors.prepTime = 'Sorry! We need prep time to be a number';
+    errors.prepTime = 'Please enter a number';
   }
   if (isNaN(formProps.cookTime)) {
-    errors.cookTime = 'Sorry! We need cook time to be a number.';
+    errors.cookTime = 'Please enter a number';
   }
   if (isNaN(formProps.servings)) {
-    errors.servings = 'Sorry! We need servings to be a number.';
+    errors.servings = 'Please enter a number';
   }
   if (!formProps.prepTime) {
-    errors.prepTime = 'Sorry! We can\'t submit your recipe without knowing the prep time';
+    errors.prepTime = 'Please enter a prep time';
   }
   if (!formProps.cookTime) {
-    errors.cookTime = 'Sorry! We can\'t submit your recipe without knowing the cook time';
+    errors.cookTime = 'Please enter a cook time';
   }
   if (!formProps.servings) {
-    errors.servings = 'Sorry! We can\'t submit your recipe without knowing the number of servings';
+    errors.servings = 'Please enter the number of servings';
   }
   if (formProps.difficulty === "Choose...") {
-    errors.difficulty = 'Sorry! We can\'t submit your recipe without choosing a difficulty';
+    errors.difficulty = 'Please select a difficulty';
   }
   if (!formProps.description) {
-    errors.description = 'Sorry! We can\'t submit your recipe without knowing the description';
+    errors.description = 'Please enter a description';
   }
   if (!formProps.quantity0) {
-    errors.quantity0 = 'Sorry! We can\'t submit your recipe without any quantities';
+    errors.quantity0 = 'Please enter a quantity';
   }
   if (!formProps.items0) {
-    errors.items0 = 'Sorry! We can\'t submit your recipe without any items';
+    errors.items0 = 'Please enter an ingredient';
   }
   if (!formProps.instructions) {
-    errors.instructions = 'Sorry! We can\'t submit your recipe without knowing the instructions';
+    errors.instructions = 'Please enter the instructions';
   }
 
   if(!formProps.tags || formProps.tags < 2) {
