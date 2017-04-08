@@ -41,6 +41,7 @@ class ProfileOwn extends Component {
     }
     if (this.state.page === 2) {
       const {data, favorites} = this.props;
+      console.log(favorites)
       const tiles = favorites.map(recipe => {
         const recipeProp = data.filter(item => item.id === recipe.recipe_id)[0];
         return <RecipeCard key={recipeProp.id} recipe={recipeProp}/>
@@ -99,7 +100,7 @@ class ProfileOwn extends Component {
 function mapStateToProps(state) {
   return { username: state.auth.username, 
     userData: state.recipes.userRecipes, 
-    favorites: state.favorites.dataForUser,
+    favorites: state.favorites.data,
     data: state.recipes.data ,
     followList: state.follows.data
   }

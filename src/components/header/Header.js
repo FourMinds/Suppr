@@ -10,7 +10,7 @@ const Dropdown = (props) => {
         {props.username}
       </a>
       <div className="dropdown-menu dropdown-menu-right" aria-labelledby="Preview">
-        <Link className="dropdown-item" to={profileLink}>My Profile</Link>
+        <a className="dropdown-item" href={profileLink}>My Profile</a>
         <Link className="dropdown-item" to="/create">Create a Recipe</Link>
         <a className="dropdown-item" href="#">Dropdown Link 3</a>
       </div>
