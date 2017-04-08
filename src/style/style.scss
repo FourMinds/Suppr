@@ -618,8 +618,8 @@ Recipe-Info-Boxes
 
 .ingredient-item {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: flex-start;
   font-size: 20px;
   margin-left: 20px;
 }
