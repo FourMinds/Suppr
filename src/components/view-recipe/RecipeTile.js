@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import AuthorTile from './AuthorTile';
+import RecipeStats from './RecipeStats';
+
 
 class RecipeTile extends Component {
   constructor(props) {
@@ -48,16 +50,8 @@ class RecipeTile extends Component {
 
           <AuthorTile username={username} />
           
-          <div className="recipe-stats-box">
-            <div className="recipe-stats-box-row">
-              <div><img className="recipe-stats-icon" src="/assets/prep.png"/> {prepTime} min</div>
-              <div><img className="recipe-stats-icon" src="/assets/pot.png"/> {cookTime} min</div>
-            </div>
-            <div className="recipe-stats-box-row">
-              <div><img className="recipe-stats-icon" src="/assets/tray.png"/> {servings} servings</div>
-              <div><img className="recipe-stats-icon" src="/assets/chef.png"/> {difficulty} difficulty</div>
-            </div>
-          </div>
+          <RecipeStats />
+
         </div>
       </div>
     )
