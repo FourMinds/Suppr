@@ -108,7 +108,7 @@ class Create extends Component {
             onChangeInput={this.handleChangeInput.bind(this)}
             tagProps={{className: 'react-tagsinput-tag', classNameRemove: 'react-tagsinput-remove'}}
             />
-          {this.state.tags.length === 0
+          {this.state.tags.length < 2
           ? <Field name="tags" component={tags =>
               <fieldset className="form-group">
                 {tags.meta.touched && tags.meta.error && <div className="error">{tags.meta.error}</div>}
