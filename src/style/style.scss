@@ -357,17 +357,21 @@ recipe tile (top)
 ********/
 
 .food-img-container {
-  display: inline-block;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  background-image: url('http://i203.photobucket.com/albums/aa217/bitwierd/Chequerboard.png');
   margin: 5px 20px 5px 20px;
   min-width: 300px;
   width: 46%;
-  height: 250px;
+  height: 215px;
   position: relative;
   overflow: hidden;
   z-index: 1
 }
 
 .food-img {
+
   // position: absolute;
   // left: 50%;
   // top: 50%;
@@ -402,15 +406,26 @@ h6 {
 .recipe-stats-box {
   display: flex;
   justify-content: flex-start;
-  margin-top: 15px;
+  font-size: 14px;
 }
 
-.recipe-stats-box-row {
+.recipe-stats-box-column {
   margin-right: 25px;
+  width: 40%;
+  // display: flex;
+  // justify-content: flex-start;
+}
+
+.recipe-stats-box-column-row {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 5px;
 }
 
 .recipe-stats-icon {
-  height: 20px;
+  margin-left: 5px;
+  margin-right: 10px;
+  height: 30px;
 }
 
 /********
