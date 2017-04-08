@@ -109,12 +109,12 @@ class Create extends Component {
             tagProps={{className: 'react-tagsinput-tag', classNameRemove: 'react-tagsinput-remove'}}
             />
           {this.state.tags.length === 0
-          ? null
-          : <Field name="tags" component={tags =>
+          ? <Field name="tags" component={tags =>
               <fieldset className="form-group">
                 {tags.meta.touched && tags.meta.error && <div className="error">{tags.meta.error}</div>}
               </fieldset>
-            } /> }
+            } />
+          : null }
         </div>
         <div className="create-flex-element-right">
           <Field name="imageUrl" component={imageUrlField} />
