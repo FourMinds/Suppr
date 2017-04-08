@@ -25,16 +25,17 @@ class RecipeInfo extends Component {
      var items = ingredients.items;
      var lines = []
      for(var i = 0; i < quantities.length; i++){
-       lines.push(<div className='flex-body-ingredients' key={i}>
-             <div onClick={this.doneClick} id={i} >
-              {this.state[i] ? (<img  className='empty-check' src="/assets/success.png" name={i} />) :
-                        (<img  className='empty-check' src="/assets/oval.png" name={i} />)}
-             </div>
-             <div className='ingredient-item' >
-              <span className='quantity-style'>{quantities[i]}</span> | {items[i]}
-             </div>
-             <br/>
-            </div>)
+       if(ingredients[i] !== ""){
+         lines.push(<div className='flex-body-ingredients' key={i}>
+         <div onClick={this.doneClick} id={i} >
+         {this.state[i] ? (<img  className='empty-check' src="/assets/success.png" name={i} />) :
+         (<img  className='empty-check' src="/assets/oval.png" name={i} />)}
+         </div>
+         <div className='ingredient-item'  style={{width: '400'}}>
+         <span className='quantity-style'>{quantities[i]}</span>| {items[i]}
+         </div>
+         </div>)
+       }
      }
      return lines.map((line) => line)
    }
