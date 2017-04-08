@@ -229,7 +229,6 @@ export function getUserInfo(username) {
       params: { username }
     })
       .then(res => {
-        console.log(res.data)
         dispatch({ type: GET_USER_INFO, payload: {
           username, 
           data:res.data 

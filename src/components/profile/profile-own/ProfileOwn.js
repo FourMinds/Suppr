@@ -15,11 +15,12 @@ class ProfileOwn extends Component {
     this.handleClick = this.handleClick.bind(this)
   }
   componentWillMount() {
-    this.props.getFollows(this.props.username)
-    this.props.getRecipesByUsername(this.props.username)
+    this.props.getFavorites(this.props.username, true);
+    this.props.getFollows(this.props.username);
+    this.props.getRecipesByUsername(this.props.username);
     $('body').on('click','.tab', function() {
-      $('.active').removeClass('active')
-      $(this).find('a').addClass('active')
+      $('.active').removeClass('active');
+      $(this).find('a').addClass('active');
     })
   }
 
@@ -39,10 +40,14 @@ class ProfileOwn extends Component {
       )
     }
     if (this.state.page === 2) {
-      console.log(this.props.favorites)
+      const {data, favorites} = this.props;
+      const tiles = favorites.map(recipe => {
+        const recipeProp = data.filter(item => item.id === recipe.recipe_id)[0];
+        return <RecipeCard key={recipeProp.id} recipe={recipeProp}/>
+      });
       return (
         <div className="card-columns" style={{margin: '5px 20px 10px 20px'}}>
-        {this.props.favorites.map(recipe => <RecipeCard key={recipe.id} recipe={recipe} />)}
+        {tiles}
         </div>
       )
     }
@@ -94,7 +99,7 @@ class ProfileOwn extends Component {
 function mapStateToProps(state) {
   return { username: state.auth.username, 
     userData: state.recipes.userRecipes, 
-    favorites: state.favorites.data, 
+    favorites: state.favorites.dataForUser,
     data: state.recipes.data ,
     followList: state.follows.data
   }

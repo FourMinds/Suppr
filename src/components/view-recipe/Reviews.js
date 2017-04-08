@@ -78,7 +78,7 @@ class Reviews extends Component {
             <div className="list-group-item review-author">
               <AuthorTile username={review.username}/>
               <div className="review-star">
-              {new Array(review.rating).fill('').map(_ => <img className="star" src="/assets/star.png"></img>)}
+              {new Array(review.rating).fill('').map((current, index) => <img className="star" src="/assets/star.png" key={index} ></img>)}
               </div>
             </div>
             <p className="list-group-item">{review.review}</p>
