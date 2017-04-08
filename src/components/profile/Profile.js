@@ -3,6 +3,7 @@ import ProfileOwn from './profile-own/ProfileOwn';
 import ProfileView from './profile-view/ProfileView';
 import ProfileUnauth from './ProfileUnauth';
 import { connect } from 'react-redux';
+import * as actions from '../../actions';
 
 class Profile extends Component {
 
@@ -10,8 +11,16 @@ class Profile extends Component {
     if(!this.props.username) {
       return <ProfileUnauth viewUsername={this.props.params.username}/>
     } else if(this.props.params.username === this.props.username) {
+      this.props.getFavorites(this.props.username, true);
+      this.props.getFollows(this.props.username);
+      this.props.getRecipesByUsername(this.props.username);
       return <ProfileOwn /> 
     } else {
+      this.props.getRecipes();
+      this.props.getFavorites(this.props.params.username, false)
+      this.props.getRecipesByUsername(this.props.params.username)
+      this.props.getFollows(this.props.username)
+      this.props.getFollows(this.props.params.username, false)
       return <ProfileView viewUsername={this.props.params.username}/>
     }
   }
@@ -29,4 +38,4 @@ function mapStateToProps(state) {
   return { username: state.auth.username }
 }
 
-export default connect(mapStateToProps)(Profile);
+export default connect(mapStateToProps, actions)(Profile);
