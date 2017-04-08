@@ -37,7 +37,7 @@ export const difficultyField = difficulty => (
   <fieldset className="form-group">
     <label className="mr-sm-2">Difficulty </label><br/>
   <select {...difficulty.input} className="rounded-0 custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
-    <option selected disabled>Choose...</option>
+    <option disabled>Choose...</option>
     <option value="Easy">Easy</option>
     <option value="Medium">Medium</option>
     <option value="Hard">Hard</option>

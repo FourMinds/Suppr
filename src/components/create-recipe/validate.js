@@ -41,5 +41,9 @@ export default function validate(formProps) {
     errors.instructions = 'Sorry! We can\'t submit your recipe without knowing the instructions';
   }
 
+  if(!formProps.tags) {
+    errors.tags = 'Sorry! We can\'t submit your recipe without knowing the tags.';
+  }
+
   return errors;
 }
