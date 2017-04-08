@@ -8,7 +8,7 @@ class RecipeCard extends Component {
     const recipeLink = `/recipe/${id}`
     
     return (
-      <div className="card">
+      <div className="card" style={{width: '20em'}}>
         <Link to={recipeLink}><img className="card-img-top" src={image} alt="Card image cap" /></Link>
         <div className="card-block">
           <Link to={recipeLink}><h5>{name}</h5></Link>

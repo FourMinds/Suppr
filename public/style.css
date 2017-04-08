@@ -217,6 +217,16 @@ create
 /****************
 home view
 ****************/
+@media (min-width: 20em) {
+  .card-display {
+    display: flex;
+    justify-content: center; } }
+
+@media (min-width: 48em) {
+  .card-display {
+    display: flex;
+    justify-content: flex-start; } }
+
 a, a:hover {
   color: black;
   text-decoration: none; }
