@@ -14,14 +14,16 @@ class RecipeView extends Component {
     console.log(tags)
     return (
       <div>
-        
+
         <RecipeTile />
-        <div className="tags" style={{display: 'flex',flexFlow: 'row nowrap', justifyContent: 'center'}}>
-          <ul>
-          {tags?tags.map(tag => <li><a className='tag'>{tag}</a></li>):''}
-          </ul>
-        </div>
         <RecipeInfo />
+        <div className='tags-flex-box-style'>
+          <div>
+            <ul style={{display: 'flex',flexFlow: 'row wrap', justifyContent: 'flex-start'}}>
+              {tags?tags.map(tag => <li ><a className='tag'>{tag}</a></li>):''}
+            </ul>
+          </div>
+        </div>
         <Reviews />
       </div>
     )
