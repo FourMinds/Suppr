@@ -22,7 +22,7 @@ class AuthorTile extends Component {
     const profileLink = `/profile/${username}`
     return (
       <Link to={profileLink}><div className="author-box">
-        <img className="profile-img" src="http://orig01.deviantart.net/aa15/f/2014/203/d/1/profile_picture_by_dogeshibee-d7rthy6.jpg" alt="profile image" />
+        <img className="profile-img" src="http://i.imgur.com/hfH9CiC.png" alt="profile image" />
         <div className="profile-stats-box">
           <h5>{username}</h5>
           {this.renderInfo()}
@@ -35,7 +35,7 @@ class AuthorTile extends Component {
 function mapStateToProps(state) {
   return {info: state.userInfo}
 }
-  
+
 
 
 export default connect(mapStateToProps, actions)(AuthorTile);
