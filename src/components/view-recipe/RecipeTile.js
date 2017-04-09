@@ -22,6 +22,18 @@ class RecipeTile extends Component {
     this.props.postFavorite(favorite);
   }
 
+  renderHeart() {
+    let favorited = this.props.favorites.data.some(favorite => {
+      return favorite.recipe_id === this.props.recipe.id
+    })
+    const src = favorited ? '/assets/favorited.png' : '/assets/unfavorited.png'
+    return (
+      <div className="favorite-button" onClick={this.handleFavoriteSubmit}>
+        <img className="favorite-image" src={src}/>
+      </div>
+    )
+  }
+
   render() {
     const { id, recipeName, imageUrl, difficulty, cookTime, prepTime, servings, username } = this.props.recipe;
     let favorited = this.props.favorites.data.some(favorite => {
@@ -32,13 +44,7 @@ class RecipeTile extends Component {
       <div className="flex-body">
         <div className="image-preview-recipe" style={{backgroundImage:url}}>
 
-          {favorited
-            ? (<div className="favorite-button" onClick={this.handleFavoriteSubmit}>
-              <img className="favorite-image" src="/assets/favorited.png"/>
-            </div>)
-            : (<div className="favorite-button" onClick={this.handleFavoriteSubmit}>
-              <img className="favorite-image" src="/assets/unfavorited.png"/>
-            </div>)}
+          {this.renderHeart()}
             
         </div>
         <div className="recipe-header-container">
