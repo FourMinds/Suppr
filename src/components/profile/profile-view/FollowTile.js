@@ -18,7 +18,7 @@ class FollowTile extends Component {
                     <h4 className="media-heading">{this.props.user}</h4>
                 <p><span className="label label-info">10 photos</span> <span className="label label-primary">89 followers</span></p>
                     <p>
-                        <Link to={userLink} className="btn btn-xs btn-default">View Profile</Link>
+                        <a href={userLink} className="btn btn-xs btn-default">View Profile</a>
                     </p>
                 </div>
             </div>

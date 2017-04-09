@@ -86,13 +86,13 @@ class ProfileView extends Component {
     if (this.state.page === 3) {
       let { follows } = this.props.viewFollows
       return (
-        follows.map(user => <div key={Math.random()}><FollowTile user={user}/></div>)
+        follows.map((user,i) => <div key={i}><FollowTile user={user}/></div>)
       )
     }
     if (this.state.page === 4) {
       let { followers } = this.props.viewFollows
       return (
-        followers.map(user => <div key={Math.random()}><FollowTile user={user}/></div>)
+        followers.map((user,i) => <div key={i}><FollowTile user={user}/></div>)
       )
     }
   }
