@@ -4,12 +4,12 @@ import AuthorTile from '../view-recipe/AuthorTile';
 
 class RecipeCard extends Component {
   render() {
-    const {username, id, name, difficulty, cook_time, prep_time, servings, image, description} = this.props.recipe
-    const recipeLink = `/recipe/${id}`
+    const {username, id, name, difficulty, cook_time, prep_time, servings, image, description} = this.props.recipe;
+    const recipeLink = `/recipe/${id}`;
 
     return (
       <div className="card" style={{width: '19em'}}>
-        <Link to={recipeLink}><img className="card-img-top" src={image} alt="Card image cap" /></Link>
+        <Link to={recipeLink}><img className="card-img-top" src={image} alt="Card img cap" /></Link>
         <div className="card-block">
           <Link to={recipeLink}><h5>{name}</h5></Link>
           <p className="card-text">{description}</p>
@@ -25,4 +25,4 @@ class RecipeCard extends Component {
   }
 }
 
-export default RecipeCard
+export default RecipeCard;

@@ -10,7 +10,7 @@ class RecipeView extends Component {
     this.props.getRecipeById(this.props.params.id);
   }
   render() {
-    const { id, recipeName, imageUrl, difficulty, cookTime, prepTime, servings, instructions, description, ingredients, tags} = this.props.recipe?this.props.recipe:''
+    const { id, recipeName, imageUrl, difficulty, cookTime, prepTime, servings, instructions, description, ingredients, tags} = this.props.recipe?this.props.recipe:'';
     return (
       <div>
 
@@ -19,7 +19,7 @@ class RecipeView extends Component {
         <div className='tags-flex-box-style'>
           <div>
             <ul style={{display: 'flex',flexFlow: 'row wrap', justifyContent: 'flex-start'}}>
-              {tags?tags.map(tag => <li ><a className='tag'>{tag}</a></li>):''}
+              {tags?tags.map((tag, index) => <li key={index}><a className='tag'>{tag}</a></li>):''}
             </ul>
           </div>
         </div>

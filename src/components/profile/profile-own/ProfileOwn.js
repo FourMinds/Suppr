@@ -61,7 +61,7 @@ class ProfileOwn extends Component {
       console.log(favorites)
       const tiles = favorites.map(recipe => {
         const recipeProp = data.filter(item => item.id === recipe.recipe_id)[0];
-        return <li><RecipeCard key={recipeProp.id} recipe={recipeProp}/></li>
+        return <li key={recipe.id}><RecipeCard key={recipeProp.id} recipe={recipeProp}/></li>
       });
       return (
         <div className="card-display" style={{paddingTop: '10px', paddingLeft:'5px'}}>

@@ -45,7 +45,7 @@ class RecipeTile extends Component {
         <div className="image-preview-recipe" style={{backgroundImage:url}}>
 
           {this.renderHeart()}
-            
+
         </div>
         <div className="recipe-header-container">
           <div className="recipe-title-box">

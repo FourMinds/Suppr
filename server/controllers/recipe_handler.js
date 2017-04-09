@@ -19,12 +19,10 @@ exports.createRecipe = function(req, res, next) {
     const saveTagsQuery = tags.reduce((str, value, i) => {
       return str += `("${value}", "${result.insertId}")${i === tags.length - 1 ? ';' : ', '}`
     },'INSERT INTO tags(tag_name, recipe_id) VALUES ')
-
       // if there are no tags, we don't query for the tags
       return tags.length === 0 ? Promise.all([query(saveIngredientsQuery)]) : Promise.all([query(saveIngredientsQuery), query(saveTagsQuery)]);
   })
     .then(result => {
-      console.log(result)
       const usernameSubQuery = `SELECT id from users WHERE username = "${username}"`;
       const userRecipesQuery = `SELECT * FROM recipes WHERE recipes.user_id=(${usernameSubQuery});`
       return query(userRecipesQuery)
@@ -45,7 +43,9 @@ exports.getRecipe = function(req, res, next) {
   if (username) {
     const usernameSubQuery = `SELECT id from users WHERE username = "${username}"`;
     const userRecipesQuery = `SELECT * FROM recipes WHERE recipes.user_id=(${usernameSubQuery});`
-    return query(userRecipesQuery).then(recipes => res.status(200).send(recipes));
+    return query(userRecipesQuery).then(recipes => {
+      res.status(200).send(recipes)
+    });
   }
   const ingredientsQuery = `SELECT * from ingredients WHERE recipe_id = ${id};`;
   const tagsQuery = `SELECT * from tags WHERE recipe_id = ${id};`;
@@ -64,7 +64,6 @@ exports.getRecipe = function(req, res, next) {
     const tags = tagList.reduce((arr, obj) => {
       return [...arr, obj.tag_name]
     },[])
-    console.log(tags)
     const { id, name, image, difficulty, cook_time, prep_time, servings, instructions, user_id, description } = recipe;
     const { username } = user;
     res.status(200).send({

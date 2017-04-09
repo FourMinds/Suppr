@@ -17,7 +17,6 @@ class ProfileView extends Component {
   }
 
   componentDidMount() {
-    console.log('THE COMPONENT IS MOUNTING');
     this.props.getRecipes();
     this.props.getFavorites(this.props.viewUsername, false)
     this.props.getFollows(this.props.username)

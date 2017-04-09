@@ -27,7 +27,7 @@ class AuthorTile extends Component {
     const profileLink = `/profile/${username}`
     return (
       <a href={profileLink}><div className="author-box">
-        <img className="profile-img" src="http://i.imgur.com/hfH9CiC.png" alt="profile image" />
+        <img className="profile-img" src="http://i.imgur.com/hfH9CiC.png" alt="profile" />
         <div className="profile-stats-box">
           <h5>{username}</h5>
           {this.renderInfo()}

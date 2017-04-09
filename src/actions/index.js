@@ -16,6 +16,9 @@ import {
   GET_USER_INFO
 } from './types';
 
+// all get requests are parsed for special characters and then modified based on the regex service in this folder
+const regex = require('../../server/services/regex');
+
 /*****************
 * * * AUTH * * *
 *****************/
@@ -28,7 +31,7 @@ export function signinUser({ username, password }) {
         browserHistory.push('/');
       })
       .catch((res) => {
-        if (!res.response) return dispatch(authError('Could not connect to server'))
+        if (!res.response) return dispatch(authError('Could not connect to server'));
         dispatch(authError('Bad Login Info'));
       });
   }
@@ -48,13 +51,13 @@ export function signupUser({ email, username, password }) {
 
 export function getUsername(token) {
   return function(dispatch) {
-    dispatch({ type: AUTH_USER })
+    dispatch({ type: AUTH_USER });
     axios.get(`${server}/username`, {
       headers: {
         authorization: token
       }
     }).then(res => {
-      const { username } = res.data
+      const { username } = res.data;
       dispatch({ type: AUTH_USER, payload: username });
       dispatch(getFavorites(username))
     })
@@ -84,9 +87,8 @@ export function postRecipe(recipe) {
       headers: {authorization: localStorage.getItem('token')}
     })
       .then(res => {
-        console.log(res)
-        const recipePath = `/recipe/${res.data.id}`
-        dispatch(getRecipes())
+        const recipePath = `/recipe/${res.data.id}`;
+        dispatch(getRecipes());
         browserHistory.push(recipePath)
       })
   }
@@ -97,6 +99,10 @@ export function getRecipes() {
     axios.get(`${server}/recipe`, {
       headers: {authorization: localStorage.getItem('token')}
     })
+      .then(res => {
+        res.data = regex.parseData(res.data, false);
+        return res;
+      })
       .then(res => {
         dispatch({ type: GET_RECIPE, payload: res.data })
       })
@@ -110,6 +116,10 @@ export function getRecipeById(id) {
       params: { id }
     })
       .then(res => {
+        res.data = regex.parseData(res.data, false);
+        return res;
+      })
+      .then(res => {
         dispatch({ type: GET_RECIPE_ID, payload: res.data });
         dispatch(getReview(id));
       })
@@ -122,6 +132,10 @@ export function getRecipesByUsername(username) {
       headers: {authorization: localStorage.getItem('token')},
       params: { username }
     })
+      .then(res => {
+        res.data = regex.parseData(res.data, false);
+        return res;
+      })
       .then(res => {
         // this is necessary to give a username for the recipe (which is not given by the request)
         res.data.map(recipe => recipe.username = username);
@@ -197,7 +211,7 @@ export function postFollow(follow) {
       headers: {authorization: localStorage.getItem(('token'))}
     })
       .then(res => {
-        dispatch(getFollows(follow.username))
+        dispatch(getFollows(follow.username));
         dispatch(getFollows(follow.followName, false))
       })
   }

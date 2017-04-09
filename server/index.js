@@ -6,15 +6,23 @@ const cors = require('cors');
 const app = express();
 var db = require('./db/db');
 const router = require('./router');
+const regex = require('./services/regex');
 
 db.connect(err => {
-  if (err) return console.log('Cannot Connect to MySQL Database')
+  if (err) return console.log('Cannot Connect to MySQL Database');
   console.log('Connected to MySQL Database')
 });
 
 app.use(morgan('combined'));
 app.use(cors());
 app.use(bodyParser.json({ type: '*/*' }));
+
+// replaces special characters that screw up mySQL queries
+app.use((req, res, next) => {
+  regex.parseData(req.body, true);
+  next();
+});
+
 router(app);
 
 const port = process.env.PORT || 3090;
