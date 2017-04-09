@@ -8,7 +8,7 @@ const initialState = {
   data: [],
   selectedRecipe: [],
   userRecipes: []
-}
+};
 
 export default function(state = initialState, action) {
   switch(action.type) {

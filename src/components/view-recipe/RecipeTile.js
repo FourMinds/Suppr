@@ -34,13 +34,13 @@ class RecipeTile extends Component {
 
           {favorited
             ? (<div className="favorite-button" onClick={this.handleFavoriteSubmit}>
-              <img className="favorite-image" src="/assets/favorited.png"/>
+              <img className="favorite-image" alt="favorite" src="/assets/favorited.png"/>
             </div>)
             : (<div className="favorite-button" onClick={this.handleFavoriteSubmit}>
-              <img className="favorite-image" src="/assets/unfavorited.png"/>
+              <img className="favorite-image" alt="unfavorited" src="/assets/unfavorited.png"/>
             </div>)}
             
-          <img className="food-img" src={imageUrl} alt="recipe image" />
+          <img className="food-img" src={imageUrl} alt="recipe" />
         </div>
         <div className="recipe-header-container">
           <div className="recipe-title-box">
