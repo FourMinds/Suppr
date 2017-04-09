@@ -44,7 +44,7 @@ class ProfileOwn extends Component {
         <Grid
           component="ul"
           columns={5}
-          columnWidth={330}
+          columnWidth={315}
           gutterWidth={5}
           gutterHeight={15}
           layout={layout.pinterest}
@@ -105,7 +105,7 @@ class ProfileOwn extends Component {
           <a className="nav-link active" href="#" name="0" onClick={this.handleClick}>Profile</a>
         </li>
         <li className="nav-item tab" >
-          <a className="nav-link" href="#" name="1" onClick={this.handleClick}>My Recipes</a>
+          <a className="nav-link" href="#" name="1" onClick={this.handleClick}>Recipes</a>
         </li>
         <li className="nav-item tab">
           <a className="nav-link" href="#" name="2" onClick={this.handleClick}>Favorites</a>
