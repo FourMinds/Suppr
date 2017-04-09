@@ -8,6 +8,12 @@ class AuthorTile extends Component {
     this.props.getUserInfo(this.props.username)
   }
 
+  componentWillUpdate(nextProps) {
+    if(!this.props.username && nextProps.username) {
+      this.props.getUserInfo(nextProps.username)
+    }
+  }
+
   renderInfo() {
     const { username, info } = this.props;
     if(info[username]) {
@@ -18,7 +24,7 @@ class AuthorTile extends Component {
     }
   }
   render() {
-    const {username} = this.props
+    const {username, info} = this.props
     const profileLink = `/profile/${username}`
     return (
       <Link to={profileLink}><div className="author-box">

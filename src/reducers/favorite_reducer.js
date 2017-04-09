@@ -8,7 +8,6 @@ const initialState = { data: [] }
 export default function(state=initialState, action) {
   switch (action.type) {
     case GET_FAVORITE:
-    console.log('action',action.payload)
       return { ...state, data: action.payload }
     case GET_FAVORITE_USER:
       return { ...state, dataForUser: action.payload }
