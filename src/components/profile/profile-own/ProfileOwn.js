@@ -84,14 +84,14 @@ class ProfileOwn extends Component {
       let { follows } = this.props.followList
       return (
         <div>
-        {follows.map(user => <div key={Math.random()}><FollowTile user={user}/></div>)}
+        {follows.map((user,i) => <div key={i}><FollowTile user={user}/></div>)}
         </div>
       )
     }
     if (this.state.page === 4) {
       let { followers } = this.props.followList
       return (
-        followers.map(user => <div key={Math.random()}><FollowTile user={user}/></div>)
+        followers.map((user,i) => <div key={i}><FollowTile user={user}/></div>)
       )
     }
   }
