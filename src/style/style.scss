@@ -258,6 +258,10 @@ create
 home view
 ****************/
 
+.card-display {
+  padding-left: 10px;
+}
+
 @media (min-width: 20em) {
     .card-display {
         display:flex;
