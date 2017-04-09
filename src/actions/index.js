@@ -16,6 +16,19 @@ import {
   GET_USER_INFO
 } from './types';
 
+// replaces special characters in SQL reply
+function parseData(data) {
+  data.data.map(obj => {
+    for (let prop in obj) {
+      if (typeof obj[prop] === 'string') {
+        obj[prop] = obj[prop].replace(/\/"\//g, '"');
+        console.log(obj[prop]);
+      }
+    }
+  });
+  return data;
+}
+
 /*****************
 * * * AUTH * * *
 *****************/
@@ -97,6 +110,7 @@ export function getRecipes() {
     axios.get(`${server}/recipe`, {
       headers: {authorization: localStorage.getItem('token')}
     })
+      .then(res => parseData(res))
       .then(res => {
         dispatch({ type: GET_RECIPE, payload: res.data })
       })

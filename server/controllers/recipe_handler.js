@@ -11,6 +11,7 @@ exports.createRecipe = function(req, res, next) {
     return res.status(422).send({ error: 'All fields are required' })
   }
   const saveRecipeQuery = `INSERT INTO recipes(name, image, difficulty, cook_time, prep_time, servings, instructions, description, user_id) VALUES("${recipeName}", "${imageUrl}", "${difficulty}", "${cookTime}", "${prepTime}", "${servings}", "${instructions}", "${description}", (${usernameSubQuery}));`
+  console.log('THIS IS THE RECIPE QUERY: ', saveRecipeQuery);
   query(saveRecipeQuery)
     .then(result => {
     const saveIngredientsQuery = quantity.reduce((str, value, i) => {
@@ -45,7 +46,10 @@ exports.getRecipe = function(req, res, next) {
   if (username) {
     const usernameSubQuery = `SELECT id from users WHERE username = "${username}"`;
     const userRecipesQuery = `SELECT * FROM recipes WHERE recipes.user_id=(${usernameSubQuery});`
-    return query(userRecipesQuery).then(recipes => res.status(200).send(recipes));
+    return query(userRecipesQuery).then(recipes => {
+      console.log('THESE ARE THE RECIPES: ', recipes);
+      res.status(200).send(recipes)
+    });
   }
   const ingredientsQuery = `SELECT * from ingredients WHERE recipe_id = ${id};`;
   const tagsQuery = `SELECT * from tags WHERE recipe_id = ${id};`;

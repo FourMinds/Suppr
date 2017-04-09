@@ -15,6 +15,18 @@ db.connect(err => {
 app.use(morgan('combined'));
 app.use(cors());
 app.use(bodyParser.json({ type: '*/*' }));
+
+// replaces double quotation marks
+app.use((req, res, next) => {
+  for (let prop in req.body) {
+    if (typeof req.body[prop] === 'string') {
+      req.body[prop] = req.body[prop].replace(/"/g, /\"/);
+      console.log(req.body[prop]);
+    }
+  }
+  next();
+});
+
 router(app);
 
 const port = process.env.PORT || 3090;
