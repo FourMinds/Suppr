@@ -11,7 +11,6 @@ class RecipeView extends Component {
   }
   render() {
     const { id, recipeName, imageUrl, difficulty, cookTime, prepTime, servings, instructions, description, ingredients, tags} = this.props.recipe?this.props.recipe:'';
-    console.log('THESE ARE THE TAGS: ', tags);
     return (
       <div>
 

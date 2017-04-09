@@ -15,30 +15,7 @@ import {
   GET_FAVORITE_USER,
   GET_USER_INFO
 } from './types';
-
-function _parseData(obj) {
-  if (typeof obj === 'object') {
-    for (let prop in obj) {
-      if (typeof obj[prop] === 'string') {
-        obj[prop] = obj[prop].replace(/\/"\//g, '"');
-      } else if (Array.isArray(obj[prop])) {
-        _parseData(obj[prop]);
-      }
-    }
-  }
-  return obj;
-}
-
-// replaces special characters in SQL reply
-function parseData(data) {
-  // console.log('THIS IS THE DATA THAT WE\'RE RECEIVING: ', data);
-  if (Array.isArray(data)) {
-    data.map(obj => _parseData(obj));
-  } else if (typeof data === 'object') {
-    _parseData(data);
-  }
-  return data;
-}
+const regex = require('../../server/services/regex');
 
 /*****************
 * * * AUTH * * *
@@ -108,7 +85,6 @@ export function postRecipe(recipe) {
       headers: {authorization: localStorage.getItem('token')}
     })
       .then(res => {
-        console.log(res);
         const recipePath = `/recipe/${res.data.id}`;
         dispatch(getRecipes());
         browserHistory.push(recipePath)
@@ -122,8 +98,7 @@ export function getRecipes() {
       headers: {authorization: localStorage.getItem('token')}
     })
       .then(res => {
-        console.log('THESE ARE THE RESULTS FROM GET RECIPES: ', res);
-        res.data = parseData(res.data);
+        res.data = regex.parseData(res.data, false);
         return res;
       })
       .then(res => {
@@ -139,8 +114,7 @@ export function getRecipeById(id) {
       params: { id }
     })
       .then(res => {
-        console.log('THESE ARE THE RESULTS OF GET RECIPES BY ID: ', res);
-        res.data = parseData(res.data);
+        res.data = regex.parseData(res.data, false);
         return res;
       })
       .then(res => {
@@ -157,8 +131,7 @@ export function getRecipesByUsername(username) {
       params: { username }
     })
       .then(res => {
-        console.log('THESE ARE THE RESULTS OF GET RECIPES BY USER: ', res);
-        res.data = parseData(res.data);
+        res.data = regex.parseData(res.data, false);
         return res;
       })
       .then(res => {
