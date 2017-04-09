@@ -145,6 +145,13 @@ create
   margin: auto;
   margin-bottom: 10px; }
 
+.image-preview-recipe {
+  height: 250px;
+  width: 350px;
+  background-size: 100% 100%;
+  margin: auto;
+  margin-bottom: 10px; }
+
 #preview-image {
   max-width: 350px;
   max-height: 250px;
@@ -303,11 +310,9 @@ recipe view
     visibility: hidden; } }
 
 .favorite-button {
-  display: inline-block;
-  position: absolute;
-  left: 2.5%;
-  top: 2.5%;
-  z-index: 1; }
+  border: 5px solid bold;
+  width: 60px;
+  margin: 5px 0 0 5px; }
 
 .favorite-image {
   display: block;
@@ -335,6 +340,7 @@ recipe tile (top)
   width: 46%; }
 
 .recipe-title-box {
+  max-width: 1200px;
   height: 50px;
   display: flex;
   justify-content: space-between;
@@ -351,6 +357,7 @@ h6 {
 
 .recipe-stats-box {
   display: flex;
+  flex-flow: row nowrap;
   justify-content: flex-start;
   font-size: 14px; }
 
@@ -367,6 +374,10 @@ h6 {
   margin-left: 5px;
   margin-right: 10px;
   height: 30px; }
+
+.recipe-card-stats {
+  margin-right: 15px;
+  margin-left: 15px; }
 
 /********
 Author Tile
@@ -505,7 +516,8 @@ Recipe-Info-Boxes
 .flex-body-ingredients {
   height: 25px;
   display: flex;
-  justify-content: flex-start; }
+  justify-content: flex-start;
+  margin-bottom: 20px; }
 
 .empty-check {
   display: flex;

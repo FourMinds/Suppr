@@ -12,8 +12,9 @@ class RecipeTile extends Component {
     this.handleFavoriteSubmit = this.handleFavoriteSubmit.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.username ? this.props.getFavorites(this.props.username) : null;
+    this.props.getUserInfo(this.props.recipe.username)
   }
 
   handleFavoriteSubmit() {
@@ -21,26 +22,30 @@ class RecipeTile extends Component {
     this.props.postFavorite(favorite);
   }
 
-  render() {
-    const { id, recipeName, imageUrl, difficulty, cookTime, prepTime, servings, username } = this.props.recipe;
-
+  renderHeart() {
     let favorited = this.props.favorites.data.some(favorite => {
       return favorite.recipe_id === this.props.recipe.id
     })
+    const src = favorited ? '/assets/favorited.png' : '/assets/unfavorited.png'
+    return (
+      <div className="favorite-button" onClick={this.handleFavoriteSubmit}>
+        <img className="favorite-image" src={src}/>
+      </div>
+    )
+  }
 
+  render() {
+    const { id, recipeName, imageUrl, difficulty, cookTime, prepTime, servings, username } = this.props.recipe;
+    let favorited = this.props.favorites.data.some(favorite => {
+      return favorite.recipe_id === this.props.recipe.id
+    })
+    const url=`url("${imageUrl}")`
     return (
       <div className="flex-body">
-        <div className="food-img-container">
+        <div className="image-preview-recipe" style={{backgroundImage:url}}>
 
-          {favorited
-            ? (<div className="favorite-button" onClick={this.handleFavoriteSubmit}>
-              <img className="favorite-image" alt="favorite" src="/assets/favorited.png"/>
-            </div>)
-            : (<div className="favorite-button" onClick={this.handleFavoriteSubmit}>
-              <img className="favorite-image" alt="unfavorited" src="/assets/unfavorited.png"/>
-            </div>)}
-            
-          <img className="food-img" src={imageUrl} alt="recipe" />
+          {this.renderHeart()}
+
         </div>
         <div className="recipe-header-container">
           <div className="recipe-title-box">
@@ -48,7 +53,7 @@ class RecipeTile extends Component {
             <img className="rating-img" src="/assets/stars3.png" alt="rating" />
           </div>
 
-          <AuthorTile username={username} />
+          <AuthorTile username={this.props.recipe.username} />
           
           <RecipeStats />
 

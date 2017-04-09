@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../../actions';
-import RecipeCard from '../landing/RecipeCard'
+import * as actions from '../../../actions';
+import RecipeCard from '../../landing/RecipeCard';
+import FollowTile from './FollowTile';
 import $ from 'jquery';
 
 class ProfileView extends Component {
@@ -56,13 +57,13 @@ class ProfileView extends Component {
     if (this.state.page === 3) {
       let { follows } = this.props.viewFollows
       return (
-        follows.map(user => <div key={Math.random()}>{user}</div>)
+        follows.map((user,i) => <div key={i}><FollowTile user={user}/></div>)
       )
     }
     if (this.state.page === 4) {
       let { followers } = this.props.viewFollows
       return (
-        followers.map(user => <div key={Math.random()}>{user}</div>)
+        followers.map((user,i) => <div key={i}><FollowTile user={user}/></div>)
       )
     }
   }
