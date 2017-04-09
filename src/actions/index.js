@@ -21,6 +21,8 @@ function _parseData(obj) {
     for (let prop in obj) {
       if (typeof obj[prop] === 'string') {
         obj[prop] = obj[prop].replace(/\/"\//g, '"');
+      } else if (Array.isArray(obj[prop])) {
+        _parseData(obj[prop]);
       }
     }
   }
@@ -50,7 +52,7 @@ export function signinUser({ username, password }) {
         browserHistory.push('/');
       })
       .catch((res) => {
-        if (!res.response) return dispatch(authError('Could not connect to server'))
+        if (!res.response) return dispatch(authError('Could not connect to server'));
         dispatch(authError('Bad Login Info'));
       });
   }
@@ -70,13 +72,13 @@ export function signupUser({ email, username, password }) {
 
 export function getUsername(token) {
   return function(dispatch) {
-    dispatch({ type: AUTH_USER })
+    dispatch({ type: AUTH_USER });
     axios.get(`${server}/username`, {
       headers: {
         authorization: token
       }
     }).then(res => {
-      const { username } = res.data
+      const { username } = res.data;
       dispatch({ type: AUTH_USER, payload: username });
       dispatch(getFavorites(username))
     })
@@ -106,9 +108,9 @@ export function postRecipe(recipe) {
       headers: {authorization: localStorage.getItem('token')}
     })
       .then(res => {
-        console.log(res)
-        const recipePath = `/recipe/${res.data.id}`
-        dispatch(getRecipes())
+        console.log(res);
+        const recipePath = `/recipe/${res.data.id}`;
+        dispatch(getRecipes());
         browserHistory.push(recipePath)
       })
   }
@@ -120,6 +122,7 @@ export function getRecipes() {
       headers: {authorization: localStorage.getItem('token')}
     })
       .then(res => {
+        console.log('THESE ARE THE RESULTS FROM GET RECIPES: ', res);
         res.data = parseData(res.data);
         return res;
       })
@@ -136,6 +139,7 @@ export function getRecipeById(id) {
       params: { id }
     })
       .then(res => {
+        console.log('THESE ARE THE RESULTS OF GET RECIPES BY ID: ', res);
         res.data = parseData(res.data);
         return res;
       })
@@ -153,6 +157,7 @@ export function getRecipesByUsername(username) {
       params: { username }
     })
       .then(res => {
+        console.log('THESE ARE THE RESULTS OF GET RECIPES BY USER: ', res);
         res.data = parseData(res.data);
         return res;
       })
@@ -231,7 +236,7 @@ export function postFollow(follow) {
       headers: {authorization: localStorage.getItem(('token'))}
     })
       .then(res => {
-        dispatch(getFollows(follow.username))
+        dispatch(getFollows(follow.username));
         dispatch(getFollows(follow.followName, false))
       })
   }

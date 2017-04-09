@@ -17,10 +17,13 @@ exports.createRecipe = function(req, res, next) {
     const saveIngredientsQuery = quantity.reduce((str, value, i) => {
       return str += `("${items[i]}", "${value}", "${result.insertId}")${i === quantity.length - 1 ? ';' : ', '}`
     },'INSERT INTO ingredients(ingredient, quantity, recipe_id) VALUES ')
+
+    console.log('THESE ARE THE TAGS: ', tags);
+
     const saveTagsQuery = tags.reduce((str, value, i) => {
       return str += `("${value}", "${result.insertId}")${i === tags.length - 1 ? ';' : ', '}`
     },'INSERT INTO tags(tag_name, recipe_id) VALUES ')
-
+      console.log('THIS IS THE TAGS QUERY: ', saveTagsQuery);
       // if there are no tags, we don't query for the tags
       return tags.length === 0 ? Promise.all([query(saveIngredientsQuery)]) : Promise.all([query(saveIngredientsQuery), query(saveTagsQuery)]);
   })

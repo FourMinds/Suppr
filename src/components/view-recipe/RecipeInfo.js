@@ -28,10 +28,10 @@ class RecipeInfo extends Component {
        if(ingredients[i] !== ""){
          lines.push(<div className='flex-body-ingredients' key={i}>
          <div onClick={this.doneClick} id={i} >
-         {this.state[i] ? (<img  className='empty-check' src="/assets/success.png" name={i} />) :
-         (<img  className='empty-check' src="/assets/oval.png" name={i} />)}
+         {this.state[i] ? (<img  className='empty-check' src="/assets/success.png" alt="success" name={i} />) :
+         (<img  className='empty-check' src="/assets/oval.png" name={i} alt="oval" />)}
          </div>
-         <div className='ingredient-item'  style={{width: '400'}}>
+         <div className='ingredient-item'  style={{width: '400px'}}>
          <span className='quantity-style'>{quantities[i]}</span>| {items[i]}
          </div>
          </div>)
