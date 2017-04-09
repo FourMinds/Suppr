@@ -27,10 +27,10 @@ class RecipeTile extends Component {
     let favorited = this.props.favorites.data.some(favorite => {
       return favorite.recipe_id === this.props.recipe.id
     })
-
+    const url=`url("${imageUrl}")`
     return (
       <div className="flex-body">
-        <div className="food-img-container">
+        <div className="image-preview-recipe" style={{backgroundImage:url}}>
 
           {favorited
             ? (<div className="favorite-button" onClick={this.handleFavoriteSubmit}>
@@ -40,7 +40,6 @@ class RecipeTile extends Component {
               <img className="favorite-image" src="/assets/unfavorited.png"/>
             </div>)}
             
-          <img className="food-img" src={imageUrl} alt="recipe image" />
         </div>
         <div className="recipe-header-container">
           <div className="recipe-title-box">
