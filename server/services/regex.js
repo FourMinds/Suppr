@@ -17,7 +17,6 @@ const _parseData = (obj, server) => {
     for (let prop in obj) {
       if (typeof obj[prop] === 'string') {
         obj[prop] = _replace_regex(obj[prop], server);
-        // console.log(obj[prop]);
       } else if (Array.isArray(obj[prop])) {
         _parseData(obj[prop], server);
       } else if (typeof obj[prop] === 'object') {

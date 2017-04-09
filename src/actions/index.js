@@ -15,6 +15,8 @@ import {
   GET_FAVORITE_USER,
   GET_USER_INFO
 } from './types';
+
+// all get requests are parsed for special characters and then modified based on the regex service in this folder
 const regex = require('../../server/services/regex');
 
 /*****************
