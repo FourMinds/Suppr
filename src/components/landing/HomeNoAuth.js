@@ -16,7 +16,7 @@ class HomeNoAuth extends Component {
   render() {
     const Grid = makeResponsive(measureItems(CSSGrid, { measureImages: true }), {
       maxWidth: 1920,
-      minPadding: 100
+      minPadding: 0
     });
     const cards = this.renderCards.call(this);
     return (
