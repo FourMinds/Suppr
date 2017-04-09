@@ -222,8 +222,9 @@ export function getFollows(username, isSignedinUser = true) {
 * * Userinfo * * 
 *****************/
 
-export function getUserInfo(username) {
+export function getUserInfo(username) { 
   return function(dispatch) {
+    if(!username) return
     axios.get(`${server}/info`, {
       headers: {authorization: localStorage.getItem(('token'))},
       params: { username }

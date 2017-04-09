@@ -12,8 +12,9 @@ class RecipeTile extends Component {
     this.handleFavoriteSubmit = this.handleFavoriteSubmit.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.username ? this.props.getFavorites(this.props.username) : null;
+    this.props.getUserInfo(this.props.recipe.username)
   }
 
   handleFavoriteSubmit() {
@@ -23,7 +24,6 @@ class RecipeTile extends Component {
 
   render() {
     const { id, recipeName, imageUrl, difficulty, cookTime, prepTime, servings, username } = this.props.recipe;
-
     let favorited = this.props.favorites.data.some(favorite => {
       return favorite.recipe_id === this.props.recipe.id
     })
@@ -47,7 +47,7 @@ class RecipeTile extends Component {
             <img className="rating-img" src="/assets/stars3.png" alt="rating" />
           </div>
 
-          <AuthorTile username={username} />
+          <AuthorTile username={this.props.recipe.username} />
           
           <RecipeStats />
 
