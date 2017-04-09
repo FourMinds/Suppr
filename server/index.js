@@ -18,10 +18,18 @@ app.use(bodyParser.json({ type: '*/*' }));
 
 // replaces double quotation marks
 app.use((req, res, next) => {
+  // console.log('THIS IS THE TAG: ', req.body);
   for (let prop in req.body) {
     if (typeof req.body[prop] === 'string') {
       req.body[prop] = req.body[prop].replace(/"/g, /\"/);
       console.log(req.body[prop]);
+    }
+    if (Array.isArray(req.body[prop])) {
+      req.body[prop] = req.body[prop].map(current => {
+        if (typeof current === 'string') {
+          current = current.replace(/"/g, /\"/);
+        }
+      });
     }
   }
   next();

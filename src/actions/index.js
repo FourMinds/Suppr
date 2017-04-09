@@ -16,16 +16,25 @@ import {
   GET_USER_INFO
 } from './types';
 
-// replaces special characters in SQL reply
-function parseData(data) {
-  data.data.map(obj => {
+function _parseData(obj) {
+  if (typeof obj === 'object') {
     for (let prop in obj) {
       if (typeof obj[prop] === 'string') {
         obj[prop] = obj[prop].replace(/\/"\//g, '"');
-        console.log(obj[prop]);
       }
     }
-  });
+  }
+  return obj;
+}
+
+// replaces special characters in SQL reply
+function parseData(data) {
+  // console.log('THIS IS THE DATA THAT WE\'RE RECEIVING: ', data);
+  if (Array.isArray(data)) {
+    data.map(obj => _parseData(obj));
+  } else if (typeof data === 'object') {
+    _parseData(data);
+  }
   return data;
 }
 
@@ -110,7 +119,10 @@ export function getRecipes() {
     axios.get(`${server}/recipe`, {
       headers: {authorization: localStorage.getItem('token')}
     })
-      .then(res => parseData(res))
+      .then(res => {
+        res.data = parseData(res.data);
+        return res;
+      })
       .then(res => {
         dispatch({ type: GET_RECIPE, payload: res.data })
       })
@@ -124,6 +136,10 @@ export function getRecipeById(id) {
       params: { id }
     })
       .then(res => {
+        res.data = parseData(res.data);
+        return res;
+      })
+      .then(res => {
         dispatch({ type: GET_RECIPE_ID, payload: res.data });
         dispatch(getReview(id));
       })
@@ -136,6 +152,10 @@ export function getRecipesByUsername(username) {
       headers: {authorization: localStorage.getItem('token')},
       params: { username }
     })
+      .then(res => {
+        res.data = parseData(res.data);
+        return res;
+      })
       .then(res => {
         // this is necessary to give a username for the recipe (which is not given by the request)
         res.data.map(recipe => recipe.username = username);
