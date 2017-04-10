@@ -40,7 +40,7 @@ exports.createRecipe = function(req, res, next) {
 exports.getRecipe = function(req, res, next) {
   const { id, username, variation } = req.query;
   if (!id && !username) {
-    const allRecipesQuery = 'SELECT recipes.*, users.username FROM recipes JOIN users ON recipes.user_id=users.id;'
+    const allRecipesQuery = 'SELECT recipes.*, users.username FROM recipes JOIN users ON recipes.user_id=users.id WHERE recipes.parent_id IS NULL;'
     return query(allRecipesQuery).then(recipes => res.status(200).send(recipes));
   }
   if (username) {
@@ -58,7 +58,7 @@ exports.getRecipe = function(req, res, next) {
   }
   const ingredientsQuery = `SELECT * from ingredients WHERE recipe_id = ${id};`;
   const tagsQuery = `SELECT * from tags WHERE recipe_id = ${id};`;
-  const recipeQuery = `SELECT * from recipes WHERE id = ${id} AND parent_id="NULL";`
+  const recipeQuery = `SELECT * from recipes WHERE id = ${id};`
   const userQuery = `SELECT username FROM users WHERE id = (SELECT user_id FROM recipes WHERE id = ${id})`
 
   query(recipeQuery).then(([recipe]) => {
