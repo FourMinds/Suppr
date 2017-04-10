@@ -41,6 +41,7 @@ CREATE TABLE `recipes` (
   `servings` INTEGER NOT NULL,
   `instructions` MEDIUMTEXT NOT NULL,
   `user_id` INTEGER NOT NULL,
+  `parent_id` INTEGER NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
 
@@ -116,7 +117,6 @@ CREATE TABLE `tags` (
   `recipe_id` INTEGER NOT NULL,
   PRIMARY KEY (`id`)
 );
-
 
 -- ---
 -- Foreign Keys
