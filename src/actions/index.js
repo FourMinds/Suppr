@@ -14,7 +14,9 @@ import {
   GET_FOLLOWS_USER,
   GET_FAVORITE_USER,
   GET_USER_INFO,
-  GET_VARIATIONS
+  GET_VARIATIONS,
+  PUSH_UPDATE,
+  PUSH_VARIATION
 } from './types';
 
 // all get requests are parsed for special characters and then modified based on the regex service in this folder
@@ -176,6 +178,20 @@ export function deleteRecipe(id) {
       dispatch(getRecipes());
       browserHistory.push('/')
     })
+  }
+}
+
+export function pushUpdate(recipe) {
+  return function(dispatch) {
+    dispatch({ type: PUSH_UPDATE, payload: recipe })
+    browserHistory.push('/edit')
+  }
+}
+
+export function pushVariation(recipe) {
+  return function(dispatch) {
+    dispatch({ type: PUSH_VARIATION, payload: recipe })
+    browserHistory.push('/spork')
   }
 }
 

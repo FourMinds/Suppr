@@ -8,11 +8,21 @@ import RecipeInfo from './RecipeInfo';
 class RecipeView extends Component {
   componentWillMount() {
     this.props.getRecipeById(this.props.params.id);
+    this.props.getVariations(this.props.params.id);
   }
 
   handleDelete() {
     this.props.deleteRecipe(this.props.recipe.id)
   }
+
+  handleEdit() {
+    this.props.pushUpdate(this.props.recipe)
+  }
+
+  handleVariation() {
+    this.props.pushVariation(this.props.recipe)
+  }
+
   render() {
     const { id, recipeName, imageUrl, difficulty, cookTime, prepTime, servings, instructions, description, ingredients, tags, username} = this.props.recipe?this.props.recipe:'';
     return (
@@ -20,7 +30,13 @@ class RecipeView extends Component {
 
         <RecipeTile />
         {this.props.username===username && 
-          <button className="btn btn-primary text-center" onClick={this.handleDelete.bind(this)}>Delete</button>
+          <button className="btn btn-primary" onClick={this.handleDelete.bind(this)}>Delete</button>
+        }
+        {this.props.username===username &&
+          <button className="btn btn-primary" onClick={this.handleEdit.bind(this)}>Edit</button>
+        }
+        {this.props.username &&
+          <button className="btn btn-primary" onClick={this.handleVariation.bind(this)}>Spork this recipe</button>
         }
         <RecipeInfo />
         <div className='tags-flex-box-style'>
@@ -38,7 +54,8 @@ class RecipeView extends Component {
 function mapStateToProps(state) {
   return {
     recipe: state.recipes.selectedRecipe,
-    username: state.auth.username
+    username: state.auth.username,
+    variations: state.recipes.variations
   }
 }
 export default connect(mapStateToProps, actions)(RecipeView);
