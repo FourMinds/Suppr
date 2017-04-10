@@ -703,9 +703,9 @@ SideBar
   margin-left: 200px;
 }
 
-@media (min-width: 768px) {
-  #recipe-view-margin {
+@media (max-width: 48em) {
+  .recipe-view-margin {
     transition: 0s;
-    margin-left: -200px;
+    margin-left: 0px;
   }
 }

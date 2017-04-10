@@ -9,6 +9,7 @@ class Sidebar extends Component {
     	var contW = path.width();
     	if(contW >= 751){
     		document.getElementsByClassName("sidebar-toggle")[0].style.left="200px";
+        $("#recipe-view").addClass("recipe-view-margin");
     	}else{
     		document.getElementsByClassName("sidebar-toggle")[0].style.left="-200px";
     	}
@@ -26,9 +27,11 @@ class Sidebar extends Component {
     		var left = window.getComputedStyle(elem,null).getPropertyValue("left");
     		if(left === "200px"){
     			document.getElementsByClassName("sidebar-toggle")[0].style.left="-200px";
+          $("#recipe-view").removeClass("recipe-view-margin")
     		}
     		else if(left === "-200px"){
     			document.getElementsByClassName("sidebar-toggle")[0].style.left="200px";
+          $("#recipe-view").addClass("recipe-view-margin");
     		}
     	});
     });
@@ -40,14 +43,11 @@ class Sidebar extends Component {
       	<div className="container">
       		<div className="navbar-header">
       			<a id="menu-toggle" href="#" className="navbar-toggle">
-      					<span className="sr-only">Toggle navigation</span>
+      					<button className="btn btn-primary" class="sr-only">Side Bar</button>
       			        <span className="icon-bar"></span>
       			        <span className="icon-bar"></span>
       			        <span className="icon-bar"></span>
       			</a>
-        			<a className="navbar-brand" >
-        				logo
-        			</a>
       		</div>
       		<div id="sidebar-wrapper" className="sidebar-toggle">
       			<ul className="sidebar-nav">
