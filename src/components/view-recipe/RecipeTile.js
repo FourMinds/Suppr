@@ -27,6 +27,7 @@ class RecipeTile extends Component {
       return favorite.recipe_id === this.props.recipe.id
     })
     const src = favorited ? '/assets/favorited.png' : '/assets/unfavorited.png'
+    if (!this.props.username) return <div></div>
     return (
       <div className="favorite-button" onClick={this.handleFavoriteSubmit}>
         <img className="favorite-image" src={src}/>
