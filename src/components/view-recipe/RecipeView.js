@@ -4,6 +4,7 @@ import * as actions from '../../actions';
 import RecipeTile from './RecipeTile';
 import Reviews from './Reviews';
 import RecipeInfo from './RecipeInfo';
+import Sidebar from './Sidebar';
 
 class RecipeView extends Component {
   componentWillMount() {
@@ -29,7 +30,7 @@ class RecipeView extends Component {
     console.log(id&&this.props.variations?this.props.variations[id]:null)
     return (
       <div>
-
+        <Sidebar />
         <RecipeTile />
         {this.props.username===username && 
           <button className="btn btn-primary" onClick={this.handleDelete.bind(this)}>Delete</button>
