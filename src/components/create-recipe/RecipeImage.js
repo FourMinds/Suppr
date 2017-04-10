@@ -9,16 +9,18 @@ class RecipeImage extends Component {
     this.previewFile = this.previewFile.bind(this);
   }
 
-  componentDidMount() {
+  componentDidUpdate() {
     $(document).ready(function() {
       $("#preview-image").on("load", function(){
         $(this).parent().removeClass('image-preview');
         $(this).parent().addClass('image-preview-load');
+        // THIS IS THE IMAGE URL: $(this).attr('src');
       })
       $("#preview-image").on("error", function(){
         $(this).attr('src', '');
       });
       $("#image-input").on("load", function(){
+        debugger;
         $(this).val() === '' ? $('#image-container').addClass('image-preview'): null
       });
     });

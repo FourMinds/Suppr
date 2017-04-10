@@ -6,8 +6,6 @@ import * as fields from './form-fields';
 import Ingredients from './Ingredients';
 import RecipeImage from './RecipeImage';
 import validate from './validate'
-import $ from 'jquery';
-
 
 import TagsInput from 'react-tagsinput'
 
