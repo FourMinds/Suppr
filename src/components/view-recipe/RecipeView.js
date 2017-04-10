@@ -9,12 +9,19 @@ class RecipeView extends Component {
   componentWillMount() {
     this.props.getRecipeById(this.props.params.id);
   }
+
+  handleDelete() {
+    this.props.deleteRecipe(this.props.recipe.id)
+  }
   render() {
-    const { id, recipeName, imageUrl, difficulty, cookTime, prepTime, servings, instructions, description, ingredients, tags} = this.props.recipe?this.props.recipe:'';
+    const { id, recipeName, imageUrl, difficulty, cookTime, prepTime, servings, instructions, description, ingredients, tags, username} = this.props.recipe?this.props.recipe:'';
     return (
       <div>
 
         <RecipeTile />
+        {this.props.username===username && 
+          <button className="btn btn-primary text-center" onClick={this.handleDelete.bind(this)}>Delete</button>
+        }
         <RecipeInfo />
         <div className='tags-flex-box-style'>
           <div>

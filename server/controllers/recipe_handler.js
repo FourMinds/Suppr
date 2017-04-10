@@ -58,7 +58,7 @@ exports.getRecipe = function(req, res, next) {
   }
   const ingredientsQuery = `SELECT * from ingredients WHERE recipe_id = ${id};`;
   const tagsQuery = `SELECT * from tags WHERE recipe_id = ${id};`;
-  const recipeQuery = `SELECT * from recipes WHERE id = ${id}`
+  const recipeQuery = `SELECT * from recipes WHERE id = ${id} AND parent_id="NULL";`
   const userQuery = `SELECT username FROM users WHERE id = (SELECT user_id FROM recipes WHERE id = ${id})`
 
   query(recipeQuery).then(([recipe]) => {
