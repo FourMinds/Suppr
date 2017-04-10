@@ -14,7 +14,7 @@ class Sidebar extends Component {
     	}
     });
     $(document).ready(function() {
-    	$('.dropdown').on('show.bs.dropdown', function(e){
+    	$('.body').on('show.bs.dropdown', function(e){
     	    $(this).find('.dropdown-menu').first().stop(true, true).slideDown(300);
     	});
     	$('.body').on('hide.bs.dropdown', function(e){
@@ -40,7 +40,7 @@ class Sidebar extends Component {
       	<div className="container">
       		<div className="navbar-header">
       			<a id="menu-toggle" href="#" className="navbar-toggle">
-      					<span class="sr-only">Toggle navigation</span>
+      					<span className="sr-only">Toggle navigation</span>
       			        <span className="icon-bar"></span>
       			        <span className="icon-bar"></span>
       			        <span className="icon-bar"></span>

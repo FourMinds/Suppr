@@ -570,7 +570,8 @@ SideBar
 .sidebar-nav li a:hover {
   background: rgba(255, 255, 255, 0.25);
   color: white;
-  text-decoration: none; }
+  text-decoration: none;
+  width: 200px; }
 
 .sidebar-nav li a:active, .sidebar-nav li a:focus {
   text-decoration: none; }
@@ -583,3 +584,11 @@ SideBar
   #sidebar-wrapper.sidebar-toggle {
     transition: 0s;
     left: 200px; } }
+
+.recipe-view-margin {
+  margin-left: 200px; }
+
+@media (min-width: 768px) {
+  #recipe-view-margin {
+    transition: 0s;
+    margin-left: -200px; } }
