@@ -4,6 +4,7 @@ import { reduxForm, Field } from 'redux-form';
 import * as actions from '../../actions';
 import * as fields from './form-fields';
 import Ingredients from './Ingredients';
+import RecipeImage from './RecipeImage';
 import validate from './validate'
 import $ from 'jquery';
 
@@ -32,20 +33,20 @@ class Create extends Component {
     this.setState({tag})
   }
 
-  componentDidMount() {
-    $(document).ready(function() {
-      $("#preview-image").on("load", function(){
-        $(this).parent().removeClass('image-preview');
-        $(this).parent().addClass('image-preview-load');
-      })
-      $("#preview-image").on("error", function(){
-          $(this).attr('src', '');         
-      });
-      $("#image-input").on("input", function(){
-        if($(this).val() === '') $('#image-container').addClass('image-preview')       
-      });
-    });
-  }
+  // componentDidMount() {
+  //   $(document).ready(function() {
+  //     $("#preview-image").on("load", function(){
+  //       $(this).parent().removeClass('image-preview');
+  //       $(this).parent().addClass('image-preview-load');
+  //     })
+  //     $("#preview-image").on("error", function(){
+  //         $(this).attr('src', '');
+  //     });
+  //     $("#image-input").on("input", function(){
+  //       if($(this).val() === '') $('#image-container').addClass('image-preview')
+  //     });
+  //   });
+  // }
 
   renderAlert() {
     if (this.props.submitFailed) {
@@ -116,7 +117,8 @@ class Create extends Component {
           : null }
         </div>
         <div className="create-flex-element-right">
-          <Field name="imageUrl" component={imageUrlField} />
+          <RecipeImage />
+          {/*<Field name="imageUrl" component={imageUrlField} />*/}
           <div className="inner-flex-body">
           <div className="inner-flex-element">
           <Field name="prepTime" component={prepTimeField} />
