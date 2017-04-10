@@ -13,7 +13,10 @@ import {
   GET_FOLLOWS,
   GET_FOLLOWS_USER,
   GET_FAVORITE_USER,
-  GET_USER_INFO
+  GET_USER_INFO,
+  GET_VARIATIONS,
+  PUSH_UPDATE,
+  PUSH_VARIATION
 } from './types';
 
 // all get requests are parsed for special characters and then modified based on the regex service in this folder
@@ -109,6 +112,27 @@ export function getRecipes() {
   }
 }
 
+export function getVariations(id) {
+  return function(dispatch) {
+    axios.get(`${server}/recipe`, {
+      headers: {authorization: localStorage.getItem('token')},
+      params: { variation:true, id }
+    })
+      .then(res => {
+        res.data = regex.parseData(res.data, false);
+        return res;
+      })
+      .then(res => {
+        dispatch({ type: GET_VARIATIONS, payload: {
+            id,
+            data: res.data
+          }
+        })
+      })
+  }
+}
+
+
 export function getRecipeById(id) {
   return function(dispatch) {
     axios.get(`${server}/recipe`, {
@@ -140,6 +164,47 @@ export function getRecipesByUsername(username) {
         // this is necessary to give a username for the recipe (which is not given by the request)
         res.data.map(recipe => recipe.username = username);
         dispatch({ type: GET_RECIPE_USERNAME, payload: res.data });
+      })
+  }
+}
+
+export function deleteRecipe(id) {
+  return function(dispatch) {
+    axios.delete(`${server}/recipe`, {
+      headers: {authorization: localStorage.getItem('token')},
+      params: { id }
+    })
+      .then(res => {
+      dispatch(getRecipes());
+      browserHistory.push('/')
+    })
+  }
+}
+
+export function pushUpdate(recipe) {
+  return function(dispatch) {
+    dispatch({ type: PUSH_UPDATE, payload: recipe })
+    browserHistory.push('/edit')
+  }
+}
+
+export function pushVariation(recipe) {
+  return function(dispatch) {
+    dispatch({ type: PUSH_VARIATION, payload: recipe })
+    browserHistory.push('/spork')
+  }
+}
+
+export function updateRecipe(update) {
+  return function(dispatch) {
+    axios.put(`${server}/recipe`, update, {
+      headers: {authorization: localStorage.getItem('token')}
+    })
+      .then(res => {
+        const recipePath = `/recipe/${update.id}`;
+        dispatch(getRecipes());
+        dispatch(getRecipeById(update.id))
+        browserHistory.push(recipePath)
       })
   }
 }

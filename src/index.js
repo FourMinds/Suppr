@@ -17,6 +17,8 @@ import Signup from './components/auth/Signup';
 import HomeNoAuth from './components/landing/HomeNoAuth';
 import Home from './components/home/Home';
 import Create from './components/create-recipe/Create';
+import Update from './components/update-recipe/Update';
+import Spork from './components/recipe-variation/Spork';
 import RecipeView from './components/view-recipe/RecipeView';
 import RequireAuth from './components/auth/require_auth';
 import Profile from './components/profile/Profile'
@@ -39,6 +41,8 @@ ReactDOM.render(
         <Route path='recipe/:id' component={RecipeView} />
         <Route path='home' component={RequireAuth(Home)} />
         <Route path='create' component={RequireAuth(Create)} />
+        <Route path='edit' component={RequireAuth(Update)} />
+        <Route path='spork' component={RequireAuth(Spork)} />
         <Route path='profile/:username' component={Profile} />
       </Route>
     </Router>
