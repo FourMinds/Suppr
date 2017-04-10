@@ -4,6 +4,7 @@ import * as actions from '../../actions';
 import RecipeTile from './RecipeTile';
 import Reviews from './Reviews';
 import RecipeInfo from './RecipeInfo';
+import Sidebar from './Sidebar';
 
 class RecipeView extends Component {
   componentWillMount() {
@@ -28,10 +29,11 @@ class RecipeView extends Component {
     const { id, recipeName, imageUrl, difficulty, cookTime, prepTime, servings, instructions, description, ingredients, tags, username} = this.props.recipe?this.props.recipe:'';
     console.log(id&&this.props.variations?this.props.variations[id]:null)
     return (
-      <div>
+      <div id="recipe-view" className="recipe-view-margin">
+        <Sidebar />
 
         <RecipeTile />
-        {this.props.username===username && 
+        {this.props.username===username &&
           <button className="btn btn-primary" onClick={this.handleDelete.bind(this)}>Delete</button>
         }
         {this.props.username===username &&
