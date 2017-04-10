@@ -9,9 +9,9 @@ class RecipeCard extends Component {
 
     return (
       <div className="card" style={{width: '19em'}}>
-        <Link to={recipeLink}><img className="card-img-top" src={image} alt="Card img cap" /></Link>
+        <a href={recipeLink}><img className="card-img-top" src={image} alt="Card img cap" /></a>
         <div className="card-block">
-          <Link to={recipeLink}><h5>{name}</h5></Link>
+          <a href={recipeLink}><h5>{name}</h5></a>
           <p className="card-text">{description}</p>
         </div>
         <ul className="list-group list-group-flush">
