@@ -14,3 +14,4 @@ export const GET_USER_INFO = 'get_user_info';
 export const PUSH_UPDATE = 'push_update';
 export const PUSH_VARIATION = 'push_variation';
 export const SELECT_VARIATION = 'select_variation';
+export const DESELECT_VARIATION = 'deselect_variation';
