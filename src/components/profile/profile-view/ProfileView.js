@@ -41,7 +41,7 @@ class ProfileView extends Component {
       return <div>Under Construction... </div>
     }
     if (this.state.page === 1) {
-      const cards = this.props.userData.map(recipe => <li><RecipeCard key={recipe.id} recipe={recipe} /></li>)
+      const cards = this.props.userData.map(recipe => !recipe.parent_id&&<li key={recipe.id}><RecipeCard recipe={recipe} /></li>)
       return (
         <div className="card-display" style={{paddingTop: '10px', paddingLeft:'5px'}}>
         <Grid
@@ -60,6 +60,25 @@ class ProfileView extends Component {
       )
     }
     if (this.state.page === 2) {
+      const cards = this.props.userData.map(recipe => recipe.parent_id&&<li key={recipe.id}><RecipeCard recipe={recipe} /></li>)
+      return (
+        <div className="card-display" style={{paddingTop: '10px', paddingLeft:'5px'}}>
+        <Grid
+          component="ul"
+          columns={5}
+          columnWidth={315}
+          gutterWidth={5}
+          gutterHeight={15}
+          layout={layout.pinterest}
+          duration={200}
+          easing="ease-out"
+        >
+        {cards}
+      </Grid>
+      </div>
+      )
+    }
+    if (this.state.page === 3) {
       const {data, favorites} = this.props
       const tiles = favorites.map(recipe => {
         const recipeProp = data.filter(item => item.id === recipe.recipe_id)[0]
@@ -82,13 +101,13 @@ class ProfileView extends Component {
       </div>
       )
     }
-    if (this.state.page === 3) {
+    if (this.state.page === 4) {
       let { follows } = this.props.viewFollows
       return (
         follows.map((user,i) => <div key={i}><FollowTile user={user}/></div>)
       )
     }
-    if (this.state.page === 4) {
+    if (this.state.page === 5) {
       let { followers } = this.props.viewFollows
       return (
         followers.map((user,i) => <div key={i}><FollowTile user={user}/></div>)
@@ -120,14 +139,17 @@ class ProfileView extends Component {
         <li className="nav-item tab" >
           <a className="nav-link" href="#" name="1" onClick={this.handleClick}>Recipes</a>
         </li>
+        <li className="nav-item tab" >
+          <a className="nav-link" href="#" name="2" onClick={this.handleClick}>Sporks</a>
+        </li>
         <li className="nav-item tab">
-          <a className="nav-link" href="#" name="2" onClick={this.handleClick}>Favorites</a>
+          <a className="nav-link" href="#" name="3" onClick={this.handleClick}>Favorites</a>
         </li>
         <li className="nav-item tab" >
-          <a className="nav-link" href="#" name="3" onClick={this.handleClick}>Following</a>
+          <a className="nav-link" href="#" name="4" onClick={this.handleClick}>Following</a>
         </li>
         <li className="nav-item tab" >
-          <a className="nav-link" href="#" name="4" onClick={this.handleClick}>Followers</a>
+          <a className="nav-link" href="#" name="5" onClick={this.handleClick}>Followers</a>
         </li>
       </ul>
       <div>
