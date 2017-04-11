@@ -10,7 +10,6 @@ import $ from 'jquery';
 
 import TagsInput from 'react-tagsinput'
 
-import 'react-tagsinput/react-tagsinput.css' // If using WebPack and style-loader.
 
 const {imageUrlField, recipeNameField, prepTimeField, cookTimeField, servingsField, difficultyField, descriptionField, instructionsField} = fields;
 

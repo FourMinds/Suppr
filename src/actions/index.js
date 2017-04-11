@@ -239,9 +239,10 @@ export function updateRecipe(update) {
       headers: {authorization: localStorage.getItem('token')}
     })
       .then(res => {
-        const recipePath = `/recipe/${update.id}`;
+        const recipePath = `/recipe/${update.parentId||update.id}`;
         dispatch(getRecipes());
         dispatch(getRecipeById(update.id))
+        dispatch(getVariations(update.parentId))
         browserHistory.push(recipePath)
       })
   }

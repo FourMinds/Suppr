@@ -44,15 +44,28 @@ class Sidebar extends Component {
     });
   }
 
-  handleDelete(deleteSpork) {
-    if (deleteSpork) {
-      this.props.deleteRecipe(this.props.selectedVariation.id, deleteSpork)
-    }
-    
+  handleDeleteSpork() {
+    this.props.deleteRecipe(this.props.selectedVariation.id, true)
+  }
+
+  handleDelete() {
+    this.props.deleteRecipe(this.props.recipe.id)
   }
 
   handleEdit() {
     this.props.pushUpdate(this.props.recipe)
+  }
+
+  handleEditSpork() {
+    const {name, image, prep_time, cook_time} = this.props.selectedVariation
+    this.props.pushUpdate({
+      ...this.props.selectedVariation, 
+      recipeName: name, 
+      imageUrl: image,
+      prepTime: prep_time,
+      cookTime: cook_time,
+      parentId: this.props.recipe.id
+    }, true)
   }
 
   handleVariation() {
@@ -60,7 +73,7 @@ class Sidebar extends Component {
   }
 
   renderVariations() {
-    if (this.props.recipe && this.props.variations) {
+    if (this.props.recipe && this.props.variations && this.props.variations[this.props.recipe.id]) {
       return this.props.variations[this.props.recipe.id].map((variation,i) => {
         return (
           <li className="side-item" key={i} onClick={() => this.props.selectVariation(this.props.recipe.id, variation.id)}>
@@ -93,18 +106,23 @@ class Sidebar extends Component {
                   </li>
                 }
                 {this.props.selectedVariation && this.props.username===this.props.selectedVariation.username &&
-                  <li onClick={this.handleDelete.bind(this, true)}>
+                  <li onClick={this.handleDeleteSpork.bind(this)}>
                     <a >Delete this spork</a>
                   </li>
                 }
-                {this.props.username===username &&
+                {!this.props.selectedVariation && this.props.username===username &&
                   <li onClick={this.handleEdit.bind(this)}>
                     <a >Edit</a>
                   </li>
                 }
-                {this.props.username &&
+                {this.props.selectedVariation && this.props.username===username &&
+                  <li onClick={this.handleEditSpork.bind(this)}>
+                    <a >Edit this spork</a>
+                  </li>
+                }
+                {!this.props.selectedVariation && this.props.username &&
                   <li onClick={this.handleVariation.bind(this)}>
-                    <a >Spork this recipe</a>
+                    <a>Spork this recipe</a>
                   </li>
                 }
 
