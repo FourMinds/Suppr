@@ -36,7 +36,7 @@ class RecipeTile extends Component {
   }
 
   render() {
-    const { id, recipeName, image, difficulty, cookTime, prepTime, servings, username } = this.props.recipe;
+    const { id, name, image, difficulty, cookTime, prepTime, servings, username } = this.props.recipe;
     let favorited = this.props.favorites.data.some(favorite => {
       return favorite.recipe_id === this.props.recipe.id
     })
@@ -50,7 +50,7 @@ class RecipeTile extends Component {
         </div>
         <div className="recipe-header-container">
           <div className="recipe-title-box">
-            <h6>{recipeName}</h6>
+            <h6>{name}</h6>
             <img className="rating-img" src="/assets/stars3.png" alt="rating" />
           </div>
 

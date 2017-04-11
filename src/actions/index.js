@@ -179,15 +179,16 @@ export function getRecipesByUsername(username) {
   }
 }
 
-export function deleteRecipe(id) {
-  return function(dispatch) {
+export function deleteRecipe(id, deleteSpork) {
+  return function(dispatch, getState) {
     axios.delete(`${server}/recipe`, {
       headers: {authorization: localStorage.getItem('token')},
       params: { id }
     })
       .then(res => {
       dispatch(getRecipes());
-      browserHistory.push('/')
+      dispatch(getVariations(getState().recipes.selectedRecipe.id))
+      if (!deleteSpork) browserHistory.push('/')
     })
   }
 }
