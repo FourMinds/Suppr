@@ -4,6 +4,8 @@ import config from './config';
 const albumBucketName = config.albumBucketName;
 const bucketRegion = config.bucketRegion;
 const IdentityPoolId = config.IdentityPoolId;
+const accessKey = config.accessKey;
+const secretKey = config.secretKey;
 
 AWS.config.update({
   region: bucketRegion,
@@ -12,23 +14,33 @@ AWS.config.update({
   })
 });
 
-console.log(AWS.config);
+// AWS.config.update({
+//   region: bucketRegion,
+//   credentials: {
+//     accessKey: accessKey,
+//     secretKey: secretKey
+//   }
+// });
+
+// AWS.config.loadFromPath('./config.json');
 
 const s3 = new AWS.S3({
   apiVersion: '2006-03-01',
-  params: {Bucket: albumBucketName}
+  params: {Bucket: albumBucketName},
 });
 
 
 export function addPhoto(imageFile) {
   const photoKey = albumBucketName + imageFile.name;
+  console.log('THIS IS THE KEY: ', photoKey);
   s3.upload({
     Key: photoKey,
     Body: imageFile,
     ACL: 'public-read'
   }, function(err, data) {
     if (err) {
-      return alert('There was an error uploading your photo: ', err.message);
+      console.log('ERROR: ', err);
+      return ('There was an error uploading your photo: ', err.message);
     }
     alert('Successfully uploaded photo.');
   });
