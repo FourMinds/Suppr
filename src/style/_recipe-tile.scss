@@ -12,11 +12,16 @@
   z-index: 1
 }
 
+.food-img {
+  height: 250px;
+  width: 350px;
+  background-size: 100% 100%;
+  margin: auto;
+}
 
 .recipe-header-container {
-  margin: 5px;
-  min-width: 300px;
-  width: 46%;
+  margin: auto;
+  width: 350px;
 }
 
 .recipe-title-box {

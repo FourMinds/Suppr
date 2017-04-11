@@ -16,20 +16,28 @@ class AuthorTile extends Component {
   renderInfo() {
     const { username } = this.props;
     if(this.props.info[username]) {
-      const {favoritesCount, followersCount, followsCount, recipesCount} = this.props.info[username]
+      const {favoritesCount, followersCount, followsCount, recipesCount, sporksCount} = this.props.info[username]
       return (
-        <p>recipes:{recipesCount}, followers:{followersCount}, following:{followsCount}, favorites: {favoritesCount}</p>
+        <div className="author-stats-box">
+          <div><img className="author-stats-icon" src="/assets/salad.png" alt="Recipes" title="recipes"/>{recipesCount}</div>
+          <div><img className="author-stats-icon" src="/assets/spork.png" alt="Sporks" title="sporks"/>{sporksCount}</div>
+          <div><img className="author-stats-icon" src="/assets/follower.png" alt="Followers" title="followers"/>{followersCount}</div>
+          <div><img className="author-stats-icon" src="/assets/favorited.png" alt="Favorited count" title="likes"/>{favoritesCount}</div>
+        </div>
       )
     }
   }
+
   render() {
     const { username } = this.props
     const profileLink = `/profile/${username}`
     return (
       <a href={profileLink}><div className="author-box">
-        <img className="profile-img" src="http://i.imgur.com/hfH9CiC.png" alt="profile" />
+        <div className="profile-img-container">
+          <img className="profile-img" src="http://i.imgur.com/hfH9CiC.png" alt="profile" />
+        </div>
         <div className="profile-stats-box">
-          <h5>{username}</h5>
+          <div className="author-name">{username}</div>
           {this.renderInfo()}
         </div>
       </div></a>
