@@ -7,7 +7,6 @@ import RecipeInfo from './spork/RecipeInfo';
 
 class ShowRecipe extends Component {
   render() {
-    console.log(123123123)
     const { id, recipeName, imageUrl, difficulty, cookTime, prepTime, servings, instructions, description, ingredients, tags, username} = this.props.selectedVariation?this.props.selectedVariation:'';
     return (
       <div>

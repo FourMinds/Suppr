@@ -39,8 +39,11 @@ class Sidebar extends Component {
     });
   }
 
-  handleDelete() {
-    this.props.deleteRecipe(this.props.recipe.id)
+  handleDelete(deleteSpork) {
+    if (deleteSpork) {
+      this.props.deleteRecipe(this.props.selectedVariation.id, deleteSpork)
+    }
+    
   }
 
   handleEdit() {
@@ -66,7 +69,7 @@ class Sidebar extends Component {
   }
 
   render() {
-    console.log(this.props.selectedVariation)
+    console.log(this.props.username, this.props.selectVariation)
     const { id, username, recipeName, imageUrl, difficulty, cookTime, prepTime, servings, instructions, description, ingredients, tags} = this.props.recipe?this.props.recipe:'';
     return (
       <nav className="navbar navbar-default" role="navigation">
@@ -84,6 +87,11 @@ class Sidebar extends Component {
       		    	{this.props.username===username &&
                   <li onClick={this.handleDelete.bind(this)}>
                     <a >Delete</a>
+                  </li>
+                }
+                {this.props.selectedVariation && this.props.username===this.props.selectedVariation.username &&
+                  <li onClick={this.handleDelete.bind(this, true)}>
+                    <a >Delete this spork</a>
                   </li>
                 }
                 {this.props.username===username &&
