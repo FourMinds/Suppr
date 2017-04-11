@@ -3,6 +3,11 @@
   border-color: white;
 }
 
+.btn-primary:disabled {
+  background: #00cc66;
+  border-color: white;
+}
+
 .btn-primary:hover {
   background: #00cc66;
   border-color: black;

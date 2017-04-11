@@ -19,7 +19,8 @@
 
 .sidebar-nav li {
   text-indent: 20px;
-  line-height: 50px; }
+  line-height: 50px;
+  cursor: pointer; }
 
 .sidebar-nav li a {
   color: white;
@@ -434,6 +435,10 @@ a, a:hover {
 
 .btn-primary {
   background-color: #24a866;
+  border-color: white; }
+
+.btn-primary:disabled {
+  background: #00cc66;
   border-color: white; }
 
 .btn-primary:hover {
