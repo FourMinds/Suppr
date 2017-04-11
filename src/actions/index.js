@@ -90,18 +90,18 @@ export function signoutUser() {
 export function postRecipe(recipe, isVariation) {
   return function(dispatch) {
     console.log('THIS IS THE DISPATCH IMAGE: ', recipe);
-    axios.post(`${server}/recipe`, recipe, {
-      headers: {authorization: localStorage.getItem('token')}
-    })
-      .then(res => {
-        let recipePath = `/recipe/${res.data.id}`;
-        if(isVariation) {
-          recipePath = `/recipe/${recipe.parentId}`
-        }
-        dispatch(getRecipes());
-        browserHistory.push(recipePath)
-      })
-    }
+    // axios.post(`${server}/recipe`, recipe, {
+    //   headers: {authorization: localStorage.getItem('token')}
+    // })
+    //   .then(res => {
+    //     let recipePath = `/recipe/${res.data.id}`;
+    //     if(isVariation) {
+    //       recipePath = `/recipe/${recipe.parentId}`
+    //     }
+    //     dispatch(getRecipes());
+    //     browserHistory.push(recipePath)
+    //   })
+    // }
   }
 
 export function getRecipes() {
