@@ -76,8 +76,8 @@ class Sidebar extends Component {
     if (this.props.recipe && this.props.variations && this.props.variations[this.props.recipe.id]) {
       return this.props.variations[this.props.recipe.id].map((variation,i) => {
         return (
-          <li className={`side-item ${this.props.sporkId===variation.id?'sidebar-selected':''}`} key={i} onClick={() => this.props.selectVariation(this.props.recipe.id, variation.id)}>
-            <a >{variation.name}</a>
+          <li  className={`side-item ${this.props.sporkId===variation.id?'sidebar-selected':''}`} key={i} onClick={() => this.props.selectVariation(this.props.recipe.id, variation.id)}>
+            <a> {variation.name.length > 20 ? variation.name.slice(0,20).trim()+'...' : variation.name}</a>
           </li>
         )
       })
@@ -129,7 +129,7 @@ class Sidebar extends Component {
 
                 <hr />
                 <li className={selected} onClick={() => {this.props.getReview(this.props.recipe.id);this.props.deselectVariation()}}>
-                  <a >{recipeName}</a>
+                  <a >{recipeName&&recipeName.length > 20 ? recipeName.slice(0,20).trim()+'...' : recipeName}</a>
                 </li>
                 {this.renderVariations.call(this)}
       		  	</ul>
