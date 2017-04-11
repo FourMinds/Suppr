@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../../actions';
 import RecipeCard from '../../landing/RecipeCard';
 import FollowTile from './FollowTile';
+import { CSSGrid, layout, makeResponsive, measureItems } from 'react-stonecutter';
 import $ from 'jquery';
 
 class ProfileView extends Component {
@@ -31,17 +32,52 @@ class ProfileView extends Component {
   }
 
   renderPage() {
+    const Grid = makeResponsive(measureItems(CSSGrid, { measureImages: true }), {
+      maxWidth: 1920,
+      minPadding: 100
+    });
     if (this.state.page === 0) {
       return <div>Under Construction... </div>
     }
     if (this.state.page === 1) {
+      const cards = this.props.userData.map(recipe => !recipe.parent_id&&<li key={recipe.id}><RecipeCard recipe={recipe} /></li>)
       return (
-        <div className="card-columns" style={{margin: '5px 20px 10px 20px'}}>
-        {this.props.userData.map(recipe => <RecipeCard key={recipe.id} recipe={recipe} />)}
-        </div>
+        <div className="card-display" style={{paddingTop: '10px', paddingLeft:'5px'}}>
+        <Grid
+          component="ul"
+          columns={5}
+          columnWidth={315}
+          gutterWidth={5}
+          gutterHeight={15}
+          layout={layout.pinterest}
+          duration={200}
+          easing="ease-out"
+        >
+        {cards}
+      </Grid>
+      </div>
       )
     }
     if (this.state.page === 2) {
+      const cards = this.props.userData.map(recipe => recipe.parent_id&&<li key={recipe.id}><RecipeCard recipe={recipe} /></li>)
+      return (
+        <div className="card-display" style={{paddingTop: '10px', paddingLeft:'5px'}}>
+        <Grid
+          component="ul"
+          columns={5}
+          columnWidth={315}
+          gutterWidth={5}
+          gutterHeight={15}
+          layout={layout.pinterest}
+          duration={200}
+          easing="ease-out"
+        >
+        {cards}
+      </Grid>
+      </div>
+      )
+    }
+    if (this.state.page === 3) {
       const {data, favorites} = this.props
       console.log(data, favorites)
       const tiles = favorites.map(recipe => {  
@@ -54,13 +90,13 @@ class ProfileView extends Component {
         </div>
       )
     }
-    if (this.state.page === 3) {
+    if (this.state.page === 4) {
       let { follows } = this.props.viewFollows
       return (
         follows.map((user,i) => <div key={i}><FollowTile user={user}/></div>)
       )
     }
-    if (this.state.page === 4) {
+    if (this.state.page === 5) {
       let { followers } = this.props.viewFollows
       return (
         followers.map((user,i) => <div key={i}><FollowTile user={user}/></div>)
@@ -80,14 +116,17 @@ class ProfileView extends Component {
         <li className="nav-item tab" >
           <a className="nav-link" href="#" name="1" onClick={this.handleClick}>Recipes</a>
         </li>
+        <li className="nav-item tab" >
+          <a className="nav-link" href="#" name="2" onClick={this.handleClick}>Sporks</a>
+        </li>
         <li className="nav-item tab">
-          <a className="nav-link" href="#" name="2" onClick={this.handleClick}>Favorites</a>
+          <a className="nav-link" href="#" name="3" onClick={this.handleClick}>Favorites</a>
         </li>
         <li className="nav-item tab" >
-          <a className="nav-link" href="#" name="3" onClick={this.handleClick}>Following</a>
+          <a className="nav-link" href="#" name="4" onClick={this.handleClick}>Following</a>
         </li>
         <li className="nav-item tab" >
-          <a className="nav-link" href="#" name="4" onClick={this.handleClick}>Followers</a>
+          <a className="nav-link" href="#" name="5" onClick={this.handleClick}>Followers</a>
         </li>
       </ul>
       <div>
