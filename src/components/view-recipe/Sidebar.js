@@ -53,9 +53,9 @@ class Sidebar extends Component {
 
   renderVariations() {
     if (this.props.recipe && this.props.variations) {
-      return this.props.variations[this.props.recipe.id].map(variation => {
+      return this.props.variations[this.props.recipe.id].map((variation,i) => {
         return (
-          <li>
+          <li key={i} onClick={() => this.props.selectVariation(this.props.recipe.id, variation.id)}>
             <a >{variation.name}</a>
           </li>
         )
@@ -65,15 +65,15 @@ class Sidebar extends Component {
   }
 
   render() {
-    const { username } = this.props
-    const { id, recipeName, imageUrl, difficulty, cookTime, prepTime, servings, instructions, description, ingredients, tags} = this.props.recipe?this.props.recipe:'';
-    console.log(id&&this.props.variations?this.props.variations[id]:null)
+    console.log(this.props.selectedVariation)
+    const { id, username, recipeName, imageUrl, difficulty, cookTime, prepTime, servings, instructions, description, ingredients, tags} = this.props.recipe?this.props.recipe:'';
+    console.log(recipeName)
     return (
       <nav className="navbar navbar-default" role="navigation">
       	<div className="container">
       		<div className="navbar-header">
       			<a id="menu-toggle" href="#" className="navbar-toggle">
-      					<button className="btn btn-primary" class="sr-only">Side Bar</button>
+      					<button className="btn btn-primary">Side Bar</button>
       			        <span className="icon-bar"></span>
       			        <span className="icon-bar"></span>
       			        <span className="icon-bar"></span>
@@ -98,7 +98,7 @@ class Sidebar extends Component {
                 }
 
                 <hr />
-                {this.renderVariations()}
+                {this.renderVariations.call(this)}
       		  	</ul>
       		</div>
         </div>
@@ -111,7 +111,8 @@ function mapStateToProps(state) {
   return {
     recipe: state.recipes.selectedRecipe,
     username: state.auth.username,
-    variations: state.recipes.variations
+    variations: state.recipes.variations,
+    selectedVariation: state.recipes.selectedVariation
   }
 }
 

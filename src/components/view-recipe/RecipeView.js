@@ -25,9 +25,7 @@ class RecipeView extends Component {
   }
 
   render() {
-    console.log(this.props.recipe)
     const { id, recipeName, imageUrl, difficulty, cookTime, prepTime, servings, instructions, description, ingredients, tags, username} = this.props.recipe?this.props.recipe:'';
-    console.log(id&&this.props.variations?this.props.variations[id]:null)
     return (
       <div id="recipe-view" className="recipe-view-margin">
         <Sidebar />

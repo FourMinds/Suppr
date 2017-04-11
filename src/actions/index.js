@@ -16,7 +16,8 @@ import {
   GET_USER_INFO,
   GET_VARIATIONS,
   PUSH_UPDATE,
-  PUSH_VARIATION
+  PUSH_VARIATION,
+  SELECT_VARIATION
 } from './types';
 
 // all get requests are parsed for special characters and then modified based on the regex service in this folder
@@ -132,6 +133,13 @@ export function getVariations(id) {
           }
         })
       })
+  }
+}
+
+export function selectVariation(recipeId, id) {
+  return function(dispatch, getState) {
+    const display = getState().recipes.variations[recipeId].filter(variation => variation.id === id)
+    dispatch({ type: SELECT_VARIATION, payload: display[0] })
   }
 }
 
