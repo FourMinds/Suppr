@@ -1,3 +1,4 @@
+@charset "UTF-8";
 #sidebar-wrapper {
   top: 52px;
   left: -200px;
@@ -118,9 +119,6 @@
   font-size: 20px;
   margin-left: 20px; }
 
-h5 {
-  font-size: 24px; }
-
 .review-title {
   display: flex;
   justify-content: space-between; }
@@ -142,53 +140,6 @@ h5 {
   margin: 0.5em 0;
   padding-right: 0.1em;
   width: 1.8em; }
-
-.tags {
-  list-style: none;
-  margin-top: 10px;
-  margin-left: 20px;
-  overflow: hidden;
-  padding: 0;
-  display: inline-flex;
-  justify-content: spaced; }
-
-.tags-flex-box-style {
-  width: 1140px;
-  height: 60px;
-  margin-left: auto;
-  margin-right: auto; }
-
-.tags-title {
-  font-size: 15px;
-  margin-left: 5px; }
-
-.tag {
-  background: #eee;
-  border-radius: 3px 0 0 3px;
-  color: #999;
-  display: inline-block;
-  height: 26px;
-  line-height: 26px;
-  padding: 0 20px 0 23px;
-  position: relative;
-  margin: 0 10px 10px 0;
-  text-decoration: none;
-  -webkit-transition: color 0.2s; }
-
-.tag::before {
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: inset 0 1px rgba(0, 0, 0, 0.25);
-  content: '';
-  height: 6px;
-  left: 10px;
-  position: absolute;
-  width: 6px;
-  top: 10px; }
-
-.tag:hover {
-  background-color: #337ab7;
-  color: white; }
 
 .author-box {
   height: 75px;
@@ -227,12 +178,6 @@ h5 {
   display: flex;
   justify-content: space-between;
   margin-bottom: 15px; }
-
-h6 {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  font-size: 32px; }
 
 .rating-img {
   height: 50px; }
@@ -355,6 +300,11 @@ a, a:hover {
   width: 100%;
   float: none; }
 
+.create-flex-body {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 5px; }
+
 .inner-flex-body {
   display: flex;
   flex-flow: row nowrap;
@@ -376,11 +326,16 @@ a, a:hover {
   margin: 0 0.2em; }
 
 .create-flex-element-right {
+  flex: 1 1 500px;
   padding: 0 10px 5px 10px; }
 
 .create-flex-element-left {
+  flex: 2 1 500px;
   width: 600px;
   padding: 0 10px 5px 10px; }
+
+.stretch {
+  width: 200px; }
 
 .image-preview {
   border: 1px dashed black;
@@ -466,12 +421,6 @@ a, a:hover {
   background: -moz-linear-gradient(top, #4c8669, #24a866);
   background: linear-gradient(to bottom, #4c8669, #24a866); }
 
-.flex-body {
-  display: flex;
-  justify-content: center;
-  flex-flow: row wrap;
-  padding: 5px; }
-
 .auth-flex-element {
   width: 500px;
   padding: 5px; }
@@ -479,16 +428,9 @@ a, a:hover {
 .top-element {
   padding-bottom: 20px; }
 
-.test {
-  border-radius: 10px; }
-
 .error {
   color: red;
   font-style: italic; }
-
-.form-control:focus {
-  border-color: #24a866;
-  box-shadow: none; }
 
 .btn-primary {
   background-color: #24a866;
@@ -501,6 +443,99 @@ a, a:hover {
 .form-control:focus {
   border-color: #24a866;
   box-shadow: none; }
+
+.tags {
+  list-style: none;
+  margin-top: 10px;
+  margin-left: 20px;
+  overflow: hidden;
+  padding: 0;
+  display: inline-flex;
+  justify-content: spaced; }
+
+.tags-flex-box-style {
+  width: 1140px;
+  height: 60px;
+  margin-left: auto;
+  margin-right: auto; }
+
+.tags-title {
+  font-size: 15px;
+  margin-left: 5px; }
+
+.tag {
+  background: #eee;
+  border-radius: 3px 0 0 3px;
+  color: #999;
+  display: inline-block;
+  height: 26px;
+  line-height: 26px;
+  padding: 0 20px 0 23px;
+  position: relative;
+  margin: 0 10px 10px 0;
+  text-decoration: none;
+  -webkit-transition: color 0.2s; }
+
+.tag::before {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: inset 0 1px rgba(0, 0, 0, 0.25);
+  content: '';
+  height: 6px;
+  left: 10px;
+  position: absolute;
+  width: 6px;
+  top: 10px; }
+
+.tag {
+  border-radius: 5px; }
+
+.tag:hover {
+  background-color: #24a866;
+  color: white; }
+
+.react-tagsinput {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  overflow: hidden;
+  padding-left: 5px;
+  padding-top: 5px; }
+
+.react-tagsinput--focused {
+  border-color: #24a866; }
+
+.react-tagsinput-tag {
+  background-color: #24a866;
+  border-radius: 200px;
+  border: 1px solid #24a866;
+  color: #638421;
+  display: inline-block;
+  font-family: sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  padding: 5px; }
+
+.react-tagsinput-remove {
+  cursor: pointer;
+  font-weight: bold; }
+
+.react-tagsinput-tag a::before {
+  content: " ×"; }
+
+.react-tagsinput-input {
+  background: transparent;
+  border: 0;
+  color: #777;
+  font-family: sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  margin-bottom: 6px;
+  margin-top: 1px;
+  outline: none;
+  padding: 5px;
+  width: 80px; }
 
 /****************
 Font
@@ -587,3 +622,18 @@ img, iframe, video, object {
   max-width: 100%; }
 
 /****************-------Main-------****************/
+.flex-body {
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+  padding: 5px; }
+
+h5 {
+  font-size: 24px;
+  word-wrap: break-word; }
+
+h6 {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  font-size: 32px; }

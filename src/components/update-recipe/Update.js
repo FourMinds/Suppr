@@ -89,7 +89,8 @@ class Create extends Component {
       instructions, 
       description, 
       ingredients, 
-      tags
+      tags,
+      parentId: this.props.initialValues.parentId
     })
   }
 

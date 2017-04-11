@@ -10,7 +10,6 @@ import $ from 'jquery';
 
 import TagsInput from 'react-tagsinput'
 
-import 'react-tagsinput/react-tagsinput.css' // If using WebPack and style-loader.
 
 const {imageUrlField, recipeNameField, prepTimeField, cookTimeField, servingsField, difficultyField, descriptionField, instructionsField} = fields;
 
@@ -94,7 +93,7 @@ class Create extends Component {
     return (
       <form onSubmit={handleSubmit(this.handleFormSubmit)}>
       {this.renderAlert()}
-      <div className="flex-body spaced">
+      <div className="create-flex-body spaced">
         <div className="create-flex-element-left">
           <Field name="recipeName" component={recipeNameField} />
           <Field name="description" component={descriptionField} />

@@ -1,6 +1,3 @@
-@import "variables";
-@import "mixins";
-
 #sidebar-wrapper {
   top: 52px;
   left: -200px;
@@ -34,6 +31,7 @@
   text-decoration: none;
   width: 200px;
 }
+
 .sidebar-selected {
   background: rgba(255,255,255,0.25);
   color: white;
