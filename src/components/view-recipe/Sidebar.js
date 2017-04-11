@@ -109,7 +109,7 @@ class Sidebar extends Component {
                 }
 
                 <hr />
-                <li className="side-item sidebar-selected" onClick={() => this.props.deselectVariation()}>
+                <li className="side-item sidebar-selected" onClick={() => {this.props.getReview(this.props.recipe.id),this.props.deselectVariation()}}>
                   <a >{recipeName}</a>
                 </li>
                 {this.renderVariations.call(this)}

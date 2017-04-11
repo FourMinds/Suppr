@@ -135,7 +135,7 @@ class Reviews extends Component {
 function mapStatetoProps(state) {
   return {
     username: state.auth.username,
-    recipe: state.recipes.selectedRecipe,
+    recipe: state.recipes.selectedVariation,
     reviews: state.reviews.data
   }
 }

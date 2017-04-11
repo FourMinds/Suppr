@@ -151,7 +151,7 @@ function mapStateToProps(state) {
     username: state.auth.username, 
     userData: state.recipes.userRecipes, 
     favorites: state.favorites.data,
-    data: state.recipes.data ,
+    data: state.recipes.data,
     followList: state.follows.data,
     variations: state.recipes.userVariations,
   }
