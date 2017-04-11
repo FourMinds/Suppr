@@ -7,13 +7,15 @@ import {
   PUSH_VARIATION,
   SELECT_VARIATION,
   DESELECT_VARIATION,
+  GET_VARIATIONS_USERNAME 
 } from '../actions/types';
 
 const initialState = {
   data: [],
   selectedRecipe: [],
   userRecipes: [],
-  selectedVariation: null
+  selectedVariation: null,
+  userVariations: []
 };
 
 export default function(state = initialState, action) {
@@ -32,6 +34,8 @@ export default function(state = initialState, action) {
       return { ...state, selectedVariation: action.payload }
     case DESELECT_VARIATION:
       return { ...state, selectedVariation: null }
+    case GET_VARIATIONS_USERNAME:
+      return { ...state, userVariations: action.payload }
     case GET_VARIATIONS:
       let newState = { variations: { } }
       newState.variations[action.payload.id] = action.payload.data

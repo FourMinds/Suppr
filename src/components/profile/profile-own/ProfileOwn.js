@@ -38,7 +38,7 @@ class ProfileOwn extends Component {
       return <div>Under Construction... </div>
     }
     if (this.state.page === 1) {
-      const cards = this.props.userData.map(recipe => <li ><RecipeCard key={recipe.id} recipe={recipe} /></li>)
+      const cards = this.props.userData.map(recipe => !recipe.parent_id&&<li key={recipe.id}><RecipeCard  recipe={recipe} /></li>)
       return (
         <div className="card-display" style={{paddingTop: '10px', paddingLeft:'5px'}}>
         <Grid
@@ -57,10 +57,9 @@ class ProfileOwn extends Component {
       )
     }
     if (this.state.page === 2) {
-      const {data, favorites} = this.props;
-      console.log(favorites)
+      const {data, favorites, variations} = this.props;
       const tiles = favorites.map(recipe => {
-        const recipeProp = data.filter(item => item.id === recipe.recipe_id)[0];
+        const recipeProp = data.filter(item => item.id === recipe.recipe_id)[0] || variations.filter(item => item.id === recipe.recipe_id)[0];
         return <li key={recipe.id}><RecipeCard key={recipeProp.id} recipe={recipeProp}/></li>
       });
       return (
@@ -126,11 +125,13 @@ class ProfileOwn extends Component {
 }
 
 function mapStateToProps(state) {
-  return { username: state.auth.username, 
+  return { 
+    username: state.auth.username, 
     userData: state.recipes.userRecipes, 
     favorites: state.favorites.data,
     data: state.recipes.data ,
-    followList: state.follows.data
+    followList: state.follows.data,
+    variations: state.recipes.userVariations,
   }
 }
 

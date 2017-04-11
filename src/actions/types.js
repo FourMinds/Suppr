@@ -15,3 +15,4 @@ export const PUSH_UPDATE = 'push_update';
 export const PUSH_VARIATION = 'push_variation';
 export const SELECT_VARIATION = 'select_variation';
 export const DESELECT_VARIATION = 'deselect_variation';
+export const GET_VARIATIONS_USERNAME = 'get_variations_username';

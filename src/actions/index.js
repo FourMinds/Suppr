@@ -18,7 +18,8 @@ import {
   PUSH_UPDATE,
   PUSH_VARIATION,
   SELECT_VARIATION,
-  DESELECT_VARIATION
+  DESELECT_VARIATION,
+  GET_VARIATIONS_USERNAME
 } from './types';
 
 // all get requests are parsed for special characters and then modified based on the regex service in this folder
@@ -186,6 +187,22 @@ export function getRecipesByUsername(username) {
   }
 }
 
+export function getVariationsByUsername(username) {
+  return function(dispatch) {
+    axios.get(`${server}/recipe`, {
+      headers: {authorization: localStorage.getItem('token')},
+      params: { username, variation: true }
+    })
+      .then(res => {
+        res.data = regex.parseData(res.data, false);
+        return res;
+      })
+      .then(res => {
+        dispatch({ type: GET_VARIATIONS_USERNAME, payload: res.data });
+      })
+  }
+}
+
 export function deleteRecipe(id, deleteSpork) {
   return function(dispatch, getState) {
     axios.delete(`${server}/recipe`, {
@@ -195,6 +212,7 @@ export function deleteRecipe(id, deleteSpork) {
       .then(res => {
       dispatch(getRecipes());
       dispatch(getVariations(getState().recipes.selectedRecipe.id))
+      if (deleteSpork) dispatch(deselectVariation())
       if (!deleteSpork) browserHistory.push('/')
     })
   }
