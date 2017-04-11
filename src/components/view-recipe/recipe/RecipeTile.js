@@ -13,7 +13,7 @@ class RecipeTile extends Component {
   }
 
   componentDidMount() {
-    this.props.username ? this.props.getFavorites(this.props.username) : null;
+    if(this.props.username) this.props.getFavorites(this.props.username);
     this.props.getUserInfo(this.props.recipe.username)
   }
 
@@ -30,16 +30,13 @@ class RecipeTile extends Component {
     if (!this.props.username) return <div></div>
     return (
       <div className="favorite-button" onClick={this.handleFavoriteSubmit}>
-        <img className="favorite-image" src={src}/>
+        <img className="favorite-image" src={src} alt=""/>
       </div>
     )
   }
 
   render() {
-    const { id, recipeName, imageUrl, difficulty, cookTime, prepTime, servings, username } = this.props.recipe;
-    let favorited = this.props.favorites.data.some(favorite => {
-      return favorite.recipe_id === this.props.recipe.id
-    })
+    const { recipeName, imageUrl } = this.props.recipe;
     const url=`url("${imageUrl}")`
     return (
       <div className="flex-body">

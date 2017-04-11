@@ -118,7 +118,7 @@ export function getRecipes() {
   }
 }
 
-export function getVariations(id) {
+export function getVariations(id, setId) {
   return function(dispatch) {
     axios.get(`${server}/recipe`, {
       headers: {authorization: localStorage.getItem('token')},
@@ -134,13 +134,17 @@ export function getVariations(id) {
             data: res.data
           }
         })
+        //setId for setting selected variation after retrieval
+        if(setId) {
+          dispatch(selectVariation(id, setId))
+        }
       })
   }
 }
 
 export function selectVariation(recipeId, id) {
   return function(dispatch, getState) {
-    const display = getState().recipes.variations[recipeId].filter(variation => variation.id === id)
+    const display = getState().recipes.variations[recipeId].filter(variation => variation.id === Number(id))
     dispatch({ type: SELECT_VARIATION, payload: display[0] });
     dispatch(getReview(id))
   }
@@ -167,6 +171,7 @@ export function getRecipeById(id) {
         dispatch({ type: GET_RECIPE_ID, payload: res.data });
         dispatch(getReview(id));
       })
+        .catch(e => browserHistory.push('/error'))
   }
 }
 
@@ -239,7 +244,7 @@ export function updateRecipe(update) {
       headers: {authorization: localStorage.getItem('token')}
     })
       .then(res => {
-        const recipePath = `/recipe/${update.parentId||update.id}`;
+        const recipePath = !update.parentId ? `/recipe/${update.id}` : `/recipe/${update.parentId}/${update.id}`;
         dispatch(getRecipes());
         dispatch(getRecipeById(update.id))
         dispatch(getVariations(update.parentId))

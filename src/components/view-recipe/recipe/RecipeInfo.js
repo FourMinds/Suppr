@@ -13,10 +13,8 @@ class RecipeInfo extends Component {
   doneClick(event) {
     let index = event.target.name;
     let state = {};
-    console.log(this.state)
     state[index] = !this.state[index];
     this.setState(state)
-    console.log(this.state[index]);
   }
 
   renderIngredients(ingredients) {
@@ -51,11 +49,12 @@ class RecipeInfo extends Component {
           return <div className="flex-body-instruction" key={i} ><div className="counter-style">{counter}.</div>
             <div className="instruction-item" >{instruct.trim()}</div><br/></div>
         }
+        return undefined;
       });
     }
   }
   render() {
-    const {instructions, ingredients, prepTime, cookTime} = this.props.recipe ? this.props.recipe:''
+    const { instructions, ingredients } = this.props.recipe ? this.props.recipe:''
     return (
       <div className='flex-body'>
        <div className='ingredient-styles'>

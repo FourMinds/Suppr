@@ -93,10 +93,11 @@ exports.getRecipe = function(req, res, next) {
       const tags = tagList.reduce((arr, obj) => {
         return [...arr, obj.tag_name]
       },[])
-      const { id, name, image, difficulty, cook_time, prep_time, servings, instructions, user_id, description } = recipe;
+      const { id, name, image, difficulty, cook_time, prep_time, servings, instructions, user_id, description, parent_id } = recipe;
       const { username } = user;
       return {
         id,
+        parent_id,
         username, 
         recipeName: name, 
         imageUrl: image, 

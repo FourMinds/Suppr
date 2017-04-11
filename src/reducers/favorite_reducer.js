@@ -11,6 +11,7 @@ export default function(state=initialState, action) {
       return { ...state, data: action.payload }
     case GET_FAVORITE_USER:
       return { ...state, dataForUser: action.payload }
+    default: 
+      return state;
   }
-  return state;
 }

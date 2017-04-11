@@ -5,9 +5,11 @@ import RecipeTile from './spork/RecipeTile';
 import Reviews from './spork/Reviews';
 import RecipeInfo from './spork/RecipeInfo';
 
-class ShowRecipe extends Component {
+class ShowVariation extends Component {
+  
   render() {
-    const { id, recipeName, imageUrl, difficulty, cookTime, prepTime, servings, instructions, description, ingredients, tags, username} = this.props.selectedVariation?this.props.selectedVariation:'';
+    const { tags } = this.props.selectedVariation?this.props.selectedVariation:'';
+    
     return (
       <div>
 
@@ -37,4 +39,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, actions)(ShowRecipe);
+export default connect(mapStateToProps, actions)(ShowVariation);

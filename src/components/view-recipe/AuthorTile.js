@@ -14,16 +14,16 @@ class AuthorTile extends Component {
   }
 
   renderInfo() {
-    const { username, info } = this.props;
-    if(info[username]) {
-      const {favoritesCount, followersCount, followsCount, recipesCount} = info[username]
+    const { username } = this.props;
+    if(this.props.info[username]) {
+      const {favoritesCount, followersCount, followsCount, recipesCount} = this.props.info[username]
       return (
         <p>recipes:{recipesCount}, followers:{followersCount}, following:{followsCount}, favorites: {favoritesCount}</p>
       )
     }
   }
   render() {
-    const {username, info} = this.props
+    const { username } = this.props
     const profileLink = `/profile/${username}`
     return (
       <a href={profileLink}><div className="author-box">
