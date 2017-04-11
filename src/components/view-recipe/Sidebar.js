@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
+import { connect } from 'react-redux';
+import * as actions from '../../actions';
 
 class Sidebar extends Component {
 
@@ -35,9 +37,37 @@ class Sidebar extends Component {
     		}
     	});
     });
-
   }
+
+  handleDelete() {
+    this.props.deleteRecipe(this.props.recipe.id)
+  }
+
+  handleEdit() {
+    this.props.pushUpdate(this.props.recipe)
+  }
+
+  handleVariation() {
+    this.props.pushVariation(this.props.recipe)
+  }
+
+  renderVariations() {
+    if (this.props.recipe && this.props.variations) {
+      return this.props.variations[this.props.recipe.id].map(variation => {
+        return (
+          <li>
+            <a >{variation.name}</a>
+          </li>
+        )
+      })
+      
+    }
+  }
+
   render() {
+    const { username } = this.props
+    const { id, recipeName, imageUrl, difficulty, cookTime, prepTime, servings, instructions, description, ingredients, tags} = this.props.recipe?this.props.recipe:'';
+    console.log(id&&this.props.variations?this.props.variations[id]:null)
     return (
       <nav className="navbar navbar-default" role="navigation">
       	<div className="container">
@@ -51,15 +81,24 @@ class Sidebar extends Component {
       		</div>
       		<div id="sidebar-wrapper" className="sidebar-toggle">
       			<ul className="sidebar-nav">
-      		    	<li>
-      		      	<a >Item 1</a>
-      		    	</li>
-      		    	<li>
-      		      	<a >Item 2</a>
-      		    	</li>
-      		    	<li>
-      		      	<a >Item 3</a>
-      		    	</li>
+      		    	{this.props.username===username &&
+                  <li onClick={this.handleDelete.bind(this)}>
+                    <a >Delete</a>
+                  </li>
+                }
+                {this.props.username===username &&
+                  <li onClick={this.handleEdit.bind(this)}>
+                    <a >Edit</a>
+                  </li>
+                }
+                {this.props.username &&
+                  <li onClick={this.handleVariation.bind(this)}>
+                    <a >Spork this recipe</a>
+                  </li>
+                }
+
+                <hr />
+                {this.renderVariations()}
       		  	</ul>
       		</div>
         </div>
@@ -68,4 +107,12 @@ class Sidebar extends Component {
   }
 }
 
-export default Sidebar;
+function mapStateToProps(state) {
+  return {
+    recipe: state.recipes.selectedRecipe,
+    username: state.auth.username,
+    variations: state.recipes.variations
+  }
+}
+
+export default connect(mapStateToProps, actions)(Sidebar);
