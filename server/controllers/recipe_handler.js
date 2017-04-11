@@ -125,8 +125,22 @@ exports.deleteRecipe = function(req, res) {
   const deleteRecipeQuery = `DELETE from recipes WHERE id=${id}`
   Promise.all([query(deleteIngredientsQuery), query(deleteReviewsQuery), query(deleteFavoritesQuery), query(deleteTagsQuery), query(deleteRecipeQuery)])
     .then(results => {
-      res.status(200).send({ 'message': 'Recipe was deleted' })
+      const findChildrenQuery = `SELECT * from recipes where parent_id=${id};`
+      return query(findChildrenQuery)
     })
+    .then(children => {
+      if(!children.length) {
+        return res.status(200).send({ 'message': 'Recipe was deleted' })
+      } else {
+        return children.map(child => child.id)
+      }    
+    })
+    .then(childIds => {
+      const updateParentQuery = `UPDATE recipes SET parent_id = NULL WHERE id = ${childIds[0]};`
+      const updateChildrenQuery = `UPDATE recipes SET parent_id=${childIds[0]} WHERE parent_id=${id}`
+      return Promise.all([query(updateParentQuery), query(updateChildrenQuery)])
+    })
+    .then(result => res.status(200).send({ 'message': 'Recipe was deleted' }))
 }
 
 exports.updateRecipe = function(req, res) {
