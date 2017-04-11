@@ -5,7 +5,8 @@ import {
   PUSH_UPDATE,
   GET_VARIATIONS,
   PUSH_VARIATION,
-  SELECT_VARIATION
+  SELECT_VARIATION,
+  DESELECT_VARIATION,
 } from '../actions/types';
 
 const initialState = {
@@ -28,7 +29,9 @@ export default function(state = initialState, action) {
     case PUSH_VARIATION:
       return { ...state, pushVariation: action.payload };
     case SELECT_VARIATION:
-      return { ...state, selectedVariation: action.payload}
+      return { ...state, selectedVariation: action.payload }
+    case DESELECT_VARIATION:
+      return { ...state, selectedVariation: null }
     case GET_VARIATIONS:
       let newState = { variations: { } }
       newState.variations[action.payload.id] = action.payload.data

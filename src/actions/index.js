@@ -17,7 +17,8 @@ import {
   GET_VARIATIONS,
   PUSH_UPDATE,
   PUSH_VARIATION,
-  SELECT_VARIATION
+  SELECT_VARIATION,
+  DESELECT_VARIATION
 } from './types';
 
 // all get requests are parsed for special characters and then modified based on the regex service in this folder
@@ -140,6 +141,12 @@ export function selectVariation(recipeId, id) {
   return function(dispatch, getState) {
     const display = getState().recipes.variations[recipeId].filter(variation => variation.id === id)
     dispatch({ type: SELECT_VARIATION, payload: display[0] })
+  }
+}
+
+export function deselectVariation() {
+  return function(dispatch) {
+    dispatch({ type: DESELECT_VARIATION })
   }
 }
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
+import { browserHistory } from 'react-router'
 
 class Sidebar extends Component {
 
@@ -86,9 +87,9 @@ class Sidebar extends Component {
       		</div>
       		<div id="sidebar-wrapper" className="sidebar-toggle">
       			<ul className="sidebar-nav">
-      		    	{this.props.username===username &&
+      		    	{!this.props.selectedVariation && this.props.username===username &&
                   <li onClick={this.handleDelete.bind(this)}>
-                    <a >Delete</a>
+                    <a >Delete Recipe</a>
                   </li>
                 }
                 {this.props.selectedVariation && this.props.username===this.props.selectedVariation.username &&
@@ -108,6 +109,9 @@ class Sidebar extends Component {
                 }
 
                 <hr />
+                <li className="side-item sidebar-selected" onClick={() => this.props.deselectVariation()}>
+                  <a >{recipeName}</a>
+                </li>
                 {this.renderVariations.call(this)}
       		  	</ul>
       		</div>
