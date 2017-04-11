@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../../actions';
+import * as actions from '../../../actions';
 
 class RecipeInfo extends Component {
 
@@ -20,6 +20,7 @@ class RecipeInfo extends Component {
   }
 
   renderIngredients(ingredients) {
+    console.log(ingredients)
    if(ingredients){
      var quantities = ingredients.quantity;
      var items = ingredients.items;
@@ -74,7 +75,7 @@ class RecipeInfo extends Component {
 }
 function mapStateToProps(state) {
   return {
-    recipe: state.recipes.selectedRecipe
+    recipe: state.recipes.selectedVariation
   }
 }
 export default connect(mapStateToProps, actions)(RecipeInfo);
