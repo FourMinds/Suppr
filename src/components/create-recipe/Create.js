@@ -16,11 +16,13 @@ class Create extends Component {
   constructor() {
     super();
     this.state = {
+      imageFile: null,
       tags: [],
-      tag: ''
+      tag: '',
     };
 
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.onDrop = this.onDrop.bind(this);
   }
 
   handleChange(tags) {
@@ -46,6 +48,12 @@ class Create extends Component {
   //   });
   // }
 
+  onDrop(accepted) {
+    this.setState({
+      imageFile: accepted
+    });
+  }
+
   renderAlert() {
     if (this.props.submitFailed) {
       return (
@@ -64,7 +72,7 @@ class Create extends Component {
     formProps.tags = this.state.tags;
 
     const { username } = this.props;
-    const { recipeName, imageUrl, difficulty, cookTime, prepTime, servings, instructions, description } = formProps;
+    const { recipeName, difficulty, cookTime, prepTime, servings, instructions, description } = formProps;
     const { tags } = this.state;
     const ingredients = Object.keys(formProps).reduce((list, val, i) => {
       let [quantity, items] = [`quantity${i}`, `items${i}`];
@@ -72,9 +80,11 @@ class Create extends Component {
       if(formProps[items]) list.items.push(formProps[items]);
       return list
     }, {quantity: [], items: []});
+    const image = document.getElementById('image-input').files;
+    console.log('THIS IS THE IMAGE TO BE SUBMITTED: ', image);
     this.props.postRecipe({
       recipeName, 
-      imageUrl, 
+      image,
       difficulty, 
       cookTime, 
       prepTime, 
@@ -115,8 +125,7 @@ class Create extends Component {
           : null }
         </div>
         <div className="create-flex-element-right">
-          <RecipeImage />
-          {/*<Field name="imageUrl" component={imageUrlField} />*/}
+          <RecipeImage onDrop={this.onDrop} imageFile={this.state.imageFile} />
           <div className="inner-flex-body">
           <div className="inner-flex-element">
           <Field name="prepTime" component={prepTimeField} />

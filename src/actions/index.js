@@ -89,6 +89,7 @@ export function signoutUser() {
 
 export function postRecipe(recipe, isVariation) {
   return function(dispatch) {
+    console.log('THIS IS THE DISPATCH IMAGE: ', recipe);
     axios.post(`${server}/recipe`, recipe, {
       headers: {authorization: localStorage.getItem('token')}
     })
@@ -100,8 +101,8 @@ export function postRecipe(recipe, isVariation) {
         dispatch(getRecipes());
         browserHistory.push(recipePath)
       })
+    }
   }
-}
 
 export function getRecipes() {
   return function(dispatch) {
