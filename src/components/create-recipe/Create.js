@@ -80,8 +80,7 @@ class Create extends Component {
       if(formProps[items]) list.items.push(formProps[items]);
       return list
     }, {quantity: [], items: []});
-    const image = document.getElementById('image-input').files;
-    console.log('THIS IS THE IMAGE TO BE SUBMITTED: ', image);
+    const image = this.state.imageFile;
     this.props.postRecipe({
       recipeName, 
       image,
@@ -154,5 +153,5 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps, actions)(reduxForm({
   form: 'create',
   initialValues: {difficulty: "Choose..."},
-  validate
+  // validate
 })(Create));

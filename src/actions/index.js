@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { server } from '../config.js'
 import { browserHistory } from 'react-router';
+import { addPhoto } from '../aws/aws';
 import {
   AUTH_USER,
   UNAUTH_USER,
@@ -88,8 +89,15 @@ export function signoutUser() {
 *****************/
 
 export function postRecipe(recipe, isVariation) {
-  return function(dispatch) {
-    console.log('THIS IS THE DISPATCH IMAGE: ', recipe);
+  return function (dispatch) {
+    console.log('THIS IS THE DISPATCH IMAGE: ', recipe.image[0]);
+    addPhoto(recipe.image[0])
+      .then(res => {
+        console.log('THIS IS THE RESULT FROM SENDING THE IMAGE TO AWS: ', res);
+      })
+      .catch(err => {
+        console.error(err);
+      })
     // axios.post(`${server}/recipe`, recipe, {
     //   headers: {authorization: localStorage.getItem('token')}
     // })
@@ -103,6 +111,7 @@ export function postRecipe(recipe, isVariation) {
     //   })
     // }
   }
+}
 
 export function getRecipes() {
   return function(dispatch) {
