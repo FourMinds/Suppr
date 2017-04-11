@@ -51,46 +51,60 @@ exports.getRecipe = function(req, res, next) {
     });
   }
   if (variation && id) {
-    const getVariationsQuery = `SELECT * from recipes WHERE parent_id=${id};`
+    const getVariationsQuery = `SELECT recipes.*, users.username from recipes JOIN users ON recipes.user_id = users.id WHERE parent_id=${id};`
     return query(getVariationsQuery).then(results => {
-      return res.status(200).send(results)
+      return Promise.all(results.map(item => {
+        return returnRecipe(item.id).then(recipe => {
+          item['ingredients'] = recipe.ingredients;
+          item['tags'] = recipe.tags;
+          return item
+        })
+      }))
+    })
+      .then(variations => {
+        console.log(variations)
+        res.status(200).send(variations)
+      })
+  }
+  returnRecipe(id).then(recipe => res.status(200).send(recipe))
+  
+  function returnRecipe(id) {
+    const ingredientsQuery = `SELECT * from ingredients WHERE recipe_id = ${id};`;
+    const tagsQuery = `SELECT * from tags WHERE recipe_id = ${id};`;
+    const recipeQuery = `SELECT * from recipes WHERE id = ${id};`
+    const userQuery = `SELECT username FROM users WHERE id = (SELECT user_id FROM recipes WHERE id = ${id})`
+
+    query(recipeQuery).then(([recipe]) => {
+      if(!recipe) return res.status(422).send({ error: 'Recipe does not exist' });
+    })
+
+    return Promise.all([query(ingredientsQuery), query(tagsQuery), query(recipeQuery), query(userQuery)])
+      .then(([ ingredients, tagList, [ recipe ], [ user ] ]) => {
+      const [ quantity, items ] = ingredients.reduce((acc, { quantity, ingredient }) => {
+        return [ [...acc[0], quantity], [...acc[1], ingredient] ];
+      }, [[], []])
+      const tags = tagList.reduce((arr, obj) => {
+        return [...arr, obj.tag_name]
+      },[])
+      const { id, name, image, difficulty, cook_time, prep_time, servings, instructions, user_id, description } = recipe;
+      const { username } = user;
+      return {
+        id,
+        username, 
+        recipeName: name, 
+        imageUrl: image, 
+        difficulty, 
+        description,
+        cookTime: cook_time, 
+        prepTime: prep_time, 
+        servings, 
+        instructions, 
+        ingredients: { quantity, items },
+        userId: user_id,
+        tags
+      }
     })
   }
-  const ingredientsQuery = `SELECT * from ingredients WHERE recipe_id = ${id};`;
-  const tagsQuery = `SELECT * from tags WHERE recipe_id = ${id};`;
-  const recipeQuery = `SELECT * from recipes WHERE id = ${id};`
-  const userQuery = `SELECT username FROM users WHERE id = (SELECT user_id FROM recipes WHERE id = ${id})`
-
-  query(recipeQuery).then(([recipe]) => {
-    if(!recipe) return res.status(422).send({ error: 'Recipe does not exist' });
-  })
-
-  Promise.all([query(ingredientsQuery), query(tagsQuery), query(recipeQuery), query(userQuery)])
-    .then(([ ingredients, tagList, [ recipe ], [ user ] ]) => {
-    const [ quantity, items ] = ingredients.reduce((acc, { quantity, ingredient }) => {
-      return [ [...acc[0], quantity], [...acc[1], ingredient] ];
-    }, [[], []])
-    const tags = tagList.reduce((arr, obj) => {
-      return [...arr, obj.tag_name]
-    },[])
-    const { id, name, image, difficulty, cook_time, prep_time, servings, instructions, user_id, description } = recipe;
-    const { username } = user;
-    res.status(200).send({
-      id,
-      username, 
-      recipeName: name, 
-      imageUrl: image, 
-      difficulty, 
-      description,
-      cookTime: cook_time, 
-      prepTime: prep_time, 
-      servings, 
-      instructions, 
-      ingredients: { quantity, items },
-      userId: user_id,
-      tags
-    })
-  })
 }
 
 exports.deleteRecipe = function(req, res) {

@@ -52,6 +52,7 @@ class Sidebar extends Component {
   }
 
   renderVariations() {
+    console.log(this.props.variations)
     if (this.props.recipe && this.props.variations) {
       return this.props.variations[this.props.recipe.id].map((variation,i) => {
         return (
@@ -67,7 +68,6 @@ class Sidebar extends Component {
   render() {
     console.log(this.props.selectedVariation)
     const { id, username, recipeName, imageUrl, difficulty, cookTime, prepTime, servings, instructions, description, ingredients, tags} = this.props.recipe?this.props.recipe:'';
-    console.log(recipeName)
     return (
       <nav className="navbar navbar-default" role="navigation">
       	<div className="container">
