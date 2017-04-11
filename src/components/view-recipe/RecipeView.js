@@ -33,15 +33,7 @@ class RecipeView extends Component {
         <Sidebar />
 
         <RecipeTile />
-        {this.props.username===username &&
-          <button className="btn btn-primary" onClick={this.handleDelete.bind(this)}>Delete</button>
-        }
-        {this.props.username===username &&
-          <button className="btn btn-primary" onClick={this.handleEdit.bind(this)}>Edit</button>
-        }
-        {this.props.username &&
-          <button className="btn btn-primary" onClick={this.handleVariation.bind(this)}>Spork this recipe</button>
-        }
+    
         <RecipeInfo />
         <div className='tags-flex-box-style'>
           <div>

@@ -84,13 +84,16 @@ export function signoutUser() {
 * * * Recipe * * *
 *****************/
 
-export function postRecipe(recipe) {
+export function postRecipe(recipe, isVariation) {
   return function(dispatch) {
     axios.post(`${server}/recipe`, recipe, {
       headers: {authorization: localStorage.getItem('token')}
     })
       .then(res => {
-        const recipePath = `/recipe/${res.data.id}`;
+        let recipePath = `/recipe/${res.data.id}`;
+        if(isVariation) {
+          recipePath = `/recipe/${recipe.parentId}`
+        }
         dispatch(getRecipes());
         browserHistory.push(recipePath)
       })
