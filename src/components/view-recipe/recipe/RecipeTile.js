@@ -20,6 +20,7 @@ class RecipeTile extends Component {
   handleFavoriteSubmit() {
     let favorite = {username: this.props.username, recipeId: this.props.recipe.id};
     this.props.postFavorite(favorite);
+    console.log("review obj ---------+--------", this.props.reviews)
   }
 
   renderHeart() {
@@ -35,17 +36,26 @@ class RecipeTile extends Component {
     )
   }
 
+  recipeScore() {
+    let score = this.props.reviews.reduce((acc, val) => { return acc + val.rating;}, 0) / this.props.reviews.length
+    score = Math.round( score * 10 ) / 10;
+    // console.log("SCORE -----+-----", score)
+
+  }
+
   render() {
     const { recipeName, imageUrl } = this.props.recipe;
     const url=`url("${imageUrl}")`
     return (
       <div className="flex-body">
-        <div className="image-preview-recipe" style={{backgroundImage:url}}>
+        {/*{this.recipeScore()}*/}
+        <div className="food-img" style={{backgroundImage:url}}>
 
           {this.renderHeart()}
 
         </div>
         <div className="recipe-header-container">
+
           <div className="recipe-title-box">
             <h6>{recipeName}</h6>
             <img className="rating-img" src="/assets/stars3.png" alt="rating" />
@@ -65,7 +75,8 @@ function mapStatetoProps(state) {
   return {
     recipe: state.recipes.selectedRecipe,
     username: state.auth.username,
-    favorites: state.favorites
+    favorites: state.favorites,
+    reviews: state.reviews.data
   }
 }
 

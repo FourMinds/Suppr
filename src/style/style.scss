@@ -97,13 +97,16 @@ strong {
 img, iframe, video, object {
   max-width: 100%;
 }
+
 /****************-------Main-------****************/
+
 .flex-body {
   display: flex;
   justify-content: center;
   flex-flow: row wrap;
   padding: 5px;
 }
+
 h5 {
   font-size: 24px;
   word-wrap: break-word;

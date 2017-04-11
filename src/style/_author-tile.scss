@@ -8,8 +8,31 @@
   height: 75px;
 }
 
+.profile-img-container {
+  height: 75px;
+  width: 75px;
+  border-radius: 37.5px;
+  overflow: hidden;
+}
+
+.author-name {
+  margin-left: 15px;
+  font-size: 24px;
+}
+
 .profile-stats-box {
   display: flex;
   justify-content: center;
   flex-flow: column nowrap;
+}
+
+.author-stats-box {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.author-stats-icon {
+  height: 20px;
+  margin-left: 15px;
+  margin-right: 10px;
 }
