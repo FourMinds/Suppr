@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import AuthorTile from '../view-recipe/AuthorTile';
 
 class RecipeCard extends Component {
   render() {
-    const {username, id, parent_id, name, difficulty, cook_time, prep_time, servings, image, description} = this.props.recipe;
-    const recipeLink = `/recipe/${parent_id||id}`;
+    const {username, id, parent_id, name, cook_time, prep_time, image, description} = this.props.recipe;
+    const recipeLink = !parent_id ? `/recipe/${id}` : `/recipe/${parent_id}/${id}`;
 
     return (
       <div className="card" style={{width: '19em'}}>
@@ -18,7 +17,7 @@ class RecipeCard extends Component {
           <p className="card-text">{description}</p>
         </div>
         <ul className="list-group list-group-flush">
-          <li className="list-group-item"><div className='flex-body'><img className="recipe-stats-icon" src="/assets/prep.png"/>Prep: {prep_time}</div>  |  <div className='flex-body'><img className="recipe-stats-icon" src="/assets/pot.png"/>Cook: {cook_time}</div> </li>
+          <li className="list-group-item"><div className='flex-body'><img className="recipe-stats-icon" src="/assets/prep.png" alt=""/>Prep: {prep_time}</div>  |  <div className='flex-body'><img className="recipe-stats-icon" src="/assets/pot.png" alt=""/>Cook: {cook_time}</div> </li>
         </ul>
         <div className="card-block">
           <AuthorTile username={username} />

@@ -1,12 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import * as actions from '../../../actions';
-import { Link } from 'react-router';
 
 class FollowTile extends Component {
-  constructor(props) {
-    super(props)
-  }
 
   render() {
     const userLink = `/profile/${this.props.user}`
@@ -15,7 +11,7 @@ class FollowTile extends Component {
         <div className="well well-sm">
             <div className="media">
                 <a className="thumbnail pull-left" href="#">
-                    <img className="media-object" src="http://placehold.it/80" />
+                    <img className="media-object" src="http://placehold.it/80" alt=""/>
                 </a>
                 <div className="media-body">
                     <h4 className="media-heading">{this.props.user}</h4>

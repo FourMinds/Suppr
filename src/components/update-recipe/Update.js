@@ -46,7 +46,7 @@ class Create extends Component {
           $(this).attr('src', '');         
       });
       $("#image-input").on("input", function(){
-        $(this).val() === '' ? $('#image-container').addClass('image-preview'): null         
+        if($(this).val() === '') $('#image-container').addClass('image-preview')       
       });
     });
   }
@@ -67,15 +67,13 @@ class Create extends Component {
   handleFormSubmit(formProps) {
     // this enables validation of tags
     formProps.tags = this.state.tags;
-
-    const { username } = this.props;
     const { id } = this.props.initialValues;
     const { recipeName, imageUrl, difficulty, cookTime, prepTime, servings, instructions, description } = formProps;
     const { tags } = this.state;
     const ingredients = Object.keys(formProps).reduce((list, val, i) => {
       let [quantity, items] = [`quantity${i}`, `items${i}`];
-      formProps[quantity] ? list.quantity.push(formProps[quantity]) : null;
-      formProps[items] ? list.items.push(formProps[items]) : null;
+      if (formProps[quantity]) list.quantity.push(formProps[quantity]);
+      if (formProps[items]) list.items.push(formProps[items]);
       return list
     }, {quantity: [], items: []});
     this.props.updateRecipe({
@@ -151,7 +149,7 @@ function mapStateToProps(state) {
     obj[key] = val
     return obj
   }, {})
-  const itemsValues = quantity.reduce((obj, val, i) => {
+  const itemsValues = items.reduce((obj, val, i) => {
     const key = `items${i}`
     obj[key] = val
     return obj

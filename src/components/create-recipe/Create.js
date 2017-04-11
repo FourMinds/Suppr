@@ -42,7 +42,7 @@ class Create extends Component {
           $(this).attr('src', '');         
       });
       $("#image-input").on("input", function(){
-        $(this).val() === '' ? $('#image-container').addClass('image-preview'): null         
+        if($(this).val() === '') $('#image-container').addClass('image-preview')       
       });
     });
   }
@@ -69,8 +69,8 @@ class Create extends Component {
     const { tags } = this.state;
     const ingredients = Object.keys(formProps).reduce((list, val, i) => {
       let [quantity, items] = [`quantity${i}`, `items${i}`];
-      formProps[quantity] ? list.quantity.push(formProps[quantity]) : null;
-      formProps[items] ? list.items.push(formProps[items]) : null;
+      if(formProps[quantity]) list.quantity.push(formProps[quantity]);
+      if(formProps[items]) list.items.push(formProps[items]);
       return list
     }, {quantity: [], items: []});
     this.props.postRecipe({

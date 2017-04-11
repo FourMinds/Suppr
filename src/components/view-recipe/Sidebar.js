@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
-import { browserHistory } from 'react-router'
 
 class Sidebar extends Component {
 
@@ -44,6 +43,7 @@ class Sidebar extends Component {
     });
   }
 
+
   handleDeleteSpork() {
     this.props.deleteRecipe(this.props.selectedVariation.id, true)
   }
@@ -76,7 +76,7 @@ class Sidebar extends Component {
     if (this.props.recipe && this.props.variations && this.props.variations[this.props.recipe.id]) {
       return this.props.variations[this.props.recipe.id].map((variation,i) => {
         return (
-          <li className="side-item" key={i} onClick={() => this.props.selectVariation(this.props.recipe.id, variation.id)}>
+          <li className={`side-item ${this.props.sporkId===variation.id?'sidebar-selected':''}`} key={i} onClick={() => this.props.selectVariation(this.props.recipe.id, variation.id)}>
             <a >{variation.name}</a>
           </li>
         )
@@ -86,7 +86,8 @@ class Sidebar extends Component {
   }
 
   render() {
-    const { id, username, recipeName, imageUrl, difficulty, cookTime, prepTime, servings, instructions, description, ingredients, tags} = this.props.recipe?this.props.recipe:'';
+    const selected = !this.props.sporkId ? 'side-item sidebar-selected' : 'side-item'
+    const { username, recipeName } = this.props.recipe?this.props.recipe:'';
     return (
       <nav className="navbar navbar-default" role="navigation">
       	<div className="container">
@@ -127,7 +128,7 @@ class Sidebar extends Component {
                 }
 
                 <hr />
-                <li className="side-item sidebar-selected" onClick={() => {this.props.getReview(this.props.recipe.id),this.props.deselectVariation()}}>
+                <li className={selected} onClick={() => {this.props.getReview(this.props.recipe.id);this.props.deselectVariation()}}>
                   <a >{recipeName}</a>
                 </li>
                 {this.renderVariations.call(this)}
@@ -141,7 +142,6 @@ class Sidebar extends Component {
 
 function mapStateToProps(state) {
   return {
-    recipe: state.recipes.selectedRecipe,
     username: state.auth.username,
     variations: state.recipes.variations,
     selectedVariation: state.recipes.selectedVariation

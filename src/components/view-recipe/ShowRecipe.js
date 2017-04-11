@@ -4,10 +4,24 @@ import * as actions from '../../actions';
 import RecipeTile from './recipe/RecipeTile';
 import Reviews from './recipe/Reviews';
 import RecipeInfo from './recipe/RecipeInfo';
+import { browserHistory } from 'react-router';
 
 class ShowRecipe extends Component {
+
+  componentDidMount() {
+    if (this.props.recipe && this.props.recipe.parent_id) {
+      browserHistory.push('/error')
+    }
+  }
+
+  componentDidUpdate(nextProps) {
+    if (nextProps.recipe && nextProps.recipe.parent_id) {
+      browserHistory.push('/error')
+    }
+  }
+
   render() {
-    const { id, recipeName, imageUrl, difficulty, cookTime, prepTime, servings, instructions, description, ingredients, tags, username} = this.props.recipe?this.props.recipe:'';
+    const { tags } = this.props.recipe?this.props.recipe:'';
     return (
       <div>
 
