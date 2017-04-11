@@ -1,0 +1,80 @@
+.review-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.review-button {
+  margin: 2%;
+}
+
+.review {
+  margin: 0 2% 4% 2%;
+}
+
+.review-author {
+  display: flex;
+  justify-content: space-between;
+}
+
+.review-star {
+  justify-content: flex-end;
+}
+
+.star {
+  margin: 0.5em 0;
+  padding-right: 0.1em;
+  width: 1.8em;
+}
+
+.tags {
+  list-style: none;
+  margin-top: 10px;
+  margin-left: 20px;
+  overflow: hidden;
+  padding: 0;
+  display: inline-flex;
+  justify-content: spaced;
+}
+
+.tags-flex-box-style {
+  width: 1140px;
+  height: 60px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+.tags-title {
+  font-size: 15px;
+  margin-left: 5px;
+}
+
+.tag {
+  background: #eee;
+  border-radius: 3px 0 0 3px;
+  color: #999;
+  display: inline-block;
+  height: 26px;
+  line-height: 26px;
+  padding: 0 20px 0 23px;
+  position: relative;
+  margin: 0 10px 10px 0;
+  text-decoration: none;
+  -webkit-transition: color 0.2s;
+}
+
+.tag::before {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: inset 0 1px rgba(0, 0, 0, 0.25);
+  content: '';
+  height: 6px;
+  left: 10px;
+  position: absolute;
+  width: 6px;
+  top: 10px;
+}
+
+.tag:hover {
+  background-color: #337ab7;
+  color: white;
+}

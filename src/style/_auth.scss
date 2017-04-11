@@ -1,0 +1,29 @@
+.flex-body {
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+  padding: 5px;
+}
+
+.auth-flex-element {
+  width: $auth-form-width;
+  padding: 5px;
+}
+
+.top-element {
+  padding-bottom: 20px;
+}
+
+.test {
+  @include rounded(10px);
+}
+
+.error {
+      color: red;
+      font-style: italic;
+    }
+
+.form-control:focus {
+  border-color: $theme-primary;
+  box-shadow: none;
+}

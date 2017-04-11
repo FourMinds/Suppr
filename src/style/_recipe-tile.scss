@@ -1,0 +1,71 @@
+.food-img-container {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  background-image: url('http://i203.photobucket.com/albums/aa217/bitwierd/Chequerboard.png');
+  margin: 5px 20px 5px 20px;
+  min-width: 300px;
+  width: 46%;
+  height: 215px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1
+}
+
+
+.recipe-header-container {
+  margin: 5px;
+  min-width: 300px;
+  width: 46%;
+}
+
+.recipe-title-box {
+  max-width: 1200px;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+h6 {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  font-size: 32px;
+}
+
+.rating-img {
+  height: 50px;
+}
+
+
+.recipe-stats-box {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  font-size: 14px;
+}
+
+.recipe-stats-box-column {
+  margin-right: 25px;
+  width: 40%;
+  // display: flex;
+  // justify-content: flex-start;
+}
+
+.recipe-stats-box-column-row {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 5px;
+}
+
+.recipe-stats-icon {
+  margin-left: 5px;
+  margin-right: 10px;
+  height: 30px;
+}
+
+.recipe-card-stats {
+  margin-right: 15px;
+  margin-left: 15px;
+}
