@@ -12,12 +12,13 @@ exports.getUserInfo = function(req, res) {
   const userRecipesQuery = `SELECT * FROM recipes WHERE recipes.user_id=(${getIdForName(username)}) AND recipes.parent_id IS NULL;`
   const getFollowersQuery = `SELECT users.username from followers JOIN users ON followers.user_id = users.id WHERE follow_id=(${getIdForName(username)});`
   const getFollowsQuery = `SELECT users.username from followers JOIN users ON followers.follow_id = users.id WHERE user_id=(${getIdForName(username)});`
-  console.log(findFavoritesQuery, userRecipesQuery, getFollowersQuery, getFollowsQuery)
-  Promise.all([query(findFavoritesQuery), query(userRecipesQuery), query(getFollowersQuery), query(getFollowsQuery)])
-    .then(([favorites, recipes, followers, follows]) => {
+  const userSporksQuery = `SELECT * FROM recipes WHERE recipes.user_id=(${getIdForName(username)}) AND recipes.parent_id IS NOT NULL;`
+  Promise.all([query(findFavoritesQuery), query(userRecipesQuery), query(userSporksQuery), query(getFollowersQuery), query(getFollowsQuery)])
+    .then(([favorites, recipes, sporks, followers, follows]) => {
       res.status(200).send({
         favoritesCount: favorites.length,
         recipesCount: recipes.length,
+        sporksCount: sporks.length,
         followersCount: followers.length,
         followsCount: follows.length
       })
