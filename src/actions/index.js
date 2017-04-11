@@ -51,7 +51,7 @@ export function signupUser({ email, username, password }) {
         localStorage.setItem('token', response.data.token);
         browserHistory.push('/');
       })
-      .catch(response => dispatch(authError(response.data.error)));
+      .catch(response => dispatch(authError(response.response.data.error)));
   }
 }
 
