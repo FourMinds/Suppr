@@ -684,6 +684,13 @@ SideBar
   text-decoration: none;
   width: 200px;
 }
+.sidebar-selected {
+  background: rgba(255,255,255,0.25);
+  color: white;
+  text-decoration: none;
+  width: 200px;
+}
+
 .sidebar-nav li a:active, .sidebar-nav li a:focus {
   text-decoration: none;
 }

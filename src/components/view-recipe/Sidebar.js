@@ -23,6 +23,10 @@ class Sidebar extends Component {
     	$('.body').on('hide.bs.dropdown', function(e){
     		$(this).find('.dropdown-menu').first().stop(true, true).slideUp(300);
     	});
+      $('#root').on('click', '.side-item', function () {
+        $('.sidebar-selected').removeClass('sidebar-selected')
+        $(this).addClass('sidebar-selected')
+      })
     	$("#menu-toggle").click(function(e) {
     		e.preventDefault();
     		var elem = document.getElementById("sidebar-wrapper");
@@ -55,11 +59,10 @@ class Sidebar extends Component {
   }
 
   renderVariations() {
-    console.log(this.props.variations)
     if (this.props.recipe && this.props.variations) {
       return this.props.variations[this.props.recipe.id].map((variation,i) => {
         return (
-          <li key={i} onClick={() => this.props.selectVariation(this.props.recipe.id, variation.id)}>
+          <li className="side-item" key={i} onClick={() => this.props.selectVariation(this.props.recipe.id, variation.id)}>
             <a >{variation.name}</a>
           </li>
         )
@@ -69,7 +72,6 @@ class Sidebar extends Component {
   }
 
   render() {
-    console.log(this.props.username, this.props.selectVariation)
     const { id, username, recipeName, imageUrl, difficulty, cookTime, prepTime, servings, instructions, description, ingredients, tags} = this.props.recipe?this.props.recipe:'';
     return (
       <nav className="navbar navbar-default" role="navigation">
