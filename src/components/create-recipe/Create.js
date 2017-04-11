@@ -94,7 +94,7 @@ class Create extends Component {
     return (
       <form onSubmit={handleSubmit(this.handleFormSubmit)}>
       {this.renderAlert()}
-      <div className="flex-body spaced">
+      <div className="create-flex-body spaced">
         <div className="create-flex-element-left">
           <Field name="recipeName" component={recipeNameField} />
           <Field name="description" component={descriptionField} />

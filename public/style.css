@@ -118,9 +118,6 @@
   font-size: 20px;
   margin-left: 20px; }
 
-h5 {
-  font-size: 24px; }
-
 .review-title {
   display: flex;
   justify-content: space-between; }
@@ -355,6 +352,11 @@ a, a:hover {
   width: 100%;
   float: none; }
 
+.create-flex-body {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 5px; }
+
 .inner-flex-body {
   display: flex;
   flex-flow: row nowrap;
@@ -376,11 +378,16 @@ a, a:hover {
   margin: 0 0.2em; }
 
 .create-flex-element-right {
+  flex: 1 1 500px;
   padding: 0 10px 5px 10px; }
 
 .create-flex-element-left {
+  flex: 2 1 500px;
   width: 600px;
   padding: 0 10px 5px 10px; }
+
+.stretch {
+  width: 200px; }
 
 .image-preview {
   border: 1px dashed black;
@@ -466,12 +473,6 @@ a, a:hover {
   background: -moz-linear-gradient(top, #4c8669, #24a866);
   background: linear-gradient(to bottom, #4c8669, #24a866); }
 
-.flex-body {
-  display: flex;
-  justify-content: center;
-  flex-flow: row wrap;
-  padding: 5px; }
-
 .auth-flex-element {
   width: 500px;
   padding: 5px; }
@@ -479,16 +480,9 @@ a, a:hover {
 .top-element {
   padding-bottom: 20px; }
 
-.test {
-  border-radius: 10px; }
-
 .error {
   color: red;
   font-style: italic; }
-
-.form-control:focus {
-  border-color: #24a866;
-  box-shadow: none; }
 
 .btn-primary {
   background-color: #24a866;
@@ -587,3 +581,12 @@ img, iframe, video, object {
   max-width: 100%; }
 
 /****************-------Main-------****************/
+.flex-body {
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+  padding: 5px; }
+
+h5 {
+  font-size: 24px;
+  word-wrap: break-word; }

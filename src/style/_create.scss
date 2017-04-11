@@ -1,3 +1,9 @@
+.create-flex-body {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 5px;
+}
+
 
 .inner-flex-body {
   display: flex;
@@ -13,7 +19,6 @@
 .inner-flex-element {
   flex: 1 1 200px;
   padding: 5px;
-  // padding-left: 0px;
 }
 
 .ingredient-button-div {
@@ -26,16 +31,18 @@
 }
 
 .create-flex-element-right {
-  // flex: 2 1 600px;
+  flex: 1 1 500px;
   padding: 0 10px 5px 10px;
 }
 
 .create-flex-element-left {
-  // flex: 1 1 400px;
+  flex: 2 1 500px;
   width: 600px;
   padding: 0 10px 5px 10px;
 }
-
+.stretch {
+  width: 200px;
+}
 .image-preview {
   border: 1px dashed black;
   height: 250px;
