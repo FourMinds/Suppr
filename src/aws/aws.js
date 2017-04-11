@@ -32,7 +32,6 @@ const s3 = new AWS.S3({
 
 export function addPhoto(imageFile) {
   const photoKey = albumBucketName + imageFile.name;
-  console.log('THIS IS THE KEY: ', photoKey);
   s3.upload({
     Key: photoKey,
     Body: imageFile,
