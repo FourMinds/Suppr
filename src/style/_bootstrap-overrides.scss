@@ -1,0 +1,14 @@
+.btn-primary {
+  background-color: $theme-primary;
+  border-color: white;
+}
+
+.btn-primary:hover {
+  background: #00cc66;
+  border-color: black;
+}
+
+.form-control:focus {
+  border-color: $theme-primary;
+  box-shadow: none;
+}
