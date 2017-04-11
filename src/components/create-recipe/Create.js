@@ -4,9 +4,8 @@ import { reduxForm, Field } from 'redux-form';
 import * as actions from '../../actions';
 import * as fields from './form-fields';
 import Ingredients from './Ingredients';
+import RecipeImage from './RecipeImage';
 import validate from './validate'
-import $ from 'jquery';
-
 
 import TagsInput from 'react-tagsinput'
 
@@ -17,11 +16,13 @@ class Create extends Component {
   constructor() {
     super();
     this.state = {
+      imageFile: null,
       tags: [],
-      tag: ''
+      tag: '',
     };
 
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.onDrop = this.onDrop.bind(this);
   }
 
   handleChange(tags) {
@@ -32,18 +33,24 @@ class Create extends Component {
     this.setState({tag})
   }
 
-  componentDidMount() {
-    $(document).ready(function() {
-      $("#preview-image").on("load", function(){
-        $(this).parent().removeClass('image-preview');
-        $(this).parent().addClass('image-preview-load');
-      })
-      $("#preview-image").on("error", function(){
-          $(this).attr('src', '');         
-      });
-      $("#image-input").on("input", function(){
-        if($(this).val() === '') $('#image-container').addClass('image-preview')       
-      });
+  // componentDidMount() {
+  //   $(document).ready(function() {
+  //     $("#preview-image").on("load", function(){
+  //       $(this).parent().removeClass('image-preview');
+  //       $(this).parent().addClass('image-preview-load');
+  //     })
+  //     $("#preview-image").on("error", function(){
+  //         $(this).attr('src', '');
+  //     });
+  //     $("#image-input").on("input", function(){
+  //       if($(this).val() === '') $('#image-container').addClass('image-preview')
+  //     });
+  //   });
+  // }
+
+  onDrop(accepted) {
+    this.setState({
+      imageFile: accepted
     });
   }
 
@@ -65,7 +72,7 @@ class Create extends Component {
     formProps.tags = this.state.tags;
 
     const { username } = this.props;
-    const { recipeName, imageUrl, difficulty, cookTime, prepTime, servings, instructions, description } = formProps;
+    const { recipeName, difficulty, cookTime, prepTime, servings, instructions, description } = formProps;
     const { tags } = this.state;
     const ingredients = Object.keys(formProps).reduce((list, val, i) => {
       let [quantity, items] = [`quantity${i}`, `items${i}`];
@@ -73,9 +80,10 @@ class Create extends Component {
       if(formProps[items]) list.items.push(formProps[items]);
       return list
     }, {quantity: [], items: []});
+    const image = this.state.imageFile;
     this.props.postRecipe({
       recipeName, 
-      imageUrl, 
+      image,
       difficulty, 
       cookTime, 
       prepTime, 
@@ -116,7 +124,7 @@ class Create extends Component {
           : null }
         </div>
         <div className="create-flex-element-right">
-          <Field name="imageUrl" component={imageUrlField} />
+          <RecipeImage onDrop={this.onDrop} imageFile={this.state.imageFile} />
           <div className="inner-flex-body">
           <div className="inner-flex-element">
           <Field name="prepTime" component={prepTimeField} />
@@ -145,5 +153,5 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps, actions)(reduxForm({
   form: 'create',
   initialValues: {difficulty: "Choose..."},
-  validate
+  // validate
 })(Create));
