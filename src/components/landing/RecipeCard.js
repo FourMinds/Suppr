@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import { connect } from 'react-redux';
+import * as actions from '../../actions';
 import AuthorTile from '../view-recipe/AuthorTile';
 
 class RecipeCard extends Component {
   render() {
-    const {username, id, name, difficulty, cook_time, prep_time, servings, image, description} = this.props.recipe;
-    const recipeLink = `/recipe/${id}`;
+    const {username, id, parent_id, name, difficulty, cook_time, prep_time, servings, image, description} = this.props.recipe;
+    const recipeLink = `/recipe/${parent_id||id}`;
 
     return (
       <div className="card" style={{width: '19em'}}>
         <a href={recipeLink}><img className="card-img-top" src={image} alt="Card img cap" /></a>
         <div className="card-block">
           <a href={recipeLink}><h5>{name}</h5></a>
+          {parent_id && <p>this is a spork</p>}
           <p className="card-text">{description}</p>
         </div>
         <ul className="list-group list-group-flush">
@@ -25,4 +28,4 @@ class RecipeCard extends Component {
   }
 }
 
-export default RecipeCard;
+export default connect(null, actions)(RecipeCard);

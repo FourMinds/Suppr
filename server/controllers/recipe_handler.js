@@ -43,6 +43,13 @@ exports.getRecipe = function(req, res, next) {
     const allRecipesQuery = 'SELECT recipes.*, users.username FROM recipes JOIN users ON recipes.user_id=users.id WHERE recipes.parent_id IS NULL;'
     return query(allRecipesQuery).then(recipes => res.status(200).send(recipes));
   }
+  if (variation && username) {
+    const usernameSubQuery = `SELECT id from users WHERE username = "${username}"`;
+    const allVariationsQuery = `SELECT recipes.*, users.username FROM recipes JOIN users ON recipes.user_id=users.id WHERE recipes.parent_id IS NOT NULL AND users.id=(${usernameSubQuery});`
+    return query(allVariationsQuery).then(variations => {
+      res.status(200).send(variations)
+    })
+  }
   if (username) {
     const usernameSubQuery = `SELECT id from users WHERE username = "${username}"`;
     const userRecipesQuery = `SELECT * FROM recipes WHERE recipes.user_id=(${usernameSubQuery});`
