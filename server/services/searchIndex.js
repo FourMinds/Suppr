@@ -6,22 +6,34 @@ const query = Promise.promisify(db.query.bind(db));
 
 const getAllRecipesQuery = `SELECT * from recipes WHERE parent_id IS NULL;`
 
-// query(getAllRecipesQuery).then(recipes => {
-//   $search.index({
-//     index: 'recipes',
-//     type: 'parents',
-//     id: '1',
-//     body: {recipes}
-//   }, function (error, response) {
-//   });
+query(getAllRecipesQuery).then(recipes => {
+  $search.index({
+    index: 'recipes',
+    type: 'parents',
+    id: '1',
+    body: {recipes}
+  }, function (error, response) {
+      
+  });
+})
+
+
+
+
+// $search.indices.delete({
+//   index: 'recipes'
 // })
 
-$search.search({
-  index: 'recipes',
-  q:'2134'
-}, function (error, response) {
-  // ...
-  console.log(response.hits.hits[0]._source.recipes)
-});
+// $search.search({
+//   index: 'recipes',
+//   q:'name:123'
+// }, function (error, response) {
+//   // ...
+//   console.log(response.hits.hits[0]._source)
+// });
+
+
+
+
 
 
