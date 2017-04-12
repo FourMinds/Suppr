@@ -291,6 +291,7 @@ export function postFavorite(favorite) {
     })
       .then(res => {
         dispatch(getFavorites(favorite.username));
+        dispatch(getUserInfo(favorite.username))
       })
   }
 }
