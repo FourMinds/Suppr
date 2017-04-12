@@ -29,7 +29,12 @@ a, a:hover {
 }
 
 .card {
-  @include box-shadow(1px 1px 3px 4px #ccc)
+  background-color: white;
+  @include box-shadow(0.1px 0.1px 0.5px 1px #ccc)
+}
+
+.card:hover {
+  @include box-shadow(0.25px 0.25px 1px 2px $theme-primary)
 }
 
 @media (min-width: 34em) {
