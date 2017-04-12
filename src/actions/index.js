@@ -19,7 +19,8 @@ import {
   PUSH_VARIATION,
   SELECT_VARIATION,
   DESELECT_VARIATION,
-  GET_VARIATIONS_USERNAME
+  GET_VARIATIONS_USERNAME,
+  SEARCH
 } from './types';
 
 // all get requests are parsed for special characters and then modified based on the regex service in this folder
@@ -291,6 +292,7 @@ export function postFavorite(favorite) {
     })
       .then(res => {
         dispatch(getFavorites(favorite.username));
+        dispatch(getUserInfo(favorite.username))
       })
   }
 }
@@ -361,3 +363,27 @@ export function getUserInfo(username) {
     })
   }
 }
+
+/*****************
+* * * Search * * *
+*****************/
+
+export function search(query) {
+  return function(dispatch) {
+    axios.get(`${server}/search`, {
+      headers: {authorization: localStorage.getItem(('token'))},
+      params: { query }
+    })
+      .then(res => {
+        dispatch({ type: SEARCH, payload: res.data })
+      })
+  }
+}
+
+export function triggerSearch(query) {
+  return function(dispatch) {
+    dispatch(search(query))
+    browserHistory.push('/search')
+  }
+}
+

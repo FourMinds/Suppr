@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router';
+import SearchBar from './SearchBar'
 
 const Dropdown = (props) => {
   const profileLink = `/profile/${props.username}`
@@ -47,15 +48,12 @@ class Header extends Component {
       <div className="collapse navbar-collapse" id="navbarCollapse">
         <ul className="navbar-nav mr-auto">
           <li className="nav-item active">
-            <Link className="nav-link" to="/home">Home <span className="sr-only">(current)</span></Link>
+            <Link className="nav-link" to="/">Home <span className="sr-only">(current)</span></Link>
           </li>
           
           {this.renderLinks()}
         </ul>
-        <form className="form-inline mt-2 mt-md-0">
-          <input className="form-control mr-sm-2" placeholder="Search" type="text" style={{width: '600px'}}/>
-          <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        <SearchBar />
         <ul className="navbar-nav">
           {this.props.authenticated && <Dropdown username={this.props.username}/>}
         </ul>

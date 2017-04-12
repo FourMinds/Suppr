@@ -6,6 +6,7 @@ import reviewReducer from './review_reducer';
 import followReducer from './follow_reducer';
 import userInfoReducer from './userinfo_reducer';
 import favoriteReducer from './favorite_reducer';
+import searchReducer from './search_reducer';
 
 const rootReducer = combineReducers({
   form,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   reviews: reviewReducer,
   favorites: favoriteReducer,
   follows: followReducer,
-  userInfo: userInfoReducer
+  userInfo: userInfoReducer,
+  search: searchReducer
 });
 export default rootReducer;

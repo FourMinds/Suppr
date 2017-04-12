@@ -15,7 +15,7 @@ import Signin from './components/auth/Signin';
 import Signout from './components/auth/Signout';
 import Signup from './components/auth/Signup';
 import HomeNoAuth from './components/landing/HomeNoAuth';
-import Home from './components/home/Home';
+import SearchPage from './components/search/SearchPage';
 import Create from './components/create-recipe/Create';
 import Update from './components/update-recipe/Update';
 import Spork from './components/recipe-variation/Spork';
@@ -41,7 +41,7 @@ ReactDOM.render(
         <Route path='auth/signout' component={Signout} />
         <Route path='recipe/:id' component={RecipeView} />
         <Route path='recipe/:id/:sporkId' component={RecipeView} />
-        <Route path='home' component={RequireAuth(Home)} />
+        <Route path='search' component={SearchPage} />
         <Route path='create' component={RequireAuth(Create)} />
         <Route path='edit' component={RequireAuth(Update)} />
         <Route path='spork' component={RequireAuth(Spork)} />
