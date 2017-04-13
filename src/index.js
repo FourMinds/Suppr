@@ -8,7 +8,6 @@ import Thunk from 'redux-thunk';
 import { getUsername } from './actions';
 import '../public/bootstrap/css/bootstrap.css';
 import '../public/style.css';
-import '../public/imgur.css';
 import reducers from './reducers';
 
 import App from './components/App';
