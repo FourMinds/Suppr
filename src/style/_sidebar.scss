@@ -21,6 +21,15 @@
   line-height: 50px;
   cursor: pointer;
 }
+
+.sidebar-toggle-btn {
+  display: block;
+}
+
+.sidebar-toggle-item {
+  display: block;
+}
+
 .sidebar-nav li a {
   color: white;
   display: block;
@@ -51,6 +60,12 @@
   #sidebar-wrapper.sidebar-toggle {
     transition: 0s;
     left: 200px;
+  }
+  .sidebar-toggle-btn {
+    display: none;
+  }
+  .sidebar-toggle-item {
+    display: none;
   }
 }
 
