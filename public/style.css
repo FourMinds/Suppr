@@ -22,6 +22,12 @@
   line-height: 50px;
   cursor: pointer; }
 
+.sidebar-toggle-btn {
+  display: block; }
+
+.sidebar-toggle-item {
+  display: block; }
+
 .sidebar-nav li a {
   color: white;
   display: block;
@@ -49,7 +55,11 @@
 @media (min-width: 768px) {
   #sidebar-wrapper.sidebar-toggle {
     transition: 0s;
-    left: 200px; } }
+    left: 200px; }
+  .sidebar-toggle-btn {
+    display: none; }
+  .sidebar-toggle-item {
+    display: none; } }
 
 .recipe-view-margin {
   margin-left: 200px; }
@@ -188,6 +198,7 @@
 .food-img {
   height: 250px;
   width: 350px;
+  background-size: 100%;
   margin: auto;
   background-position: center center;
   background-repeat: no-repeat; }

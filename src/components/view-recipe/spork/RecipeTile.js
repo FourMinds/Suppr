@@ -40,7 +40,7 @@ class RecipeTile extends Component {
     const url=`url("${image}")`
     return (
       <div className="flex-body">
-        <div className="image-preview-recipe" style={{backgroundImage:url}}>
+        <div className="food-img" style={{backgroundImage:url}}>
 
           {this.renderHeart()}
 

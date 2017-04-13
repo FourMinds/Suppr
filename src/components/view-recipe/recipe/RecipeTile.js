@@ -47,7 +47,7 @@ class RecipeTile extends Component {
     return (
       <div className="flex-body">
         {/*{this.recipeScore()}*/}
-        <div className="food-img center-cropped" style={{backgroundImage:url}}>
+        <div className="food-img" style={{backgroundImage:url}}>
 
           {this.renderHeart()}
 

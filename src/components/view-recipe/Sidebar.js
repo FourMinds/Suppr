@@ -27,7 +27,7 @@ class Sidebar extends Component {
         $('.sidebar-selected').removeClass('sidebar-selected')
         $(this).addClass('sidebar-selected')
       })
-    	$("#menu-toggle").click(function(e) {
+    	$(".menu-toggle").click(function(e) {
     		e.preventDefault();
     		var elem = document.getElementById("sidebar-wrapper");
     		var left = window.getComputedStyle(elem,null).getPropertyValue("left");
@@ -90,17 +90,20 @@ class Sidebar extends Component {
     const { username, recipeName } = this.props.recipe?this.props.recipe:'';
     return (
       <nav className="navbar navbar-default" role="navigation">
+      <a  href="#" className="navbar-toggle menu-toggle">
+                <button className="btn btn-primary sidebar-toggle-btn">
+                  <span className="fa fa-bars" aria-hidden="true"></span>
+                </button>       
+            </a>
       	<div className="container">
       		<div className="navbar-header">
-      			<a id="menu-toggle" href="#" className="navbar-toggle">
-      					<button className="btn btn-primary">Side Bar</button>
-      			        <span className="icon-bar"></span>
-      			        <span className="icon-bar"></span>
-      			        <span className="icon-bar"></span>
-      			</a>
+      			
       		</div>
       		<div id="sidebar-wrapper" className="sidebar-toggle">
       			<ul className="sidebar-nav">
+                  <li className="menu-toggle sidebar-toggle-item">
+                    <a>Close <span className="pull-right" style={{marginRight: '10px'}}>x</span></a>
+                  </li>
       		    	{!this.props.selectedVariation && this.props.username===username &&
                   <li onClick={this.handleDelete.bind(this)}>
                     <a >Delete Recipe</a>
@@ -128,9 +131,12 @@ class Sidebar extends Component {
                 }
 
                 <hr />
+                <label className="sidebar-item">Recipe:</label>
                 <li className={selected} onClick={() => {this.props.getReview(this.props.recipe.id);this.props.deselectVariation()}}>
                   <a >{recipeName&&recipeName.length > 20 ? recipeName.slice(0,20).trim()+'...' : recipeName}</a>
                 </li>
+                <hr />
+                <label className="sidebar-item">Sporks:</label>
                 {this.renderVariations.call(this)}
       		  	</ul>
       		</div>
