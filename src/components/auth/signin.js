@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { reduxForm, Field } from 'redux-form';
 import * as actions from '../../actions';
 import { signinFields } from './form-fields'
+import { Link } from 'react-router';
 
 const { usernameField, passwordField } = signinFields
 
@@ -24,12 +25,16 @@ class Signin extends Component {
   render() {
     const { handleSubmit } = this.props;
     return (
-      <div className="flex-body">
+      <div className="flex-body-auth">
+      <h5 className="auth-title">Sign in to your account</h5>
       <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))} className="auth-flex-element">
         <Field name="username" component={usernameField} />
         <Field name="password" component={passwordField} />
         {this.renderAlert()}
-        <button action="submit" className="btn btn-primary">Sign in</button>
+        <div>
+        <button action="submit" className="btn btn-primary btn-padded">Sign in <i className="fa fa-angle-right" style={{marginLeft:'10px'}} aria-hidden="true"></i></button>
+        <Link className="pull-right auth-check" to='/auth/signup'>Don't have an account?</Link>
+        </div>
       </form>
       </div>
     );
