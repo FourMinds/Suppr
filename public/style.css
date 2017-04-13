@@ -9,6 +9,18 @@
   height: 100%;
   z-index: 1; }
 
+.sidebar-recipe-heading {
+  cursor: default;
+  margin-top: -10px;
+  line-height: 30px !important;
+  font-weight: bold; }
+
+.sidebar-sporks-heading {
+  cursor: default;
+  margin-top: -10px;
+  line-height: 30px !important;
+  font-weight: bold; }
+
 .sidebar-nav {
   position: absolute;
   top: 0;

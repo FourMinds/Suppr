@@ -140,12 +140,12 @@ class Sidebar extends Component {
               </li>
               }
               <hr />
-              <label className="sidebar-item">Recipe:</label>
+              <li className="sidebar-recipe-heading">Recipe:</li>
               <li className={selected} onClick={() => {this.props.getReview(this.props.recipe.id);this.props.deselectVariation()}}>
                 <a >{recipeName&&recipeName.length > 20 ? recipeName.slice(0,20).trim()+'...' : recipeName}</a>
               </li>
               <hr />
-              <label className="sidebar-item">Sporks:</label>
+              <li className="sidebar-sporks-heading">Sporks:</li>
               {this.renderVariations.call(this)}
     		  	</ul>
       		</div>
