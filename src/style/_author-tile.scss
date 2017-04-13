@@ -31,6 +31,11 @@
   justify-content: flex-start;
 }
 
+.inner-box-item {
+  display:flex;
+  flex-flow: row nowrap;
+}
+
 .author-stats-icon {
   height: 20px;
   margin-left: 15px;
