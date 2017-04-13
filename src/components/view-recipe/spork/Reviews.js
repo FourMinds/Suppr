@@ -89,12 +89,13 @@ class Reviews extends Component {
     // when pristine, button is disabled
     // user can only press submit button when a rating is chosen
     // this happens through validateRating, which changes the disableRating state; then whether or not the button is disabled depends on disableSubmit
+    const hasReview = this.props.reviews.some(review => review.username === this.props.username)
     return (
       <div className="card-block">
       <div className="review-title">
         <h6>Reviews</h6>
         
-        {this.props.username && <button type="button" className="btn btn-primary review-button" data-toggle="modal" data-target="#reviewModal" data-whatever="@mdo">Write a Review</button>}
+        {this.props.username && <button type="button" className="btn btn-primary review-button" data-toggle="modal" data-target="#reviewModal" data-whatever="@mdo">{!hasReview?'Write a Review':'Edit Review'}</button>}
       </div>
       <hr/>
         {reviews.length?reviews:<h5>No reviews yet...</h5>}
