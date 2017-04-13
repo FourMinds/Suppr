@@ -7,13 +7,32 @@ const Dropdown = (props) => {
   const profileLink = `/profile/${props.username}`
   return (
     <li className="nav-item dropdown">
-      <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-        {props.username}
+      <a className="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+        <div className="drop-block">
+          <img src="http://i.imgur.com/hfH9CiC.png" className="drop-block-image"/>
+          Account
+          <i className="fa fa-angle-down drop-block-icon" aria-hidden="true"></i>
+        </div>
       </a>
       <div className="dropdown-menu dropdown-menu-right" aria-labelledby="Preview">
-        <a className="dropdown-item" href={profileLink}>My Profile</a>
-          <Link className="dropdown-item" to="/create">Create a Recipe</Link>
-        <a className="dropdown-item" href="#">Dropdown Link 3</a>
+        <a className="dropdown-item drop-inner-item" href={profileLink}>
+          <span className="drop-inner-item-text">
+            <i className="fa fa-user drop-inner-item-icon" aria-hidden="true"></i>
+            My Profile
+          </span>
+        </a>
+          <Link className="dropdown-item drop-inner-item" to="/create">
+            <span className="drop-inner-item-text">
+            <i className="fa fa-cutlery drop-inner-item-icon" aria-hidden="true"></i>
+              Create a Recipe
+            </span>
+          </Link>
+        <a className="dropdown-item drop-inner-item" href="/auth/signout">
+          <span className="drop-inner-item-text">
+            <i className="fa fa-sign-out drop-inner-item-icon" aria-hidden="true"></i>
+            Signout
+          </span>
+        </a>
       </div>
     </li>
   )
@@ -30,13 +49,7 @@ class Header extends Component {
           <Link className="nav-link" to="/auth/signup">Sign Up</Link>
         </li>
       ]
-    } else {
-      return [
-        <li className="nav-item" key={1}>
-          <Link className="nav-link" to="/auth/signout">Sign Out</Link>
-        </li>
-      ]
-    }
+    } 
   }
   render() {
     return (
@@ -46,10 +59,7 @@ class Header extends Component {
       </button>
       <Link className="navbar-brand" to="/">Suppr</Link>
       <div className="collapse navbar-collapse" id="navbarCollapse">
-        <ul className="navbar-nav mr-auto">
-          <li className="nav-item active">
-            <Link className="nav-link" to="/">Home <span className="sr-only">(current)</span></Link>
-          </li>   
+        <ul className="navbar-nav mr-auto">   
           {this.renderLinks()}
         </ul>
         <SearchBar />
