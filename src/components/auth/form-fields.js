@@ -3,16 +3,14 @@ import React from 'react';
 export const signinFields = {
   usernameField: username => (
     <fieldset className="form-group">
-      <label>Username:</label>
-      <input {...username.input} className="form-control rounded-0" />
+      <input {...username.input} className="form-control auth-input" placeholder="Username"/>
       {username.meta.touched && username.meta.error && <div className="error">{username.meta.error}</div>}
     </fieldset>
   ),
 
   passwordField: password => (
     <fieldset className="form-group">
-      <label>Password:</label>
-      <input {...password.input} type="password" className="form-control rounded-0" />
+      <input {...password.input} type="password" className="form-control auth-input" placeholder="Password"/>
       {password.meta.touched && password.meta.error && <div className="error">{password.meta.error}</div>}
     </fieldset>
   )
@@ -21,32 +19,28 @@ export const signinFields = {
 export const signupFields = {
   emailField: email => (
     <fieldset className="form-group">
-      <label>Email:</label>
-      <input className="form-control rounded-0" {...email.input} />
+      <input className="form-control auth-input" {...email.input} placeholder="Email"/>
       {email.meta.touched && email.meta.error && <div className="error">{email.meta.error}</div>}
     </fieldset>
   ),
 
   usernameField: username => (
     <fieldset className="form-group">
-      <label>Username:</label>
-      <input className="form-control rounded-0" {...username.input} />
+      <input className="form-control auth-input" {...username.input} placeholder="Username"/>
       {username.meta.touched && username.meta.error && <div className="error">{username.meta.error}</div>}
     </fieldset>
   ),
 
   passwordField: password => (
     <fieldset className="form-group">
-      <label>Password:</label>
-      <input className="form-control rounded-0" type="password" {...password.input} />
+      <input className="form-control auth-input" type="password" {...password.input} placeholder="Password"/>
       {password.meta.touched && password.meta.error && <div className="error">{password.meta.error}</div>}
     </fieldset>
   ), 
 
   passwordConfirmField: passwordConfirm => (
     <fieldset className="form-group">
-      <label>Confirm Password:</label>
-      <input className="form-control rounded-0" type="password" {...passwordConfirm.input} />
+      <input className="form-control auth-input" type="password" {...passwordConfirm.input} placeholder="Confirm Password"/>
       {passwordConfirm.meta.touched && passwordConfirm.meta.error && <div className="error">{passwordConfirm.meta.error}</div>}
     </fieldset>
   )

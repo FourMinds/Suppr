@@ -1,3 +1,29 @@
+.flex-body-auth {
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+  padding: 5px;
+  max-width: 380px;
+  margin: auto;
+}
+
+.auth-title {
+  margin-bottom: 20px;
+  color: #4e5b68;
+  align-self: flex-start;
+}
+
+.auth-check {
+  color: rgba(43, 50, 57, 0.45);
+  font-size: 15px;
+}
+
+.auth-input {
+  padding: 15px 13px;
+  line-height: 22px;
+  font-size: 17px;
+}
+
 .auth-flex-element {
   width: $auth-form-width;
   padding: 5px;
@@ -10,4 +36,8 @@
 .error {
   color: red;
   font-style: italic;
+}
+
+.btn-padded {
+  padding: 15px 18px;
 }

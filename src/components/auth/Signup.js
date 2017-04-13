@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { reduxForm, Field } from 'redux-form';
 import * as actions from '../../actions';
-import { signupFields } from './form-fields'
+import { signupFields } from './form-fields';
+import { Link } from 'react-router';
 
 const {emailField, usernameField, passwordField, passwordConfirmField} = signupFields
 
@@ -25,14 +26,21 @@ class Signup extends Component {
   render() {
     const { handleSubmit, submitting } = this.props;
     return (
-      <div className="flex-body">
+      <div className="flex-body-auth">
+      <h5 className="auth-title">Sign up for a new account</h5>
       <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))} className="auth-flex-element">
         <Field name="email" type="email" component={emailField} />
         <Field name="username" component={usernameField} />
         <Field name="password" component={passwordField} />
         <Field name="passwordConfirm" component={passwordConfirmField} />
         {this.renderAlert()}
-        <button action="submit" className="btn btn-primary" disabled={submitting}>Sign up</button>
+        <div>
+          <button action="submit" className="btn btn-primary btn-padded" disabled={submitting}>
+            Create Account 
+            <i className="fa fa-angle-right" style={{marginLeft:'10px'}} aria-hidden="true"></i>
+          </button>
+          <Link className="pull-right auth-check" to='/auth/signin'>Have an account?</Link>
+        </div>
       </form>
       </div>
     );
