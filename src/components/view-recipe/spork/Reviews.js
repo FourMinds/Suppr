@@ -93,9 +93,7 @@ class Reviews extends Component {
     return (
       <div className="card-block">
       <div className="review-title">
-        <h6>Reviews</h6>
-        
-        {this.props.username && <button type="button" className="btn btn-primary review-button" data-toggle="modal" data-target="#reviewModal" data-whatever="@mdo">{!hasReview?'Write a Review':'Edit Review'}</button>}
+        <h6>Reviews</h6>        
       </div>
       <hr/>
         {reviews.length?reviews:<h5>No reviews yet...</h5>}

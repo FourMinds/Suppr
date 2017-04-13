@@ -88,6 +88,7 @@ class Sidebar extends Component {
   render() {
     const selected = !this.props.sporkId ? 'side-item sidebar-selected' : 'side-item'
     const { username, recipeName } = this.props.recipe?this.props.recipe:'';
+    const hasReview = this.props.reviews.some(review => review.username === this.props.username)
     return (
       <nav className="navbar navbar-default" role="navigation">
       <a  href="#" className="navbar-toggle menu-toggle">
@@ -129,7 +130,13 @@ class Sidebar extends Component {
                     <a>Spork this recipe <img src="/assets/spork.png" style={{width: '8%', marginLeft: '5px'}}/></a>
                   </li>
                 }
-
+                {this.props.username && 
+                  <li data-toggle="modal" data-target="#reviewModal" data-whatever="@mdo">
+                    <a>
+                      {!hasReview?'Write a Review':'Edit Review'}<i className="fa fa-pencil" aria-hidden="true"></i>
+                    </a>
+                  </li>
+                }
                 <hr />
                 <label className="sidebar-item">Recipe:</label>
                 <li className={selected} onClick={() => {this.props.getReview(this.props.recipe.id);this.props.deselectVariation()}}>
@@ -150,7 +157,8 @@ function mapStateToProps(state) {
   return {
     username: state.auth.username,
     variations: state.recipes.variations,
-    selectedVariation: state.recipes.selectedVariation
+    selectedVariation: state.recipes.selectedVariation,
+    reviews: state.reviews.data
   }
 }
 
