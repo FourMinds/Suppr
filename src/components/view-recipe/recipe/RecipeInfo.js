@@ -29,8 +29,8 @@ class RecipeInfo extends Component {
          {this.state[i] ? (<img  className='empty-check' src="/assets/success.png" alt="success" name={i} />) :
          (<img  className='empty-check' src="/assets/oval.png" name={i} alt="oval" />)}
          </div>
-         <div className='ingredient-item'  style={{width: '400px'}}>
-         <span className='quantity-style'>{quantities[i]}</span>| {items[i]}
+         <div className='ingredient-item' >
+         <span><span className='quantity-style'>{quantities[i]}</span> <span style={{marginRight: '5px'}}>|</span> {items[i]}</span>
          </div>
          </div>)
        }

@@ -12,7 +12,6 @@ const client = new elasticsearch.Client({
 }) 
 
 client.ping({
-  // ping usually has a 3000ms timeout
   requestTimeout: 3000
 }, function (error) {
   if (error) {
