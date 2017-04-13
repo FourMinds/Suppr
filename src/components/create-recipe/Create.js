@@ -124,6 +124,10 @@ class Create extends Component {
             onChange={this.handleChange.bind(this)}
             inputValue={this.state.tag}
             onChangeInput={this.handleChangeInput.bind(this)}
+            inputProps={{
+              className: 'react-tagsinput-input create-input',
+              placeholder: 'Press return to add a tag'
+            }}
             tagProps={{className: 'react-tagsinput-tag', classNameRemove: 'react-tagsinput-remove'}}
             />
           {this.state.tags.length < 2

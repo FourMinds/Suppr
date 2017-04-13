@@ -349,6 +349,11 @@ a, a:hover {
   flex-flow: row wrap;
   padding: 5px; }
 
+.create-input {
+  padding: 10px 8px;
+  line-height: 22px;
+  font-size: 17px; }
+
 .inner-flex-body {
   display: flex;
   flex-flow: row nowrap;
@@ -673,7 +678,7 @@ body.busy .loading-modal {
   margin-top: 1px;
   outline: none;
   padding: 5px;
-  width: 80px; }
+  width: 160px; }
 
 /****************
 Font
