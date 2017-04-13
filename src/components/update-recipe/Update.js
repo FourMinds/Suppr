@@ -10,7 +10,16 @@ import Imgur from '../../imgur.js'
 
 import TagsInput from 'react-tagsinput'
 
-const {imageUrlField, recipeNameField, prepTimeField, cookTimeField, servingsField, difficultyField, descriptionField, instructionsField} = fields;
+const {
+  imageUrlField, 
+  recipeNameField,
+  prepTimeField, 
+  cookTimeField, 
+  servingsField, 
+  difficultyField, 
+  descriptionField, 
+  instructionsField
+} = fields;
 
 class Create extends Component {
   constructor() {
@@ -197,8 +206,6 @@ function mapStateToProps(state) {
   }, {})
   return { username: state.auth.username, initialValues: {...state.recipes.pushUpdate, ...quantityValues, ...itemsValues} };
 }
-
-// const {id, description, difficulty, id, imageUrl, ingredients, instructions, prepTime, cookTime, servings, tags} = this.props.data
 
 export default connect(mapStateToProps, actions)(reduxForm({
   form: 'create',

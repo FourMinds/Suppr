@@ -20,7 +20,7 @@ import Create from './components/create-recipe/Create';
 import Update from './components/update-recipe/Update';
 import Spork from './components/recipe-variation/Spork';
 import RecipeView from './components/view-recipe/RecipeView';
-import RequireAuth from './components/auth/require_auth';
+import RequireAuth from './components/auth/require-auth';
 import Profile from './components/profile/Profile';
 import FourOFour from './components/auth/FourOFour';
 

@@ -51,7 +51,7 @@ function validate(formProps) {
   if (!formProps.password) {
     errors.password = 'Please enter a password';
   }
-
+  
   return errors;
 }
 

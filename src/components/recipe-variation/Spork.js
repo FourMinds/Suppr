@@ -10,7 +10,16 @@ import Imgur from '../../imgur.js'
 
 import TagsInput from 'react-tagsinput'
 
-const {imageUrlField, recipeNameField, prepTimeField, cookTimeField, servingsField, difficultyField, descriptionField, instructionsField} = fields;
+const {
+  imageUrlField, 
+  recipeNameField,
+  prepTimeField, 
+  cookTimeField, 
+  servingsField, 
+  difficultyField, 
+  descriptionField, 
+  instructionsField
+} = fields;
 
 class Create extends Component {
   constructor() {

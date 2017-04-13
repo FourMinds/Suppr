@@ -23,7 +23,14 @@ class ShowVariation extends Component {
         <div className='tags-flex-box-style'>
           <div>
             <ul style={{display: 'flex',flexFlow: 'row wrap', justifyContent: 'flex-start'}}>
-              {tags?tags.map((tag, index) => <li style={{ cursor: 'pointer' }} key={index} onClick={()=>this.triggerSearch.call(this, tag)}><a className='tag'>{tag}</a></li>):''}
+              {tags ? tags.map((tag, index) => 
+                <li style={{ cursor: 'pointer' }} 
+                    key={index} 
+                    onClick={()=>this.triggerSearch.call(this, tag)}>
+                  <a className='tag'>{tag}</a>
+                </li>) 
+                : ''
+              }            
             </ul>
           </div>
         </div>

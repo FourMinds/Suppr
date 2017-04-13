@@ -57,7 +57,7 @@ class Reviews extends Component {
     const { id } = this.props.recipe ? this.props.recipe : '';
     const { username } = this.props;
     this.props.postReview({...formProps, recipeId: id, username});
-    $("#reviewModal .closer").click()
+    $("#reviewModal .closer").click();
   }
 
   // rating enabled if form value isn't Choose
@@ -136,7 +136,7 @@ function mapStatetoProps(state) {
     username: state.auth.username,
     recipe: state.recipes.selectedRecipe,
     reviews: state.reviews.data
-  }
+  };
 }
 
 // without initial values set to 'Choose...', the initial value of the rating is set to '1'

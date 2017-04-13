@@ -11,7 +11,7 @@ const queryField = query => (
 
 class SearchBar extends Component {
   handleFormSubmit({query}) {
-    this.props.triggerSearch(query)
+    this.props.triggerSearch(query);
   }
   
   render() {
@@ -19,8 +19,9 @@ class SearchBar extends Component {
     return (
       <form className="form-inline mt-2 mt-md-0" onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>>
         <Field name="query" component={queryField}></Field>
-        <button style={{cursor:'pointer'}} className="btn btn-outline-success my-2 my-sm-0" action="submit"><i className="fa fa-search" aria-hidden="true"></i>
-</button>
+        <button style={{cursor:'pointer'}} className="btn btn-outline-success my-2 my-sm-0" action="submit">
+          <i className="fa fa-search" aria-hidden="true"></i>
+        </button>
       </form>
 
     )

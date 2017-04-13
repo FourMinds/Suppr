@@ -24,15 +24,22 @@ class RecipeInfo extends Component {
      var lines = []
      for(var i = 0; i < quantities.length; i++){
        if(ingredients[i] !== ""){
-         lines.push(<div className='flex-body-ingredients' key={i}>
-         <div onClick={this.doneClick} id={i} >
-         {this.state[i] ? (<img  className='empty-check' src="/assets/success.png" alt="success" name={i} />) :
-         (<img  className='empty-check' src="/assets/oval.png" name={i} alt="oval" />)}
+         lines.push(
+          <div className='flex-body-ingredients' key={i}>
+            <div onClick={this.doneClick} id={i} >
+            {this.state[i] ? 
+              (<img  className='empty-check' src="/assets/success.png" alt="success" name={i} />) 
+              : (<img  className='empty-check' src="/assets/oval.png" name={i} alt="oval" />)}
+            </div>
+            <div className='ingredient-item' >
+              <span>
+                <span className='quantity-style'>{quantities[i]}</span> 
+                <span className="ingredient-divider">|</span> 
+                {items[i]}
+              </span>
+            </div>
          </div>
-         <div className='ingredient-item' >
-         <span><span className='quantity-style'>{quantities[i]}</span> <span className="ingredient-divider">|</span> {items[i]}</span>
-         </div>
-         </div>)
+        )
        }
      }
      return lines.map((line) => line)
@@ -46,8 +53,13 @@ class RecipeInfo extends Component {
       return instructionsArr.map((instruct, i) => {
         if(instruct !== ""){
           counter++;
-          return <div className="flex-body-instruction" key={i} ><div className="counter-style">{counter}.</div>
-            <div className="instruction-item" >{instruct.trim()}</div><br/></div>
+          return (
+              <div className="flex-body-instruction" key={i} >
+                <div className="counter-style">{counter}.</div>
+                <div className="instruction-item" >{instruct.trim()}</div>
+                <br/>
+              </div>
+            )
         }
         return undefined;
       });
