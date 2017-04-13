@@ -3,6 +3,9 @@ export default function validate(formProps) {
   if (!formProps.recipeName) {
     errors.recipeName = 'Please enter a recipe name';
   }
+  if (formProps.recipeName && formProps.recipeName.length > 52) {
+    errors.recipeName = 'The recipe name must be shorter than 52 characters';
+  }
   if (!formProps.imageUrl) {
     errors.imageUrl = 'Please enter an image URL';
   }
