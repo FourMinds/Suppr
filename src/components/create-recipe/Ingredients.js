@@ -23,38 +23,42 @@ class Ingredients extends Component {
     this.state = {
       total: 1
     }
-    this.renderForm = this.renderForm.bind(this)
+    this.renderForm = this.renderForm.bind(this);
   }
 
   handleAdd(e) {
-    let { total } = this.state
-    total += 1
-    this.setState({ total })
+    let { total } = this.state;
+    total += 1;
+    this.setState({ total });
   }
   handleRemove(e) {
-    let { total } = this.state
-    total = total > 1 ? total - 1 : total
-    this.setState({ total })
+    let { total } = this.state;
+    total = total > 1 ? total - 1 : total;
+    this.setState({ total });
   }
 
   renderForm() {  
     return Array(this.state.total).fill(1).map((v, i) => {
       let [quantity, items] = [`quantity${i}`, `items${i}`];
       return <Group quantity={quantity} items={items} key={i} index={i}/>
-    })
+    });
 
   }
                   
   render() {
     return (
       <div>
-      <section>
-       {this.renderForm()} 
-       </section>
-       <div className="ingredient-button-div">
-      <a className="btn btn-primary ingredient-button" style={{color: '#fff'}} onClick={this.handleAdd.bind(this)}><span className="fa fa-plus" aria-hidden="true"></span></a>
-      <a className="btn btn-primary ingredient-button" style={{color: '#fff'}} onClick={this.handleRemove.bind(this)}><span className="fa fa-minus" onClick={this.handleRemove.bind(this)} aria-hidden="true"></span></a>
-      </div>
+        <section>
+         {this.renderForm()} 
+        </section>
+         <div className="ingredient-button-div">
+          <a className="btn btn-primary ingredient-button" style={{color: '#fff'}} onClick={this.handleAdd.bind(this)}>
+            <span className="fa fa-plus" aria-hidden="true"></span>
+          </a>
+          <a className="btn btn-primary ingredient-button" style={{color: '#fff'}} onClick={this.handleRemove.bind(this)}>
+            <span className="fa fa-minus" onClick={this.handleRemove.bind(this)} aria-hidden="true"></span>
+          </a>
+        </div>
       </div>
     )
   }

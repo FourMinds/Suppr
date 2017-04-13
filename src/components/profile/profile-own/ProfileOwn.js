@@ -13,7 +13,7 @@ class ProfileOwn extends Component {
     this.state = {
       page: 0,
     }
-    this.handleClick = this.handleClick.bind(this)
+    this.handleClick = this.handleClick.bind(this);
   }
   componentWillMount() {
     this.props.getFavorites(this.props.username, true);
@@ -26,7 +26,7 @@ class ProfileOwn extends Component {
   }
 
   handleClick(e) {
-    this.setState({ page: Number(e.target.name) })
+    this.setState({ page: Number(e.target.name) });
   }
 
   renderPage() {
@@ -41,44 +41,45 @@ class ProfileOwn extends Component {
       const cards = this.props.userData.map(recipe => !recipe.parent_id&&<li key={recipe.id}><RecipeCard  recipe={recipe} /></li>)
       return (
         <div className="card-display" style={{paddingTop: '10px', paddingLeft:'5px'}}>
-        <Grid
-          component="ul"
-          columns={5}
-          columnWidth={315}
-          gutterWidth={5}
-          gutterHeight={15}
-          layout={layout.pinterest}
-          duration={200}
-          easing="ease-out"
-        >
-        {cards}
-      </Grid>
+          <Grid
+            component="ul"
+            columns={5}
+            columnWidth={315}
+            gutterWidth={5}
+            gutterHeight={15}
+            layout={layout.pinterest}
+            duration={200}
+            easing="ease-out"
+          >
+            {cards}
+        </Grid>
       </div>
-      )
+      );
     }
     if (this.state.page === 2) {
       const cards = this.props.userData.map(recipe => recipe.parent_id&&<li key={recipe.id}><RecipeCard  recipe={recipe} /></li>)
       return (
         <div className="card-display" style={{paddingTop: '10px', paddingLeft:'5px'}}>
-        <Grid
-          component="ul"
-          columns={5}
-          columnWidth={315}
-          gutterWidth={5}
-          gutterHeight={15}
-          layout={layout.pinterest}
-          duration={200}
-          easing="ease-out"
-        >
-        {cards}
-      </Grid>
+          <Grid
+            component="ul"
+            columns={5}
+            columnWidth={315}
+            gutterWidth={5}
+            gutterHeight={15}
+            layout={layout.pinterest}
+            duration={200}
+            easing="ease-out"
+          >
+            {cards}
+        </Grid>
       </div>
       )
     }
     if (this.state.page === 3) {
       const {data, favorites, variations} = this.props;
       const tiles = favorites.map(recipe => {
-        const recipeProp = data.filter(item => item.id === recipe.recipe_id)[0] || variations.filter(item => item.id === recipe.recipe_id)[0];
+        const recipeProp = data.filter(item => item.id === recipe.recipe_id)[0] || 
+                          variations.filter(item => item.id === recipe.recipe_id)[0];                    
         return <li key={recipe.id}><RecipeCard key={recipeProp.id} recipe={recipeProp}/></li>
       });
       return (
@@ -96,7 +97,7 @@ class ProfileOwn extends Component {
         {tiles}
       </Grid>
       </div>
-      )
+      );
     }
     if (this.state.page === 4) {
       let { follows } = this.props.followList
@@ -104,13 +105,13 @@ class ProfileOwn extends Component {
         <div>
         {follows.map((user,i) => <div key={i}><FollowTile user={user}/></div>)}
         </div>
-      )
+      );
     }
     if (this.state.page === 5) {
       let { followers } = this.props.followList
       return (
         followers.map((user,i) => <div key={i}><FollowTile user={user}/></div>)
-      )
+      );
     }
   }
 
@@ -154,7 +155,7 @@ function mapStateToProps(state) {
     data: state.recipes.data,
     followList: state.follows.data,
     variations: state.recipes.userVariations,
-  }
+  };
 }
 
 export default connect(mapStateToProps, actions)(ProfileOwn);

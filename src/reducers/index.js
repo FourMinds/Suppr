@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { reducer as form } from 'redux-form';
-import authReducer from './auth_reducer';
+import authReducer from './auth-reducer';
 import recipeReducer from './recipe-reducer';
 import reviewReducer from './review-reducer';
 import followReducer from './follow-reducer';

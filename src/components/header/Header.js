@@ -12,7 +12,7 @@ const Dropdown = (props) => {
       </a>
       <div className="dropdown-menu dropdown-menu-right" aria-labelledby="Preview">
         <a className="dropdown-item" href={profileLink}>My Profile</a>
-        <Link className="dropdown-item" to="/create">Create a Recipe</Link>
+          <Link className="dropdown-item" to="/create">Create a Recipe</Link>
         <a className="dropdown-item" href="#">Dropdown Link 3</a>
       </div>
     </li>
@@ -24,7 +24,7 @@ class Header extends Component {
     if (!this.props.authenticated) {
       return [
         <li className="nav-item" key={1}>
-              <Link className="nav-link" to="/auth/signin">Sign In</Link>
+          <Link className="nav-link" to="/auth/signin">Sign In</Link>
         </li>,
         <li className="nav-item" key={2}>
           <Link className="nav-link" to="/auth/signup">Sign Up</Link>
@@ -33,7 +33,7 @@ class Header extends Component {
     } else {
       return [
         <li className="nav-item" key={1}>
-              <Link className="nav-link" to="/auth/signout">Sign Out</Link>
+          <Link className="nav-link" to="/auth/signout">Sign Out</Link>
         </li>
       ]
     }
@@ -49,8 +49,7 @@ class Header extends Component {
         <ul className="navbar-nav mr-auto">
           <li className="nav-item active">
             <Link className="nav-link" to="/">Home <span className="sr-only">(current)</span></Link>
-          </li>
-          
+          </li>   
           {this.renderLinks()}
         </ul>
         <SearchBar />

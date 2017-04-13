@@ -24,18 +24,21 @@ class RecipeInfo extends Component {
      var lines = []
      for(var i = 0; i < quantities.length; i++){
        if(ingredients[i] !== ""){
-         lines.push(<div className='flex-body-ingredients' key={i}>
-         <div onClick={this.doneClick} id={i} >
-         {this.state[i] ? (<img  className='empty-check' src="/assets/success.png" alt="success" name={i} />) :
-         (<img  className='empty-check' src="/assets/oval.png" name={i} alt="oval" />)}
-         </div>
-         <div className='ingredient-item'  style={{width: '400px'}}>
-         <span className='quantity-style'>{quantities[i]}</span>| {items[i]}
-         </div>
-         </div>)
+        lines.push(
+          <div className='flex-body-ingredients' key={i}>
+            <div onClick={this.doneClick} id={i} >
+              {this.state[i] ? 
+                (<img  className='empty-check' src="/assets/success.png" alt="success" name={i} />) 
+                : (<img  className='empty-check' src="/assets/oval.png" name={i} alt="oval" />)}
+            </div>
+            <div className='ingredient-item'  style={{width: '400px'}}>
+              <span className='quantity-style'>{quantities[i]}</span>| {items[i]}
+            </div>
+          </div>
+        )
        }
      }
-     return lines.map((line) => line)
+     return lines.map((line) => line);
    }
   }
 
@@ -46,15 +49,20 @@ class RecipeInfo extends Component {
       return instructionsArr.map((instruct, i) => {
         if(instruct !== ""){
           counter++;
-          return <div className="flex-body-instruction" key={i} ><div className="counter-style">{counter}.</div>
-            <div className="instruction-item" >{instruct.trim()}</div><br/></div>
+          return (
+            <div className="flex-body-instruction" key={i} >
+              <div className="counter-style">{counter}.</div>
+              <div className="instruction-item" >{instruct.trim()}</div>
+              <br/>
+            </div>
+          )
         }
         return undefined;
       });
     }
   }
   render() {
-    const { instructions, ingredients } = this.props.recipe ? this.props.recipe:''
+    const { instructions, ingredients } = this.props.recipe ? this.props.recipe : ''
     return (
       <div className='flex-body'>
        <div className='ingredient-styles'>
@@ -74,6 +82,6 @@ class RecipeInfo extends Component {
 function mapStateToProps(state) {
   return {
     recipe: state.recipes.selectedVariation
-  }
+  };
 }
 export default connect(mapStateToProps, actions)(RecipeInfo);

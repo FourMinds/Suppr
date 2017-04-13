@@ -5,7 +5,12 @@ import * as actions from '../../actions';
 import { signupFields } from './form-fields';
 import { Link } from 'react-router';
 
-const {emailField, usernameField, passwordField, passwordConfirmField} = signupFields
+const {
+  emailField, 
+  usernameField, 
+  passwordField, 
+  passwordConfirmField
+} = signupFields;
 
 
 class Signup extends Component {

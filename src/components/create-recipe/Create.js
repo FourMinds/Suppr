@@ -10,7 +10,16 @@ import Imgur from '../../imgur.js'
 
 import TagsInput from 'react-tagsinput'
 
-const {imageUrlField, recipeNameField, prepTimeField, cookTimeField, servingsField, difficultyField, descriptionField, instructionsField} = fields;
+const {
+  imageUrlField, 
+  recipeNameField, 
+  prepTimeField, 
+  cookTimeField, 
+  servingsField, 
+  difficultyField, 
+  descriptionField, 
+  instructionsField
+} = fields;
 
 class Create extends Component {
   constructor() {
@@ -37,13 +46,13 @@ class Create extends Component {
   componentDidMount() {
     var feedback = (res) => {
       if (res.success === true) {
-        $('#image-container').show()
-        $('#image-container').addClass('image-preview-load')
-        $('#preview-image').attr('src', res.data.link)
-        $('#preview-image').show()
-        $('.col-md').hide()
-        $('#re-upload-button').removeClass('re-upload')
-        this.setState({ imageUrl: res.data.link, imageError: false })
+        $('#image-container').show();
+        $('#image-container').addClass('image-preview-load');
+        $('#preview-image').attr('src', res.data.link);
+        $('#preview-image').show();
+        $('.col-md').hide();
+        $('#re-upload-button').removeClass('re-upload');
+        this.setState({ imageUrl: res.data.link, imageError: false });
       }
     };
     new Imgur({
@@ -67,25 +76,24 @@ class Create extends Component {
 
   trySubmit() {
     if (!this.state.imageUrl) {
-      this.setState({ imageError: true })
+      this.setState({ imageError: true });
     }
   }
 
   reUploadImage() {
-    $('.col-md').show()
-    $('#image-container').hide()
-    $('#re-upload-button').addClass('re-upload')
-    $('#preview-image').attr('src', '')
-    this.setState({ imageUrl: '' })
+    $('.col-md').show();
+    $('#image-container').hide();
+    $('#re-upload-button').addClass('re-upload');
+    $('#preview-image').attr('src', '');
+    this.setState({ imageUrl: '' });
   }
 
   handleFormSubmit(formProps) {
-    // this enables validation of tags
     formProps.tags = this.state.tags;
     const { username } = this.props;
     const { recipeName, difficulty, cookTime, prepTime, servings, instructions, description } = formProps;
     const { tags, imageUrl } = this.state;
-    if (!imageUrl) return this.setState({ imageError:true })
+    if (!imageUrl) return this.setState({ imageError:true });
     const ingredients = Object.keys(formProps).reduce((list, val, i) => {
       let [quantity, items] = [`quantity${i}`, `items${i}`];
       if(formProps[quantity]) list.quantity.push(formProps[quantity]);
@@ -104,7 +112,7 @@ class Create extends Component {
       ingredients, 
       username,
       tags
-    })
+    });
   }
 
   render() {
