@@ -6,6 +6,10 @@ import Reviews from './spork/Reviews';
 import RecipeInfo from './spork/RecipeInfo';
 
 class ShowVariation extends Component {
+
+  triggerSearch(tag) {
+    this.props.triggerSearch(tag)
+  }
   
   render() {
     const { tags } = this.props.selectedVariation?this.props.selectedVariation:'';
@@ -19,7 +23,7 @@ class ShowVariation extends Component {
         <div className='tags-flex-box-style'>
           <div>
             <ul style={{display: 'flex',flexFlow: 'row wrap', justifyContent: 'flex-start'}}>
-              {tags?tags.map((tag, index) => <li key={index}><a className='tag'>{tag}</a></li>):''}
+              {tags?tags.map((tag, index) => <li style={{ cursor: 'pointer' }} key={index} onClick={()=>this.triggerSearch.call(this, tag)}><a className='tag'>{tag}</a></li>):''}
             </ul>
           </div>
         </div>

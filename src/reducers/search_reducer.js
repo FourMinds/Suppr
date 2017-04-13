@@ -9,7 +9,7 @@ const initialState = {
 export default function(state = initialState, action) {
   switch(action.type) {
     case SEARCH:
-      return {...state, searchResults: action.payload};
+      return {...state, searchResults: action.payload.data, query: action.payload.query };
     default:
       return state;
   } 
