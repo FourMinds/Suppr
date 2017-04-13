@@ -6,11 +6,9 @@ import * as fields from './form-fields';
 import Ingredients from './Ingredients';
 import validate from './validate'
 import $ from 'jquery';
-
+import Imgur from '../../imgur.js'
 
 import TagsInput from 'react-tagsinput'
-
-import 'react-tagsinput/react-tagsinput.css'
 
 const {imageUrlField, recipeNameField, prepTimeField, cookTimeField, servingsField, difficultyField, descriptionField, instructionsField} = fields;
 
@@ -19,10 +17,13 @@ class Create extends Component {
     super();
     this.state = {
       tags: [],
-      tag: ''
+      tag: '',
+      imageUrl: '',
+      imageError: false
     };
 
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.reUploadImage = this.reUploadImage.bind(this)
   }
 
   handleChange(tags) {
@@ -34,20 +35,24 @@ class Create extends Component {
   }
 
   componentDidMount() {
-    this.setState({tags: this.props.initialValues.tags})
-    const { imageUrl } = this.props.initialValues
-    $(document).ready(function() {
-      $("#preview-image").attr('src', imageUrl);
-      $("#preview-image").on("load", function(){
-        $(this).parent().removeClass('image-preview');
-        $(this).parent().addClass('image-preview-load');
-      })
-      $("#preview-image").on("error", function(){
-          $(this).attr('src', '');         
-      });
-      $("#image-input").on("input", function(){
-        if($(this).val() === '') $('#image-container').addClass('image-preview');        
-      });
+    this.setState({ 
+      tags: this.props.initialValues.tags,
+      imageUrl:  this.props.initialValues.imageUrl
+    })
+    var feedback = (res) => {
+      if (res.success === true) {
+        $('#image-container').show()
+        $('#image-container').addClass('image-preview-load')
+        $('#preview-image').attr('src', res.data.link)
+        $('#preview-image').show()
+        $('.col-md').hide()
+        $('#re-upload-button').removeClass('re-upload')
+        this.setState({ imageUrl: res.data.link })
+      }
+    };
+    new Imgur({
+        clientid: '2f82e4d530661d9',
+        callback: feedback
     });
   }
 
@@ -64,14 +69,21 @@ class Create extends Component {
     }
   }
 
+  reUploadImage() {
+    $('.col-md').show()
+    $('#image-container').hide()
+    $('#re-upload-button').addClass('re-upload')
+    $('#preview-image').attr('src', '')
+  }
+
   handleFormSubmit(formProps) {
     // this enables validation of tags
     formProps.tags = this.state.tags;
 
     const { username } = this.props;
     const { id } = this.props.initialValues;
-    const { recipeName, imageUrl, difficulty, cookTime, prepTime, servings, instructions, description } = formProps;
-    const { tags } = this.state;
+    const { recipeName, difficulty, cookTime, prepTime, servings, instructions, description } = formProps;
+    const { tags, imageUrl } = this.state;
     const ingredients = Object.keys(formProps).reduce((list, val, i) => {
       let [quantity, items] = [`quantity${i}`, `items${i}`];
       if (formProps[quantity]) list.quantity.push(formProps[quantity]);
@@ -122,7 +134,17 @@ class Create extends Component {
           : null }
         </div>
         <div className="create-flex-element-right">
-          <Field name="imageUrl" component={imageUrlField} />
+          <fieldset className="form-group">
+             <div className="col-md" style={{display: 'none'}}>
+                  <div className="dropzone" id="drop"></div>
+
+              </div>
+              <div id="image-container" className="image-preview-load">
+                <img alt="" id="preview-image" src={this.props.initialValues.imageUrl} />
+              </div>
+              <div className="flex-body"><a onClick={this.reUploadImage} id="re-upload-button" className="btn btn-primary text-center" style={{color: 'white', margin:'auto'}}>Upload a different image</a></div>
+              {this.state.imageError && <div className="error">Please upload an image</div>}
+            </fieldset>
           <div className="inner-flex-body">
           <div className="inner-flex-element">
           <Field name="prepTime" component={prepTimeField} />

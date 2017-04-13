@@ -6,10 +6,9 @@ import * as fields from './form-fields';
 import Ingredients from './Ingredients';
 import validate from './validate'
 import $ from 'jquery';
-
+import Imgur from '../../imgur.js'
 
 import TagsInput from 'react-tagsinput'
-
 
 const {imageUrlField, recipeNameField, prepTimeField, cookTimeField, servingsField, difficultyField, descriptionField, instructionsField} = fields;
 
@@ -47,22 +46,9 @@ class Create extends Component {
         this.setState({ imageUrl: res.data.link })
       }
     };
-    new window.Imgur({
+    new Imgur({
         clientid: '2f82e4d530661d9',
         callback: feedback
-    });
-
-    $(document).ready(function() {
-      $("#preview-image").on("load", function(){
-        $(this).parent().removeClass('image-preview');
-        $(this).parent().addClass('image-preview-load');
-      })
-      $("#preview-image").on("error", function(){
-          $(this).attr('src', '');         
-      });
-      $("#image-input").on("input", function(){
-        if($(this).val() === '') $('#image-container').addClass('image-preview')       
-      });
     });
   }
 
