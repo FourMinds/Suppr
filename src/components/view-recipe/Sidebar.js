@@ -102,31 +102,31 @@ class Sidebar extends Component {
       		<div id="sidebar-wrapper" className="sidebar-toggle">
       			<ul className="sidebar-nav">
                   <li className="menu-toggle sidebar-toggle-item">
-                    <a>Close <span className="pull-right" style={{marginRight: '10px'}}>x</span></a>
+                    <a>Close<i className="fa fa-times" aria-hidden="true" style={{marginLeft: '80px'}}></i></a>
                   </li>
       		    	{!this.props.selectedVariation && this.props.username===username &&
                   <li onClick={this.handleDelete.bind(this)}>
-                    <a >Delete Recipe</a>
+                    <a >Delete Recipe <i className="fa fa-trash-o" aria-hidden="true"></i></a>
                   </li>
                 }
                 {this.props.selectedVariation && this.props.username===this.props.selectedVariation.username &&
                   <li onClick={this.handleDeleteSpork.bind(this)}>
-                    <a >Delete this spork</a>
+                    <a >Delete this spork <i className="fa fa-trash-o" aria-hidden="true"></i></a>
                   </li>
                 }
                 {!this.props.selectedVariation && this.props.username===username &&
                   <li onClick={this.handleEdit.bind(this)}>
-                    <a >Edit</a>
+                    <a >Edit <i className="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                   </li>
                 }
                 {this.props.selectedVariation && this.props.username===this.props.selectedVariation.username &&
                   <li onClick={this.handleEditSpork.bind(this)}>
-                    <a >Edit this spork</a>
+                    <a >Edit this spork <i className="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                   </li>
                 }
                 {!this.props.selectedVariation && this.props.username &&
                   <li onClick={this.handleVariation.bind(this)}>
-                    <a>Spork this recipe</a>
+                    <a>Spork this recipe <img src="/assets/spork.png" style={{width: '8%', marginLeft: '5px'}}/></a>
                   </li>
                 }
 
