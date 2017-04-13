@@ -32,8 +32,8 @@ class Signin extends Component {
         <Field name="password" component={passwordField} />
         {this.renderAlert()}
         <div>
-        <button action="submit" className="btn btn-primary btn-padded">Sign in <i className="fa fa-angle-right" style={{marginLeft:'10px'}} aria-hidden="true"></i></button>
-        <Link className="pull-right auth-check" to='/auth/signup'>Don't have an account?</Link>
+          <button action="submit" className="btn btn-primary btn-padded">Sign in <i className="fa fa-angle-right" style={{marginLeft:'10px'}} aria-hidden="true"></i></button>
+          <Link className="pull-right auth-check" to='/auth/signup'>Don't have an account?</Link>
         </div>
       </form>
       </div>
