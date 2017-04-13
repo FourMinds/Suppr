@@ -63,11 +63,11 @@
   flex: 1 1 500px;
   padding: 10px;
   margin: 30px 15px 20px 20px;
-  min-height: 65vh; }
+  min-height: 500px; }
 
 .instructions-styles {
   flex: 1 1 500px;
-  height: 500px;
+  min-height: 500px;
   overflow: auto;
   padding: 10px;
   margin: 30px 20px 20px 15px; }
@@ -188,8 +188,9 @@
 .food-img {
   height: 250px;
   width: 350px;
-  background-size: 100% 100%;
-  margin: auto; }
+  margin: auto;
+  background-position: center center;
+  background-repeat: no-repeat; }
 
 .recipe-header-container {
   margin: auto;
@@ -554,10 +555,9 @@ body.busy .loading-modal {
   justify-content: spaced; }
 
 .tags-flex-box-style {
-  width: 1140px;
-  height: 60px;
-  margin-left: auto;
-  margin-right: auto; }
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 10px; }
 
 .tags-title {
   font-size: 15px;

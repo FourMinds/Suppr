@@ -15,7 +15,11 @@ class SearchPage extends Component {
     });
     const cards = this.renderCards.call(this);
     return (
+      <div>
+      {!!this.props.query && <h5 style={{margin: '0 0 20px 5px'}}>Showing results for "{this.props.query}"</h5>}
       <div className="card-display">
+      {!this.props.searchResults.length && <h5>No results</h5>}
+      
         <Grid
           component="ul"
           columns={5}
@@ -28,15 +32,14 @@ class SearchPage extends Component {
         >
         {cards||<li></li>}
       </Grid>
-    <div className="status"></div>
       </div>
-
+      </div>
     )
   }
 }
 
 function mapStateToProps(state) {
-  return { username: state.auth.username, searchResults: state.search.searchResults };
+  return { username: state.auth.username, searchResults: state.search.searchResults, query:state.search.query };
 }
 
 export default connect(mapStateToProps, actions)(SearchPage);

@@ -15,8 +15,10 @@
 .food-img {
   height: 250px;
   width: 350px;
-  background-size: 100% 100%;
+  // background-size: 100% 100%;
   margin: auto;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 
 .recipe-header-container {

@@ -39,8 +39,6 @@ class RecipeTile extends Component {
   recipeScore() {
     let score = this.props.reviews.reduce((acc, val) => { return acc + val.rating;}, 0) / this.props.reviews.length
     score = Math.round( score * 10 ) / 10;
-    // console.log("SCORE -----+-----", score)
-
   }
 
   render() {
@@ -49,7 +47,7 @@ class RecipeTile extends Component {
     return (
       <div className="flex-body">
         {/*{this.recipeScore()}*/}
-        <div className="food-img" style={{backgroundImage:url}}>
+        <div className="food-img center-cropped" style={{backgroundImage:url}}>
 
           {this.renderHeart()}
 

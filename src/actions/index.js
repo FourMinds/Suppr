@@ -375,8 +375,12 @@ export function search(query) {
       params: { query }
     })
       .then(res => {
-        dispatch({ type: SEARCH, payload: res.data })
+        dispatch({ type: SEARCH, payload: {
+          data: res.data,
+          query
+        } 
       })
+    })
   }
 }
 
