@@ -136,3 +136,81 @@
     background: -moz-linear-gradient(top, #4c8669, #24a866);
     background: linear-gradient(to bottom, #4c8669, #24a866);
 }
+
+// ***************imgur**********
+
+/*.dropzone {
+    border: 4px dashed #ccc;
+    height: 200px;
+    margin: 0 10px;
+    position: relative;
+    width: auto;
+}*/
+.dropzone {
+  border: 1px dashed black;
+  height: 250px;
+  width: 350px;
+  background-image: url("https://static.vecteezy.com/system/resources/previews/000/088/229/original/free-paper-tableware-vector-icons.jpg");
+  background-size: 100% 100%;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+.dropzone p {
+    height: 100%;
+    line-height: 40px;
+    margin: 0;
+    text-align: center;
+    width: 100%;
+}
+
+.dropzone input[type="file"] {
+    height: 100%;
+    left: 0;
+    outline: none;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.dropzone + .status {
+    border-radius: 5px;
+    margin: 10px 10px 0;
+    padding: 15px;
+    text-align: center;
+}
+
+.dropzone.dropzone-dragging {
+    border-color: black
+}
+
+.loading-modal {
+    background-color: rgba( 255, 255, 255, .8 );
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.loading-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -16px 0 0 -16px
+}
+
+body.busy .loading-modal {
+    display: block;
+}
+.col-md {
+            margin: 0 auto;
+            max-width: 500px
+        }
+
+.re-upload {
+  display: none;
+}

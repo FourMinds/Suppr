@@ -73,8 +73,8 @@
         },
         createDragZone: function () {
             var p, input;
-            // Drag your files here or click in this area.
-            p     = this.createEls('p', {}, '');
+
+            p     = this.createEls('p', {}, 'Drag your images here or click in this area.');
             input = this.createEls('input', {type: 'file', accept: 'image/*'});
 
             Array.prototype.forEach.call(this.dropzone, function (zone) {
