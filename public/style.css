@@ -90,7 +90,10 @@
 
 .quantity-style {
   font-weight: bold;
-  margin-right: 15px; }
+  margin-right: 10px; }
+
+.ingredient-divider {
+  margin-right: 10px; }
 
 .flex-body-instruction {
   justify-content: flex-start;
@@ -107,7 +110,6 @@
   display: flex; }
 
 .flex-body-ingredients {
-  height: 25px;
   display: flex;
   justify-content: flex-start;
   margin-bottom: 20px; }
@@ -115,12 +117,12 @@
 .empty-check {
   display: flex;
   width: 25px;
-  height: 25px; }
+  height: 25px;
+  min-width: 25px; }
 
 .ingredient-item {
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  flex-flow: row nowrap;
   justify-content: flex-start;
   font-size: 20px;
   margin-left: 20px; }
