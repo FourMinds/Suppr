@@ -5,19 +5,6 @@ import { CSSGrid, layout, makeResponsive, measureItems } from 'react-stonecutter
 import RecipeCard from '../landing/RecipeCard';
 
 class SearchPage extends Component {
-  componentDidMount() {
-    var feedback = function (res) {
-      if (res.success === true) {
-        console.log(res.data.link)
-          document.querySelector('.status').classList.add('bg-success');
-          document.querySelector('.status').innerHTML = 'Image url: ' + res.data.link;
-      }
-    };
-    new window.Imgur({
-        clientid: '2f82e4d530661d9',
-        callback: feedback
-    });
-  }
   renderCards() {
     return this.props.searchResults ? this.props.searchResults.map((recipe, i) => <li key={i}><RecipeCard recipe={recipe._source} key={i}/></li>) : ''
   }
@@ -41,9 +28,6 @@ class SearchPage extends Component {
         >
         {cards||<li></li>}
       </Grid>
-      <div className="col-md">
-        <div className="dropzone"><p>Drag your files here or click in this area.</p><input type="file" accept="image/*" /></div>
-    </div>
     <div className="status"></div>
       </div>
 

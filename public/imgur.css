@@ -1,9 +1,18 @@
-.dropzone {
+/*.dropzone {
     border: 4px dashed #ccc;
     height: 200px;
     margin: 0 10px;
     position: relative;
     width: auto;
+}*/
+.dropzone {
+    border: 1px dashed black;
+  height: 250px;
+  width: 350px;
+  background-image: url("https://static.vecteezy.com/system/resources/previews/000/088/229/original/free-paper-tableware-vector-icons.jpg");
+  background-size: 100% 100%;
+  margin: auto;
+  margin-bottom: 10px;
 }
 
 .dropzone p {

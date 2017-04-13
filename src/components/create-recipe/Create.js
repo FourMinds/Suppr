@@ -18,7 +18,8 @@ class Create extends Component {
     super();
     this.state = {
       tags: [],
-      tag: ''
+      tag: '',
+      imageUrl: ''
     };
 
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -33,6 +34,22 @@ class Create extends Component {
   }
 
   componentDidMount() {
+    var feedback = (res) => {
+      $('.col-md').hide()
+      if (res.success === true) {
+        $('#image-container').addClass('image-preview-load')
+        $('#preview-image').attr('src', res.data.link)
+        $('#preview-image').show()
+        $('.col-md').hide()
+        $('.dropzone').removeClass('dropzone')
+        this.setState({ imageUrl: res.data.link })
+      }
+    };
+    new window.Imgur({
+        clientid: '2f82e4d530661d9',
+        callback: feedback
+    });
+
     $(document).ready(function() {
       $("#preview-image").on("load", function(){
         $(this).parent().removeClass('image-preview');
@@ -63,10 +80,9 @@ class Create extends Component {
   handleFormSubmit(formProps) {
     // this enables validation of tags
     formProps.tags = this.state.tags;
-
     const { username } = this.props;
-    const { recipeName, imageUrl, difficulty, cookTime, prepTime, servings, instructions, description } = formProps;
-    const { tags } = this.state;
+    const { recipeName, difficulty, cookTime, prepTime, servings, instructions, description } = formProps;
+    const { tags, imageUrl } = this.state;
     const ingredients = Object.keys(formProps).reduce((list, val, i) => {
       let [quantity, items] = [`quantity${i}`, `items${i}`];
       if(formProps[quantity]) list.quantity.push(formProps[quantity]);
@@ -116,7 +132,13 @@ class Create extends Component {
           : null }
         </div>
         <div className="create-flex-element-right">
-          <Field name="imageUrl" component={imageUrlField} />
+          <fieldset className="form-group">
+             <div className="col-md">
+                  <div className="dropzone"></div>
+
+              </div>
+              <div id="image-container"><img alt="" id="preview-image" src="" style={{display: 'none'}}/></div>
+            </fieldset>
           <div className="inner-flex-body">
           <div className="inner-flex-element">
           <Field name="prepTime" component={prepTimeField} />
