@@ -23,7 +23,7 @@ class Create extends Component {
     };
 
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
-    this.reUploadImage = this.reUploadImage.bind(this)
+    this.reUploadImage = this.reUploadImage.bind(this);
   }
 
   handleChange(tags) {
@@ -47,7 +47,7 @@ class Create extends Component {
         $('#preview-image').show()
         $('.col-md').hide()
         $('#re-upload-button').removeClass('re-upload')
-        this.setState({ imageUrl: res.data.link })
+        this.setState({ imageUrl: res.data.link, imageError: false })
       }
     };
     new Imgur({
@@ -69,11 +69,18 @@ class Create extends Component {
     }
   }
 
+  trySubmit() {
+    if (!this.state.imageUrl) {
+      this.setState({ imageError: true })
+    }
+  }
+
   reUploadImage() {
-    $('.col-md').show()
-    $('#image-container').hide()
-    $('#re-upload-button').addClass('re-upload')
-    $('#preview-image').attr('src', '')
+    $('.col-md').show();
+    $('#image-container').hide();
+    $('#re-upload-button').addClass('re-upload');
+    $('#preview-image').attr('src', '');
+    this.setState({ imageUrl: '' });
   }
 
   handleFormSubmit(formProps) {
@@ -142,7 +149,13 @@ class Create extends Component {
               <div id="image-container" className="image-preview-load">
                 <img alt="" id="preview-image" src={this.props.initialValues.imageUrl} />
               </div>
-              <div className="flex-body"><a onClick={this.reUploadImage} id="re-upload-button" className="btn btn-primary text-center" style={{color: 'white', margin:'auto'}}>Upload a different image</a></div>
+              <div className="flex-body"><a onClick={this.reUploadImage} 
+                id="re-upload-button" 
+                className="btn btn-primary text-center" 
+                style={{color: 'white', margin:'auto'}}>
+                Remove image
+              </a>
+              </div>
               {this.state.imageError && <div className="error">Please upload an image</div>}
             </fieldset>
           <div className="inner-flex-body">
@@ -157,7 +170,7 @@ class Create extends Component {
           <Field name="difficulty" component={difficultyField} />
         </div>
         
-        <button action="submit" className="btn btn-primary form-control submit-button" >Submit</button> 
+        <button action="submit" className="btn btn-primary form-control submit-button" onClick={this.trySubmit.bind(this)}>Submit</button> 
       </div>
       </form>
     )

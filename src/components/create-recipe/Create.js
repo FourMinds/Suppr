@@ -43,7 +43,7 @@ class Create extends Component {
         $('#preview-image').show()
         $('.col-md').hide()
         $('#re-upload-button').removeClass('re-upload')
-        this.setState({ imageUrl: res.data.link })
+        this.setState({ imageUrl: res.data.link, imageError: false })
       }
     };
     new Imgur({
@@ -65,11 +65,18 @@ class Create extends Component {
     }
   }
 
+  trySubmit() {
+    if (!this.state.imageUrl) {
+      this.setState({ imageError: true })
+    }
+  }
+
   reUploadImage() {
     $('.col-md').show()
     $('#image-container').hide()
     $('#re-upload-button').addClass('re-upload')
     $('#preview-image').attr('src', '')
+    this.setState({ imageUrl: '' })
   }
 
   handleFormSubmit(formProps) {
@@ -78,7 +85,7 @@ class Create extends Component {
     const { username } = this.props;
     const { recipeName, difficulty, cookTime, prepTime, servings, instructions, description } = formProps;
     const { tags, imageUrl } = this.state;
-    if (!imageUrl) this.setState({imageError:true})
+    if (!imageUrl) return this.setState({ imageError:true })
     const ingredients = Object.keys(formProps).reduce((list, val, i) => {
       let [quantity, items] = [`quantity${i}`, `items${i}`];
       if(formProps[quantity]) list.quantity.push(formProps[quantity]);
@@ -129,15 +136,21 @@ class Create extends Component {
         </div>
         <div className="create-flex-element-right">
           <fieldset className="form-group">
-             <div className="col-md">
-                  <div className="dropzone" id="drop"></div>
-
-              </div>
-              <div id="image-container">
-                <img alt="" id="preview-image" src="" style={{display: 'none'}}/>
-              </div>
-              <div className="flex-body"><a onClick={this.reUploadImage} id="re-upload-button" className="btn re-upload btn-primary text-center" style={{color: 'white', margin:'auto'}}>Upload a different image</a></div>
-              {this.state.imageError && <div className="error">Please upload an image</div>}
+            <div className="col-md">
+              <div className="dropzone" id="drop"></div>
+            </div>
+            <div id="image-container">
+              <img alt="" id="preview-image" src="" style={{display: 'none'}}/>
+            </div>
+            <div className="flex-body">
+              <a onClick={this.reUploadImage} 
+                id="re-upload-button" 
+                className="btn re-upload btn-primary text-center" 
+                style={{color: 'white', margin:'auto'}}>
+                Remove Image
+              </a>
+            </div>
+            {this.state.imageError && <div className="text-center error">Please upload an image</div>}
             </fieldset>
           <div className="inner-flex-body">
           <div className="inner-flex-element">
@@ -151,7 +164,7 @@ class Create extends Component {
           <Field name="difficulty" component={difficultyField} />
         </div>
         
-        <button action="submit" className="btn btn-primary form-control submit-button" >Submit</button> 
+        <button action="submit" className="btn btn-primary form-control submit-button" onClick={this.trySubmit.bind(this)} >Submit</button> 
       </div>
       </form>
     )
