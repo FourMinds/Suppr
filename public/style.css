@@ -602,9 +602,8 @@ body.busy .loading-modal {
 
 .react-tagsinput-tag {
   background-color: #24a866;
-  border-radius: 200px;
   border: 1px solid #24a866;
-  color: #638421;
+  color: black;
   display: inline-block;
   font-family: sans-serif;
   font-size: 13px;
