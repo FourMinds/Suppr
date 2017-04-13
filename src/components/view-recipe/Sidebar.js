@@ -119,7 +119,7 @@ class Sidebar extends Component {
                     <a >Edit</a>
                   </li>
                 }
-                {this.props.selectedVariation && this.props.username===username &&
+                {this.props.selectedVariation && this.props.username===this.props.selectedVariation.username &&
                   <li onClick={this.handleEditSpork.bind(this)}>
                     <a >Edit this spork</a>
                   </li>
