@@ -1,11 +1,15 @@
+import $ from 'jquery'
+
 export default function validate(formProps) {
+  console.log(formProps)
+  console.log($('.status').innerHTML)
   const errors = {};
   if (!formProps.recipeName) {
     errors.recipeName = 'Please enter a recipe name';
   }
-  if (!formProps.imageUrl) {
-    errors.imageUrl = 'Please enter an image URL';
-  }
+  // if (!formProps.imageUrl) {
+  //   errors.imageUrl = 'Please upload an image';
+  // }
   if (isNaN(formProps.prepTime)) {
     errors.prepTime = 'Please enter a number';
   }

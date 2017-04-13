@@ -1,13 +1,8 @@
 import React from 'react';
-
-export const imageUrlField = imageUrl => (
-  <fieldset className="form-group">
-    <div className="image-preview" id="image-container"><img alt="" id="preview-image" src={imageUrl.input.value} /></div>
-    <label>Image URL</label>
-    <input {...imageUrl.input} className="form-control rounded-0" id="image-input"/>
-    {imageUrl.meta.touched && imageUrl.meta.error && <div className="error">{imageUrl.meta.error}</div>}
-  </fieldset>
-)
+ // <div className="image-preview" id="image-container"><img alt="" id="preview-image" src={imageUrl.input.value} /></div>
+ //    <label>Image URL</label>
+ //    <input {...imageUrl.input} className="form-control rounded-0" id="image-input"/>
+ //    {imageUrl.meta.touched && imageUrl.meta.error && <div className="error">{imageUrl.meta.error}</div>}
 
 export const prepTimeField = prepTime => (
   <fieldset className="form-group">
