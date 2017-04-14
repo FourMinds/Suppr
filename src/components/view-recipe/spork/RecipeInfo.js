@@ -31,7 +31,7 @@ class RecipeInfo extends Component {
                 (<img  className='empty-check' src="/assets/success.png" alt="success" name={i} />) 
                 : (<img  className='empty-check' src="/assets/oval.png" name={i} alt="oval" />)}
             </div>
-            <div className='ingredient-item'  style={{width: '400px'}}>
+            <div className='ingredient-item'>
               <span className='quantity-style'>{quantities[i]}</span>| {items[i]}
             </div>
           </div>
