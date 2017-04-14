@@ -105,7 +105,7 @@ class Sidebar extends Component {
       		<div id="sidebar-wrapper" className="sidebar-toggle">
       			<ul className="sidebar-nav">
               <li className="menu-toggle sidebar-toggle-item">
-                <a>Close<i className="fa fa-times" aria-hidden="true" style={{marginLeft: '80px'}}></i></a>
+                <a>Close<i className="fa fa-times" aria-hidden="true" style={{marginLeft: '80px', fontSize: '30px'}}></i></a>
               </li>
     		    	{!this.props.selectedVariation && this.props.username===username &&
               <li onClick={this.handleDelete.bind(this)}>
