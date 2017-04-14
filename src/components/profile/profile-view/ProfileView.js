@@ -18,6 +18,7 @@ class ProfileView extends Component {
 
   componentDidMount() {
     this.props.getRecipes();
+    this.props.getUserInfo(this.props.viewUsername)
     this.props.getFavorites(this.props.viewUsername, false)
     this.props.getFollows(this.props.username)
     this.props.getFollows(this.props.viewUsername, false)
@@ -115,6 +116,21 @@ class ProfileView extends Component {
     }
   }
 
+  renderInfo() {
+    const { viewUsername } = this.props;
+    if(this.props.info[viewUsername]) {
+      const {favoritesCount, followersCount, followsCount, recipesCount, sporksCount} = this.props.info[viewUsername]
+      return (
+        <div className="author-stats-box profile-stats ">
+          <div className="inner-box-item"><img className="author-stats-icon" src="/assets/salad.png" alt="Recipes" title="recipes"/>{recipesCount}</div>
+          <div className="inner-box-item"><img className="author-stats-icon" src="/assets/spork.png" alt="Sporks" title="sporks"/>{sporksCount}</div>
+          <div className="inner-box-item"><img className="author-stats-icon" src="/assets/follower.png" alt="Followers" title="followers"/>{followersCount}</div>
+          <div className="inner-box-item"><img className="author-stats-icon" src="/assets/favorited.png" alt="Favorited count" title="likes"/>{favoritesCount}</div>
+        </div>
+      )
+    }
+  }
+
   renderButtonCaption() {
     const { follows } = this.props.followList;
     if (follows && follows.some(follow => follow === this.props.viewUsername)) {
@@ -130,9 +146,20 @@ class ProfileView extends Component {
   render() {
     return (
       <div>
-      <span style={{fontSize: '30px'}}>{this.props.viewUsername}</span>
-      <button className="btn btn-primary" onClick={this.handleFollowButton.bind(this)}>{this.renderButtonCaption()}</button>
-      <ul className="nav nav-tabs">
+      <div className="profile-header">
+        <span className="profile-title">{this.props.viewUsername}</span>
+        <button className="btn btn-primary btn-follow" onClick={this.handleFollowButton.bind(this)}>{this.renderButtonCaption()}</button>
+      </div>
+      {this.renderInfo()}
+      <div className="profile-top-box">
+        <div className="profile-pic">
+          <a href="#" className="profile-link">
+          <img className="profile-img-top x-large" 
+              src="https://secure.gravatar.com/avatar/6e9387de9c9dfa657aa9b518d92e6871?d=https%3A//daks2k3a4ib2z.cloudfront.net/img/profile-user.png" />
+          </a>
+        </div>
+      </div>
+      <ul className="nav profile-bottom">
         <li className="nav-item tab">
           <a className="nav-link active" href="#" name="0" onClick={this.handleClick}>Profile</a>
         </li>
@@ -153,6 +180,7 @@ class ProfileView extends Component {
         </li>
       </ul>
       <div>
+      <hr className="no-top-margin"/>
         {this.renderPage()}
       </div>
     </div>
@@ -167,7 +195,8 @@ function mapStateToProps(state) {
     username: state.auth.username,
     followList: state.follows.data,
     favorites: state.favorites.dataForUser,
-    data: state.recipes.data
+    data: state.recipes.data,
+    info: state.userInfo
   }
 }
 
