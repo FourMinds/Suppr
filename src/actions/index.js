@@ -171,7 +171,7 @@ export function getRecipeById(id) {
         dispatch({ type: GET_RECIPE_ID, payload: res.data });
         dispatch(getReview(id));
       })
-        .catch(e => browserHistory.push('/error'))
+        .catch(e => browserHistory.replace('/error'))
   }
 }
 
