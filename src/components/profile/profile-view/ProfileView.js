@@ -119,9 +119,9 @@ class ProfileView extends Component {
   renderButtonCaption() {
     const { follows } = this.props.followList;
     if (follows && follows.some(follow => follow === this.props.viewUsername)) {
-      return 'Unfollow'
+      return <span><i className="fa fa-user-plus icon-gap" aria-hidden="true"></i>Unfollow</span>
     }
-    return 'Follow'
+    return <span><i className="fa fa-user-plus icon-gap" aria-hidden="true"></i>Follow</span>
   }
 
   handleFollowButton() {
@@ -133,7 +133,7 @@ class ProfileView extends Component {
       <div>
       <div className="profile-header">
         <span className="profile-title">{this.props.viewUsername}</span>
-        <button className="btn btn-primary btn-follow" onClick={this.handleFollowButton.bind(this)}>{this.renderButtonCaption()}</button>
+        <span className="btn-follow" onClick={this.handleFollowButton.bind(this)}>{this.renderButtonCaption()}</span>
       </div>
       <UserStats username={this.props.viewUsername} />
       <div className="profile-top-box">
