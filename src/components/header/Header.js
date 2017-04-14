@@ -27,12 +27,12 @@ const Dropdown = (props) => {
               Create a Recipe
             </span>
           </Link>
-        <a className="dropdown-item drop-inner-item" href="/auth/signout">
+        <Link className="dropdown-item drop-inner-item" to="/auth/signout">
           <span className="drop-inner-item-text">
             <i className="fa fa-sign-out drop-inner-item-icon" aria-hidden="true"></i>
             Signout
           </span>
-        </a>
+        </Link>
       </div>
     </li>
   )
