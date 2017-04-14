@@ -58,7 +58,6 @@ export function signupUser({ email, username, password }) {
 
 export function getUsername(token) {
   return function(dispatch) {
-    dispatch({ type: AUTH_USER });
     axios.get(`${server}/username`, {
       headers: {
         authorization: token
