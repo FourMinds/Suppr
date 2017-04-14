@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../../actions';
 import RecipeCard from '../../landing/RecipeCard';
 import FollowTile from './FollowTile';
+import UserStats from '../UserStats';
 import { CSSGrid, layout, makeResponsive, measureItems } from 'react-stonecutter';
 import $ from 'jquery';
 
@@ -18,7 +19,6 @@ class ProfileView extends Component {
 
   componentDidMount() {
     this.props.getRecipes();
-    this.props.getUserInfo(this.props.viewUsername)
     this.props.getFavorites(this.props.viewUsername, false)
     this.props.getFollows(this.props.username)
     this.props.getFollows(this.props.viewUsername, false)
@@ -36,7 +36,7 @@ class ProfileView extends Component {
   renderPage() {
     const Grid = makeResponsive(measureItems(CSSGrid, { measureImages: true }), {
       maxWidth: 1920,
-      minPadding: 100
+      minPadding: 0
     });
     if (this.state.page === 0) {
       return <div>Under Construction... </div>
@@ -44,7 +44,7 @@ class ProfileView extends Component {
     if (this.state.page === 1) {
       const cards = this.props.userData.map(recipe => !recipe.parent_id&&<li key={recipe.id}><RecipeCard recipe={recipe} /></li>)
       return (
-        <div className="card-display" style={{paddingTop: '10px', paddingLeft:'5px'}}>
+        <div className="card-display">
         <Grid
           component="ul"
           columns={5}
@@ -63,7 +63,7 @@ class ProfileView extends Component {
     if (this.state.page === 2) {
       const cards = this.props.userData.map(recipe => recipe.parent_id&&<li key={recipe.id}><RecipeCard recipe={recipe} /></li>)
       return (
-        <div className="card-display" style={{paddingTop: '10px', paddingLeft:'5px'}}>
+        <div className="card-display">
         <Grid
           component="ul"
           columns={5}
@@ -86,7 +86,7 @@ class ProfileView extends Component {
         return <li><RecipeCard key={recipeProp.id} recipe={recipeProp} /></li>
       })
       return (
-        <div className="card-display" style={{paddingTop: '10px', paddingLeft:'5px'}}>
+        <div className="card-display">
         <Grid
           component="ul"
           columns={5}
@@ -116,21 +116,6 @@ class ProfileView extends Component {
     }
   }
 
-  renderInfo() {
-    const { viewUsername } = this.props;
-    if(this.props.info[viewUsername]) {
-      const {favoritesCount, followersCount, followsCount, recipesCount, sporksCount} = this.props.info[viewUsername]
-      return (
-        <div className="author-stats-box profile-stats ">
-          <div className="inner-box-item"><img className="author-stats-icon" src="/assets/salad.png" alt="Recipes" title="recipes"/>{recipesCount}</div>
-          <div className="inner-box-item"><img className="author-stats-icon" src="/assets/spork.png" alt="Sporks" title="sporks"/>{sporksCount}</div>
-          <div className="inner-box-item"><img className="author-stats-icon" src="/assets/follower.png" alt="Followers" title="followers"/>{followersCount}</div>
-          <div className="inner-box-item"><img className="author-stats-icon" src="/assets/favorited.png" alt="Favorited count" title="likes"/>{favoritesCount}</div>
-        </div>
-      )
-    }
-  }
-
   renderButtonCaption() {
     const { follows } = this.props.followList;
     if (follows && follows.some(follow => follow === this.props.viewUsername)) {
@@ -150,7 +135,7 @@ class ProfileView extends Component {
         <span className="profile-title">{this.props.viewUsername}</span>
         <button className="btn btn-primary btn-follow" onClick={this.handleFollowButton.bind(this)}>{this.renderButtonCaption()}</button>
       </div>
-      {this.renderInfo()}
+      <UserStats username={this.props.viewUsername} />
       <div className="profile-top-box">
         <div className="profile-pic">
           <a href="#" className="profile-link">
@@ -196,7 +181,6 @@ function mapStateToProps(state) {
     followList: state.follows.data,
     favorites: state.favorites.dataForUser,
     data: state.recipes.data,
-    info: state.userInfo
   }
 }
 
