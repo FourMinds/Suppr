@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../../actions';
 import RecipeCard from '../../landing/RecipeCard';
 import FollowTile from './FollowTile';
+import UserStats from '../UserStats'
 import { CSSGrid, layout, makeResponsive, measureItems } from 'react-stonecutter';
 import $ from 'jquery';
 
@@ -16,7 +17,6 @@ class ProfileOwn extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
   componentWillMount() {
-    this.props.getUserInfo(this.props.username)
     this.props.getFavorites(this.props.username, true);
     this.props.getFollows(this.props.username);
     this.props.getRecipesByUsername(this.props.username);
@@ -33,7 +33,7 @@ class ProfileOwn extends Component {
   renderPage() {
     const Grid = makeResponsive(measureItems(CSSGrid, { measureImages: true }), {
       maxWidth: 1920,
-      minPadding: 100
+      minPadding: 0
     });
     if (this.state.page === 0) {
       return <div>Under Construction... </div>
@@ -41,7 +41,7 @@ class ProfileOwn extends Component {
     if (this.state.page === 1) {
       const cards = this.props.userData.map(recipe => !recipe.parent_id&&<li key={recipe.id}><RecipeCard  recipe={recipe} /></li>)
       return (
-        <div className="card-display" style={{paddingTop: '10px', paddingLeft:'5px'}}>
+        <div className="card-display">
           <Grid
             component="ul"
             columns={5}
@@ -60,7 +60,7 @@ class ProfileOwn extends Component {
     if (this.state.page === 2) {
       const cards = this.props.userData.map(recipe => recipe.parent_id&&<li key={recipe.id}><RecipeCard  recipe={recipe} /></li>)
       return (
-        <div className="card-display" style={{paddingTop: '10px', paddingLeft:'5px'}}>
+        <div className="card-display">
           <Grid
             component="ul"
             columns={5}
@@ -88,7 +88,7 @@ class ProfileOwn extends Component {
         <Grid
           component="ul"
           columns={5}
-          columnWidth={330}
+          columnWidth={315}
           gutterWidth={5}
           gutterHeight={15}
           layout={layout.pinterest}
@@ -116,28 +116,14 @@ class ProfileOwn extends Component {
     }
   }
 
-  renderInfo() {
-    const { username } = this.props;
-    if(this.props.info[username]) {
-      const {favoritesCount, followersCount, followsCount, recipesCount, sporksCount} = this.props.info[username]
-      return (
-        <div className="author-stats-box profile-stats ">
-          <div className="inner-box-item"><img className="author-stats-icon" src="/assets/salad.png" alt="Recipes" title="recipes"/>{recipesCount}</div>
-          <div className="inner-box-item"><img className="author-stats-icon" src="/assets/spork.png" alt="Sporks" title="sporks"/>{sporksCount}</div>
-          <div className="inner-box-item"><img className="author-stats-icon" src="/assets/follower.png" alt="Followers" title="followers"/>{followersCount}</div>
-          <div className="inner-box-item"><img className="author-stats-icon" src="/assets/favorited.png" alt="Favorited count" title="likes"/>{favoritesCount}</div>
-        </div>
-      )
-    }
-  }
-
   render() {
     return (
-      <div className="profile-top">
+      <div>
+
       <div className="profile-header">
         <span className="profile-title">{this.props.username}</span>
       </div>
-      {this.renderInfo()}
+      <UserStats username={this.props.username} />
       <div className="profile-top-box">
         <div className="profile-pic">
           <a href="#" className="profile-link">
@@ -145,7 +131,6 @@ class ProfileOwn extends Component {
               src="https://secure.gravatar.com/avatar/6e9387de9c9dfa657aa9b518d92e6871?d=https%3A//daks2k3a4ib2z.cloudfront.net/img/profile-user.png" />
           </a>
         </div>
-
       </div>
 
       <ul className="nav profile-bottom">
@@ -171,7 +156,7 @@ class ProfileOwn extends Component {
       <div>
       <hr className="no-top-margin"/>
       {this.renderPage()}
-    </div>
+      </div>
     </div>
     )
   }
@@ -185,7 +170,6 @@ function mapStateToProps(state) {
     data: state.recipes.data,
     followList: state.follows.data,
     variations: state.recipes.userVariations,
-    info: state.userInfo
   };
 }
 
