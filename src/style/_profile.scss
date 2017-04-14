@@ -63,9 +63,17 @@ img.profile-img {
 }
 
 .btn-follow {
-  margin-left: 10px;
-  margin-top: -10px;
-  z-index: 1000;
+  margin-left: 30px;
+  top: 10px;
+  position: absolute;
+  cursor: pointer;
+  border: 1px solid $theme-primary;
+  padding: 7px;
+  border-radius: 2px;
+}
+
+.icon-gap {
+  margin-right: 5px;
 }
 
 .profile-stats {
