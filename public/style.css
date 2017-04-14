@@ -81,6 +81,9 @@
     transition: 0s;
     margin-left: 0px; } }
 
+.topbar-box {
+  height: 80px; }
+
 .ingredient-styles {
   flex: 1 1 500px;
   padding: 10px;

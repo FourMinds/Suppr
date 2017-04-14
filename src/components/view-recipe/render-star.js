@@ -58,7 +58,7 @@ export function renderStar(finalValue) {
               .attr("y", 0)
               .attr("width", 80)
               .attr("height", 80)
-              .attr("fill", "white")
+              .attr("fill", "#f8f8ff")
               .style("overflow", "hidden")
               
   let text = textGroup.append("text")
@@ -82,7 +82,7 @@ export function renderStar(finalValue) {
       .append("path")
         .attr("d", lineMap)
         .attr("fill", "#24a866")
-        .attr("stroke", "white")
+        .attr("stroke", "#f8f8ff")
         .attr("stroke-width", 2);
 
   let numberFormat = function(number, precision) {

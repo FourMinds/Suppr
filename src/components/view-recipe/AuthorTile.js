@@ -52,7 +52,7 @@ class AuthorTile extends Component {
         </a>
         <div className="profile-stats-box">
           <a href={profileLink}>
-          <div className="author-name">{username}</div>
+            <div className="author-name">{username}</div>
           </a>
           {this.renderInfo()}
         </div>
