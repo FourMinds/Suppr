@@ -1,8 +1,7 @@
-import d3 from "d3";
+import * as d3 from "d3";
 
 export function renderStar(finalValue) {
-
-  let vis = d3.select("body").append("svg")
+  let vis = d3.select('#star').append("svg")
           .attr("width", 80)
           .attr("height", 80)
           .style("overflow", "hidden");
@@ -110,4 +109,5 @@ export function renderStar(finalValue) {
       .duration(1500)
       .delay(500)
       .tween("text", textTween)
+
 }

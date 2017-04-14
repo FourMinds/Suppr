@@ -88,7 +88,7 @@ class Sidebar extends Component {
   }
 
   render() {
-    const selected = !this.props.sporkId ? 'side-item sidebar-selected' : 'side-item'
+    const selected = this.props.sporkId ? 'side-item' : 'side-item sidebar-selected';
     const { username, recipeName } = this.props.recipe?this.props.recipe:'';
     const hasReview = this.props.reviews.some(review => review.username === this.props.username)
     return (
