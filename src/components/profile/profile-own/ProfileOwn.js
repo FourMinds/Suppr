@@ -88,7 +88,7 @@ class ProfileOwn extends Component {
         <Grid
           component="ul"
           columns={5}
-          columnWidth={330}
+          columnWidth={315}
           gutterWidth={5}
           gutterHeight={15}
           layout={layout.pinterest}
