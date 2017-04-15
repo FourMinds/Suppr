@@ -1,0 +1,120 @@
+.dropzone-profile {
+    border: 4px dashed #ccc;
+    height: 200px;
+    margin: 0 10px;
+    position: relative;
+    width: auto;
+}
+
+.dropzone-profile p {
+    height: 100%;
+    line-height: 200px;
+    margin: 0;
+    text-align: center;
+    width: 100%;
+}
+
+.dropzone-profile input[type="file"] {
+    height: 100%;
+    left: 0;
+    outline: none;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.dropzone-profile + .status {
+    border-radius: 5px;
+    margin: 10px 10px 0;
+    padding: 15px;
+    text-align: center;
+}
+
+.dropzone-profile.dropzone-profile-dragging {
+    border-color: black
+}
+
+.loading-modal {
+    background-color: rgba( 255, 255, 255, .8 );
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.loading-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -16px 0 0 -16px
+}
+
+body.busy .loading-modal {
+    display: block;
+}
+
+.btn-edit-profile {
+  margin-left: 10px;
+  cursor: pointer;
+  border: 1px solid $theme-primary;
+  padding: 7px;
+  border-radius: 2px;
+}
+
+.form-label {
+    display: block;
+}
+
+.field-title {
+    padding: 0;
+    margin: 5px 5px 5px 5px;
+    font-size: 23px;
+    line-height: 29px;
+    font-weight: 400;
+    color: #4e5b68;
+}
+
+.edit-link {
+    color: rgba(43, 50, 57, 0.45);
+    margin-left: 0px;
+    cursor: pointer;
+}
+
+.profile-field-divider {
+    width: 400px; 
+    margin-left: 0px;
+    margin-top: 5px;
+}
+
+.profile-field-container {
+    margin-top: 10px;
+}
+
+.profile-text {
+    margin: 10px 0 30px 5px;
+    max-width: 600px;
+}
+
+.profile-form {
+    width: 400px;
+}
+
+
+.profile-input {
+padding: 15px 13px;
+  line-height: 22px;
+  font-size: 17px;
+}
+
+.profile-edit-icon {
+    margin-left: 10px;
+}
+
+.drop-box {
+    margin-top: 10px; 
+    width: 400px;
+}

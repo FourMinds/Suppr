@@ -20,7 +20,8 @@ import {
   SELECT_VARIATION,
   DESELECT_VARIATION,
   GET_VARIATIONS_USERNAME,
-  SEARCH
+  SEARCH,
+  GET_PROFILE
 } from './types';
 
 // all get requests are parsed for special characters and then modified based on the regex service in this folder
@@ -387,6 +388,35 @@ export function triggerSearch(query) {
   return function(dispatch) {
     dispatch(search(query))
     browserHistory.push('/search')
+  }
+}
+
+/*****************
+* * * Profile * * *
+*****************/
+
+export function postProfile(profile) {
+  console.log(profile)
+  return function(dispatch) {
+    axios.post(`${server}/profile`, profile, {
+      headers: {authorization: localStorage.getItem(('token'))}
+    })
+      .then(res => {
+        dispatch(getProfile(profile.username));
+      })
+  }
+}
+
+export function getProfile(username) {
+  return function(dispatch) {
+    axios.get(`${server}/profile`, {
+      headers: {authorization: localStorage.getItem(('token'))},
+      params: { username }
+    })
+      .then(res => {
+        console.log(res.data)
+        dispatch({ type: GET_PROFILE, payload: res.data })
+      })
   }
 }
 

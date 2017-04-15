@@ -119,6 +119,25 @@ CREATE TABLE `tags` (
 );
 
 -- ---
+-- Table 'profile'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `profile`;
+    
+CREATE TABLE `profile` (
+  `id` INTEGER NOT NULL AUTO_INCREMENT,
+  `image` MEDIUMTEXT NULL DEFAULT NULL,
+  `bio` MEDIUMTEXT NULL DEFAULT NULL,
+  `style` MEDIUMTEXT NULL DEFAULT NULL,
+  `user_id` INTEGER NOT NULL,
+  `location` MEDIUMTEXT NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+
+
+-- ---
 -- Foreign Keys
 -- ---
 
@@ -131,6 +150,7 @@ ALTER TABLE `favorites` ADD FOREIGN KEY (user_id) REFERENCES `users` (`id`);
 ALTER TABLE `followers` ADD FOREIGN KEY (user_id) REFERENCES `users` (`id`);
 ALTER TABLE `followers` ADD FOREIGN KEY (follow_id) REFERENCES `users` (`id`);
 ALTER TABLE `tags` ADD FOREIGN KEY (recipe_id) REFERENCES `recipes` (`id`);
+ALTER TABLE `profile` ADD FOREIGN KEY (id) REFERENCES `users` (`id`);
 -- ---
 -- Table Properties
 -- ---

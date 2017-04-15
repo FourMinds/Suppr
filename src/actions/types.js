@@ -17,3 +17,4 @@ export const SELECT_VARIATION = 'select_variation';
 export const DESELECT_VARIATION = 'deselect_variation';
 export const GET_VARIATIONS_USERNAME = 'get_variations_username';
 export const SEARCH = 'search';
+export const GET_PROFILE = 'get_profile';
