@@ -3,11 +3,16 @@ import { connect } from 'react-redux';
 import * as actions from '../../../actions';
 import AuthorTile from '../AuthorTile';
 import RecipeStats from './RecipeStats';
+import _ from 'lodash';
 
 
 class RecipeTile extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      score: 0
+    }
 
     this.handleFavoriteSubmit = this.handleFavoriteSubmit.bind(this);
   }
@@ -15,6 +20,13 @@ class RecipeTile extends Component {
   componentDidMount() {
     if(this.props.username) this.props.getFavorites(this.props.username);
     this.props.getUserInfo(this.props.recipe.username)
+  }
+
+  componentWillUpdate(nextProps) {
+    if (!_.isEqual(this.props.reviews, nextProps.reviews)) {
+      const score = Math.round( ( nextProps.reviews.reduce((acc, val) => { return acc + val.rating;}, 0) / nextProps.reviews.length ) * 10 ) / 10;
+      this.setState({ score })
+    }
   }
 
   handleFavoriteSubmit() {
@@ -49,6 +61,7 @@ class RecipeTile extends Component {
           <div className="recipe-title-box">
             <h6>{name}</h6>
             <img className="rating-img" src="/assets/stars3.png" alt="rating" />
+            <h6>{this.state.score}</h6>
           </div>
 
           <AuthorTile username={this.props.recipe.username} />
@@ -65,7 +78,8 @@ function mapStatetoProps(state) {
   return {
     recipe: state.recipes.selectedVariation,
     username: state.auth.username,
-    favorites: state.favorites
+    favorites: state.favorites,
+    reviews: state.reviews.data
   }
 }
 
