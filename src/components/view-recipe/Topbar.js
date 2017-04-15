@@ -40,7 +40,9 @@ class Topbar extends Component {
       return favorite.recipe_id === this.props.recipe.id
     })
     const src = favorited ? '/assets/favorited.png' : '/assets/unfavorited.png'
-    if (!this.props.username) return <div></div>
+    if (!this.props.username) {
+      return <div className="favorite-button" ><img className="favorite-image" src='/assets/unfavorited.png' alt=""/></div>
+    }
     return (
       <div className="favorite-button" onClick={this.handleFavoriteSubmit}>
         <img className="favorite-image" src={src} alt=""/>
