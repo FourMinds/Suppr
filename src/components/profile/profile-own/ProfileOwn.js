@@ -119,7 +119,6 @@ class ProfileOwn extends Component {
   }
 
   render() {
-    console.log(this.props.profile)
     const profilePic = this.props.profile && this.props.profile.image ? this.props.profile.image : "https://secure.gravatar.com/avatar/6e9387de9c9dfa657aa9b518d92e6871?d=https%3A//daks2k3a4ib2z.cloudfront.net/img/profile-user.png"
     return (
       <div>

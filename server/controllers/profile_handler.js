@@ -6,7 +6,6 @@ const query = Promise.promisify(db.query.bind(db));
 
 exports.postProfile = function(req, res) {
   const { image, bio, style, location, username } = req.body;
-  console.log(image)
   const usernameSubQuery = `SELECT id from users WHERE username = "${username}"`;
   const setImage = `UPDATE profile SET image="${image}" WHERE user_id=(${usernameSubQuery});`  
   const setBio = `UPDATE profile SET bio="${bio}" WHERE user_id=(${usernameSubQuery});`  

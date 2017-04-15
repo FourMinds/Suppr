@@ -4,6 +4,7 @@ import * as actions from '../../../actions';
 import RecipeCard from '../../landing/RecipeCard';
 import FollowTile from './FollowTile';
 import UserStats from '../UserStats';
+import Personal from './Personal';
 import { CSSGrid, layout, makeResponsive, measureItems } from 'react-stonecutter';
 import $ from 'jquery';
 
@@ -39,7 +40,7 @@ class ProfileView extends Component {
       minPadding: 0
     });
     if (this.state.page === 0) {
-      return <div>Under Construction... </div>
+      return <Personal username={this.props.viewUsername}/>
     }
     if (this.state.page === 1) {
       const cards = this.props.userData.map(recipe => !recipe.parent_id&&<li key={recipe.id}><RecipeCard recipe={recipe} /></li>)

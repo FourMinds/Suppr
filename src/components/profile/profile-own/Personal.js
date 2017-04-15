@@ -51,15 +51,12 @@ class Personal extends Component {
     const current = this.state.edit
     if (current === Number(e.target.name)) return this.setState({edit: 0})
     this.setState({edit: Number(e.target.name)})
-    console.log(e.target.name)
   }
 
   handleFormSubmit(formProps) {
-    console.log(formProps)
     const { bio, style, location } = formProps;
     const { imageUrl } = this.state;
     const { username } = this.props;
-    console.log(this.state.imageUrl)
     this.props.postProfile({
       image: imageUrl,
       username,
@@ -137,6 +134,7 @@ class Personal extends Component {
 }
 
 function mapStateToProps(state) {
+  const { bio, style, location } = state.profile.data
   return { 
     username: state.auth.username,
     profile: state.profile.data

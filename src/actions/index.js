@@ -397,7 +397,6 @@ export function triggerSearch(query) {
 *****************/
 
 export function postProfile(profile) {
-  console.log(profile)
   return function(dispatch) {
     axios.post(`${server}/profile`, profile, {
       headers: {authorization: localStorage.getItem(('token'))}
@@ -415,7 +414,6 @@ export function getProfile(username) {
       params: { username }
     })
       .then(res => {
-        console.log(res.data)
         dispatch({ type: GET_PROFILE, payload: res.data })
       })
   }
@@ -428,7 +426,6 @@ export function getProfileByUsername(username) {
       params: { username }
     })
       .then(res => {
-        console.log(res.data)
         dispatch({ type: GET_PROFILE_USER, payload: {
             data: res.data,
             username
