@@ -16,15 +16,12 @@ class RecipeTile extends Component {
       <div className="flex-body">
         <div className="food-img" style={{backgroundImage:url}}>
 
-          {/*{this.renderHeart()}*/}
 
         </div>
         <div className="recipe-header-container">
 
           <div className="recipe-title-box">
             <h6>{recipeName}</h6>
-            {/*<img className="rating-img" src="/assets/stars3.png" alt="rating" />*/}
-            {/*<h6>{this.state.score}</h6>*/}
           </div>
 
           <AuthorTile username={this.props.recipe.username} />

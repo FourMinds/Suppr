@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
+import SporkModal from './SporkModal';
 
 class Sidebar extends Component {
 
@@ -72,26 +73,15 @@ class Sidebar extends Component {
     this.props.pushVariation(this.props.recipe);
   }
 
-  renderVariations() {
-    if (this.props.recipe && this.props.variations && this.props.variations[this.props.recipe.id]) {
-      return this.props.variations[this.props.recipe.id].map((variation,i) => {
-        return (
-          <li className={`side-item ${this.props.sporkId===variation.id?'sidebar-selected':''}`} 
-              key={i} 
-              onClick={() => this.props.selectVariation(this.props.recipe.id, variation.id)}>
-            <a> {variation.name.length > 20 ? variation.name.slice(0,20).trim()+'...' : variation.name}</a>
-          </li>
-        )
-      })
-      
-    }
-  }
+
 
   render() {
     const selected = this.props.sporkId ? 'side-item' : 'side-item sidebar-selected';
+    const recipeButtonCaption = this.props.sporkId ? 'Return to Recipe' : 'Recipe' 
     const { username, recipeName } = this.props.recipe?this.props.recipe:'';
     const hasReview = this.props.reviews.some(review => review.username === this.props.username)
     return (
+      <div>
       <nav className="navbar navbar-default" role="navigation">
         <a  href="#" className="navbar-toggle menu-toggle">
           <button className="btn btn-primary sidebar-toggle-btn">
@@ -140,17 +130,19 @@ class Sidebar extends Component {
               </li>
               }
               <hr />
-              <li className="sidebar-recipe-heading">Recipe:</li>
               <li className={selected} onClick={() => {this.props.getReview(this.props.recipe.id);this.props.deselectVariation()}}>
-                <a >{recipeName&&recipeName.length > 20 ? recipeName.slice(0,20).trim()+'...' : recipeName}</a>
+                <a >View Recipe</a>
               </li>
-              <hr />
-              <li className="sidebar-sporks-heading">Sporks:</li>
-              {this.renderVariations.call(this)}
+              <li className="side-item" data-toggle="modal" data-target="#ModalLong">
+                <a>View Sporks</a>
+              </li>
     		  	</ul>
       		</div>
         </div>
       </nav>
+      
+      <SporkModal sporkId={this.props.sporkId} recipe={this.props.recipe}/>
+      </div>
     )
   }
 }
