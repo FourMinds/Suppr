@@ -81,6 +81,16 @@
     transition: 0s;
     margin-left: 0px; } }
 
+.spork-columns {
+  max-width: 700px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  margin: auto; }
+
+.spork-card {
+  cursor: pointer; }
+
 .topbar-box {
   padding: 0 10px;
   height: 80px;

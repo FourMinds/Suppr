@@ -131,10 +131,10 @@ class Sidebar extends Component {
               }
               <hr />
               <li className={selected} onClick={() => {this.props.getReview(this.props.recipe.id);this.props.deselectVariation()}}>
-                <a >View Recipe</a>
+                <a >View Recipe <i className="fa fa-list" aria-hidden="true"></i></a>
               </li>
               <li className="side-item" data-toggle="modal" data-target="#ModalLong">
-                <a>View Sporks</a>
+                <a>View Sporks <i className="fa fa-share" aria-hidden="true"></i></a>
               </li>
     		  	</ul>
       		</div>

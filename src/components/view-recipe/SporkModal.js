@@ -41,13 +41,13 @@ class SporkModal extends Component {
         <div className="modal-dialog modal-lg" role="document">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title" id="ModalLongTitle">Modal title</h5>
+              <h5 className="modal-title" id="ModalLongTitle">Sporks</h5>
               <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div className="modal-body">
-                <div className="card-columns" style={{maxWidth: '700px', display:'flex', flexFlow:'row wrap', justifyContent: 'center'}}>
+                <div className="card-columns spork-columns" >
             {cards}
       </div>
             </div>
