@@ -40,6 +40,8 @@ exports.signup = function (req, res, next) {
       bcrypt.hash(password, salt, null, (err, hash) => {
         const saveUserQuery = `INSERT INTO users(email, username, password) VALUES("${email}", "${username}", "${hash}");`
         query(saveUserQuery).then(result => {
+          const initializeProfileQuery = `INSERT INTO profile(user_id) VALUES("${result.insertId}");`
+          query(initializeProfileQuery)
           res.status(200).json({ token: generateToken([{ id:result.insertId }])});
         })
       });

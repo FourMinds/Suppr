@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import * as actions from '../../../actions';
 import RecipeCard from '../../landing/RecipeCard';
 import FollowTile from './FollowTile';
-import UserStats from '../UserStats'
+import UserStats from '../UserStats';
+import Personal from './Personal';
 import { CSSGrid, layout, makeResponsive, measureItems } from 'react-stonecutter';
 import $ from 'jquery';
 
@@ -17,6 +18,7 @@ class ProfileOwn extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
   componentWillMount() {
+    this.props.getProfile(this.props.username)
     this.props.getFavorites(this.props.username, true);
     this.props.getFollows(this.props.username);
     this.props.getRecipesByUsername(this.props.username);
@@ -36,7 +38,7 @@ class ProfileOwn extends Component {
       minPadding: 0
     });
     if (this.state.page === 0) {
-      return <div>Under Construction... </div>
+      return <Personal />
     }
     if (this.state.page === 1) {
       const cards = this.props.userData.map(recipe => !recipe.parent_id&&<li key={recipe.id}><RecipeCard  recipe={recipe} /></li>)
@@ -117,6 +119,9 @@ class ProfileOwn extends Component {
   }
 
   render() {
+    console.log(this.props.profile)
+    const profilePic = this.props.profile ? this.props.profile.image : "https://secure.gravatar.com/avatar/6e9387de9c9dfa657aa9b518d92e6871?d=https%3A//daks2k3a4ib2z.cloudfront.net/img/profile-user.png"
+    console.log(profilePic)
     return (
       <div>
 
@@ -128,7 +133,7 @@ class ProfileOwn extends Component {
         <div className="profile-pic">
           <a href="#" className="profile-link">
           <img className="profile-img-top x-large" 
-              src="https://secure.gravatar.com/avatar/6e9387de9c9dfa657aa9b518d92e6871?d=https%3A//daks2k3a4ib2z.cloudfront.net/img/profile-user.png" />
+              src={profilePic} />
           </a>
         </div>
       </div>
@@ -170,6 +175,7 @@ function mapStateToProps(state) {
     data: state.recipes.data,
     followList: state.follows.data,
     variations: state.recipes.userVariations,
+    profile: state.profile.data
   };
 }
 

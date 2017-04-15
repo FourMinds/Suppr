@@ -10,10 +10,6 @@ function returnRecipe(id) {
   const recipeQuery = `SELECT * from recipes WHERE id = ${id};`
   const userQuery = `SELECT username FROM users WHERE id = (SELECT user_id FROM recipes WHERE id = ${id})`
 
-  query(recipeQuery).then(([recipe]) => {
-    if(!recipe) return res.status(422).send({ error: 'Recipe does not exist' });
-  })
-
   return Promise.all([query(ingredientsQuery), query(tagsQuery), query(recipeQuery), query(userQuery)])
     .then(([ ingredients, tagList, [ recipe ], [ user ] ]) => {
     const [ quantity, items ] = ingredients.reduce((acc, { quantity, ingredient }) => {
