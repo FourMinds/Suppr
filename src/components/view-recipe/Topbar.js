@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import {renderStar} from './render-star';
 import _ from 'lodash';
+import $ from 'jquery';
 
 class Topbar extends Component {
   constructor(props) {
@@ -16,6 +17,12 @@ class Topbar extends Component {
   }
 
   componentDidMount() {
+    $('#star').click(function () {
+      var divID = '#review';
+      $('html, body').animate({
+          scrollTop: $(divID).offset().top
+      }, 1000);
+    });
     if(this.props.username) this.props.getFavorites(this.props.username);
     this.props.getUserInfo(this.props.recipe.username)
     renderStar(0);
@@ -57,7 +64,7 @@ class Topbar extends Component {
         {this.renderHeart()}
         <div className="medals-box">
         </div>
-        <div id="star"></div>
+        <a href="#review"><div id="star"></div></a>
       </div>
     )
   }
