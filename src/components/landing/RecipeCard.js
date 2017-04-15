@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import * as actions from '../../actions';
 import AuthorTile from '../view-recipe/AuthorTile';
 
 class RecipeCard extends Component {
@@ -10,10 +8,12 @@ class RecipeCard extends Component {
 
     return (
       <div className="card" style={{width: '19em'}}>
-        <a href={recipeLink}><img className="card-img-top" src={image} alt="Card img cap" style={{width:'100%'}}/></a>
+        <a href={recipeLink}>
+          {parent_id && <img src="/assets/spork.png" className="card-spork"/>}
+            <img className="card-img-top" src={image} alt="Card img cap" style={{width:'100%'}}/>
+        </a>
         <div className="card-block">
           <a href={recipeLink}><h5>{name}</h5></a>
-            {parent_id && <p>this is a spork</p>}
           <p className="card-text">{description}</p>
         </div>
         <ul className="list-group list-group-flush">
@@ -27,4 +27,4 @@ class RecipeCard extends Component {
   }
 }
 
-export default connect(null, actions)(RecipeCard);
+export default RecipeCard;
