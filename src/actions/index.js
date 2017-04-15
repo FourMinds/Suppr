@@ -21,7 +21,8 @@ import {
   DESELECT_VARIATION,
   GET_VARIATIONS_USERNAME,
   SEARCH,
-  GET_PROFILE
+  GET_PROFILE,
+  GET_PROFILE_USER
 } from './types';
 
 // all get requests are parsed for special characters and then modified based on the regex service in this folder
@@ -416,6 +417,23 @@ export function getProfile(username) {
       .then(res => {
         console.log(res.data)
         dispatch({ type: GET_PROFILE, payload: res.data })
+      })
+  }
+}
+
+export function getProfileByUsername(username) {
+  return function(dispatch) {
+    axios.get(`${server}/profile`, {
+      headers: {authorization: localStorage.getItem(('token'))},
+      params: { username }
+    })
+      .then(res => {
+        console.log(res.data)
+        dispatch({ type: GET_PROFILE_USER, payload: {
+            data: res.data,
+            username
+          } 
+        })
       })
   }
 }
