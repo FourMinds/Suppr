@@ -34,7 +34,7 @@ class AuthorTile extends Component {
     return (
       <a href={profileLink}><div className="author-box">
         <div className="profile-img-container">
-          <img className="profile-img" src="http://i.imgur.com/hfH9CiC.png" alt="profile" />
+          <img className="profile-img" src="https://secure.gravatar.com/avatar/6e9387de9c9dfa657aa9b518d92e6871?d=https%3A//daks2k3a4ib2z.cloudfront.net/img/profile-user.png" alt="profile" />
         </div>
         <div className="profile-stats-box">
           <div className="author-name">{username}</div>
