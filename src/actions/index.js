@@ -37,6 +37,7 @@ export function signinUser({ username, password }) {
       .then(response => {
         dispatch({ type: AUTH_USER, payload: username });
         localStorage.setItem('token', response.data.token);
+        dispatch(getProfile(username));
         browserHistory.push('/');
       })
       .catch((res) => {
@@ -52,6 +53,7 @@ export function signupUser({ email, username, password }) {
       .then(response => {
         dispatch({ type: AUTH_USER, payload: username });
         localStorage.setItem('token', response.data.token);
+        dispatch(getProfile(username));
         browserHistory.push('/');
       })
       .catch(response => dispatch(authError(response.response.data.error)));
@@ -67,7 +69,8 @@ export function getUsername(token) {
     }).then(res => {
       const { username } = res.data;
       dispatch({ type: AUTH_USER, payload: username });
-      dispatch(getFavorites(username))
+      dispatch(getFavorites(username));
+      dispatch(getProfile(username));
     })
   }
 }

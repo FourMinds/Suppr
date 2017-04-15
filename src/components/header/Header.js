@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import * as actions from '../../actions';
 import { Link } from 'react-router';
-import SearchBar from './SearchBar'
+import SearchBar from './SearchBar';
 
 const Dropdown = (props) => {
   const profileLink = `/profile/${props.username}`
@@ -9,7 +10,7 @@ const Dropdown = (props) => {
     <li className="nav-item dropdown">
       <a className="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
         <div className="drop-block">
-          <img src="http://i.imgur.com/hfH9CiC.png" className="drop-block-image"/>
+          <img src={props.profilePic} className="drop-block-image"/>
           Account
           <i className="fa fa-angle-down drop-block-icon" aria-hidden="true"></i>
         </div>
@@ -39,6 +40,10 @@ const Dropdown = (props) => {
 }
 
 class Header extends Component {
+  componentDidMount() {
+    if (this.props.username) this.props.getProfile(this.props.username)
+  }
+
   renderLinks() {
     if (!this.props.authenticated) {
       return [
@@ -52,6 +57,7 @@ class Header extends Component {
     } 
   }
   render() {
+    const profilePic = this.props.profile && this.props.profile.image ? this.props.profile.image : 'http://i.imgur.com/hfH9CiC.png' 
     return (
       <nav className="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
       <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,7 +70,7 @@ class Header extends Component {
         </ul>
         <SearchBar />
         <ul className="navbar-nav">
-          {this.props.authenticated && <Dropdown username={this.props.username}/>}
+          {this.props.authenticated && <Dropdown username={this.props.username} profilePic={profilePic} />}
         </ul>
       </div>
     </nav>
@@ -73,7 +79,11 @@ class Header extends Component {
 }
 
 function mapStateToProps(state) {
-  return { authenticated: state.auth.authenticated, username: state.auth.username };
+  return { 
+    authenticated: state.auth.authenticated, 
+    username: state.auth.username,
+    profile: state.profile.data
+  };
 }
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, actions)(Header);

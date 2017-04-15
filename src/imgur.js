@@ -88,7 +88,7 @@
             var div, img;
 
             div = this.createEls('div', {className: 'loading-modal'});
-            img = this.createEls('img', {className: 'loading-image', src: './svg/loading-spin.svg'});
+            img = this.createEls('img', {className: 'loading-image', src: '/svg/loading-spin.svg'});
 
             div.appendChild(img);
             document.body.appendChild(div);
