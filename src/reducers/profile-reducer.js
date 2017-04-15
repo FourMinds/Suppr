@@ -2,8 +2,12 @@ import {
   GET_PROFILE
 } from '../actions/types';
 const initialState = {
-  username: null,
-  authenticated: false
+  data: {
+    bio: '',
+    image: '',
+    style: '',
+    location: ''
+  }
 }
 export default function(state = initialState, action) {
   switch(action.type) {

@@ -56,3 +56,65 @@
 body.busy .loading-modal {
     display: block;
 }
+
+.btn-edit-profile {
+  margin-left: 10px;
+  cursor: pointer;
+  border: 1px solid $theme-primary;
+  padding: 7px;
+  border-radius: 2px;
+}
+
+.form-label {
+    display: block;
+}
+
+.field-title {
+    padding: 0;
+    margin: 5px 5px 5px 5px;
+    font-size: 23px;
+    line-height: 29px;
+    font-weight: 400;
+    color: #4e5b68;
+}
+
+.edit-link {
+    color: rgba(43, 50, 57, 0.45);
+    margin-left: 0px;
+    cursor: pointer;
+}
+
+.profile-field-divider {
+    width: 400px; 
+    margin-left: 0px;
+    margin-top: 5px;
+}
+
+.profile-field-container {
+    margin-top: 10px;
+}
+
+.profile-text {
+    margin: 10px 0 30px 5px;
+    max-width: 600px;
+}
+
+.profile-form {
+    width: 400px;
+}
+
+
+.profile-input {
+padding: 15px 13px;
+  line-height: 22px;
+  font-size: 17px;
+}
+
+.profile-edit-icon {
+    margin-left: 10px;
+}
+
+.drop-box {
+    margin-top: 10px; 
+    width: 400px;
+}
