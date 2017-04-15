@@ -91,7 +91,7 @@ class Reviews extends Component {
     // this happens through validateRating, which changes the disableRating state; then whether or not the button is disabled depends on disableSubmit
     const hasReview = this.props.reviews.some(review => review.username === this.props.username)
     return (
-      <div className="card-block">
+      <div className="card-block" id="review">
       <div className="review-title">
         <h6>Reviews</h6>        
       </div>
