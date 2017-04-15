@@ -32,7 +32,7 @@ class Topbar extends Component {
     if (!_.isEqual(this.props.reviews, nextProps.reviews)) {
       const score = Math.round( ( nextProps.reviews.reduce((acc, val) => { return acc + val.rating;}, 0) / nextProps.reviews.length ) * 10 ) / 10;
       this.setState({ score })
-      renderStar(score);
+      renderStar(isNaN(score) ? 0 : score);
     }
   }
 
