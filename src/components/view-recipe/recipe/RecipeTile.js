@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import * as actions from '../../../actions';
 import AuthorTile from '../AuthorTile';
 import RecipeStats from './RecipeStats';
-import _ from 'lodash';
+// import _ from 'lodash';
 
 
 class RecipeTile extends Component {
-  constructor(props) {
+  /*constructor(props) {
     super(props);
 
     this.state = {
@@ -46,17 +46,17 @@ class RecipeTile extends Component {
         <img className="favorite-image" src={src} alt=""/>
       </div>
     )
-  }
+  }*/
 
   render() {
-    console.log(this.state.score)
+    // console.log(this.state.score)
     const { recipeName, imageUrl } = this.props.recipe;
     const url=`url("${imageUrl}")`
     return (
       <div className="flex-body">
         <div className="food-img" style={{backgroundImage:url}}>
 
-          {this.renderHeart()}
+          {/*{this.renderHeart()}*/}
 
         </div>
         <div className="recipe-header-container">

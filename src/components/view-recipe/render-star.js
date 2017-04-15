@@ -1,6 +1,11 @@
 import * as d3 from "d3";
 
 export function renderStar(finalValue) {
+  
+  if (d3.select("svg")) {
+    d3.select("svg").remove()
+  }
+
   let vis = d3.select('#star').append("svg")
           .attr("width", 80)
           .attr("height", 80)
