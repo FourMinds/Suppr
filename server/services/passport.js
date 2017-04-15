@@ -16,8 +16,11 @@ const jwtOptions = {
 
 const jwtLogin = new JwtStrategy(jwtOptions, function (payload, done) {
   const userQuery = `SELECT * from users WHERE id = "${payload.sub}";`
+  const currentTime = Math.round(Date.now() / 1000 + 5 * 60 * 60);
   query(userQuery).then((user) => {
-    if (user.length) {
+    if (!payload.exp || currentTime > payload.exp) {
+      done(null, false);
+    } else if (user.length) {
       done(null, user);
     } else {
       done(null, false);

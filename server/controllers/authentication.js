@@ -7,7 +7,8 @@ const Promise = require('bluebird');
 function generateToken(user) {
   console.log(user)
   const timeStamp = new Date().getTime();
-  return jwt.encode({ sub: user[0].id, iat: timeStamp }, config.secret);
+  const exp = Math.round(Date.now() / 1000 + 5 * 60 * 60) + 14400
+  return jwt.encode({ sub: user[0].id, iat: timeStamp, exp }, config.secret);
 }
 
 exports.signin = function (req, res, next) {
