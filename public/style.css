@@ -81,6 +81,22 @@
     transition: 0s;
     margin-left: 0px; } }
 
+.topbar-box {
+  height: 80px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around; }
+
+.favorite-button {
+  width: 45px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }
+
+.medals-box {
+  width: 575px; }
+
 .ingredient-styles {
   flex: 1 1 500px;
   padding: 10px;
@@ -275,15 +291,6 @@
     width: 0;
     height: 0;
     visibility: hidden; } }
-
-.favorite-button {
-  border: 5px solid bold;
-  width: 60px;
-  margin: 5px 0 0 5px; }
-
-.favorite-image {
-  display: block;
-  width: 50%; }
 
 .card-display {
   padding-left: 10px; }

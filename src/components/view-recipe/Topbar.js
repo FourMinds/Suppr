@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../../../actions';
-import AuthorTile from '../AuthorTile';
-import RecipeStats from './RecipeStats';
+import * as actions from '../../actions';
+import {renderStar} from './render-star';
 import _ from 'lodash';
 
-
-class RecipeTile extends Component {
+class Topbar extends Component {
   constructor(props) {
     super(props);
 
@@ -20,18 +18,21 @@ class RecipeTile extends Component {
   componentDidMount() {
     if(this.props.username) this.props.getFavorites(this.props.username);
     this.props.getUserInfo(this.props.recipe.username)
+    renderStar(0);
   }
 
   componentWillUpdate(nextProps) {
     if (!_.isEqual(this.props.reviews, nextProps.reviews)) {
       const score = Math.round( ( nextProps.reviews.reduce((acc, val) => { return acc + val.rating;}, 0) / nextProps.reviews.length ) * 10 ) / 10;
       this.setState({ score })
+      renderStar(score);
     }
   }
 
   handleFavoriteSubmit() {
     let favorite = {username: this.props.username, recipeId: this.props.recipe.id};
     this.props.postFavorite(favorite);
+    // console.log("review obj ---------+--------", this.props.reviews)
   }
 
   renderHeart() {
@@ -39,7 +40,9 @@ class RecipeTile extends Component {
       return favorite.recipe_id === this.props.recipe.id
     })
     const src = favorited ? '/assets/favorited.png' : '/assets/unfavorited.png'
-    if (!this.props.username) return <div></div>
+    if (!this.props.username) {
+      return <div className="favorite-button" ><img className="favorite-image" src='/assets/unfavorited.png' alt=""/></div>
+    }
     return (
       <div className="favorite-button" onClick={this.handleFavoriteSubmit}>
         <img className="favorite-image" src={src} alt=""/>
@@ -47,41 +50,27 @@ class RecipeTile extends Component {
     )
   }
 
-  render() {
-    const { name, image } = this.props.recipe;
-    const url=`url("${image}")`
-    return (
-      <div className="flex-body">
-        <div className="food-img" style={{backgroundImage:url}}>
-
-          {this.renderHeart()}
-
+  render () {
+    return(
+      <div className="topbar-box">
+        
+        {this.renderHeart()}
+        <div className="medals-box">
         </div>
-        <div className="recipe-header-container">
-          <div className="recipe-title-box">
-            <h6>{name}</h6>
-            {/*<img className="rating-img" src="/assets/stars3.png" alt="rating" />*/}
-            {/*<h6>{this.state.score}</h6>*/}
-          </div>
-
-          <AuthorTile username={this.props.recipe.username} />
-          
-          <RecipeStats />
-
-        </div>
+        <div id="star"></div>
       </div>
     )
   }
 }
 
-function mapStatetoProps(state) {
+
+function mapStateToProps(state) {
   return {
-    recipe: state.recipes.selectedVariation,
+    recipe: state.recipes.selectedRecipe,
     username: state.auth.username,
     favorites: state.favorites,
     reviews: state.reviews.data
-  }
+  };
 }
 
-export default connect(mapStatetoProps, actions)(RecipeTile)
-  
+export default connect(mapStateToProps, actions)(Topbar);
