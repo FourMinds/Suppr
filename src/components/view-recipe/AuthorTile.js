@@ -32,7 +32,6 @@ class AuthorTile extends Component {
 
   getProfilePic() {
     const { username } = this.props;
-    console.log(this.props.username)
     if(this.props.profile[username]) {
       return this.props.profile[username].image
     } else {
