@@ -53,8 +53,9 @@ class Topbar extends Component {
   render () {
     return(
       <div className="topbar-box">
-        <div>
-          {this.renderHeart()}
+        
+        {this.renderHeart()}
+        <div className="medals-box">
         </div>
         <div id="star"></div>
       </div>

@@ -1,7 +1,8 @@
 .topbar-box {
   height: 80px;
+  width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .favorite-button {
@@ -13,5 +14,9 @@
 }
 
 .favorite-image {
-  display: block
+  // display: block
+}
+
+.medals-box {
+  width: 575px;
 }

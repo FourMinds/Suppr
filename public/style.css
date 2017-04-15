@@ -83,8 +83,9 @@
 
 .topbar-box {
   height: 80px;
+  width: 100%;
   display: flex;
-  justify-content: space-between; }
+  justify-content: space-around; }
 
 .favorite-button {
   width: 45px;
@@ -93,8 +94,8 @@
   flex-direction: column;
   justify-content: center; }
 
-.favorite-image {
-  display: block; }
+.medals-box {
+  width: 575px; }
 
 .ingredient-styles {
   flex: 1 1 500px;
