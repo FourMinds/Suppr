@@ -10,7 +10,7 @@ const initialState = {
 export default function(state = initialState, action) {
   switch(action.type) {
     case AUTH_USER:
-      return { ...state, error: '', authenticated: true, username: action.payload };
+      return { ...state, error: '', authenticated: true, username: action.payload.toLowerCase() };
     case UNAUTH_USER:
       return { ...state, authenticated: false, username: null };
     case AUTH_ERROR:

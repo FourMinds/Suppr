@@ -48,6 +48,13 @@ function validate(formProps) {
     errors.username = 'Please enter an username';
   }
 
+  if (formProps.username) {
+    const { username } = formProps
+    if (username[username.length-1] === username[username.length-1].toUpperCase()) {
+      formProps.username = formProps.username.slice(0,username.length)
+    }
+  }
+
   if (!formProps.password) {
     errors.password = 'Please enter a password';
   }
