@@ -365,6 +365,13 @@ a, a:hover {
   width: 100%;
   float: none; }
 
+.card-spork {
+  width: 12%;
+  margin-left: 5px;
+  position: absolute;
+  right: 5px;
+  top: 5px; }
+
 .create-flex-body {
   display: flex;
   flex-flow: row wrap;

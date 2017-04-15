@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../../actions';
 import Imgur from './imgur-profile.js';
 import { reduxForm, Field } from 'redux-form';
+import $ from 'jquery';
 
 const bioField = bio => (
     <textarea {...bio.input} className="form-control profile-input" />
@@ -34,6 +35,7 @@ class Personal extends Component {
     var feedback = (res) => {
       if (res.success === true) {
         this.setState({ imageUrl: res.data.link, imageError: false });
+        $('.profile-drop-text').text('Press submit to upload this picture');
       }
     };
     new Imgur({
@@ -43,14 +45,14 @@ class Personal extends Component {
   }
 
   handlePictureEdit() {
-    const current = this.state.edit
-    this.setState({edit: current === 1 ? 0 : 1})
+    const current = this.state.edit;
+    this.setState({edit: current === 1 ? 0 : 1});
   }
 
   handleEdit(e) {
-    const current = this.state.edit
-    if (current === Number(e.target.name)) return this.setState({edit: 0})
-    this.setState({edit: Number(e.target.name)})
+    const current = this.state.edit;
+    if (current === Number(e.target.name)) return this.setState({edit: 0});
+    this.setState({edit: Number(e.target.name)});
   }
 
   handleFormSubmit(formProps) {
@@ -63,15 +65,15 @@ class Personal extends Component {
       bio,
       style,
       location
-    })
-    this.setState({edit: 0})
+    });
+    this.setState({edit: 0});
   }
   render(){
-    const { profile:{image, bio, style, location}, handleSubmit} = this.props
-    const editButtonCaption = this.state.edit === 1 ? 'Cancel' : 'Change Profile Picture'
-    const bioButtonCaption = this.state.edit === 2 ? 'Cancel' : 'Edit'
-    const styleButtonCaption = this.state.edit === 3 ? 'Cancel' : 'Edit'
-    const locationButtonCaption = this.state.edit === 4 ? 'Cancel' : 'Edit'
+    const { profile:{image, bio, style, location}, handleSubmit} = this.props;
+    const editButtonCaption = this.state.edit === 1 ? 'Cancel' : 'Change Profile Picture';
+    const bioButtonCaption = this.state.edit === 2 ? 'Cancel' : 'Edit';
+    const styleButtonCaption = this.state.edit === 3 ? 'Cancel' : 'Edit';
+    const locationButtonCaption = this.state.edit === 4 ? 'Cancel' : 'Edit';
     return <div>
       <span className="btn-edit-profile" onClick={this.handlePictureEdit}>{editButtonCaption}</span>
       <form onSubmit={handleSubmit(this.handleFormSubmit)}>
@@ -134,7 +136,6 @@ class Personal extends Component {
 }
 
 function mapStateToProps(state) {
-  const { bio, style, location } = state.profile.data
   return { 
     username: state.auth.username,
     profile: state.profile.data
