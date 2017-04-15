@@ -21,7 +21,7 @@ class Ingredients extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      total: 1
+      total: 3
     }
     this.renderForm = this.renderForm.bind(this);
   }
