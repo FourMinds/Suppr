@@ -1,4 +1,5 @@
 const Authentication = require('./controllers/authentication');
+const forgotHandler = require('./controllers/forgot_handler');
 const recipeHandler = require('./controllers/recipe_handler');
 const favoriteHandler = require('./controllers/favorite_handler');
 const followHandler = require('./controllers/follow_handler');
@@ -16,6 +17,7 @@ module.exports = function(app) {
   app.get('/test', (req, res) => res.status(200).send('response'));
   app.post('/signup', Authentication.signup);
   app.post('/signin', requireSignin, Authentication.signin);
+  app.post('/forgot', forgotHandler.forgotPassword);
 
   app.post('/recipe', recipeHandler.createRecipe);
   app.get('/recipe', recipeHandler.getRecipe);

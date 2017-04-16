@@ -2,15 +2,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 import { signupFields } from './form-fields';
-import { Link } from 'react-router';
+import { server } from '../../config.js';
+import axios from 'axios';
+import { browserHistory } from 'react-router';
 
 const {
   emailField
 } = signupFields;
 
 class ForgotPass extends Component {
-  handleFormSubmit() {
-
+  handleFormSubmit( {email} ) {
+    // synchronously submit a post request and redirect to browser; does not have to be asynchronous because we're sending an e-mail
+    axios.post(`${server}/forgot`, { email });
+    browserHistory.push('/auth/signin');
   }
 
   render() {
