@@ -16,6 +16,7 @@
 .auth-check {
   color: rgba(43, 50, 57, 0.45);
   font-size: 15px;
+  max-width: 17em;
 }
 
 .auth-input {
@@ -40,4 +41,8 @@
 
 .btn-padded {
   padding: 15px 18px;
+}
+
+button.btn.btn-primary.btn-padded {
+  float: left;
 }

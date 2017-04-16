@@ -14,6 +14,7 @@ import App from './components/App';
 import Signin from './components/auth/Signin';
 import Signout from './components/auth/Signout';
 import Signup from './components/auth/Signup';
+import ForgotPass from './components/auth/ForgotPass';
 import HomeNoAuth from './components/landing/HomeNoAuth';
 import SearchPage from './components/search/SearchPage';
 import Create from './components/create-recipe/Create';
@@ -39,6 +40,7 @@ ReactDOM.render(
         <Route path='auth/signin' component={Signin} />
         <Route path='auth/signup' component={Signup} />
         <Route path='auth/signout' component={Signout} />
+        <Route path='auth/forgot' component={ForgotPass} />
         <Route path='recipe/:id' component={RecipeView} />
         <Route path='recipe/:id/:sporkId' component={RecipeView} />
         <Route path='search' component={SearchPage} />
