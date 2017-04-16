@@ -90,6 +90,9 @@
 .spork-card {
   cursor: pointer; }
 
+.spork-modal-default {
+  margin: 30px 0 30px 5px; }
+
 .topbar-box {
   padding: 0 10px;
   height: 80px;
