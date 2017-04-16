@@ -17,17 +17,13 @@ class Sidebar extends Component {
     		document.getElementsByClassName("sidebar-toggle")[0].style.left="-200px";
     	}
     });
-    $(document).ready(function() {
+    $(document).ready(()=> {
     	$('.body').on('show.bs.dropdown', function(e){
     	    $(this).find('.dropdown-menu').first().stop(true, true).slideDown(300);
     	});
     	$('.body').on('hide.bs.dropdown', function(e){
     		$(this).find('.dropdown-menu').first().stop(true, true).slideUp(300);
     	});
-      $('#root').on('click', '.side-item', function () {
-        $('.sidebar-selected').removeClass('sidebar-selected');
-        $(this).addClass('sidebar-selected');
-      })
     	$(".menu-toggle").click(function(e) {
     		e.preventDefault();
     		var elem = document.getElementById("sidebar-wrapper");
@@ -76,7 +72,12 @@ class Sidebar extends Component {
 
 
   render() {
-    const selected = this.props.sporkId ? 'side-item' : 'side-item sidebar-selected';
+    const selected = (this.props.sporkId && this.props.selectedVariation) || 
+      this.props.selectedVariation ? 'side-item' : 'side-item sidebar-selected';
+
+    const notSelected = !(this.props.sporkId || this.props.selectedVariation) || 
+      !this.props.selectedVariation ? 'side-item' : 'side-item sidebar-selected';
+
     const recipeButtonCaption = this.props.sporkId ? 'Return to Recipe' : 'Recipe' 
     const { username, recipeName } = this.props.recipe?this.props.recipe:'';
     const hasReview = this.props.reviews.some(review => review.username === this.props.username)
@@ -133,7 +134,7 @@ class Sidebar extends Component {
               <li className={selected} onClick={() => {this.props.getReview(this.props.recipe.id);this.props.deselectVariation()}}>
                 <a >View Recipe <i className="fa fa-list" aria-hidden="true"></i></a>
               </li>
-              <li className="side-item" data-toggle="modal" data-target="#ModalLong">
+              <li className={notSelected} data-toggle="modal" data-target="#ModalLong">
                 <a>View Sporks <i className="fa fa-share" aria-hidden="true"></i></a>
               </li>
     		  	</ul>
