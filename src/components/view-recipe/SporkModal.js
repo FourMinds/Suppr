@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import RecipeCard from '../landing/RecipeCard';
-import { CSSGrid, layout, makeResponsive, measureItems } from 'react-stonecutter';
 import $ from 'jquery';
 
 import SporkCard from './SporkCard';
@@ -29,11 +28,8 @@ class SporkModal extends Component {
       
     }
   }
+
   render() {
-    const Grid = makeResponsive(measureItems(CSSGrid, { measureImages: true }), {
-      maxWidth: 1800,
-      minPadding: 0
-    });
     const cards = this.renderVariations.call(this)
     return (
       <div className="modal fade bd-example-modal-lg" id="ModalLong" tabIndex="-1" role="dialog" aria-labelledby="ModalLongTitle" aria-hidden="true">
@@ -45,14 +41,17 @@ class SporkModal extends Component {
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div className="modal-body row spork-columns">
-              <div className="col-xs-6" >
-                    {cards ? cards.slice(0,Math.ceil(cards.length/2)) : cards}
+            {cards && cards.length ? 
+              <div className="modal-body row spork-columns">
+                <div className="col-xs-6" >
+                      {cards ? cards.slice(0,Math.ceil(cards.length/2)) : cards}
+                </div>
+                <div className="col-xs-6" >
+                     {cards ? cards.slice(Math.ceil(cards.length/2)) : cards}
+                </div>
               </div>
-              <div className="col-xs-6" >
-                   {cards ? cards.slice(Math.ceil(cards.length/2)) : cards}
-              </div>
-            </div>
+              : <h5 className="spork-modal-default">No Sporks Yet</h5>
+            }
             <div className="modal-footer">
               <button type="button" className="btn btn-secondary closer" data-dismiss="modal">Close</button>
             </div>
