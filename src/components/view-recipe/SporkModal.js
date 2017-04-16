@@ -35,7 +35,6 @@ class SporkModal extends Component {
       minPadding: 0
     });
     const cards = this.renderVariations.call(this)
-    console.log(cards)
     return (
       <div className="modal fade bd-example-modal-lg" id="ModalLong" tabIndex="-1" role="dialog" aria-labelledby="ModalLongTitle" aria-hidden="true">
         <div className="modal-dialog modal-lg" role="document">
@@ -46,10 +45,13 @@ class SporkModal extends Component {
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div className="modal-body">
-                <div className="card-columns spork-columns" >
-            {cards}
-      </div>
+            <div className="modal-body row spork-columns">
+              <div className="col-xs-6" >
+                    {cards ? cards.slice(0,Math.ceil(cards.length/2)) : cards}
+              </div>
+              <div className="col-xs-6" >
+                   {cards ? cards.slice(Math.ceil(cards.length/2)) : cards}
+              </div>
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-secondary closer" data-dismiss="modal">Close</button>
