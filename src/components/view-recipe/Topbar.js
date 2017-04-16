@@ -39,7 +39,6 @@ class Topbar extends Component {
   handleFavoriteSubmit() {
     let favorite = {username: this.props.username, recipeId: this.props.recipe.id};
     this.props.postFavorite(favorite);
-    // console.log("review obj ---------+--------", this.props.reviews)
   }
 
   renderHeart() {

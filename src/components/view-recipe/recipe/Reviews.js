@@ -89,7 +89,6 @@ class Reviews extends Component {
     // when pristine, button is disabled
     // user can only press submit button when a rating is chosen
     // this happens through validateRating, which changes the disableRating state; then whether or not the button is disabled depends on disableSubmit
-    console.log(this.props.reviews)
     return (
       <div className="card-block" id="review">
       <div className="review-title">
