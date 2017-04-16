@@ -34,6 +34,7 @@ class Signin extends Component {
         <div>
           <button action="submit" className="btn btn-primary btn-padded">Sign in <i className="fa fa-angle-right" style={{marginLeft:'10px'}} aria-hidden="true"></i></button>
           <Link className="pull-right auth-check" to='/auth/signup'>Don't have an account?</Link>
+          <Link className="pull-right auth-check" to='/auth/forgot'>Forgot password?</Link>
         </div>
       </form>
       </div>
