@@ -5,7 +5,6 @@ const bcrypt = require('bcrypt-nodejs');
 const Promise = require('bluebird');
 
 function generateToken(user) {
-  console.log(user)
   const timeStamp = new Date().getTime();
   const exp = Math.round(Date.now() / 1000 + 5 * 60 * 60) + 14400
   return jwt.encode({ sub: user[0].id, iat: timeStamp, exp }, config.secret);
