@@ -60,7 +60,7 @@ class Topbar extends Component {
     return(
       <div className="topbar-box">
         
-        {this.renderHeart()}
+        {this.props.username && this.renderHeart()}
         <div className="medals-box">
         </div>
         <a href="#review"><div id="star"></div></a>
