@@ -51,7 +51,7 @@ class FollowTile extends Component {
         <div className="well well-sm">
             <div className="media">
                 <a className="thumbnail pull-left profile-img-container" href="#">
-                  <img className="media-object" src={this.getProfilePic.call(this)} alt="placeholder" />
+                  <img className="media-object" src={this.getProfilePic.call(this)} alt="placeholder" style={{width:'75px', height:'75px'}}/>
                 </a>
                 <div className="media-body">
                   <h4 className="media-heading" style={{marginLeft: '15px'}}>{this.props.user}</h4>
