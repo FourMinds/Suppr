@@ -20,7 +20,7 @@ class UserStats extends Component {
       return (
         <div className="author-stats-box profile-stats">
           <div className="inner-box-item"><img className="author-stats-icon" src="/assets/salad.png" alt="Recipes" title="recipes"/>{recipesCount}</div>
-          <div className="inner-box-item"><img className="author-stats-icon" src="/assets/spork.png" alt="Sporks" title="sporks"/>{sporksCount}</div>
+          <div className="inner-box-item"><img className="author-stats-icon" src="/assets/spork2.png" alt="Sporks" title="sporks"/>{sporksCount}</div>
           <div className="inner-box-item"><img className="author-stats-icon" src="/assets/follower.png" alt="Followers" title="followers"/>{followersCount}</div>
           <div className="inner-box-item"><img className="author-stats-icon" src="/assets/favorited.png" alt="Favorited count" title="likes"/>{favoritesCount}</div>
         </div>
