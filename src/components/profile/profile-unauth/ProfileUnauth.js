@@ -20,6 +20,7 @@ class ProfileView extends Component {
 
   componentDidMount() {
     this.props.getRecipes();
+    this.props.getProfileByUsername(this.props.viewUsername)
     this.props.getFavorites(this.props.viewUsername, false)
     this.props.getFollows(this.props.viewUsername, false)
     this.props.getRecipesByUsername(this.props.viewUsername)
@@ -106,6 +107,14 @@ class ProfileView extends Component {
       )
     }
   }
+  getProfilePic() {
+    const { viewUsername } = this.props;
+    if(this.props.profile[viewUsername] && this.props.profile[viewUsername].image) {
+      return this.props.profile[viewUsername].image
+    } else {
+      return 'https://secure.gravatar.com/avatar/6e9387de9c9dfa657aa9b518d92e6871?d=https%3A//daks2k3a4ib2z.cloudfront.net/img/profile-user.png'
+    }
+  }
 
 
   render() {
@@ -119,7 +128,7 @@ class ProfileView extends Component {
         <div className="profile-pic">
           <a href="#" className="profile-link">
           <img className="profile-img-top x-large" 
-              src="https://secure.gravatar.com/avatar/6e9387de9c9dfa657aa9b518d92e6871?d=https%3A//daks2k3a4ib2z.cloudfront.net/img/profile-user.png" />
+              src={this.getProfilePic()} />
           </a>
         </div>
       </div>
@@ -159,6 +168,7 @@ function mapStateToProps(state) {
     viewFollows: state.follows.dataForUser,
     favorites: state.favorites.dataForUser,
     data: state.recipes.data,
+    profile: state.profile,
   }
 }
 
