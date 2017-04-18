@@ -53,6 +53,7 @@ query(getAllRecipesQuery)
     })
   })
 
+setTimeout(() => process.exit(0), 3000)
 
 // $search.indices.delete({
 //   index: 'recipes'
