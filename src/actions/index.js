@@ -118,6 +118,8 @@ export function getRecipes() {
         return res;
       })
       .then(res => {
+        res.data.map(recipe => dispatch(getProfileByUsername(recipe.username)))
+        res.data.map(recipe => dispatch(getUserInfo(recipe.username)))
         dispatch({ type: GET_RECIPE, payload: res.data })
       })
   }
@@ -175,6 +177,8 @@ export function getRecipeById(id) {
       .then(res => {
         dispatch({ type: GET_RECIPE_ID, payload: res.data });
         dispatch(getReview(id));
+        dispatch(getProfileByUsername(res.data.username))
+        dispatch(getUserInfo(res.data.username))
       })
         .catch(e => browserHistory.replace('/error'))
   }
