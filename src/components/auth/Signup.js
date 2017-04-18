@@ -63,6 +63,10 @@ function validate(formProps) {
     errors.username = 'Please enter an username';
   }
 
+  if (formProps.username && formProps.username.search(/\s/g) > 0) {
+    errors.username = 'Username cannot have spaces';
+  }
+
   if (!formProps.password) {
     errors.password = 'Please enter a password';
   }
