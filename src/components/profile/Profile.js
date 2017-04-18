@@ -10,7 +10,7 @@ class Profile extends Component {
   renderComponent() {
     if(!this.props.username) {
       return <ProfileUnauth viewUsername={this.props.params.username.toLowerCase()}/>
-    } else if(this.props.params.username === this.props.username) {
+    } else if(this.props.params.username.toLowerCase() === this.props.username.toLowerCase()) {
       this.props.getFavorites(this.props.username, true);
       this.props.getFollows(this.props.username);
       this.props.getRecipesByUsername(this.props.username);
