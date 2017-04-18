@@ -36,9 +36,9 @@ class FollowTile extends Component {
   }
 
   getProfilePic() {
-    const { username } = this.props;
-    if(this.props.profile[username] && this.props.profile[username].image) {
-      return this.props.profile[username].image
+    const { user } = this.props;
+    if(this.props.profile[user] && this.props.profile[user].image) {
+      return this.props.profile[user].image
     } else {
       return 'https://secure.gravatar.com/avatar/6e9387de9c9dfa657aa9b518d92e6871?d=https%3A//daks2k3a4ib2z.cloudfront.net/img/profile-user.png'
     }
