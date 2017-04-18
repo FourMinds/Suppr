@@ -6,7 +6,7 @@ class AuthorTile extends Component {
   componentWillMount() {
     this.props.getUserInfo(this.props.username)
     this.props.getProfileByUsername(this.props.username)
-  }
+  } 
 
   componentWillUpdate(nextProps) {
     if(!this.props.username && nextProps.username) {
