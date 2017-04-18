@@ -17,6 +17,7 @@
     "lodash": "^4.17.4",
     "morgan": "^1.8.1",
     "mysql": "^2.13.0",
+    "nodemailer": "^4.0.1",
     "passport": "^0.3.2",
     "passport-jwt": "^2.2.1",
     "passport-local": "^1.0.0",
