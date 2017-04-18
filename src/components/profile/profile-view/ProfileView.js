@@ -120,7 +120,7 @@ class ProfileView extends Component {
 
   renderButtonCaption() {
     const { follows } = this.props.followList;
-    if (follows && follows.some(follow => follow === this.props.viewUsername)) {
+    if (follows && follows.some(follow => follow.toLowerCase() === this.props.viewUsername.toLowerCase())) {
       return <span><i className="fa fa-user-plus icon-gap" aria-hidden="true"></i>Unfollow</span>
     }
     return <span><i className="fa fa-user-plus icon-gap" aria-hidden="true"></i>Follow</span>
