@@ -9,7 +9,7 @@ class Profile extends Component {
 
   renderComponent() {
     if(!this.props.username) {
-      return <ProfileUnauth viewUsername={this.props.params.username.toLowerCase()}/>
+      return <ProfileUnauth viewUsername={this.props.params.username}/>
     } else if(this.props.params.username.toLowerCase() === this.props.username.toLowerCase()) {
       this.props.getFavorites(this.props.username, true);
       this.props.getFollows(this.props.username);
@@ -23,7 +23,7 @@ class Profile extends Component {
       this.props.getVariationsByUsername(this.props.params.username)
       this.props.getFollows(this.props.username)
       this.props.getFollows(this.props.params.username, false)
-      return <ProfileView viewUsername={this.props.params.username.toLowerCase()}/>
+      return <ProfileView viewUsername={this.props.params.username}/>
     }
   }
 
