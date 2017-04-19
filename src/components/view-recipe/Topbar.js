@@ -79,9 +79,9 @@ class Topbar extends Component {
       </div>
     )
   }
-  
+
   renderTrophy() {
-    const trophy = (this.state.score >= 4 && this.props.reviews.length >= 5) ? '/assets/trophy.png' : '/assets/trophy-grey.png'
+    const trophy = (this.state.score >= 4 && this.props.reviews.length >= 5) ? '/assets/trophy.png' : '/assets/trophy-grey.png';
     return(
       <div className="medal">
         <img src={trophy} title="well recieved"/>
@@ -96,9 +96,9 @@ class Topbar extends Component {
         {this.props.username && this.renderHeart()}
 
         <div className="medals-box">
-          {this.renderBronze()}
-          {this.renderSilver()}
           {this.renderGold()}
+          {this.renderSilver()}
+          {this.renderBronze()}
           {this.renderTrophy()}
         </div>
 
