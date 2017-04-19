@@ -26,7 +26,7 @@ class Sidebar extends Component {
     	});
     	$(".menu-toggle").click(function(e) {
     		e.preventDefault();
-    		let elem = document.getElementById("sidebar-wrapper"); // CAN WE CHANGE THIS TO LET?
+    		let elem = document.getElementById("sidebar-wrapper");
     		let left = window.getComputedStyle(elem,null).getPropertyValue("left");
     		if (left === "200px") {
     			document.getElementsByClassName("sidebar-toggle")[0].style.left="-200px";
@@ -91,7 +91,6 @@ class Sidebar extends Component {
         </a>
       	<div className="container">
       		<div className="navbar-header">
-          <ul></ul>	{/*SHOULD WE DELETE THIS?*/}
       		</div>
       		<div id="sidebar-wrapper" className="sidebar-toggle">
       			<ul className="sidebar-nav">

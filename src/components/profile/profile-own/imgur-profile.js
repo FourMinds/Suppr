@@ -9,7 +9,7 @@
     root.Imgur = factory();
   }
 }(this, function () {
-  var Imgur = function (options) {
+  let Imgur = function (options) {
     if (!this || !(this instanceof Imgur)) {
       return new Imgur(options);
     }
