@@ -11,7 +11,6 @@ import Imgur from '../../imgur.js'
 import TagsInput from 'react-tagsinput'
 
 const {
-  imageUrlField, 
   recipeNameField,
   prepTimeField, 
   cookTimeField, 
@@ -47,15 +46,15 @@ class Create extends Component {
     this.setState({ 
       tags: this.props.initialValues.tags,
       imageUrl:  this.props.initialValues.imageUrl
-    })
+    });
     var feedback = (res) => {
       if (res.success === true) {
-        $('#image-container').show()
-        $('#image-container').addClass('image-preview-load')
-        $('#preview-image').attr('src', res.data.link)
-        $('#preview-image').show()
-        $('.col-md').hide()
-        $('#re-upload-button').removeClass('re-upload')
+        $('#image-container').show();
+        $('#image-container').addClass('image-preview-load');
+        $('#preview-image').attr('src', res.data.link);
+        $('#preview-image').show();
+        $('.col-md').hide();
+        $('#re-upload-button').removeClass('re-upload');
         this.setState({ imageUrl: res.data.link, imageError: false })
       }
     };
@@ -99,7 +98,7 @@ class Create extends Component {
     const { id } = this.props.initialValues;
     const { recipeName, difficulty, cookTime, prepTime, servings, instructions, description } = formProps;
     const { tags, imageUrl } = this.state;
-    if (!imageUrl) return this.setState({ imageError:true })
+    if (!imageUrl) return this.setState({ imageError:true });
     const ingredients = Object.keys(formProps).reduce((list, val, i) => {
       let [quantity, items] = [`quantity${i}`, `items${i}`];
       if (formProps[quantity]) list.quantity.push(formProps[quantity]);
@@ -193,17 +192,17 @@ class Create extends Component {
 
 
 function mapStateToProps(state) {
-  const { ingredients:{quantity, items} } = state.recipes.pushUpdate
+  const { ingredients:{quantity, items} } = state.recipes.pushUpdate;
   const quantityValues = quantity.reduce((obj, val, i) => {
-    const key = `quantity${i}`
-    obj[key] = val
+    const key = `quantity${i}`;
+    obj[key] = val;
     return obj
-  }, {})
+  }, {});
   const itemsValues = items.reduce((obj, val, i) => {
-    const key = `items${i}`
-    obj[key] = val
+    const key = `items${i}`;
+    obj[key] = val;
     return obj
-  }, {})
+  }, {});
   return { username: state.auth.username, initialValues: {...state.recipes.pushUpdate, ...quantityValues, ...itemsValues} };
 }
 

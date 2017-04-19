@@ -16,7 +16,7 @@ class UserStats extends Component {
   render() {
     const { username } = this.props;
     if(this.props.info[username]) {
-      const {favoritesCount, followersCount, followsCount, recipesCount, sporksCount} = this.props.info[username]
+      const {favoritesCount, followersCount, followsCount, recipesCount, sporksCount} = this.props.info[username];
       return (
         <div className="author-stats-box profile-stats">
           <div className="inner-box-item"><img className="author-stats-icon" src="/assets/salad.png" alt="Recipes" title="recipes"/>{recipesCount}</div>

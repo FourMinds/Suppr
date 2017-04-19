@@ -8,8 +8,8 @@ class Sidebar extends Component {
 
   componentWillMount(){
     $(window).resize(function() {
-    	var path = $(this);
-    	var contW = path.width();
+    	let path = $(this);
+    	let contW = path.width();
     	if(contW >= 751) {
     		document.getElementsByClassName("sidebar-toggle")[0].style.left="200px";
         $("#recipe-view").addClass("recipe-view-margin");
@@ -26,8 +26,8 @@ class Sidebar extends Component {
     	});
     	$(".menu-toggle").click(function(e) {
     		e.preventDefault();
-    		var elem = document.getElementById("sidebar-wrapper");
-    		var left = window.getComputedStyle(elem,null).getPropertyValue("left");
+    		let elem = document.getElementById("sidebar-wrapper"); // CAN WE CHANGE THIS TO LET?
+    		let left = window.getComputedStyle(elem,null).getPropertyValue("left");
     		if (left === "200px") {
     			document.getElementsByClassName("sidebar-toggle")[0].style.left="-200px";
           $("#recipe-view").removeClass("recipe-view-margin")
@@ -78,9 +78,9 @@ class Sidebar extends Component {
     const notSelected = !(this.props.sporkId || this.props.selectedVariation) || 
       !this.props.selectedVariation ? 'side-item' : 'side-item sidebar-selected';
 
-    const recipeButtonCaption = this.props.sporkId ? 'Return to Recipe' : 'Recipe' 
+    const recipeButtonCaption = this.props.sporkId ? 'Return to Recipe' : 'Recipe';
     const { username, recipeName } = this.props.recipe?this.props.recipe:'';
-    const hasReview = this.props.reviews.some(review => review.username === this.props.username)
+    const hasReview = this.props.reviews.some(review => review.username === this.props.username);
     return (
       <div>
       <nav className="navbar navbar-default" role="navigation">
@@ -91,7 +91,7 @@ class Sidebar extends Component {
         </a>
       	<div className="container">
       		<div className="navbar-header">
-          <ul></ul>	
+          <ul></ul>	{/*SHOULD WE DELETE THIS?*/}
       		</div>
       		<div id="sidebar-wrapper" className="sidebar-toggle">
       			<ul className="sidebar-nav">
@@ -120,7 +120,7 @@ class Sidebar extends Component {
               }
               {!this.props.selectedVariation && this.props.username &&
               <li onClick={this.handleVariation.bind(this)}>
-                <a>Spork this recipe <img src="/assets/spork.png" style={{width: '8%', marginLeft: '5px'}}/></a>
+                <a>Spork this recipe <img src="/assets/spork.png" alt="Spork" style={{width: '8%', marginLeft: '5px'}}/></a>
               </li>
               }
               {this.props.username && 

@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
-import { Link } from 'react-router';
+import { Link } from 'react-router'; // SHOULD WE DELETE THIS?
 import { reduxForm, Field } from 'redux-form';
 
 const queryField = query => (
   <input {...query.input} className="form-control searchbar-input" placeholder="Search" type="text"/>
-
-)
+);
 
 class SearchBar extends Component {
   handleFormSubmit({query}) {

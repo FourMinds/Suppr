@@ -7,7 +7,7 @@ class AuthorTile extends Component {
   renderInfo() {
     const { username } = this.props;
     if(this.props.info[username]) {
-      const {favoritesCount, followersCount, followsCount, recipesCount, sporksCount} = this.props.info[username]
+      const {favoritesCount, followersCount, followsCount, recipesCount, sporksCount} = this.props.info[username];
       return (
         <div className="author-stats-box">
           <div className="inner-box-item"><img className="author-stats-icon" src="/assets/salad.png" alt="Recipes" title="recipes"/>{recipesCount}</div>
@@ -29,8 +29,8 @@ class AuthorTile extends Component {
   }
 
   render() {
-    const { username } = this.props
-    const profileLink = `/profile/${username}`
+    const { username } = this.props;
+    const profileLink = `/profile/${username}`;
     return (
       <div className="author-box">
         <a href={profileLink}>

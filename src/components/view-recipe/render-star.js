@@ -50,7 +50,7 @@ export function renderStar(finalValue) {
 
   let revealGroup = vis.append("g")
               .attr("transform", "translate(0, 0)")
-              .style("overflow", "hidden")
+              .style("overflow", "hidden");
 
   let outerStar = vis.append("g")
               .attr("transform", "translate(0, 43)");
@@ -64,13 +64,13 @@ export function renderStar(finalValue) {
               .attr("width", 80)
               .attr("height", 80)
               .attr("fill", "#f8f8ff")
-              .style("overflow", "hidden")
+              .style("overflow", "hidden");
               
   let text = textGroup.append("text")
               .text(0)
               .style("font-family", "Helvetica")
               .style("fill", "#474747")
-              .attr("text-anchor", "middle")
+              .attr("text-anchor", "middle");
 
   outerStar.selectAll("path")
       .data([data1])
@@ -99,11 +99,11 @@ export function renderStar(finalValue) {
 
   let textTween = function() {
         let that = this;
-        let i = d3.interpolateRound(that.textContent);
+        // let i = d3.interpolateRound(that.textContent);
         return function(t) {
           d3.select(that).text(numberFormat((t * finalValue), 1));
         };
-      }
+  };
 
   revealBox.transition()
       .duration(1500)

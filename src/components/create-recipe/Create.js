@@ -11,8 +11,8 @@ import Imgur from '../../imgur.js'
 import TagsInput from 'react-tagsinput'
 
 const {
-  imageUrlField, 
-  recipeNameField, 
+  imageUrlField,
+  recipeNameField,
   prepTimeField, 
   cookTimeField, 
   servingsField, 

@@ -100,10 +100,10 @@ export function postRecipe(recipe, isVariation) {
       .then(res => {
         let recipePath = `/recipe/${res.data.id}`;
         if(isVariation) {
-          recipePath = `/recipe/${recipe.parentId}`
+          recipePath = `/recipe/${recipe.parentId}`;
         }
         dispatch(getRecipes());
-        browserHistory.push(recipePath)
+        browserHistory.push(recipePath);
       })
   }
 }
@@ -118,9 +118,9 @@ export function getRecipes() {
         return res;
       })
       .then(res => {
-        res.data.map(recipe => dispatch(getProfileByUsername(recipe.username)))
-        res.data.map(recipe => dispatch(getUserInfo(recipe.username)))
-        dispatch({ type: GET_RECIPE, payload: res.data })
+        res.data.map(recipe => dispatch(getProfileByUsername(recipe.username)));
+        res.data.map(recipe => dispatch(getUserInfo(recipe.username)));
+        dispatch({ type: GET_RECIPE, payload: res.data });
       })
   }
 }
@@ -140,10 +140,10 @@ export function getVariations(id, setId) {
             id,
             data: res.data
           }
-        })
+        });
         //setId for setting selected variation after retrieval
         if(setId) {
-          dispatch(selectVariation(id, setId))
+          dispatch(selectVariation(id, setId));
         }
       })
   }
@@ -151,15 +151,15 @@ export function getVariations(id, setId) {
 
 export function selectVariation(recipeId, id) {
   return function(dispatch, getState) {
-    const display = getState().recipes.variations[recipeId].filter(variation => variation.id === Number(id))
+    const display = getState().recipes.variations[recipeId].filter(variation => variation.id === Number(id));
     dispatch({ type: SELECT_VARIATION, payload: display[0] });
-    dispatch(getReview(id))
+    dispatch(getReview(id));
   }
 }
 
 export function deselectVariation() {
   return function(dispatch) {
-    dispatch({ type: DESELECT_VARIATION })
+    dispatch({ type: DESELECT_VARIATION });
   }
 }
 
@@ -177,10 +177,10 @@ export function getRecipeById(id) {
       .then(res => {
         dispatch({ type: GET_RECIPE_ID, payload: res.data });
         dispatch(getReview(id));
-        dispatch(getProfileByUsername(res.data.username))
-        dispatch(getUserInfo(res.data.username))
+        dispatch(getProfileByUsername(res.data.username));
+        dispatch(getUserInfo(res.data.username));
       })
-        .catch(e => browserHistory.replace('/error'))
+        .catch(e => browserHistory.replace('/error'));
   }
 }
 
@@ -226,24 +226,24 @@ export function deleteRecipe(id, deleteSpork) {
     })
       .then(res => {
       dispatch(getRecipes());
-      dispatch(getVariations(getState().recipes.selectedRecipe.id))
-      if (deleteSpork) dispatch(deselectVariation())
-      if (!deleteSpork) browserHistory.push('/')
+      dispatch(getVariations(getState().recipes.selectedRecipe.id));
+      if (deleteSpork) dispatch(deselectVariation());
+      if (!deleteSpork) browserHistory.push('/');
     })
   }
 }
 
 export function pushUpdate(recipe) {
   return function(dispatch) {
-    dispatch({ type: PUSH_UPDATE, payload: recipe })
-    browserHistory.push('/edit')
+    dispatch({ type: PUSH_UPDATE, payload: recipe });
+    browserHistory.push('/edit');
   }
 }
 
 export function pushVariation(recipe) {
   return function(dispatch) {
-    dispatch({ type: PUSH_VARIATION, payload: recipe })
-    browserHistory.push('/spork')
+    dispatch({ type: PUSH_VARIATION, payload: recipe });
+    browserHistory.push('/spork');
   }
 }
 
@@ -255,9 +255,9 @@ export function updateRecipe(update) {
       .then(res => {
         const recipePath = !update.parentId ? `/recipe/${update.id}` : `/recipe/${update.parentId}/${update.id}`;
         dispatch(getRecipes());
-        dispatch(getRecipeById(update.id))
-        dispatch(getVariations(update.parentId))
-        browserHistory.push(recipePath)
+        dispatch(getRecipeById(update.id));
+        dispatch(getVariations(update.parentId));
+        browserHistory.push(recipePath);
       })
   }
 }
@@ -272,7 +272,7 @@ export function postReview(review) {
       headers: {authorization: localStorage.getItem('token')}
       })
       .then(res => {
-        dispatch(getReview(review.recipeId))
+        dispatch(getReview(review.recipeId));
       })
   }
 }
@@ -284,10 +284,9 @@ export function getReview(id) {
       params: { id }
     })
       .then(res => {
-        console.log(res.data)
-        dispatch({ type: GET_REVIEW, payload: res.data })
-        res.data.map(review => dispatch(getProfileByUsername(review.username)))
-        res.data.map(review => dispatch(getUserInfo(review.username)))
+        dispatch({ type: GET_REVIEW, payload: res.data });
+        res.data.map(review => dispatch(getProfileByUsername(review.username)));
+        res.data.map(review => dispatch(getUserInfo(review.username)));
       })
   }
 }
@@ -303,7 +302,7 @@ export function postFavorite(favorite) {
     })
       .then(res => {
         dispatch(getFavorites(favorite.username));
-        dispatch(getUserInfo(favorite.username))
+        dispatch(getUserInfo(favorite.username));
       })
   }
 }
@@ -316,9 +315,9 @@ export function getFavorites(username, isSignedinUser = true) {
     })
       .then(res => {
         if (!isSignedinUser) {
-          return dispatch({ type: GET_FAVORITE_USER, payload: res.data })
+          return dispatch({ type: GET_FAVORITE_USER, payload: res.data });
         }
-        dispatch({ type: GET_FAVORITE, payload: res.data })
+        dispatch({ type: GET_FAVORITE, payload: res.data });
       })
   }
 }
@@ -334,7 +333,7 @@ export function postFollow(follow) {
     })
       .then(res => {
         dispatch(getFollows(follow.username));
-        dispatch(getFollows(follow.followName, false))
+        dispatch(getFollows(follow.followName, false));
       })
   }
 }
@@ -347,9 +346,9 @@ export function getFollows(username, isSignedinUser = true) {
     })
       .then(res => {
         if (!isSignedinUser) {
-          return dispatch({ type: GET_FOLLOWS_USER, payload: res.data })
+          return dispatch({ type: GET_FOLLOWS_USER, payload: res.data });
         }
-        dispatch({ type: GET_FOLLOWS, payload: res.data })
+        dispatch({ type: GET_FOLLOWS, payload: res.data });
       })
   }
 }
@@ -360,7 +359,7 @@ export function getFollows(username, isSignedinUser = true) {
 
 export function getUserInfo(username) { 
   return function(dispatch) {
-    if(!username) return
+    if(!username) return;
     axios.get(`${server}/info`, {
       headers: {authorization: localStorage.getItem(('token'))},
       params: { username }
@@ -390,17 +389,17 @@ export function search(query) {
           data: res.data,
           query
         } 
-      })
-        res.data.map(recipe => dispatch(getProfileByUsername(recipe.username)))
-        res.data.map(recipe => dispatch(getUserInfo(recipe.username)))
+      });
+        res.data.map(recipe => dispatch(getProfileByUsername(recipe.username)));
+        res.data.map(recipe => dispatch(getUserInfo(recipe.username)));
     })
   }
 }
 
 export function triggerSearch(query) {
   return function(dispatch) {
-    dispatch(search(query))
-    browserHistory.push('/search')
+    dispatch(search(query));
+    browserHistory.push('/search');
   }
 }
 
