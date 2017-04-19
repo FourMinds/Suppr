@@ -1,7 +1,7 @@
 import $ from 'jquery'
 
 export default function validate(formProps) {
-  console.log(formProps)
+  console.log(formProps);
   const errors = {};
   if (!formProps.recipeName) {
     errors.recipeName = 'Please enter a recipe name';

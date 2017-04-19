@@ -18,13 +18,13 @@ export default function validate(formProps) {
   if (isNaN(formProps.servings)) {
     errors.servings = 'Please enter a number';
   }
-  if (!formProps.prepTime) {
+  if (formProps.prepTime !== 0 && !formProps.prepTime) {
     errors.prepTime = 'Please enter a prep time';
   }
-  if (!formProps.cookTime) {
+  if (formProps.cookTime !== 0 && !formProps.cookTime) {
     errors.cookTime = 'Please enter a cook time';
   }
-  if (!formProps.servings) {
+  if (formProps.servings !== 0 && !formProps.servings) {
     errors.servings = 'Please enter the number of servings';
   }
   if (formProps.difficulty === "Choose...") {

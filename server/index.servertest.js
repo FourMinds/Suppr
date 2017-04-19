@@ -4,7 +4,7 @@ const db = require('./db/db.js');
 const Promise = require('bluebird');
 const _ = require('lodash');
 const query = Promise.promisify(db.query.bind(db));
-var app = require('./index').app
+let app = require('./index').app;
 
 beforeEach((done) => {
   Promise.all([
@@ -26,7 +26,7 @@ beforeEach((done) => {
     })
     .end(done);
   })
-})
+});
 
 
 describe('Server Response', () =>{
@@ -37,7 +37,7 @@ describe('Server Response', () =>{
       .expect('response')
       .end(done);
     })
-})
+});
 
 describe('Signup', ()=> {
   it('should signup a new user', (done) => {
@@ -63,7 +63,7 @@ describe('Signup', ()=> {
       })
 
   })
-})
+});
 
 describe('Signin', ()=> {
   it('should signin an existing user', (done) => {
@@ -80,7 +80,7 @@ describe('Signin', ()=> {
           })
           .end(done)
   })
-})
+});
 
 describe('POST /recipe', () => {
   it('should create a new recipe', (done)=> {
@@ -106,9 +106,9 @@ describe('POST /recipe', () => {
         if (err) return done(err);
         query('SELECT * from recipes').then(recipes => {
           expect(recipes.length).toBe(1);
-          expect(recipes[0].name).toBe('recipe')
+          expect(recipes[0].name).toBe('recipe');
           done()
         }).catch((err) => done(err))
       })
   })
-})
+});

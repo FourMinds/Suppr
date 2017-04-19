@@ -10,7 +10,7 @@ class RecipeTile extends Component {
 
   render() {
     const { name, image } = this.props.recipe;
-    const url=`url("${image}")`
+    const url=`url("${image}")`;
     return (
       <div className="flex-body">
         <div className="food-img" style={{backgroundImage:url}}>
@@ -44,4 +44,3 @@ function mapStatetoProps(state) {
 }
 
 export default connect(mapStatetoProps, actions)(RecipeTile)
-  

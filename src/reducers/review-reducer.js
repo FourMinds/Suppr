@@ -2,7 +2,7 @@ import {
   GET_REVIEW
 } from '../actions/types';
 
-const initialState = { data: [] }
+const initialState = { data: [] };
 
 export default function(state = initialState, action) {
   switch(action.type) {

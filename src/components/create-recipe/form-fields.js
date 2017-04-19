@@ -6,7 +6,7 @@ export const prepTimeField = prepTime => (
     <input {...prepTime.input} className="form-control rounded-0" />
     {prepTime.meta.touched && prepTime.meta.error && <div className="error">{prepTime.meta.error}</div>}
   </fieldset>
-)
+);
 
 export const cookTimeField = cookTime => (
   <fieldset className="form-group">
@@ -14,7 +14,7 @@ export const cookTimeField = cookTime => (
     <input {...cookTime.input} className="form-control rounded-0" />
     {cookTime.meta.touched && cookTime.meta.error && <div className="error">{cookTime.meta.error}</div>}
   </fieldset>
-)
+);
 
 export const servingsField = servings => (
   <fieldset className="form-group">
@@ -22,7 +22,7 @@ export const servingsField = servings => (
     <input {...servings.input} className="form-control rounded-0" />
     {servings.meta.touched && servings.meta.error && <div className="error">{servings.meta.error}</div>}
   </fieldset>
-)
+);
 
 export const difficultyField = difficulty => (
   <fieldset className="form-group">
@@ -35,7 +35,7 @@ export const difficultyField = difficulty => (
   </select>
   {difficulty.meta.touched && difficulty.meta.error && <div className="error">{difficulty.meta.error}</div>}
   </fieldset>
-)
+);
 
 export const descriptionField = description => (
   <fieldset className="form-group">
@@ -43,21 +43,21 @@ export const descriptionField = description => (
     <textarea {...description.input} className="form-control rounded-0" />
     {description.meta.touched && description.meta.error && <div className="error">{description.meta.error}</div>}
   </fieldset>
-)
+);
 
 export const quantityField = quantity => (
   <fieldset className="form-group">
     <input {...quantity.input} className="form-control rounded-0" />
     {quantity.meta.touched && quantity.meta.error && <div className="error">{quantity.meta.error}</div>}
   </fieldset>
-)
+);
 
 export const itemsField = items => (
   <fieldset className="form-group">
     <input {...items.input} className="form-control rounded-0" />
     {items.meta.touched && items.meta.error && <div className="error">{items.meta.error}</div>}
   </fieldset>
-)
+);
 
 export const instructionsField = instructions => (
   <fieldset className="form-group">
@@ -65,7 +65,7 @@ export const instructionsField = instructions => (
     <textarea {...instructions.input} className="form-control rounded-0" placeholder="Write each step on a new line" style={{height: "8em"}}/>
     {instructions.meta.touched && instructions.meta.error && <div className="error">{instructions.meta.error}</div>}
   </fieldset>
-)
+);
 
 export const recipeNameField = recipeName => (
   <fieldset className="form-group">
@@ -73,4 +73,4 @@ export const recipeNameField = recipeName => (
     <input {...recipeName.input} className="form-control rounded-0" />
     {recipeName.meta.touched && recipeName.meta.error && <div className="error">{recipeName.meta.error}</div>}
   </fieldset>
-)
+);

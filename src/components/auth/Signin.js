@@ -5,7 +5,7 @@ import * as actions from '../../actions';
 import { signinFields } from './form-fields'
 import { Link } from 'react-router';
 
-const { usernameField, passwordField } = signinFields
+const { usernameField, passwordField } = signinFields;
 
 class Signin extends Component {
   handleFormSubmit({ username, password }) {
@@ -50,7 +50,7 @@ function validate(formProps) {
   }
 
   if (formProps.username) {
-    const { username } = formProps
+    const { username } = formProps;
     if (username[username.length-1] === username[username.length-1].toUpperCase()) {
       formProps.username = formProps.username.slice(0,username.length)
     }

@@ -19,10 +19,10 @@ class RecipeInfo extends Component {
 
   renderIngredients(ingredients) {
    if(ingredients){
-     var quantities = ingredients.quantity;
-     var items = ingredients.items;
-     var lines = []
-     for(var i = 0; i < quantities.length; i++){
+     let quantities = ingredients.quantity;
+     let items = ingredients.items;
+     let lines = [];
+     for(let i = 0; i < quantities.length; i++){
        if(ingredients[i] !== ""){
         lines.push(
           <div className='flex-body-ingredients' key={i}>
@@ -48,8 +48,8 @@ class RecipeInfo extends Component {
 
   renderInstructions(instructions) {
     if(instructions){
-      var instructionsArr = instructions.split('\n');
-      var counter = 0;
+      let instructionsArr = instructions.split('\n');
+      let counter = 0;
       return instructionsArr.map((instruct, i) => {
         if(instruct !== ""){
           counter++;

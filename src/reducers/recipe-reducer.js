@@ -31,14 +31,14 @@ export default function(state = initialState, action) {
     case PUSH_VARIATION:
       return { ...state, pushVariation: action.payload };
     case SELECT_VARIATION:
-      return { ...state, selectedVariation: action.payload }
+      return { ...state, selectedVariation: action.payload };
     case DESELECT_VARIATION:
-      return { ...state, selectedVariation: null }
+      return { ...state, selectedVariation: null };
     case GET_VARIATIONS_USERNAME:
-      return { ...state, userVariations: action.payload }
+      return { ...state, userVariations: action.payload };
     case GET_VARIATIONS:
-      let newState = { variations: { } }
-      newState.variations[action.payload.id] = action.payload.data
+      let newState = { variations: { } };
+      newState.variations[action.payload.id] = action.payload.data;
       return {...state, ...newState};
     default:
       return state;

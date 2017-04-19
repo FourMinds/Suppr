@@ -623,6 +623,9 @@ body.busy .loading-modal {
 button.btn.btn-primary.btn-padded {
   float: left; }
 
+.signout {
+  max-width: 27em; }
+
 .btn-primary {
   background-color: #24a866;
   border-color: white; }

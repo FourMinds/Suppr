@@ -6,7 +6,7 @@ import {
 const initialState = {
   data: [],
   dataForUser: []
-}
+};
 export default function(state = initialState, action) {
   switch(action.type) {
     case GET_FOLLOWS:
