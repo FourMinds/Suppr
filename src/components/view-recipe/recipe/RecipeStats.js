@@ -5,7 +5,7 @@ import * as actions from '../../../actions';
 class RecipeStats extends Component {
 
   render() {
-    const { difficulty, cookTime, prepTime, servings } = this.props.recipe
+    const { difficulty, cookTime, prepTime, servings } = this.props.recipe;
     return (
       <div className="recipe-stats-box">
         <div className="recipe-stats-box-column">

@@ -15,7 +15,7 @@ const jwtOptions = {
 };
 
 const jwtLogin = new JwtStrategy(jwtOptions, function (payload, done) {
-  const userQuery = `SELECT * from users WHERE id = "${payload.sub}";`
+  const userQuery = `SELECT * from users WHERE id = "${payload.sub}";`;
   const currentTime = Math.round(Date.now() / 1000 + 5 * 60 * 60);
   query(userQuery).then((user) => {
     if (!payload.exp || currentTime > payload.exp) {
@@ -39,7 +39,7 @@ const comparePassword = function (password, userPassword, callback) {
 
 const localOptions = { usernameField: 'username' };
 const localLogin = new LocalStrategy(localOptions, function (username, password, done) {
-  const localQuery = `SELECT * FROM users WHERE username = "${username}";`
+  const localQuery = `SELECT * FROM users WHERE username = "${username}";`;
   query(localQuery).then((user) => {
     if (!user.length) return done(null, false);
     comparePassword(password, user[0].password, (err, match) => {

@@ -85,7 +85,7 @@ class Create extends Component {
   }
 
   componentDidMount() {
-    var feedback = (res) => {
+    let feedback = (res) => {
       if (res.success === true) {
         $('#image-container').show();
         $('#image-container').addClass('image-preview-load');

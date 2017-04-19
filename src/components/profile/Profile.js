@@ -14,15 +14,15 @@ class Profile extends Component {
       this.props.getFavorites(this.props.username, true);
       this.props.getFollows(this.props.username);
       this.props.getRecipesByUsername(this.props.username);
-      this.props.getVariationsByUsername(this.props.username)
+      this.props.getVariationsByUsername(this.props.username);
       return <ProfileOwn /> 
     } else {
       this.props.getRecipes();
-      this.props.getFavorites(this.props.params.username, false)
-      this.props.getRecipesByUsername(this.props.params.username)
-      this.props.getVariationsByUsername(this.props.params.username)
-      this.props.getFollows(this.props.username)
-      this.props.getFollows(this.props.params.username, false)
+      this.props.getFavorites(this.props.params.username, false);
+      this.props.getRecipesByUsername(this.props.params.username);
+      this.props.getVariationsByUsername(this.props.params.username);
+      this.props.getFollows(this.props.username);
+      this.props.getFollows(this.props.params.username, false);
       return <ProfileView viewUsername={this.props.params.username}/>
     }
   }

@@ -1,5 +1,5 @@
 const elasticsearch = require('elasticsearch');
-const { ES_ACCESS_KEY, ES_SECRET_KEY } = require('../config.js')
+const { ES_ACCESS_KEY, ES_SECRET_KEY } = require('../config.js');
 
 const client = new elasticsearch.Client({
   host:'search-suppr-tbveoknf7ddpmisilqiwr5nkd4.us-west-2.es.amazonaws.com',
@@ -9,7 +9,7 @@ const client = new elasticsearch.Client({
     accessKey: ES_ACCESS_KEY,
     secretKey: ES_SECRET_KEY
   }
-}) 
+}) ;
 
 client.ping({
   requestTimeout: 3000
@@ -21,4 +21,4 @@ client.ping({
   }
 });
 
-module.exports = client
+module.exports = client;

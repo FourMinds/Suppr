@@ -14,7 +14,7 @@ export const signinFields = {
       {password.meta.touched && password.meta.error && <div className="error">{password.meta.error}</div>}
     </fieldset>
   )
-}
+};
 
 export const signupFields = {
   emailField: email => (
@@ -44,4 +44,4 @@ export const signupFields = {
       {passwordConfirm.meta.touched && passwordConfirm.meta.error && <div className="error">{passwordConfirm.meta.error}</div>}
     </fieldset>
   )
-}
+};

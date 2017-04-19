@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const cors = require('cors');
 const app = express();
-var db = require('./db/db');
+const db = require('./db/db');
 const router = require('./router');
 const regex = require('./services/regex');
 

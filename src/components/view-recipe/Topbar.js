@@ -11,27 +11,27 @@ class Topbar extends Component {
 
     this.state = {
       score: 0
-    }
+    };
 
     this.handleFavoriteSubmit = this.handleFavoriteSubmit.bind(this);
   }
 
   componentDidMount() {
     $('#star').click(function () {
-      var divID = '#review';
+      let divID = '#review';
       $('html, body').animate({
           scrollTop: $(divID).offset().top
       }, 1000);
     });
     if(this.props.username) this.props.getFavorites(this.props.username);
-    this.props.getUserInfo(this.props.recipe.username)
+    this.props.getUserInfo(this.props.recipe.username);
     renderStar(0);
   }
 
   componentWillUpdate(nextProps) {
     if (!_.isEqual(this.props.reviews, nextProps.reviews)) {
       const score = Math.round( ( nextProps.reviews.reduce((acc, val) => { return acc + val.rating;}, 0) / nextProps.reviews.length ) * 10 ) / 10;
-      this.setState({ score })
+      this.setState({ score });
       renderStar(isNaN(score) ? 0 : score);
     }
   }
@@ -44,8 +44,8 @@ class Topbar extends Component {
   renderHeart() {
     let favorited = this.props.favorites.data.some(favorite => {
       return favorite.recipe_id === this.props.recipe.id
-    })
-    const src = favorited ? '/assets/favorited.png' : '/assets/unfavorited.png'
+    });
+    const src = favorited ? '/assets/favorited.png' : '/assets/unfavorited.png';
     if (!this.props.username) {
       return <div className="favorite-button" ><img className="favorite-image" src='/assets/unfavorited.png' alt=""/></div>
     }
