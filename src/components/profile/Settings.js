@@ -66,7 +66,7 @@ class Settings extends Component {
   }
 
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, submitting, pristine } = this.props;
     const { page } = this.state
     return (
       <div>
@@ -86,7 +86,7 @@ class Settings extends Component {
           {this.renderAlert()}
           {this.renderSuccess()}
           <div>
-            <button action="submit" className="btn btn-primary btn-padded">Submit <i className="fa fa-angle-right" style={{marginLeft:'10px'}} aria-hidden="true"></i></button>
+            <button action="submit" className="btn btn-primary btn-padded" disabled={pristine || submitting}>Submit <i className="fa fa-angle-right" style={{marginLeft:'10px'}} aria-hidden="true"></i></button>
           </div>
         </form>
         </div>}
@@ -99,7 +99,7 @@ class Settings extends Component {
            {this.renderAlert()}
           {this.renderSuccess()}
           <div>
-            <button action="submit" className="btn btn-primary btn-padded">Submit <i className="fa fa-angle-right" style={{marginLeft:'10px'}} aria-hidden="true"></i></button>
+            <button action="submit" disabled={pristine || submitting} className="btn btn-primary btn-padded">Submit <i className="fa fa-angle-right" style={{marginLeft:'10px'}} aria-hidden="true"></i></button>
           </div>
         </form>
       </div>}
@@ -110,6 +110,7 @@ class Settings extends Component {
 }
 
 function validate(formProps) {
+  console.log(formProps)
   const errors = {};
   if (!formProps.email) {
     errors.email = 'Please enter an email';
