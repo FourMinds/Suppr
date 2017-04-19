@@ -71,6 +71,10 @@ function validate(formProps) {
     errors.password = 'Please enter a password';
   }
 
+  if (formProps.password && formProps.password.search(/\s/g) > 0) {
+    errors.password = 'Password cannot have spaces';
+  }
+
   if (!formProps.passwordConfirm) {
     errors.passwordConfirm = 'Please enter a password confirmation';
   }
