@@ -58,11 +58,11 @@ body.busy .loading-modal {
 }
 
 .btn-edit-profile {
-  margin-left: 10px;
-  cursor: pointer;
   border: 1px solid $theme-primary;
-  padding: 7px;
   border-radius: 2px;
+  cursor: pointer;
+  margin: 1em 1em 2em 1em;
+  padding: 7px;
 }
 
 .form-label {
@@ -91,7 +91,7 @@ body.busy .loading-modal {
 }
 
 .profile-field-container {
-  margin-top: 10px;
+  margin: 2em 1em 1em 1em;
 }
 
 .profile-text {
