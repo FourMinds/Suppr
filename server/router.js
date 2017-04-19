@@ -18,6 +18,7 @@ module.exports = function(app) {
   app.post('/signup', Authentication.signup);
   app.post('/signin', requireSignin, Authentication.signin);
   app.post('/forgot', forgotHandler.forgotPassword);
+  app.post('/reset', Authentication.resetPassword);
 
   app.post('/recipe', recipeHandler.createRecipe);
   app.get('/recipe', recipeHandler.getRecipe);
@@ -41,4 +42,4 @@ module.exports = function(app) {
   app.post('/profile', profileHandler.postProfile);
   
   app.get('/search', searchHandler.search);
-}
+};

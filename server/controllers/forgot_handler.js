@@ -1,6 +1,14 @@
 const db = require('../db/db');
 const Promise = require('bluebird');
+const jwt = require('jwt-simple');
+const config = require('../config');
 const mailer = require('../services/mailer');
+
+function generateToken(user) {
+  const timeStamp = new Date().getTime();
+  const exp = Math.round(Date.now() / 1000 + 60 * 60);
+  return jwt.encode({ sub: user.email, iat: timeStamp, exp }, config.secret);
+}
 
 exports.forgotPassword = function(req, res, next) {
   const { email } = req.body;
@@ -18,14 +26,18 @@ exports.forgotPassword = function(req, res, next) {
       return res.status(403).send({ error: 'Email does not exist' });
     }
 
-    mailer.sendMail(email, (err, info) => {
-      if (error) {
-        return console.error(err);
-      }
-      console.log('Message %s sent: %s', info.messageId, info.response);
-    });
-
-  });
-
+    // generate a token
+    return generateToken(emailFound);
+  })
+    .then(token => {
+      // send an email with the email and token
+      mailer.sendMail(email, token, (err, info) => {
+        if (err) {
+          return console.error(err);
+        }
+        console.log('Message %s sent: %s', info.messageId, info.response);
+      });
+    })
+    .catch(err => console.error(err));
 
 };

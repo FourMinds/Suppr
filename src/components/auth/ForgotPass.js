@@ -14,7 +14,7 @@ class ForgotPass extends Component {
   handleFormSubmit( {email} ) {
     // synchronously submit a post request and redirect to browser; does not have to be asynchronous because we're sending an e-mail
     axios.post(`${server}/forgot`, { email });
-    browserHistory.push('/auth/signin');
+    browserHistory.push('/');
   }
 
   render() {
