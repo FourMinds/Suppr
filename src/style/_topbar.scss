@@ -15,10 +15,17 @@
   justify-content: center;
 }
 
-.favorite-image {
-  // display: block
-}
-
 .medals-box {
   width: 575px;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.medal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 45px;
+  height: 100%;
 }

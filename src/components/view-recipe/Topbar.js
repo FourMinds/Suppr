@@ -56,13 +56,52 @@ class Topbar extends Component {
     )
   }
 
+  renderBronze() {
+    return (  
+      <div className="medal">
+        <img src='/assets/ribbon3.png' title="bronze likes"/>
+      </div>
+    )
+  }
+
+  renderSilver() {
+    return (
+      <div className="medal">
+        <img src='/assets/ribbon2.png' title="silver likes"/>
+      </div>
+    )
+  }
+
+  renderGold() {
+    return (
+      <div className="medal">
+        <img src='/assets/ribbon1.png' title="gold likes"/>
+      </div>
+    )
+  }
+  
+  renderTrophy() {
+    const trophy = (this.state.score >= 4 && this.props.reviews.length >= 5) ? '/assets/trophy.png' : '/assets/trophy-grey.png'
+    return(
+      <div className="medal">
+        <img src={trophy} title="well recieved"/>
+      </div>
+    )
+  }
+
   render () {
     return(
       <div className="topbar-box">
         
         {this.props.username && this.renderHeart()}
+
         <div className="medals-box">
+          {this.renderBronze()}
+          {this.renderSilver()}
+          {this.renderGold()}
+          {this.renderTrophy()}
         </div>
+
         <a href="#review"><div id="star"></div></a>
       </div>
     )
