@@ -285,6 +285,7 @@ export function getReview(id) {
     })
       .then(res => {
         dispatch({ type: GET_REVIEW, payload: res.data })
+        dispatch(getProfileByUsername(res.data.username))
       })
   }
 }
