@@ -92,7 +92,7 @@ class Personal extends Component {
             <a name="2" onClick={this.handleEdit} className="edit-link">{bioButtonCaption}</a>
           </label>
           <hr className="profile-field-divider" />
-          {this.state.edit !== 2 && <div className="profile-text">{this.props.profile.bio}</div>} {/*CAN WE CHANGE THIS TO !==*/}
+          {this.state.edit !== 2 && <div className="profile-text">{this.props.profile.bio}</div>}
           <fieldset className="form-group profile-form" style={{display: this.state.edit === 2 ? 'block' : 'none'}}>
           <Field name="bio" component={bioField} />
           <button action="submit" className="btn btn-primary form-control" >Submit</button> 

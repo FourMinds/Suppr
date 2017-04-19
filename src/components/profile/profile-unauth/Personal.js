@@ -18,7 +18,7 @@ class Personal extends Component {
   }
 
   render(){
-    const [bio, style, location] = this.returnContent()
+    const [bio, style, location] = this.returnContent();
     return (
       <div>
         <div className="profile-field-container">
