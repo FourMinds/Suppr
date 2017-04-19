@@ -2,6 +2,7 @@ import {
   AUTH_USER,
   UNAUTH_USER,
   AUTH_ERROR,
+  SUCCESS
 } from '../actions/types';
 const initialState = {
   username: null,
@@ -15,6 +16,8 @@ export default function(state = initialState, action) {
       return { ...state, authenticated: false, username: null };
     case AUTH_ERROR:
       return { ...state, error: action.payload };
+    case SUCCESS:
+      return { ...state, message: action.payload };
     default:
       return state;
   }
