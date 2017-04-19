@@ -391,6 +391,8 @@ export function search(query) {
           query
         } 
       })
+        res.data.map(recipe => dispatch(getProfileByUsername(recipe.username)))
+        res.data.map(recipe => dispatch(getUserInfo(recipe.username)))
     })
   }
 }
