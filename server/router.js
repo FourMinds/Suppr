@@ -4,6 +4,7 @@ const recipeHandler = require('./controllers/recipe_handler');
 const favoriteHandler = require('./controllers/favorite_handler');
 const settingsHandler = require('./controllers/settings_handler');
 const followHandler = require('./controllers/follow_handler');
+const recipeInfoHandler = require('./controllers/recipe_info_handler')
 const reviewHandler = require('./controllers/review_handler');
 const searchHandler = require('./controllers/search_handler');
 const userInfoHandler = require('./controllers/userinfo_handler');
@@ -40,6 +41,8 @@ module.exports = function(app) {
   app.get('/follow', followHandler.getFollows);
 
   app.get('/info', userInfoHandler.getUserInfo);
+
+  app.get('/recipeinfo', recipeInfoHandler.getRecipeInfo);
 
   app.get('/profile', profileHandler.getProfile);
   app.post('/profile', profileHandler.postProfile);

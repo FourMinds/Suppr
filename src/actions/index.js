@@ -375,6 +375,25 @@ export function getUserInfo(username) {
 }
 
 /*****************
+* * Recipeinfo * * 
+*****************/
+
+//retrieves number of likes for a specific recipe     \\\\\\\////////\\\\\\\////////\\\\\\\//////
+export function getRecipeInfo(recipeId) {
+  return function(dispatch) {
+    axios.get(`${server}/recipeinfo`, {
+      params: { recipeId }
+    })
+    .then(res => {
+      dispatch({ type: GET_RECIPE_INFO, payload: {
+
+        } 
+      })
+    })
+  }
+}
+
+/*****************
 * * * Search * * *
 *****************/
 
