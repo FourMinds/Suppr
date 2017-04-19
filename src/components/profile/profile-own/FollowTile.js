@@ -4,7 +4,7 @@ import * as actions from '../../../actions';
 
 class FollowTile extends Component {
   componentWillMount() {
-    this.props.getUserInfo(this.props.user)
+    this.props.getUserInfo(this.props.user);
     this.props.getProfileByUsername(this.props.user);
   }
 
@@ -19,7 +19,7 @@ class FollowTile extends Component {
   renderInfo() {
     const { user } = this.props;
     if(this.props.info[user]) {
-      const {favoritesCount, followersCount, followsCount, recipesCount, sporksCount} = this.props.info[user]
+      const {favoritesCount, followersCount, followsCount, recipesCount, sporksCount} = this.props.info[user];
       return (
         <div className="author-stats-box">
           <div className="inner-box-item"><img className="author-stats-icon" src="/assets/salad.png" alt="Recipes" title="recipes"/>{recipesCount}</div>
@@ -45,7 +45,7 @@ class FollowTile extends Component {
   }
 
   render() {
-    const userLink = `/profile/${this.props.user}`
+    const userLink = `/profile/${this.props.user}`;
     return (
       <div className="col-md-4">
         <div className="well well-sm">

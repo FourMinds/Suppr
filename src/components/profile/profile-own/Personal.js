@@ -7,24 +7,24 @@ import $ from 'jquery';
 
 const bioField = bio => (
     <textarea {...bio.input} className="form-control profile-input" />
-)
+);
 
 const styleField = style => (
     <input {...style.input} className="form-control profile-input" />
-)
+);
 
 const locationField = location => (
     <input {...location.input} className="form-control profile-input" />
-)
+);
 
 class Personal extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       imageUrl: '',
       edit: 0
-    }
+    };
 
     this.handlePictureEdit = this.handlePictureEdit.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -32,7 +32,7 @@ class Personal extends Component {
   }
 
   componentDidMount() {
-    var feedback = (res) => {
+    let feedback = (res) => {
       if (res.success === true) {
         this.setState({ imageUrl: res.data.link, imageError: false });
         $('.profile-drop-text').text('Press submit to upload this picture');
@@ -85,14 +85,14 @@ class Personal extends Component {
 
           <label className="form-label">
             <span className="field-title">About Me</span>
-            {this.state.edit===2 ? 
+            {this.state.edit === 2 ?
               <i className="fa fa-times profile-edit-icon" aria-hidden="true"></i> : 
               <i className="fa fa-pencil-square-o profile-edit-icon" aria-hidden="true"></i>
             }
             <a name="2" onClick={this.handleEdit} className="edit-link">{bioButtonCaption}</a>
           </label>
           <hr className="profile-field-divider" />
-          {this.state.edit != 2 && <div className="profile-text">{this.props.profile.bio}</div>}
+          {this.state.edit !== 2 && <div className="profile-text">{this.props.profile.bio}</div>}
           <fieldset className="form-group profile-form" style={{display: this.state.edit === 2 ? 'block' : 'none'}}>
           <Field name="bio" component={bioField} />
           <button action="submit" className="btn btn-primary form-control" >Submit</button> 
@@ -100,14 +100,14 @@ class Personal extends Component {
 
           <label className="form-label">
             <span className="field-title">Favorite Cooking Style</span>
-            {this.state.edit===3 ? 
+            {this.state.edit === 3 ?
               <i className="fa fa-times profile-edit-icon" aria-hidden="true"></i> : 
               <i className="fa fa-pencil-square-o profile-edit-icon" aria-hidden="true"></i>
             }
             <a name="3" onClick={this.handleEdit} className="edit-link">{styleButtonCaption}</a>
           </label>
           <hr className="profile-field-divider" />
-          {this.state.edit !=3 && <div className="profile-text">{this.props.profile.style}</div>}
+          {this.state.edit !== 3 && <div className="profile-text">{this.props.profile.style}</div>} {/*CAN WE CHANGE THIS TO !==*/}
           <fieldset className="form-group profile-form" style={{display: this.state.edit === 3 ? 'block' : 'none'}}>
           <Field name="style" component={styleField} />
           <button action="submit" className="btn btn-primary form-control" >Submit</button> 
@@ -115,14 +115,14 @@ class Personal extends Component {
 
           <label className="form-label">
             <span className="field-title">Location</span> 
-            {this.state.edit===4 ? 
+            {this.state.edit === 4 ?
               <i className="fa fa-times profile-edit-icon" aria-hidden="true"></i> : 
               <i className="fa fa-pencil-square-o profile-edit-icon" aria-hidden="true"></i>
             }
             <a name="4" onClick={this.handleEdit} className="edit-link">{locationButtonCaption}</a>
           </label>
           <hr className="profile-field-divider" />
-          {this.state.edit !=4 && <div className="profile-text">{this.props.profile.location}</div>}
+          {this.state.edit !== 4 && <div className="profile-text">{this.props.profile.location}</div>}
           <fieldset className="form-group profile-form" style={{display: this.state.edit === 4 ? 'block' : 'none'}}>
           <Field name="location" component={locationField} />
           <button action="submit" className="btn btn-primary form-control" >Submit</button> 

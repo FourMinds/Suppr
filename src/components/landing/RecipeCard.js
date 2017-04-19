@@ -9,7 +9,7 @@ class RecipeCard extends Component {
     return (
       <div className="card" style={{width: '19em'}}>
         <a href={recipeLink}>
-          {parent_id && <img src="/assets/spork.png" className="card-spork"/>}
+          {parent_id && <img src="/assets/spork.png" alt="Spork" className="card-spork"/>}
             <img className="card-img-top" src={image} alt="Card img cap" style={{width:'100%'}}/>
         </a>
         <div className="card-block">

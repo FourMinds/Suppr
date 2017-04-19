@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
-import RecipeCard from '../landing/RecipeCard';
 import $ from 'jquery';
 
 import SporkCard from './SporkCard';
@@ -9,7 +8,7 @@ import SporkCard from './SporkCard';
 
 class SporkModal extends Component {
   handleClick(recipe, variation) {
-    this.props.selectVariation(recipe.id, variation.id)
+    this.props.selectVariation(recipe.id, variation.id);
     $("#ModalLong .closer").click();
   }
 
@@ -30,7 +29,7 @@ class SporkModal extends Component {
   }
 
   render() {
-    const cards = this.renderVariations.call(this)
+    const cards = this.renderVariations.call(this);
     return (
       <div className="modal fade bd-example-modal-lg" id="ModalLong" tabIndex="-1" role="dialog" aria-labelledby="ModalLongTitle" aria-hidden="true">
         <div className="modal-dialog modal-lg" role="document">

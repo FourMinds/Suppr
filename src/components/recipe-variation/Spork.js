@@ -11,7 +11,6 @@ import Imgur from '../../imgur.js'
 import TagsInput from 'react-tagsinput'
 
 const {
-  imageUrlField, 
   recipeNameField,
   prepTimeField, 
   cookTimeField, 
@@ -47,15 +46,15 @@ class Create extends Component {
     this.setState({ 
       tags: this.props.initialValues.tags,
       imageUrl:  this.props.initialValues.imageUrl
-    })
-    var feedback = (res) => {
+    });
+    let feedback = (res) => {
       if (res.success === true) {
-        $('#image-container').show()
-        $('#image-container').addClass('image-preview-load')
-        $('#preview-image').attr('src', res.data.link)
-        $('#preview-image').show()
-        $('.col-md').hide()
-        $('#re-upload-button').removeClass('re-upload')
+        $('#image-container').show();
+        $('#image-container').addClass('image-preview-load');
+        $('#preview-image').attr('src', res.data.link);
+        $('#preview-image').show();
+        $('.col-md').hide();
+        $('#re-upload-button').removeClass('re-upload');
         this.setState({ imageUrl: res.data.link, imageError: false })
       }
     };
@@ -193,17 +192,17 @@ class Create extends Component {
 
 
 function mapStateToProps(state) {
-  const { ingredients:{quantity, items} } = state.recipes.pushVariation
+  const { ingredients:{quantity, items} } = state.recipes.pushVariation;
   const quantityValues = quantity.reduce((obj, val, i) => {
-    const key = `quantity${i}`
-    obj[key] = val
+    const key = `quantity${i}`;
+    obj[key] = val;
     return obj
-  }, {})
+  }, {});
   const itemsValues = items.reduce((obj, val, i) => {
-    const key = `items${i}`
-    obj[key] = val
+    const key = `items${i}`;
+    obj[key] = val;
     return obj
-  }, {})
+  }, {});
   return { username: state.auth.username, initialValues: {...state.recipes.pushVariation, ...quantityValues, ...itemsValues} };
 }
 

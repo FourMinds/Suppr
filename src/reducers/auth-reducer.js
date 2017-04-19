@@ -6,11 +6,10 @@ import {
 const initialState = {
   username: null,
   authenticated: false
-}
+};
 export default function(state = initialState, action) {
   switch(action.type) {
     case AUTH_USER:
-    console.log(action.payload)
       return { ...state, error: '', authenticated: true, username: action.payload };
     case UNAUTH_USER:
       return { ...state, authenticated: false, username: null };

@@ -10,15 +10,15 @@ import $ from 'jquery';
 
 class ProfileOwn extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       page: 0,
-    }
+    };
     this.handleClick = this.handleClick.bind(this);
   }
   componentWillMount() {
-    this.props.getProfile(this.props.username)
+    this.props.getProfile(this.props.username);
     this.props.getFavorites(this.props.username, true);
     this.props.getFollows(this.props.username);
     this.props.getRecipesByUsername(this.props.username);
@@ -41,7 +41,7 @@ class ProfileOwn extends Component {
       return <Personal />
     }
     if (this.state.page === 1) {
-      const cards = this.props.userData.map(recipe => !recipe.parent_id&&<li key={recipe.id}><RecipeCard  recipe={recipe} /></li>)
+      const cards = this.props.userData.map(recipe => !recipe.parent_id&&<li key={recipe.id}><RecipeCard  recipe={recipe} /></li>);
       return (
         <div className="card-display">
           <Grid
@@ -60,7 +60,7 @@ class ProfileOwn extends Component {
       );
     }
     if (this.state.page === 2) {
-      const cards = this.props.userData.map(recipe => recipe.parent_id&&<li key={recipe.id}><RecipeCard  recipe={recipe} /></li>)
+      const cards = this.props.userData.map(recipe => recipe.parent_id&&<li key={recipe.id}><RecipeCard  recipe={recipe} /></li>);
       return (
         <div className="card-display">
           <Grid
@@ -103,7 +103,7 @@ class ProfileOwn extends Component {
       );
     }
     if (this.state.page === 4) {
-      let { follows } = this.props.followList
+      let { follows } = this.props.followList;
       return (
         <div>
         {follows.map((user,i) => <div key={i}><FollowTile user={user}/></div>)}
@@ -111,7 +111,7 @@ class ProfileOwn extends Component {
       );
     }
     if (this.state.page === 5) {
-      let { followers } = this.props.followList
+      let { followers } = this.props.followList;
       return (
         followers.map((user,i) => <div key={i}><FollowTile user={user}/></div>)
       );
@@ -119,7 +119,7 @@ class ProfileOwn extends Component {
   }
 
   render() {
-    const profilePic = this.props.profile && this.props.profile.image ? this.props.profile.image : "https://secure.gravatar.com/avatar/6e9387de9c9dfa657aa9b518d92e6871?d=https%3A//daks2k3a4ib2z.cloudfront.net/img/profile-user.png"
+    const profilePic = this.props.profile && this.props.profile.image ? this.props.profile.image : "https://secure.gravatar.com/avatar/6e9387de9c9dfa657aa9b518d92e6871?d=https%3A//daks2k3a4ib2z.cloudfront.net/img/profile-user.png";
     return (
       <div>
 
@@ -131,7 +131,8 @@ class ProfileOwn extends Component {
         <div className="profile-pic">
           <a href="#" className="profile-link">
           <img className="profile-img-top x-large" 
-              src={profilePic} />
+              src={profilePic}
+              alt="Profile"/>
           </a>
         </div>
       </div>

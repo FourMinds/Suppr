@@ -5,12 +5,12 @@ import { Link } from 'react-router';
 import SearchBar from './SearchBar';
 
 const Dropdown = (props) => {
-  const profileLink = `/profile/${props.username}`
+  const profileLink = `/profile/${props.username}`;
   return (
     <li className="nav-item dropdown">
       <a className="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
         <div className="drop-block">
-          <img src={props.profilePic} className="drop-block-image"/>
+          <img src={props.profilePic} alt="Profile" className="drop-block-image"/>
           Account
           <i className="fa fa-angle-down drop-block-icon" aria-hidden="true"></i>
         </div>
@@ -49,7 +49,7 @@ const Dropdown = (props) => {
       </div>
     </li>
   )
-}
+};
 
 class Header extends Component {
   componentDidMount() {
@@ -69,7 +69,7 @@ class Header extends Component {
     } 
   }
   render() {
-    const profilePic = this.props.profile && this.props.profile.image ? this.props.profile.image : 'http://i.imgur.com/hfH9CiC.png' 
+    const profilePic = this.props.profile && this.props.profile.image ? this.props.profile.image : 'http://i.imgur.com/hfH9CiC.png';
     return (
       <nav className="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
       <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
