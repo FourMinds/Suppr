@@ -577,6 +577,12 @@ body.busy .loading-modal {
 .re-upload {
   display: none; }
 
+.delete-button-first {
+  margin-top: 25px; }
+
+.delete-button {
+  margin-top: 3.5px; }
+
 .flex-body-auth {
   display: flex;
   justify-content: center;
@@ -592,7 +598,8 @@ body.busy .loading-modal {
 
 .auth-check {
   color: rgba(43, 50, 57, 0.45);
-  font-size: 15px; }
+  font-size: 15px;
+  max-width: 17em; }
 
 .auth-input {
   padding: 15px 13px;
@@ -612,6 +619,9 @@ body.busy .loading-modal {
 
 .btn-padded {
   padding: 15px 18px; }
+
+button.btn.btn-primary.btn-padded {
+  float: left; }
 
 .btn-primary {
   background-color: #24a866;
