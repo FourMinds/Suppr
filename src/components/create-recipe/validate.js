@@ -50,6 +50,7 @@ export default function validate(formProps) {
   if(!formProps.tags || formProps.tags < 2) {
     errors.tags = 'Sorry! We can\'t submit your recipe without knowing at least two tags.';
   }
+  
   if (!formProps.ingredients || !formProps.ingredients.length) {
     errors.ingredients = 'At least one member must be entered'
   } else {
@@ -70,6 +71,5 @@ export default function validate(formProps) {
       errors.ingredients = ingredientsArrayErrors
     }
   }
-  console.log(errors)
   return errors;
 }
