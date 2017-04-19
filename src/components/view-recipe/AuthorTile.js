@@ -3,6 +3,10 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions';
 
 class AuthorTile extends Component {
+  componentWillMount() {
+    this.props.getProfileByUsername(this.props.username)
+    this.props.getUserInfo(this.props.username)
+  }
 
   renderInfo() {
     const { username } = this.props;
