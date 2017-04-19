@@ -284,8 +284,10 @@ export function getReview(id) {
       params: { id }
     })
       .then(res => {
+        console.log(res.data)
         dispatch({ type: GET_REVIEW, payload: res.data })
-        dispatch(getProfileByUsername(res.data.username))
+        res.data.map(review => dispatch(getProfileByUsername(review.username)))
+        res.data.map(review => dispatch(getUserInfo(review.username)))
       })
   }
 }
