@@ -22,4 +22,4 @@ class Signout extends Component {
   }
 }
 
-export default connect(null, actions);
+export default connect(null, actions)(Signout);
