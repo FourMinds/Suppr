@@ -46,6 +46,25 @@ export default function validate(formProps) {
   if(!formProps.tags || formProps.tags < 2) {
     errors.tags = 'Sorry! We can\'t submit your recipe without knowing at least two tags.';
   }
-
+  if (!formProps.ingredients || !formProps.ingredients.length) {
+    errors.ingredients = 'At least one member must be entered'
+  } else {
+    const ingredientsArrayErrors = []
+    formProps.ingredients.forEach((ingredient, ingredientIndex) => {
+      const ingredientErrors = {}
+      if (!ingredient || !ingredient.quantity) {
+        ingredientErrors.quantity = 'Required'
+        ingredientsArrayErrors[ingredientIndex] = ingredientErrors
+      }
+      if (!ingredient || !ingredient.item) {
+        ingredientErrors.item = 'Required'
+        ingredientsArrayErrors[ingredientIndex] = ingredientErrors
+      }
+      return ingredientErrors
+    })
+    if(ingredientsArrayErrors.length) {
+      errors.ingredients = ingredientsArrayErrors
+    }
+  }
   return errors;
 }

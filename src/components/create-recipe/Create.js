@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { reduxForm, Field } from 'redux-form';
+import { reduxForm, Field, FieldArray } from 'redux-form';
 import * as actions from '../../actions';
 import * as fields from './form-fields';
-import Ingredients from './Ingredients';
 import validate from './validate'
 import $ from 'jquery';
 import Imgur from '../../imgur.js'
@@ -17,8 +16,51 @@ const {
   servingsField, 
   difficultyField, 
   descriptionField, 
-  instructionsField
+  instructionsField,
+  quantityField,
+  itemsField
 } = fields;
+
+
+const Ingredients = ({ fields, meta: {error} }) => (
+  console.log(error),
+  <div>
+    {fields.map((member, index) =>
+      <div className="inner-flex-body" key={index}>
+        <button
+          type="button"
+          title="Remove Member"
+          onClick={() => fields.remove(index)}
+          className={`btn btn-primary ${index===0?"delete-button-first":"delete-button"}`}
+          style={{height: '40px'}}>
+            <i className="fa fa-trash-o" aria-hidden="true"></i>
+        </button>
+        <div className="inner-flex-element">
+          <label className={index===0?"":"hide-label"}>Quantity</label>
+          <Field
+            name={`${member}.quantity`}
+            type="text"
+            component={quantityField}
+            label="Quantity"/>
+        </div>
+          <div className="inner-flex-element">
+          <label className={index===0?"":"hide-label"}>Item</label>
+          <Field
+            name={`${member}.item`}
+            type="text"
+            component={itemsField}
+            label="Item"/>
+          </div>
+        {error && <div className="error">{error}</div>}
+        </div>
+    )}
+    <div className="ingredient-button-div">
+      <a className="btn btn-primary ingredient-button" onClick={() => fields.push({})} style={{color: '#fff'}}>
+        <i className="fa fa-plus" aria-hidden="true"/>
+      </a>
+    </div>
+  </div>
+)
 
 class Create extends Component {
   constructor() {
@@ -90,15 +132,14 @@ class Create extends Component {
   handleFormSubmit(formProps) {
     formProps.tags = this.state.tags;
     const { username } = this.props;
-    const { recipeName, difficulty, cookTime, prepTime, servings, instructions, description } = formProps;
+    const { recipeName, difficulty, cookTime, prepTime, servings, instructions, description, ingredients } = formProps;
     const { tags, imageUrl } = this.state;
     if (!imageUrl) return this.setState({ imageError:true });
-    const ingredients = Object.keys(formProps).reduce((list, val, i) => {
-      let [quantity, items] = [`quantity${i}`, `items${i}`];
-      if(formProps[quantity]) list.quantity.push(formProps[quantity]);
-      if(formProps[items]) list.items.push(formProps[items]);
+    let ingredientsObject = ingredients.reduce((list, val) => {
+      list.quantity.push(val.quantity)
+      list.items.push(val.item)
       return list
-    }, {quantity: [], items: []});
+    }, {quantity: [], items: []})
     this.props.postRecipe({
       recipeName, 
       imageUrl, 
@@ -108,7 +149,7 @@ class Create extends Component {
       servings, 
       instructions, 
       description, 
-      ingredients, 
+      ingredients: ingredientsObject, 
       username,
       tags
     });
@@ -124,7 +165,7 @@ class Create extends Component {
           <Field name="recipeName" component={recipeNameField} />
           <Field name="description" component={descriptionField} />
           Ingredients:
-          <Ingredients />
+          <FieldArray name="ingredients" component={Ingredients}/>
           <Field name="instructions" component={instructionsField} />
           <TagsInput
             value={this.state.tags}
@@ -190,6 +231,13 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, actions)(reduxForm({
   form: 'create',
-  initialValues: {difficulty: "Choose..."},
+  initialValues: {
+    difficulty: "Choose...", 
+    ingredients:[
+    {quantity:'', item:''},
+    {quantity:'', item:''},
+    {quantity:'', item:''}
+    ]
+  },
   validate
 })(Create));

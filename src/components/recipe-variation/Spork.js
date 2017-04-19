@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { reduxForm, Field } from 'redux-form';
+import { reduxForm, Field, FieldArray } from 'redux-form';
 import * as actions from '../../actions';
 import * as fields from './form-fields';
-import Ingredients from './Ingredients';
 import validate from './validate'
 import $ from 'jquery';
 import Imgur from '../../imgur.js'
@@ -17,8 +16,50 @@ const {
   servingsField, 
   difficultyField, 
   descriptionField, 
-  instructionsField
+  instructionsField,
+  quantityField,
+  itemsField
 } = fields;
+
+const Ingredients = ({ fields, meta: {error} }) => (
+  console.log(error),
+  <div>
+    {fields.map((member, index) =>
+      <div className="inner-flex-body" key={index}>
+        <button
+          type="button"
+          title="Remove Member"
+          onClick={() => fields.remove(index)}
+          className={`btn btn-primary ${index===0?"delete-button-first":"delete-button"}`}
+          style={{height: '40px'}}>
+            <i className="fa fa-trash-o" aria-hidden="true"></i>
+        </button>
+        <div className="inner-flex-element">
+          <label className={index===0?"":"hide-label"}>Quantity</label>
+          <Field
+            name={`${member}.quantity`}
+            type="text"
+            component={quantityField}
+            label="Quantity"/>
+        </div>
+          <div className="inner-flex-element">
+          <label className={index===0?"":"hide-label"}>Item</label>
+          <Field
+            name={`${member}.item`}
+            type="text"
+            component={itemsField}
+            label="Item"/>
+          </div>
+        {error && <div className="error">{error}</div>}
+        </div>
+    )}
+    <div className="ingredient-button-div">
+      <a className="btn btn-primary ingredient-button" onClick={() => fields.push({})} style={{color: '#fff'}}>
+        <i className="fa fa-plus" aria-hidden="true"/>
+      </a>
+    </div>
+  </div>
+)
 
 class Create extends Component {
   constructor() {
@@ -97,14 +138,14 @@ class Create extends Component {
 
     const { username } = this.props;
     const { id } = this.props.initialValues;
-    const { recipeName, difficulty, cookTime, prepTime, servings, instructions, description } = formProps;
+    const { recipeName, difficulty, cookTime, prepTime, servings, instructions, ingredients, description } = formProps;
     const { tags, imageUrl } = this.state;
-    const ingredients = Object.keys(formProps).reduce((list, val, i) => {
-      let [quantity, items] = [`quantity${i}`, `items${i}`];
-      if (formProps[quantity]) list.quantity.push(formProps[quantity]);
-      if (formProps[items]) list.items.push(formProps[items]);
+    if (!imageUrl) return this.setState({ imageError:true });
+    let ingredientsObject = ingredients.reduce((list, val) => {
+      list.quantity.push(val.quantity)
+      list.items.push(val.item)
       return list
-    }, {quantity: [], items: []});
+    }, {quantity: [], items: []})
     this.props.postRecipe({
       parentId: id,
       recipeName, 
@@ -115,7 +156,7 @@ class Create extends Component {
       servings, 
       instructions, 
       description, 
-      ingredients, 
+      ingredients: ingredientsObject, 
       username,
       tags
     }, true)
@@ -131,7 +172,7 @@ class Create extends Component {
           <Field name="recipeName" component={recipeNameField} />
           <Field name="description" component={descriptionField} />
           Ingredients:
-          <Ingredients ingredients={this.props.initialValues.ingredients}/>
+          <FieldArray name="ingredients" component={Ingredients}/>
           <Field name="instructions" component={instructionsField} />
           <TagsInput
             value={this.state.tags}
@@ -193,20 +234,12 @@ class Create extends Component {
 
 function mapStateToProps(state) {
   const { ingredients:{quantity, items} } = state.recipes.pushVariation;
-  const quantityValues = quantity.reduce((obj, val, i) => {
-    const key = `quantity${i}`;
-    obj[key] = val;
-    return obj
-  }, {});
-  const itemsValues = items.reduce((obj, val, i) => {
-    const key = `items${i}`;
-    obj[key] = val;
-    return obj
-  }, {});
-  return { username: state.auth.username, initialValues: {...state.recipes.pushVariation, ...quantityValues, ...itemsValues} };
+  const ingredients = quantity.reduce((list, item, i) => {
+    list.push({quantity: item, item: items[i]})
+    return list
+  }, [])
+  return { username: state.auth.username, initialValues: {...state.recipes.pushVariation, ingredients } };
 }
-
-// const {id, description, difficulty, id, imageUrl, ingredients, instructions, prepTime, cookTime, servings, tags} = this.props.data
 
 export default connect(mapStateToProps, actions)(reduxForm({
   form: 'create',
