@@ -9,7 +9,7 @@ const client = new elasticsearch.Client({
     accessKey: ES_ACCESS_KEY,
     secretKey: ES_SECRET_KEY
   }
-}) ;
+});
 
 client.ping({
   requestTimeout: 3000
