@@ -109,26 +109,30 @@ class Settings extends Component {
   }
 }
 
-// function validate(formProps) {
-//   const errors = {};
+function validate(formProps) {
+  const errors = {};
+  if (!formProps.email) {
+    errors.email = 'Please enter an email';
+  }
 
-//   if (!formProps.username) {
-//     errors.username = 'Please enter an username';
-//   }
+  if (!formProps.password) {
+    errors.password = 'Please enter a password';
+  }
 
-//   if (formProps.username) {
-//     const { username } = formProps
-//     if (username[username.length-1] === username[username.length-1].toUpperCase()) {
-//       formProps.username = formProps.username.slice(0,username.length)
-//     }
-//   }
+  if (formProps.password && formProps.password.search(/\s/g) > 0) {
+    errors.password = 'Password cannot have spaces';
+  }
 
-//   if (!formProps.password) {
-//     errors.password = 'Please enter a password';
-//   }
+  if (!formProps.passwordConfirm) {
+    errors.passwordConfirm = 'Please enter a password confirmation';
+  }
+
+  if (formProps.password !== formProps.passwordConfirm) {
+    errors.password = 'Passwords must match';
+  }
   
-//   return errors;
-// }
+  return errors;
+}
 
 function mapStateToProps(state) {
   return { 
@@ -140,4 +144,5 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, actions)(reduxForm({
   form: 'settings',
+  validate
 })(Settings));

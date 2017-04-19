@@ -460,6 +460,7 @@ export function pushSettings(settings, username) {
       }).then(() => {
         dispatch(authError(''));
         dispatch(successMessage('Your email was changed'));
+        setTimeout(() => dispatch(successMessage('')), 5000)
       }).catch((res) => {
         if (!res.response) return dispatch(authError('Could not connect to server'));
         dispatch(authError('Email is in use'));
@@ -470,6 +471,7 @@ export function pushSettings(settings, username) {
       }).then(() => {
         dispatch(authError(''));
         dispatch(successMessage('Your password was changed'));
+        setTimeout(() => dispatch(successMessage('')), 5000)
       })
     }
   }
