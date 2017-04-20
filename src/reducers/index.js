@@ -8,6 +8,7 @@ import profileReducer from './profile-reducer';
 import userInfoReducer from './userinfo-reducer';
 import favoriteReducer from './favorite-reducer';
 import searchReducer from './search-reducer';
+import recipeInfoReducer from './recipeinfo-reducer';
 
 const rootReducer = combineReducers({
   form,
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   follows: followReducer,
   userInfo: userInfoReducer,
   search: searchReducer,
-  profile: profileReducer
+  profile: profileReducer,
+  recipeInfo: recipeInfoReducer
 });
 export default rootReducer;

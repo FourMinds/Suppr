@@ -20,3 +20,4 @@ export const SEARCH = 'search';
 export const SUCCESS = 'success';
 export const GET_PROFILE = 'get_profile';
 export const GET_PROFILE_USER = 'get_profile_user';
+export const GET_RECIPE_INFO = 'get_recipe_info';

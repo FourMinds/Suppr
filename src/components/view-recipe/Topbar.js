@@ -43,6 +43,7 @@ class Topbar extends Component {
 
   renderHeart() {
     let favorited = this.props.favorites.data.some(favorite => {
+      console.log('RECIPE ID', this.props.recipe.id)
       return favorite.recipe_id === this.props.recipe.id
     });
     const src = favorited ? '/assets/favorited.png' : '/assets/unfavorited.png';
@@ -57,25 +58,28 @@ class Topbar extends Component {
   }
 
   renderBronze() {
+    const ribbon3 = (this.props.recipeInfo.favoritesCount > 0) ? '/assets/ribbon3.png' : '/assets/ribbon3-grey.png';
     return (  
       <div className="medal">
-        <img src='/assets/ribbon3.png' title="bronze likes"/>
+        <img src={ribbon3} title="bronze likes"/>
       </div>
     )
   }
 
   renderSilver() {
+    const ribbon2 = (this.props.recipeInfo.favoritesCount > 1) ? '/assets/ribbon2.png' : '/assets/ribbon2-grey.png';
     return (
       <div className="medal">
-        <img src='/assets/ribbon2.png' title="silver likes"/>
+        <img src={ribbon2} title="silver likes"/>
       </div>
     )
   }
 
   renderGold() {
+    const ribbon1 = (this.props.recipeInfo.favoritesCount > 2) ? '/assets/ribbon1.png' : '/assets/ribbon1-grey.png';
     return (
       <div className="medal">
-        <img src='/assets/ribbon1.png' title="gold likes"/>
+        <img src={ribbon1} title="gold likes"/>
       </div>
     )
   }
@@ -90,6 +94,7 @@ class Topbar extends Component {
   }
 
   render () {
+    console.log('RECIPE INFO DATA', this.props.recipeInfo)
     return(
       <div className="topbar-box">
         
@@ -114,7 +119,8 @@ function mapStateToProps(state) {
     recipe: state.recipes.selectedRecipe,
     username: state.auth.username,
     favorites: state.favorites,
-    reviews: state.reviews.data
+    reviews: state.reviews.data,
+    recipeInfo: state.recipeInfo.data
   };
 }
 
