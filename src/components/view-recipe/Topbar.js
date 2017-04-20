@@ -37,24 +37,45 @@ class Topbar extends Component {
   }
 
   handleFavoriteSubmit() {
-    let favorite = {username: this.props.username, recipeId: this.props.recipe.id};
-    this.props.postFavorite(favorite);
+    if (this.props.selectedVariation) {
+      let favorite = {username: this.props.username, recipeId: this.props.selectedVariation.id};
+      this.props.postFavorite(favorite);
+    } else {
+      let favorite = {username: this.props.username, recipeId: this.props.recipe.id};
+      this.props.postFavorite(favorite);
+    }
+    
   }
 
   renderHeart() {
-    let favorited = this.props.favorites.data.some(favorite => {
-      console.log('RECIPE ID', this.props.recipe.id)
-      return favorite.recipe_id === this.props.recipe.id
-    });
-    const src = favorited ? '/assets/favorited.png' : '/assets/unfavorited.png';
-    if (!this.props.username) {
-      return <div className="favorite-button" ><img className="favorite-image" src='/assets/unfavorited.png' alt=""/></div>
+    let favorited;
+    if (this.props.selectedVariation) {
+      let favorited = this.props.favorites.data.some(favorite => {
+        return favorite.recipe_id === this.props.selectedVariation.id
+      });
+      const src = favorited ? '/assets/favorited.png' : '/assets/unfavorited.png';
+      if (!this.props.username) {
+        return <div className="favorite-button" ><img className="favorite-image" src='/assets/unfavorited.png' alt=""/></div>
+      }
+      return (
+        <div className="favorite-button" onClick={this.handleFavoriteSubmit}>
+          <img className="favorite-image" src={src} alt=""/>
+        </div>
+      )
+    } else {
+      let favorited = this.props.favorites.data.some(favorite => {
+        return favorite.recipe_id === this.props.recipe.id
+      });
+      const src = favorited ? '/assets/favorited.png' : '/assets/unfavorited.png';
+      if (!this.props.username) {
+        return <div className="favorite-button" ><img className="favorite-image" src='/assets/unfavorited.png' alt=""/></div>
+      }
+      return (
+        <div className="favorite-button" onClick={this.handleFavoriteSubmit}>
+          <img className="favorite-image" src={src} alt=""/>
+        </div>
+      )
     }
-    return (
-      <div className="favorite-button" onClick={this.handleFavoriteSubmit}>
-        <img className="favorite-image" src={src} alt=""/>
-      </div>
-    )
   }
 
   renderBronze() {
@@ -120,7 +141,8 @@ function mapStateToProps(state) {
     username: state.auth.username,
     favorites: state.favorites,
     reviews: state.reviews.data,
-    recipeInfo: state.recipeInfo.data
+    recipeInfo: state.recipeInfo.data,
+    selectedVariation: state.recipes.selectedVariation
   };
 }
 
