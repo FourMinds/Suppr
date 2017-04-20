@@ -2,6 +2,7 @@ const Authentication = require('./controllers/authentication');
 const forgotHandler = require('./controllers/forgot_handler');
 const recipeHandler = require('./controllers/recipe_handler');
 const favoriteHandler = require('./controllers/favorite_handler');
+const settingsHandler = require('./controllers/settings_handler');
 const followHandler = require('./controllers/follow_handler');
 const reviewHandler = require('./controllers/review_handler');
 const searchHandler = require('./controllers/search_handler');
@@ -19,6 +20,8 @@ module.exports = function(app) {
   app.post('/signin', requireSignin, Authentication.signin);
   app.post('/forgot', forgotHandler.forgotPassword);
   app.post('/reset', Authentication.resetPassword);
+  app.post('/settings/email', settingsHandler.changeEmail);
+  app.post('/settings/password', settingsHandler.changePassword);
 
   app.post('/recipe', recipeHandler.createRecipe);
   app.get('/recipe', recipeHandler.getRecipe);

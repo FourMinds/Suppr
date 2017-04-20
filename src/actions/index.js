@@ -22,7 +22,8 @@ import {
   GET_VARIATIONS_USERNAME,
   SEARCH,
   GET_PROFILE,
-  GET_PROFILE_USER
+  GET_PROFILE_USER,
+  SUCCESS
 } from './types';
 
 // all get requests are parsed for special characters and then modified based on the regex service in this folder
@@ -444,3 +445,42 @@ export function getProfileByUsername(username) {
       })
   }
 }
+
+/*****************
+* * Settings * *
+*****************/
+
+export function pushSettings(settings, username) {
+  return function(dispatch) {
+    const { email, password } = settings
+    if (email) {
+      console.log(email)
+      axios.post(`${server}/settings/email`, { email, username }, {
+        headers: {authorization: localStorage.getItem(('token'))}
+      }).then(() => {
+        dispatch(authError(''));
+        dispatch(successMessage('Your email was changed'));
+        setTimeout(() => dispatch(successMessage('')), 5000)
+      }).catch((res) => {
+        if (!res.response) return dispatch(authError('Could not connect to server'));
+        dispatch(authError('Email is in use'));
+      });
+    } else {
+      axios.post(`${server}/settings/password`, { password, username }, {
+        headers: {authorization: localStorage.getItem(('token'))}
+      }).then(() => {
+        dispatch(authError(''));
+        dispatch(successMessage('Your password was changed'));
+        setTimeout(() => dispatch(successMessage('')), 5000)
+      })
+    }
+  }
+}
+
+export function successMessage(message) {
+  return {
+    type: SUCCESS,
+    payload: message
+  }
+}
+

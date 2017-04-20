@@ -28,13 +28,7 @@ const Dropdown = (props) => {
             Create a Recipe
           </span>
         </Link>
-        <Link className="dropdown-item drop-inner-item" to="">
-          <span className="drop-inner-item-text">
-          <i className="fa fa-heart drop-inner-item-icon" aria-hidden="true"></i>
-            Favorites
-          </span>
-        </Link>
-        <Link className="dropdown-item drop-inner-item" to="">
+        <Link className="dropdown-item drop-inner-item" to="/settings">
           <span className="drop-inner-item-text">
           <i className="fa fa-cog drop-inner-item-icon" aria-hidden="true"></i>
             Settings
