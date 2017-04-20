@@ -1,5 +1,3 @@
-import $ from 'jquery'
-
 export default function validate(formProps) {
   console.log(formProps);
   const errors = {};
@@ -54,19 +52,19 @@ export default function validate(formProps) {
   if (!formProps.ingredients || !formProps.ingredients.length) {
     errors.ingredients = 'At least one member must be entered'
   } else {
-    const ingredientsArrayErrors = []
+    const ingredientsArrayErrors = [];
     formProps.ingredients.forEach((ingredient, ingredientIndex) => {
-      const ingredientErrors = {}
+      const ingredientErrors = {};
       if (!ingredient || !ingredient.quantity) {
-        ingredientErrors.quantity = 'Required'
+        ingredientErrors.quantity = 'Required';
         ingredientsArrayErrors[ingredientIndex] = ingredientErrors
       }
       if (!ingredient || !ingredient.item) {
-        ingredientErrors.item = 'Required'
+        ingredientErrors.item = 'Required';
         ingredientsArrayErrors[ingredientIndex] = ingredientErrors
       }
       return ingredientErrors
-    })
+    });
     if(ingredientsArrayErrors.length) {
       errors.ingredients = ingredientsArrayErrors
     }

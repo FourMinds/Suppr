@@ -2,46 +2,45 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { reduxForm, Field } from 'redux-form';
 import * as actions from '../../actions';
-import { Link } from 'react-router';
 
 const emailField = email => (
   <fieldset className="form-group">
     <input className="form-control auth-input" {...email.input} placeholder="Email"/>
     {email.meta.touched && email.meta.error && <div className="error">{email.meta.error}</div>}
   </fieldset>
-)
+);
 
 const passwordField = password => (
   <fieldset className="form-group">
     <input className="form-control auth-input" type="password" {...password.input} placeholder="New Password"/>
     {password.meta.touched && password.meta.error && <div className="error">{password.meta.error}</div>}
   </fieldset>
-)
+);
 
 const passwordConfirmField = passwordConfirm => (
   <fieldset className="form-group">
     <input className="form-control auth-input" type="password" {...passwordConfirm.input} placeholder="Confirm Password"/>
     {passwordConfirm.meta.touched && passwordConfirm.meta.error && <div className="error">{passwordConfirm.meta.error}</div>}
   </fieldset>
-)
+);
 
 class Settings extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       page: 0
     }
   }
   handleFormSubmit(formProps) {
-    const { username } = this.props
+    const { username } = this.props;
     this.props.pushSettings(formProps, username)
   } 
 
   changePage(e) {
-    this.props.authError('')
-    this.props.successMessage('')
-    this.props.reset()
+    this.props.authError('');
+    this.props.successMessage('');
+    this.props.reset();
     this.setState({page: Number(e.target.name)})
   }
 
@@ -67,7 +66,7 @@ class Settings extends Component {
 
   render() {
     const { handleSubmit, submitting, pristine } = this.props;
-    const { page } = this.state
+    const { page } = this.state;
     return (
       <div>
       <ul className="nav nav-fill">
@@ -110,7 +109,6 @@ class Settings extends Component {
 }
 
 function validate(formProps) {
-  console.log(formProps)
   const errors = {};
   if (!formProps.email) {
     errors.email = 'Please enter an email';
