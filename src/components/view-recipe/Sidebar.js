@@ -69,7 +69,11 @@ class Sidebar extends Component {
     this.props.pushVariation(this.props.recipe);
   }
 
-
+  returnToRecipe() {
+    this.props.getRecipeInfo(this.props.recipe.id);
+    this.props.getReview(this.props.recipe.id);
+    this.props.deselectVariation();
+  }
 
   render() {
     const selected = (this.props.sporkId && this.props.selectedVariation) || 
@@ -130,7 +134,7 @@ class Sidebar extends Component {
               </li>
               }
               <hr />
-              <li className={selected} onClick={() => {this.props.getReview(this.props.recipe.id);this.props.deselectVariation()}}>
+              <li className={selected} onClick={this.returnToRecipe.bind(this)}>
                 <a >View Recipe <i className="fa fa-list" aria-hidden="true"></i></a>
               </li>
               <li className={notSelected} data-toggle="modal" data-target="#ModalLong">
