@@ -93,7 +93,7 @@ class Sidebar extends Component {
       		<div className="navbar-header">
       		</div>
       		<div id="sidebar-wrapper" className="sidebar-toggle">
-      			<ul className="sidebar-nav">
+      			<ul className="sidebar-nav" style={{paddingTop:'10px'}}>
               <li className="menu-toggle sidebar-toggle-item">
                 <a>Close<i className="fa fa-times" aria-hidden="true" ></i></a>
               </li>
