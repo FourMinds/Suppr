@@ -48,8 +48,7 @@ const Ingredients = ({ fields, meta: {error} }) => (
           type="button"
           title="Remove Member"
           onClick={() => fields.length-1 ? fields.remove(index) : null}
-          className={`btn btn-primary ${index===0?"btn-delete-first":"btn-delete"}`}
-          style={{height: '40px'}}>
+          className={`btn btn-primary ${index===0?"btn-delete-first":"btn-delete"}`} >
             <i className="fa fa-trash-o" aria-hidden="true"></i>
         </button>
         {error && <div className="error">{error}</div>}
