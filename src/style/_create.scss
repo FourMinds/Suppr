@@ -32,10 +32,6 @@
   justify-content: flex-end;
 }
 
-.ingredient-button {
-  margin: 0 0.2em;
-}
-
 .create-flex-element-right {
   flex: 1 1 500px;
   padding: 0 10px 5px 10px;
@@ -145,13 +141,6 @@
 
 // ***************imgur**********
 
-/*.dropzone {
-  border: 4px dashed #ccc;
-  height: 200px;
-  margin: 0 10px;
-  position: relative;
-  width: auto;
-}*/
 .dropzone {
   border: 1px dashed black;
   height: 250px;
@@ -212,6 +201,7 @@
 body.busy .loading-modal {
   display: block;
 }
+
 .col-md {
   margin: 0 auto;
   max-width: 500px
@@ -223,10 +213,12 @@ body.busy .loading-modal {
 
 .btn-delete-first {
   margin-top: 26px;
+  height: 40px;
 }
 
 .btn-delete {
   margin-top: 3.5px;
+  height: 40px;
 }
 
 .btn-ingredient {

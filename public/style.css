@@ -412,9 +412,6 @@ a, a:hover {
   display: flex;
   justify-content: flex-end; }
 
-.ingredient-button {
-  margin: 0 0.2em; }
-
 .create-flex-element-right {
   flex: 1 1 500px;
   padding: 0 10px 5px 10px; }
@@ -511,13 +508,6 @@ a, a:hover {
   background: -moz-linear-gradient(top, #4c8669, #24a866);
   background: linear-gradient(to bottom, #4c8669, #24a866); }
 
-/*.dropzone {
-  border: 4px dashed #ccc;
-  height: 200px;
-  margin: 0 10px;
-  position: relative;
-  width: auto;
-}*/
 .dropzone {
   border: 1px dashed black;
   height: 250px;
@@ -579,10 +569,12 @@ body.busy .loading-modal {
   display: none; }
 
 .btn-delete-first {
-  margin-top: 26px; }
+  margin-top: 26px;
+  height: 40px; }
 
 .btn-delete {
-  margin-top: 3.5px; }
+  margin-top: 3.5px;
+  height: 40px; }
 
 .btn-ingredient {
   color: #fff !important;
