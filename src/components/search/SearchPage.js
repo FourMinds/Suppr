@@ -5,6 +5,7 @@ import { CSSGrid, layout, makeResponsive, measureItems } from 'react-stonecutter
 import RecipeCard from '../landing/RecipeCard';
 
 class SearchPage extends Component {
+
   renderCards() {
     return this.props.searchResults ? this.props.searchResults.map((recipe, i) => <li key={i}><RecipeCard recipe={recipe._source} key={i}/></li>) : ''
   }

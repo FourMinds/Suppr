@@ -408,8 +408,9 @@ export function search(query) {
           query
         } 
       });
-        res.data.map(recipe => dispatch(getProfileByUsername(recipe.username)));
-        res.data.map(recipe => dispatch(getUserInfo(recipe.username)));
+        console.log(res.data)
+        res.data.map(recipe => dispatch(getProfileByUsername(recipe._source.username)));
+        res.data.map(recipe => dispatch(getUserInfo(recipe._source.username)));
     })
   }
 }
