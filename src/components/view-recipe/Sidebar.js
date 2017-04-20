@@ -119,7 +119,7 @@ class Sidebar extends Component {
               }
               {!this.props.selectedVariation && this.props.username &&
               <li onClick={this.handleVariation.bind(this)}>
-                <a>Spork this recipe <img src="/assets/spork.png" alt="Spork" style={{width: '8%', marginLeft: '5px'}}/></a>
+                <a>Spork this recipe <img src="/assets/spork2.png" alt="Spork" style={{width: '8%', marginLeft: '5px'}}/></a>
               </li>
               }
               {this.props.username && 

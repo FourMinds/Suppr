@@ -43,6 +43,7 @@ class Topbar extends Component {
 
   renderHeart() {
     let favorited = this.props.favorites.data.some(favorite => {
+      console.log('RECIPE ID', this.props.recipe.id)
       return favorite.recipe_id === this.props.recipe.id
     });
     const src = favorited ? '/assets/favorited.png' : '/assets/unfavorited.png';
@@ -56,13 +57,56 @@ class Topbar extends Component {
     )
   }
 
+  renderBronze() {
+    const ribbon3 = (this.props.recipeInfo.favoritesCount > 0) ? '/assets/ribbon3.png' : '/assets/ribbon3-grey.png';
+    return (  
+      <div className="medal">
+        <img src={ribbon3} title="bronze likes"/>
+      </div>
+    )
+  }
+
+  renderSilver() {
+    const ribbon2 = (this.props.recipeInfo.favoritesCount > 1) ? '/assets/ribbon2.png' : '/assets/ribbon2-grey.png';
+    return (
+      <div className="medal">
+        <img src={ribbon2} title="silver likes"/>
+      </div>
+    )
+  }
+
+  renderGold() {
+    const ribbon1 = (this.props.recipeInfo.favoritesCount > 2) ? '/assets/ribbon1.png' : '/assets/ribbon1-grey.png';
+    return (
+      <div className="medal">
+        <img src={ribbon1} title="gold likes"/>
+      </div>
+    )
+  }
+
+  renderTrophy() {
+    const trophy = (this.state.score >= 4 && this.props.reviews.length >= 5) ? '/assets/trophy.png' : '/assets/trophy-grey.png';
+    return(
+      <div className="medal">
+        <img src={trophy} title="well recieved"/>
+      </div>
+    )
+  }
+
   render () {
+    console.log('RECIPE INFO DATA', this.props.recipeInfo)
     return(
       <div className="topbar-box">
         
         {this.props.username && this.renderHeart()}
+
         <div className="medals-box">
+          {this.renderGold()}
+          {this.renderSilver()}
+          {this.renderBronze()}
+          {this.renderTrophy()}
         </div>
+
         <a href="#review"><div id="star"></div></a>
       </div>
     )
@@ -75,7 +119,8 @@ function mapStateToProps(state) {
     recipe: state.recipes.selectedRecipe,
     username: state.auth.username,
     favorites: state.favorites,
-    reviews: state.reviews.data
+    reviews: state.reviews.data,
+    recipeInfo: state.recipeInfo.data
   };
 }
 

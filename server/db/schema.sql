@@ -89,7 +89,7 @@ CREATE TABLE `favorites` (
   `user_id` INTEGER NOT NULL,
   PRIMARY KEY (`id`)
 );
-
+ 
 -- ---
 -- Table 'followers'
 -- 

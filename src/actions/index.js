@@ -23,7 +23,8 @@ import {
   SEARCH,
   GET_PROFILE,
   GET_PROFILE_USER,
-  SUCCESS
+  SUCCESS,
+  GET_RECIPE_INFO
 } from './types';
 
 // all get requests are parsed for special characters and then modified based on the regex service in this folder
@@ -179,6 +180,7 @@ export function getRecipeById(id) {
         dispatch(getReview(id));
         dispatch(getProfileByUsername(res.data.username));
         dispatch(getUserInfo(res.data.username));
+        dispatch(getRecipeInfo(id));
       })
         .catch(e => browserHistory.replace('/error'));
   }
@@ -370,6 +372,22 @@ export function getUserInfo(username) {
           data:res.data 
         }
       })
+    })
+  }
+}
+
+/*****************
+* * Recipeinfo * * 
+*****************/
+
+//retrieves number of likes for a specific recipe
+export function getRecipeInfo(recipeId) {
+  return function(dispatch) {
+    axios.get(`${server}/recipeinfo`, {
+      params: { recipeId }
+    })
+    .then(res => {
+      dispatch({ type: GET_RECIPE_INFO, payload: res.data})
     })
   }
 }
