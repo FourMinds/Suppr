@@ -27,7 +27,7 @@ import RequireAuth from './components/auth/require-auth';
 import Profile from './components/profile/Profile';
 import FourOFour from './components/auth/FourOFour';
 
-const store = applyMiddleware(Thunk)(createStore)(reducers);
+const store = applyMiddleware(Thunk)(createStore)(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 const token = localStorage.getItem('token');
 if(token) {

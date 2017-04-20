@@ -177,7 +177,8 @@
   margin: 2%; }
 
 .review {
-  margin: 0 2% 4% 2%; }
+  margin: 0 2% 4% 2%;
+  white-space: pre-wrap; }
 
 .review-author {
   display: flex;
@@ -511,11 +512,11 @@ a, a:hover {
   background: linear-gradient(to bottom, #4c8669, #24a866); }
 
 /*.dropzone {
-    border: 4px dashed #ccc;
-    height: 200px;
-    margin: 0 10px;
-    position: relative;
-    width: auto;
+  border: 4px dashed #ccc;
+  height: 200px;
+  margin: 0 10px;
+  position: relative;
+  width: auto;
 }*/
 .dropzone {
   border: 1px dashed black;
@@ -658,8 +659,8 @@ button.btn.btn-primary.btn-padded {
   justify-content: spaced; }
 
 .tags-flex-box-style {
-  margin-left: 5px;
-  margin-right: 5px;
+  margin-left: 1.8em;
+  margin-right: 1.8em;
   margin-bottom: 10px; }
 
 .tags-title {
@@ -905,11 +906,11 @@ body.busy .loading-modal {
   display: block; }
 
 .btn-edit-profile {
-  margin-left: 10px;
-  cursor: pointer;
   border: 1px solid #24a866;
-  padding: 7px;
-  border-radius: 2px; }
+  border-radius: 2px;
+  cursor: pointer;
+  margin: 1em 1em 2em 1em;
+  padding: 7px; }
 
 .form-label {
   display: block; }
@@ -933,7 +934,7 @@ body.busy .loading-modal {
   margin-top: 5px; }
 
 .profile-field-container {
-  margin-top: 10px; }
+  margin: 2em 1em 1em 1em; }
 
 .profile-text {
   margin: 10px 0 30px 5px;
