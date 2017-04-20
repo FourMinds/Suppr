@@ -221,10 +221,15 @@ body.busy .loading-modal {
   display: none;
 }
 
-.delete-button-first {
-  margin-top: 25px;
+.btn-delete-first {
+  margin-top: 26px;
 }
 
-.delete-button {
+.btn-delete {
   margin-top: 3.5px;
+}
+
+.btn-ingredient {
+  color: #fff !important;
+  margin-right: 0px;
 }

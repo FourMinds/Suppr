@@ -27,14 +27,7 @@ const Ingredients = ({ fields, meta: {error} }) => (
   <div>
     {fields.map((member, index) =>
       <div className="inner-flex-body" key={index}>
-        <button
-          type="button"
-          title="Remove Member"
-          onClick={() => fields.remove(index)}
-          className={`btn btn-primary ${index===0?"delete-button-first":"delete-button"}`}
-          style={{height: '40px'}}>
-            <i className="fa fa-trash-o" aria-hidden="true"></i>
-        </button>
+        
         <div className="inner-flex-element">
           <label className={index===0?"":"hide-label"}>Quantity</label>
           <Field
@@ -51,12 +44,20 @@ const Ingredients = ({ fields, meta: {error} }) => (
             component={itemsField}
             label="Item"/>
           </div>
+          <button
+          type="button"
+          title="Remove Member"
+          onClick={() => fields.length-1 ? fields.remove(index) : null}
+          className={`btn btn-primary ${index===0?"btn-delete-first":"btn-delete"}`}
+          style={{height: '40px'}}>
+            <i className="fa fa-trash-o" aria-hidden="true"></i>
+        </button>
         {error && <div className="error">{error}</div>}
         </div>
     )}
     <div className="ingredient-button-div">
-      <a className="btn btn-primary ingredient-button" onClick={() => fields.push({})} style={{color: '#fff'}}>
-        <i className="fa fa-plus" aria-hidden="true"/>
+      <a className="btn btn-primary btn-ingredient" onClick={() => fields.push({})} >
+        <i className="fa fa-plus" aria-hidden="true" />
       </a>
     </div>
   </div>
