@@ -155,6 +155,7 @@ export function selectVariation(recipeId, id) {
     const display = getState().recipes.variations[recipeId].filter(variation => variation.id === Number(id));
     dispatch({ type: SELECT_VARIATION, payload: display[0] });
     dispatch(getReview(id));
+    dispatch(getRecipeInfo(id))
   }
 }
 
