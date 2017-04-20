@@ -20,7 +20,7 @@ class SporkModal extends Component {
         return (
           <a key={i} 
               onClick={() => this.handleClick.call(this, this.props.recipe, variation)}>
-              <SporkCard name={variation.name} image={variation.image} description={variation.description}/>
+              <SporkCard {...variation}/>
           </a>
         )
       })

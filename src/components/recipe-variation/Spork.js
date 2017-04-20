@@ -22,7 +22,6 @@ const {
 } = fields;
 
 const Ingredients = ({ fields, meta: {error} }) => (
-  console.log(error),
   <div>
     {fields.map((member, index) =>
       <div className="inner-flex-body" key={index}>
@@ -58,7 +57,7 @@ const Ingredients = ({ fields, meta: {error} }) => (
       </a>
     </div>
   </div>
-)
+);
 
 class Create extends Component {
   constructor() {
@@ -141,10 +140,10 @@ class Create extends Component {
     const { tags, imageUrl } = this.state;
     if (!imageUrl) return this.setState({ imageError:true });
     let ingredientsObject = ingredients.reduce((list, val) => {
-      list.quantity.push(val.quantity)
-      list.items.push(val.item)
+      list.quantity.push(val.quantity);
+      list.items.push(val.item);
       return list
-    }, {quantity: [], items: []})
+    }, {quantity: [], items: []});
     this.props.postRecipe({
       parentId: id,
       recipeName, 
@@ -234,9 +233,9 @@ class Create extends Component {
 function mapStateToProps(state) {
   const { ingredients:{quantity, items} } = state.recipes.pushVariation;
   const ingredients = quantity.reduce((list, item, i) => {
-    list.push({quantity: item, item: items[i]})
+    list.push({quantity: item, item: items[i]});
     return list
-  }, [])
+  }, []);
   return { username: state.auth.username, initialValues: {...state.recipes.pushVariation, ingredients } };
 }
 
