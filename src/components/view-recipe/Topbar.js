@@ -61,7 +61,7 @@ class Topbar extends Component {
         <div className="favorite-button" onClick={this.handleFavoriteSubmit}>
           <img className="favorite-image" src={src} alt=""/>
         </div>
-      )
+      );
     } else {
       let favorited = this.props.favorites.data.some(favorite => {
         return favorite.recipe_id === this.props.recipe.id
@@ -74,7 +74,7 @@ class Topbar extends Component {
         <div className="favorite-button" onClick={this.handleFavoriteSubmit}>
           <img className="favorite-image" src={src} alt=""/>
         </div>
-      )
+      );
     }
   }
 
@@ -84,7 +84,7 @@ class Topbar extends Component {
       <div className="medal">
         <img src={ribbon3} title="bronze likes"/>
       </div>
-    )
+    );
   }
 
   renderSilver() {
@@ -93,7 +93,7 @@ class Topbar extends Component {
       <div className="medal">
         <img src={ribbon2} title="silver likes"/>
       </div>
-    )
+    );
   }
 
   renderGold() {
@@ -102,7 +102,7 @@ class Topbar extends Component {
       <div className="medal">
         <img src={ribbon1} title="gold likes"/>
       </div>
-    )
+    );
   }
 
   renderTrophy() {
@@ -111,11 +111,10 @@ class Topbar extends Component {
       <div className="medal">
         <img src={trophy} title="well recieved"/>
       </div>
-    )
+    );
   }
 
   render () {
-    console.log('RECIPE INFO DATA', this.props.recipeInfo)
     return(
       <div className="topbar-box">
         
