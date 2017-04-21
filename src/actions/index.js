@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { server } from '../config.js'
 import { browserHistory } from 'react-router';
+import { server } from '../config.js'
 import {
   AUTH_USER,
   UNAUTH_USER,
@@ -160,8 +160,11 @@ export function selectVariation(recipeId, id) {
 }
 
 export function deselectVariation() {
-  return function(dispatch) {
+  return function(dispatch, getState) {
+    const originalId = getState().recipes.selectedRecipe.id;
     dispatch({ type: DESELECT_VARIATION });
+    dispatch(getReview(originalId));
+    dispatch(getRecipeInfo(originalId));
   }
 }
 

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 import * as actions from '../../actions';
 import RecipeTile from './recipe/RecipeTile';
 import Reviews from './recipe/Reviews';
 import RecipeInfo from './recipe/RecipeInfo';
-import { browserHistory } from 'react-router';
 
 class ShowRecipe extends Component {
 

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { reduxForm, Field } from 'redux-form';
-import { signupFields } from './form-fields';
-import { server } from '../../config.js';
-import axios from 'axios';
 import { browserHistory } from 'react-router';
+import { reduxForm, Field } from 'redux-form';
+import axios from 'axios';
+import { server } from '../../config.js';
+import { signupFields } from './form-fields';
 
 const {
   emailField

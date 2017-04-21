@@ -40,7 +40,6 @@ class Sidebar extends Component {
     });
   }
 
-
   handleDeleteSpork() {
     this.props.deleteRecipe(this.props.selectedVariation.id, true);
   }
