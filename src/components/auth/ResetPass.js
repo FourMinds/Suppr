@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 import { reduxForm, Field } from 'redux-form';
-import { signupFields } from './form-fields';
+import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import { server } from '../../config.js';
-import axios from 'axios';
-import { browserHistory } from 'react-router';
+import { signupFields } from './form-fields';
 
 const {
   passwordField
