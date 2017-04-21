@@ -5,9 +5,9 @@ const _ = require('lodash');
 const query = Promise.promisify(db.query.bind(db));
 
 exports.createRecipe = function(req, res, next) {
-  const { username, recipeName, imageUrl, parentId, difficulty, cookTime, prepTime, servings, instructions, description,tags, ingredients:{ quantity, items } } = req.body; 
+  const { username, recipeName, imageUrl, parentId, difficulty, cookTime, prepTime, servings, instructions, description,tags, ingredients:{ quantity, items } } = req.body;
   const usernameSubQuery = `SELECT id from users WHERE username = "${username}"`;
-  if (!username || !recipeName || !imageUrl || !difficulty || !cookTime || !prepTime || !servings || !instructions || !description || !quantity || !items) {
+  if (!username || !recipeName || !imageUrl || !difficulty || (cookTime !== 0 && !cookTime) || (prepTime !== 0 && !prepTime) || (servings !== 0 && !servings) || !instructions || !description || !quantity || !items) {
     return res.status(422).send({ error: 'All fields are required' })
   }
   let saveRecipeQuery = `INSERT INTO recipes(name, image, difficulty, cook_time, prep_time, servings, instructions, description, user_id) VALUES("${recipeName}", "${imageUrl}", "${difficulty}", "${cookTime}", "${prepTime}", "${servings}", "${instructions}", "${description}", (${usernameSubQuery}));`;
@@ -32,7 +32,8 @@ exports.createRecipe = function(req, res, next) {
     })
     .then(result => res.status(200).send({ 
       message: 'The recipe was saved successfully!', 
-      id: result[result.length-1].id
+      id: result[result.length-1].id,
+      variation: result[result.length-1].parent_id
     }));
 
 };
@@ -69,7 +70,6 @@ exports.getRecipe = function(req, res, next) {
       }))
     })
       .then(variations => {
-        console.log(variations);
         res.status(200).send(variations)
       })
   }

@@ -9,7 +9,6 @@ import RecipeStats from './RecipeStats';
 class RecipeTile extends Component {
 
   render() {
-    // console.log(this.state.score)
     const { recipeName, imageUrl } = this.props.recipe;
     const url=`url("${imageUrl}")`;
     return (

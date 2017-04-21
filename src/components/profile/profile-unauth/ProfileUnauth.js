@@ -82,8 +82,7 @@ class ProfileView extends Component {
     }
     if (this.state.page === 3) {
       const {data, favorites} = this.props;
-      console.log(data, favorites);
-      const tiles = favorites.map(recipe => {  
+      const tiles = favorites.map(recipe => {
         const recipeProp = data.filter(item => item.id === recipe.recipe_id)[0];
         return <RecipeCard key={recipeProp.id} recipe={recipeProp} />
       });

@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 
 class SporkCard extends Component {
   componentWillMount() {
-    this.props.getUserInfo(this.props.username)
+    this.props.getUserInfo(this.props.username);
     this.props.getProfileByUsername(this.props.username)
   }
 
