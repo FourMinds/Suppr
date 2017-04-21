@@ -8,7 +8,6 @@ exports.postFavorite = function(req, res, next) {
   const {recipeId, username} = req.body;
   const usernameSubQuery = `SELECT id from users WHERE username = "${username}"`;
   const findFavoriteQuery = `SELECT * from favorites WHERE recipe_id = "${recipeId}" AND user_id = (${usernameSubQuery});`;
-  console.log(findFavoriteQuery);
   query(findFavoriteQuery).then(([favorite]) => {
     if(!favorite) {
       const insertFavoriteQuery = `INSERT INTO favorites(recipe_id, user_id) VALUES("${recipeId}", (${usernameSubQuery}));`;

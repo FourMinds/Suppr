@@ -101,7 +101,7 @@ export function postRecipe(recipe, isVariation) {
       .then(res => {
         let recipePath = `/recipe/${res.data.id}`;
         if(isVariation) {
-          recipePath = `/recipe/${recipe.parentId}`;
+          recipePath = `/recipe/${recipe.parentId}/${res.data.id}`;
         }
         dispatch(getRecipes());
         browserHistory.push(recipePath);
@@ -409,7 +409,6 @@ export function search(query) {
           query
         } 
       });
-        console.log(res.data)
         res.data.map(recipe => dispatch(getProfileByUsername(recipe._source.username)));
         res.data.map(recipe => dispatch(getUserInfo(recipe._source.username)));
     })
@@ -472,9 +471,8 @@ export function getProfileByUsername(username) {
 
 export function pushSettings(settings, username) {
   return function(dispatch) {
-    const { email, password } = settings
+    const { email, password } = settings;
     if (email) {
-      console.log(email)
       axios.post(`${server}/settings/email`, { email, username }, {
         headers: {authorization: localStorage.getItem(('token'))}
       }).then(() => {
@@ -503,4 +501,3 @@ export function successMessage(message) {
     payload: message
   }
 }
-

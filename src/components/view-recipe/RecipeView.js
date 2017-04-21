@@ -13,12 +13,14 @@ class RecipeView extends Component {
   }
 
   render() {
+    // if selected variation exists, it's true and we go to the variation
+    // otherwise we go to the original recipe
     return (
       <div id="recipe-view" className="recipe-view-margin">
         <Sidebar sporkId={Number(this.props.params.sporkId)} recipe={this.props.recipe}/>
         <Topbar />
         {this.props.selectedVariation &&<ShowVariation/>}
-        {!this.props.selectedVariation &&<ShowRecipe />}
+        {!this.props.selectedVariation &&<ShowRecipe/>}
       </div>
     )
   }

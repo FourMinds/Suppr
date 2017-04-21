@@ -11,8 +11,7 @@ class SporkModal extends Component {
     this.props.selectVariation(recipe.id, variation.id);
     $("#ModalLong .closer").click();
   }
-
-
+  
   renderVariations() {
     if (this.props.recipe && this.props.variations && this.props.variations[this.props.recipe.id]) {
       
