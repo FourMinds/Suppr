@@ -82,7 +82,7 @@ class Topbar extends Component {
     const ribbon3 = (this.props.recipeInfo.favoritesCount > 0) ? '/assets/ribbon3.png' : '/assets/ribbon3-grey.png';
     return (  
       <div className="medal">
-        <img src={ribbon3} title="bronze likes"/>
+        <img src={ribbon3} title="bronze likes" alt="bronze likes"/>
       </div>
     );
   }
@@ -91,7 +91,7 @@ class Topbar extends Component {
     const ribbon2 = (this.props.recipeInfo.favoritesCount > 1) ? '/assets/ribbon2.png' : '/assets/ribbon2-grey.png';
     return (
       <div className="medal">
-        <img src={ribbon2} title="silver likes"/>
+        <img src={ribbon2} title="silver likes" alt="silver likes"/>
       </div>
     );
   }
@@ -100,7 +100,7 @@ class Topbar extends Component {
     const ribbon1 = (this.props.recipeInfo.favoritesCount > 2) ? '/assets/ribbon1.png' : '/assets/ribbon1-grey.png';
     return (
       <div className="medal">
-        <img src={ribbon1} title="gold likes"/>
+        <img src={ribbon1} title="gold likes" alt="gold likes"/>
       </div>
     );
   }
