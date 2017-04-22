@@ -19,7 +19,7 @@ describe('Author Tile', () => {
     const favoritesCount = authorTile.find('[title="likes"]').parent().last().text();
 
     expect(recipesCount).toEqual('2');
-    expect(sporksCount).toEqual('6');
+    expect(sporksCount).toEqual('2');
     expect(followersCount).toEqual('3');
     expect(favoritesCount).toEqual('6');
   });

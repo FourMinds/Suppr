@@ -32,6 +32,7 @@ class ShowRecipe extends Component {
         <RecipeTile />
     
         <RecipeInfo />
+
         <div className='tags-flex-box-style'>
           <div>
             <ul style={{display: 'flex',flexFlow: 'row wrap', justifyContent: 'flex-start'}}>
@@ -46,7 +47,9 @@ class ShowRecipe extends Component {
             </ul>
           </div>
         </div>
+
         <Reviews />
+
       </div>
     )
   }
