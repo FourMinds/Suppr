@@ -8,16 +8,17 @@ describe ('Show Recipe', () => {
   const showRecipe = mount(<Provider store={createRecipeStore}><ShowRecipe/></Provider>);
 
   it('shows the correct number of tags', () => {
-    let listItems = showRecipe.find('li');
+    const listItems = showRecipe.find('li');
     expect(listItems).toHaveLength(4);
   });
 
   it('shows all the tags, given the correct recipe state', () => {
     createRecipeStore.getState().recipes.selectedRecipe.tags.map(current => {
-    let list = showRecipe.find('ul');
+    const list = showRecipe.find('ul');
     expect(list.containsMatchingElement(
       <a className="tag">{current}</a>
     )).toBeTruthy();
     });
   });
+
 });
