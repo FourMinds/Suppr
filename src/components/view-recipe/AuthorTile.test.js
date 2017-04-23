@@ -1,15 +1,19 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import { mount } from 'enzyme';
-import AuthorTile from './AuthorTile';
-import { createRecipeStore } from '../../test/test_state';
+import { shallow } from 'enzyme';
+import { AuthorTile } from './AuthorTile';
+import { createRecipeState } from '../../test/test_state';
 
 describe('Author Tile', () => {
-  const authorTile = mount(<Provider store={createRecipeStore}><AuthorTile username="Bluzkry"/></Provider>);
+  const authorTile = shallow(<AuthorTile
+    info={createRecipeState.userInfo}
+    profile={createRecipeState.profile}
+    username="Bluzkry"
+  />);
 
   it('renders the author name', () => {
+    expect(authorTile.find('.author-name').length).toEqual(1);
     const authorName = authorTile.find('.author-name').text();
-    const expectedAuthorName = createRecipeStore.getState().recipes.selectedRecipe.username;
+    const expectedAuthorName = createRecipeState.recipes.selectedRecipe.username;
 
     expect(authorName).toEqual(expectedAuthorName);
   });
@@ -20,11 +24,11 @@ describe('Author Tile', () => {
     const followersCount = authorTile.find('[title="followers"]').parent().last().text();
     const favoritesCount = authorTile.find('[title="likes"]').parent().last().text();
 
-    const expectedAuthorName = createRecipeStore.getState().recipes.selectedRecipe.username;
-    const expectedRecipesCount = createRecipeStore.getState().userInfo[expectedAuthorName].recipesCount;
-    const expectedSporksCount = createRecipeStore.getState().userInfo[expectedAuthorName].sporksCount;
-    const expectedFollowersCount = createRecipeStore.getState().userInfo[expectedAuthorName].followersCount;
-    const expectedFavoritesCount = createRecipeStore.getState().userInfo[expectedAuthorName].favoritesCount;
+    const expectedAuthorName = createRecipeState.recipes.selectedRecipe.username;
+    const expectedRecipesCount = createRecipeState.userInfo[expectedAuthorName].recipesCount;
+    const expectedSporksCount = createRecipeState.userInfo[expectedAuthorName].sporksCount;
+    const expectedFollowersCount = createRecipeState.userInfo[expectedAuthorName].followersCount;
+    const expectedFavoritesCount = createRecipeState.userInfo[expectedAuthorName].favoritesCount;
 
     expect(recipesCount).toEqual(expectedRecipesCount.toString());
     expect(sporksCount).toEqual(expectedSporksCount.toString());

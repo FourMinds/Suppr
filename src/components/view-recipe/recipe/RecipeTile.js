@@ -6,7 +6,7 @@ import RecipeStats from './RecipeStats';
 // import _ from 'lodash';
 
 
-class RecipeTile extends Component {
+export class RecipeTile extends Component {
 
   render() {
     const { recipeName, imageUrl } = this.props.recipe;

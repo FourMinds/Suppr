@@ -37,7 +37,7 @@ const reviewField = review => (
   </fieldset>
 );
 
-class Reviews extends Component {
+export class Reviews extends Component {
   constructor(props) {
     super(props);
 

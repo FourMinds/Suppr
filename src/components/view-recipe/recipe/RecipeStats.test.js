@@ -1,13 +1,12 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import { mount } from 'enzyme';
-import RecipeStats from './RecipeStats';
-import { createRecipeStore } from '../../../test/test_state';
+import { shallow } from 'enzyme';
+import { RecipeStats } from './RecipeStats';
+import { createRecipeState } from '../../../test/test_state';
 
 describe('Recipe Stats', () => {
-  const recipeStats = mount(<Provider store={createRecipeStore}><RecipeStats/></Provider>);
+  const recipeStats = shallow(<RecipeStats recipe={createRecipeState.recipes.selectedRecipe} />);
 
-  const expectedRecipeInfo = createRecipeStore.getState().recipes.selectedRecipe;
+  const expectedRecipeInfo = createRecipeState.recipes.selectedRecipe;
   const stats = recipeStats.find('.recipe-stats-box-column-row');
 
   it('shows images before each stat', () => {

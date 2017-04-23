@@ -6,7 +6,7 @@ import RecipeTile from './recipe/RecipeTile';
 import Reviews from './recipe/Reviews';
 import RecipeInfo from './recipe/RecipeInfo';
 
-class ShowRecipe extends Component {
+export class ShowRecipe extends Component {
 
   componentDidMount() {
     if (this.props.recipe && this.props.recipe.parent_id) {

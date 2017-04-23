@@ -1,12 +1,11 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import { mount } from 'enzyme';
-import RecipeInfo from './RecipeInfo';
-import { createRecipeStore } from '../../../test/test_state';
+import { shallow } from 'enzyme';
+import { RecipeInfo } from './RecipeInfo';
+import { createRecipeState } from '../../../test/test_state';
 
 describe('Recipe Info', () => {
-  const recipeInfo = mount(<Provider store={createRecipeStore}><RecipeInfo/></Provider>);
-  const expectedRecipe = createRecipeStore.getState().recipes.selectedRecipe;
+  const recipeInfo = shallow(<RecipeInfo recipe={createRecipeState.recipes.selectedRecipe}/>);
+  const expectedRecipe = createRecipeState.recipes.selectedRecipe;
 
   it('renders ingredients and instructions titles', () => {
     const ingredientTitle = recipeInfo.find('.ingredient-title').text();
@@ -25,13 +24,13 @@ describe('Recipe Info', () => {
   });
 
   it('shows a click and then hides the click when clicking an ingredient', () => {
-    let notChecked = recipeInfo.find('[alt="oval"]').first();
-    expect(notChecked).toBeDefined();
+    let click = recipeInfo.find('.flex-body-ingredients').first().childAt(0);
+    expect(click.html().includes('oval')).toEqual(true);
 
-    recipeInfo.find('.flex-body-ingredients').first().childAt(0).simulate('click');
+    click.simulate('click', {target: {name: 0}});
 
-    const checked = recipeInfo.find('[alt="success"]').first();
-    expect(checked).toBeDefined();
+    let clicked = recipeInfo.find('.flex-body-ingredients').first().childAt(0);
+    expect(clicked.html().includes('success')).toEqual(true);
   });
 
   it('correctly renders the instructions, splitting at new lines', () => {

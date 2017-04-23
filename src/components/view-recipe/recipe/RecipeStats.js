@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../../actions';
 
-class RecipeStats extends Component {
+export class RecipeStats extends Component {
 
   render() {
     const { difficulty, cookTime, prepTime, servings } = this.props.recipe;
