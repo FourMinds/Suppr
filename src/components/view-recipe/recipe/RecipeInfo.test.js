@@ -25,7 +25,7 @@ describe('Recipe Info', () => {
   });
 
   it('shows a click and then hides the click when clicking an ingredient', () => {
-    let notChecked = recipeInfo.find('[alt="oval"]').first();
+    const notChecked = recipeInfo.find('[alt="oval"]').first();
     expect(notChecked).toBeDefined();
 
     recipeInfo.find('.flex-body-ingredients').first().childAt(0).simulate('click');
