@@ -4,7 +4,7 @@ import { mount } from 'enzyme';
 import RecipeStats from './RecipeStats';
 import { createRecipeStore } from '../../../test/test_state';
 
-describe ('Recipe Stats', () => {
+describe('Recipe Stats', () => {
   const recipeStats = mount(<Provider store={createRecipeStore}><RecipeStats/></Provider>);
 
   const expectedRecipeInfo = createRecipeStore.getState().recipes.selectedRecipe;

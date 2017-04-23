@@ -4,7 +4,7 @@ import { mount } from 'enzyme';
 import ShowRecipe from './ShowRecipe';
 import { createRecipeStore } from '../../test/test_state';
 
-describe ('Show Recipe', () => {
+describe('Show Recipe', () => {
   const showRecipe = mount(<Provider store={createRecipeStore}><ShowRecipe/></Provider>);
 
   it('shows the correct number of tags', () => {
