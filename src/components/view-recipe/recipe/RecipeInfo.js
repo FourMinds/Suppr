@@ -27,14 +27,14 @@ class RecipeInfo extends Component {
          lines.push(
           <div className='flex-body-ingredients' key={i}>
             <div onClick={this.doneClick} id={i} >
-            {this.state[i] ? 
-              (<img  className='empty-check' src="/assets/success.png" alt="success" name={i} />) 
-              : (<img  className='empty-check' src="/assets/oval.png" name={i} alt="oval" />)}
+            {this.state[i] ?
+              (<img className='empty-check' src="/assets/success.png" alt="success" name={i} />)
+              : (<img className='empty-check' src="/assets/oval.png" name={i} alt="oval" />)}
             </div>
             <div className='ingredient-item' >
               <span>
-                <span className='quantity-style'>{quantities[i]}</span> 
-                <span className="ingredient-divider">|</span> 
+                <span className='quantity-style'>{quantities[i]}</span>
+                <span className="ingredient-divider">|</span>
                 {items[i]}
               </span>
             </div>

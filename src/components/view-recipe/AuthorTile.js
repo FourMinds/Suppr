@@ -53,6 +53,4 @@ function mapStateToProps(state) {
   return {info: state.userInfo, profile: state.profile}
 }
 
-
-
 export default connect(mapStateToProps, actions)(AuthorTile);
