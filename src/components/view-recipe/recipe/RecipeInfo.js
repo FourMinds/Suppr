@@ -29,7 +29,7 @@ class RecipeInfo extends Component {
             <div onClick={this.doneClick} id={i} >
             {this.state[i] ?
               (<img className='empty-check' src="/assets/success.png" alt="success" name={i} />)
-              : (<img src="/assets/oval.png" name={i} alt="oval" />)}
+              : (<img className='empty-check' src="/assets/oval.png" name={i} alt="oval" />)}
             </div>
             <div className='ingredient-item' >
               <span>
