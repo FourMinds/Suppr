@@ -1,12 +1,16 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import { mount } from 'enzyme';
-import Reviews from './Reviews';
-import { createRecipeStore } from '../../../test/test_state';
+import { shallow } from 'enzyme';
+import { Reviews } from './Reviews';
+import { createRecipeState } from '../../../test/test_state';
 
 describe('Reviews', () => {
-  const review = mount(<Provider store={createRecipeStore}><Reviews/></Provider>);
-  const reviews = createRecipeStore.getState().reviews.data;
+  const review = shallow(<Reviews
+    username={createRecipeState.auth.username}
+    recipe={createRecipeState.recipes.selectedRecipe}
+    reviews={createRecipeState.reviews.data}
+    handleSubmit={() => null}
+  />);
+  const reviews = createRecipeState.reviews.data;
 
   it('renders correct number of stars per review', () => {
     const reviewStars = review.find('.review-star').map((rating, index) => {

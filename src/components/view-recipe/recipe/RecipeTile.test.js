@@ -1,12 +1,16 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import { mount } from 'enzyme';
-import RecipeTile from './RecipeTile';
-import { createRecipeStore } from '../../../test/test_state';
+import { shallow } from 'enzyme';
+import { RecipeTile } from './RecipeTile';
+import { createRecipeState } from '../../../test/test_state';
 
 describe('Recipe Tile', () => {
-  const recipeTile = mount(<Provider store={createRecipeStore}><RecipeTile/></Provider>);
-  let expectedRecipe = createRecipeStore.getState().recipes.selectedRecipe;
+  const recipeTile = shallow(<RecipeTile
+    recipe={createRecipeState.recipes.selectedRecipe}
+    username={createRecipeState.auth.username}
+    favorites={createRecipeState.favorites}
+    reviews={createRecipeState.reviews.data}
+  />);
+  let expectedRecipe = createRecipeState.recipes.selectedRecipe;
   
   it('correctly shows the recipe name', () => {
     let recipeTitle = recipeTile.find('.recipe-title-box').text();
@@ -14,8 +18,8 @@ describe('Recipe Tile', () => {
   });
 
   it('attempts to render the recipe image', () => {
-    let recipeImage = recipeTile.find('.food-img').get(0).style;
-    expect(recipeImage._values).toHaveProperty('background-image', `url(${expectedRecipe.imageUrl})`);
+    let recipeImage = recipeTile.find('.food-img').get(0).props.style;
+    expect(recipeImage).toHaveProperty('backgroundImage', `url("${expectedRecipe.imageUrl}")`);
   });
 
 });
