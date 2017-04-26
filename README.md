@@ -21,9 +21,6 @@
 
 - Node 6.10.x
 - MySQL 2.13.x
-- React 15.4.x
-- Redux 3.6.x
-- Express 4.15.x
 
 ## Development
 
