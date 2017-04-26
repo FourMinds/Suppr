@@ -1,6 +1,6 @@
 # Project Name
 
-> Pithy project description
+Suppr is a social platform for creating and sharing recipes that provides users with the ability to create their own versions of other recipes
 
 ## Team
 
@@ -13,7 +13,6 @@
 1. [Requirements](#requirements)
 1. [Development](#development)
     1. [Installing Dependencies](#installing-dependencies)
-    1. [Tasks](#tasks)
 1. [Team](#team)
 
 
