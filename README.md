@@ -29,7 +29,5 @@ From within the root directory:
 
 ```sh
 npm install
-node server/index.js
-npm run start
 ```
 
