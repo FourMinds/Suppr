@@ -33,11 +33,16 @@ exports.forgotPassword = function(req, res, next) {
       // send an email with the email and token
       mailer.sendMail(email, token, (err, info) => {
         if (err) {
-          return console.error(err);
+          console.error(err);
+          return res.status(500).send(err);
         }
         console.log('Message %s sent: %s', info.messageId, info.response);
+        return res.sendStatus(200);
       });
     })
-    .catch(err => console.error(err));
+    .catch(err => {
+      console.error(err);
+      return res.status(500).send(err);
+    });
 
 };
