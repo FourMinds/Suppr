@@ -1,4 +1,4 @@
-# Project Name
+# Suppr
 
 Suppr is a social platform for creating and sharing recipes that provides users with the ability to create their own versions of other recipes
 
